@@ -14,6 +14,7 @@
   <script>
     import './logs.tag'
     
+
     this.on('server', async ()=>{
       await this.generate({ type: 'custom' })
     })

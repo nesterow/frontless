@@ -10,7 +10,7 @@ app.get('/', async (req, res, next) => {
     res.end(
         await renderPage('index', {
           title: 'Ello',
-          req,
+          // req,
         })
     );
   } catch (e) {

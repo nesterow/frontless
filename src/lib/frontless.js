@@ -36,7 +36,7 @@ export const RiotFrontLess = {
   setInitialState() {
     if (this.isServer()) {
       this.opts.req.initialState = this.opts.req.initialState || {};
-      this.opts.req.tags.map((tag)=>{
+      this.opts.req.tags.map((tag) => {
         const cookedData = JSON.stringify(tag,
             (key, value) => {
               if (key.startsWith('_')) return undefined;
@@ -48,9 +48,7 @@ export const RiotFrontLess = {
               }
               return value;
             });
-
         this.opts.req.initialState[tag._uid] = JSON.parse(cookedData);
-        this.state = this.opts.req.initialState;
         this.update();
       });
     }

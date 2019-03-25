@@ -65,7 +65,6 @@ export const RiotWaiter = {
     }
 
     this._isAwaiting = true;
-
     let _resolve;
     const promise = {
       name: name + this._riot_id,
@@ -75,10 +74,13 @@ export const RiotWaiter = {
     promise.resolve = _resolve;
     setTimeout(() => {
       promise.resolve();
-      if (!promise.done) console.error(`
+      if (!promise.done) {
+        this._isAwaiting = false;
+        console.error(`
         Async operation "${name}" was not finished properly. 
         Perhaps missing 'this.done("${name}")'.
       `);
+      }
     }, riot.settings.asyncRenderTimeout - 500);
     this._readyPromises.push(promise);
     this._waitReadyState();

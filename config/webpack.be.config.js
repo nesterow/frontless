@@ -5,17 +5,17 @@ const nodeExternals = require('webpack-node-externals');
 
 const server = {
   entry: {
-    server: './src/server.js'
+    server: './src/server.js',
   },
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
     publicPath: '/dist/',
-    filename: '[name].js'
+    filename: '[name].js',
   },
   target: 'node',
   node: {
     __dirname: false,
-    __filename: false, 
+    __filename: false,
   },
   externals: [nodeExternals()],
   module: {
@@ -26,9 +26,9 @@ const server = {
         use: [{
           loader: 'riot-tag-loader',
           options: {
-            type: 'es6'
-          }
-        }]
+            type: 'es6',
+          },
+        }],
       },
       {
         test: /\.js$/,
@@ -36,19 +36,19 @@ const server = {
         use: {
           loader: 'babel-loader',
           options: {
-            plugins: ["@babel/plugin-proposal-class-properties"],
+            plugins: ['@babel/plugin-proposal-class-properties'],
             presets: [
-              ["@babel/preset-env",
-              {
-                "targets":  {
-                  "node": "current"
-                }
-              }]
-            ]
-          }
-        }
-      }
-    ]
+              ['@babel/preset-env',
+                {
+                  'targets': {
+                    'node': 'current',
+                  }
+                }],
+            ],
+          },
+        },
+      },
+    ],
   },
 };
 
