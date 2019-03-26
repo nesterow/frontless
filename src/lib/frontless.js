@@ -1,3 +1,5 @@
+import * as riot from 'riot';
+
 /**
  * Provides general purpose SSR methods
  * @mixin
@@ -8,6 +10,43 @@ export const RiotFrontLess = {
    * @property {string|null} - a unique tag id, the same on client and server
    * */
   _uid: null,
+
+  /**
+   * @property {Riot.Observer} - an event bus
+   * */
+  bus: null,
+
+  /** Initialize FrontLess mixin.
+   *  @listens this#before-mount
+   *  @emits this#server
+   */
+  init() {
+    if (this.isServer()) {
+      this.opts.req = this.parent ?
+            this.parent.opts.req : (this.opts.req || {});
+      this.opts.req.tags = this.opts.req.tags || [];
+      this.opts.req.tags.push(this);
+
+      this.on('before-mount', () => {
+        /**
+         * @event this#server
+        */
+        this.trigger('server');
+      });
+
+      this.on('before-ready', this.setInitialState);
+    } else {
+      this.opts.req = this.parent ?
+              this.parent.opts.req || {} : {};
+    }
+
+    if (!this.bus) {
+      this.bus = this.parent ? this.parent.bus : riot.observable();
+    }
+
+    this.setUID();
+    this.initState();
+  },
 
   /** @return {boolean} */
   isServer() {
@@ -26,6 +65,17 @@ export const RiotFrontLess = {
     stack [tagName] = stack [tagName] || 0;
     stack [tagName] ++;
     this._uid = tagName + stack [tagName];
+
+    // subscribe tag on updates
+    this.bus.on('update:'+this._uid, (data, opts) => {
+      Object.entries(data).map((entry) => {
+        const [key, value] = entry;
+        if (typeof this [key] !== 'function') {
+          this [key] = value;
+        }
+      });
+      this.update();
+    });
   },
 
   /**
@@ -43,6 +93,9 @@ export const RiotFrontLess = {
                 return undefined;
               }
               if (typeof value === 'function') {
+                return undefined;
+              }
+              if (key === 'bus') {
                 return undefined;
               }
               if (key === 'opts') {
@@ -83,33 +136,49 @@ export const RiotFrontLess = {
     }
   },
 
-  /** Initialize FrontLess mixin.
-   *  @listens this#before-mount
-   *  @emits this#server
+  /**
+   * 
+   * @param {string|Object} tagContext - Uniq tag or an object containing _uid
+   * @param {Object} data - object with data
+   * @return {{ opts: {_uid: "uniq-tag-id"}, data:{} }}
    */
-  init() {
-    if (this.isServer()) {
-      this.opts.req = this.parent ?
-            this.parent.opts.req : (this.opts.req || {});
-      this.opts.req.tags = this.opts.req.tags || [];
-      this.opts.req.tags.push(this);
-
-      this.on('before-mount', () => {
-        /**
-         * @event this#server
-        */
-        this.trigger('server');
-      });
-
-      this.on('before-ready', this.setInitialState);
-    } else {
-      this.opts.req = this.parent ?
-              this.parent.opts.req || {} : {};
+  MESSAGE(tagContext, data) {
+    if (typeof tagContext === 'string') {
+      tagContext = {
+        _uid: tagContext,
+      };
     }
-
-    this.setUID();
-    this.initState();
+    if (!tagContext) {
+      tagContext = this;
+    }
+    return {
+      opts: {
+        _uid: tagContext._uid,
+        ...tagContext.opts,
+      },
+      data,
+    };
   },
+
+  /**
+   * Update a tag from context
+   * @param {{opts:{_uid: "uniq-tag-id"}, data: {}}} message - an update message
+   */
+  RECEIVE(message) {
+    const {opts, data} = message;
+    this.bus.trigger('update:'+opts._uid, data, opts);
+  },
+
+  /**
+   * Update a tag from context
+   * @param {{opts:{_uid: "uniq-tag-id"}, data: {}}} message - an update message
+   * @return {["tag_id", Object]}
+   */
+  PARSE(message) {
+    const {opts, data} = message;
+    return [opts._uid, data];
+  },
+
 };
 
 export default RiotFrontLess;
