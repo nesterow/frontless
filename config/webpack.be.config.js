@@ -24,7 +24,7 @@ const server = {
         test: /\.tag$/,
         exclude: /node_modules/,
         use: [{
-          loader: path.resolve('./config/page.loader.js'),
+          loader: path.resolve('./config/webpack.page.loader.js'),
           options: {
             type: 'es6',
           },

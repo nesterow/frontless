@@ -4,13 +4,12 @@ riot.settings.asyncRenderTimeout = 20000;
 const PAGE_SUFFIX = '-front-less-page';
 
 /**
- *
- * @param {string} path - path to riot tag
+ * @alias riot.renderAsync
+ * @param {string} tag - name of the riot tag
  * @param {Object|undefined} opts - riot compiler options
  * @async
  */
-export async function render(path, opts={}) {
-  const tag = riot.require(path);
+export async function render(tag, opts={}) {
   return await riot.renderAsync(tag, opts);
 }
 /**
@@ -33,7 +32,6 @@ export async function renderPage(tag, opts={}) {
 export function resolvePageName(path) {
   const parts = path.split('/').filter((e) => !!e);
   const name = (parts.length ? parts.join('-') : 'index') + PAGE_SUFFIX;
-  console.log(parts, name);
   return name;
 };
 

@@ -1,3 +1,3 @@
 <index>
-    <p>/News</p>
+  <p>/News</p>
 </index>

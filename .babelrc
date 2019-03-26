@@ -9,7 +9,18 @@
       ]
     ],
     "plugins": [
-        ["@babel/plugin-transform-modules-commonjs", {"allowTopLevelThis": true}],
-        "@babel/plugin-proposal-class-properties",
+        ["module-resolver", {
+          "root": ["./src"],
+          "alias": {
+            "@": "./src",
+            "@@": "./src/pages",
+            "tags": "./src/tags",
+            "lib": "./src/lib"
+          }
+        }],
+        ["@babel/plugin-transform-modules-commonjs", {
+          "allowTopLevelThis": true
+        }],
+        "@babel/plugin-proposal-class-properties"
       ],
   }

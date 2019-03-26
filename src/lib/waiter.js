@@ -76,10 +76,10 @@ export const RiotWaiter = {
       promise.resolve();
       if (!promise.done) {
         this._isAwaiting = false;
-        console.error(`
-        Async operation "${name}" was not finished properly. 
-        Perhaps missing 'this.done("${name}")'.
-      `);
+        console.error(` RiotWaiter >>>
+          Async operation "${name}" was not finished properly. 
+          Perhaps missing 'this.done("${name}")'.
+        `);
       }
     }, riot.settings.asyncRenderTimeout - 500);
     this._readyPromises.push(promise);

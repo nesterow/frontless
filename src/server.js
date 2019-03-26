@@ -1,6 +1,6 @@
 
 import express from 'express';
-import {renderPage, resolvePageName} from './lib/render';
+import {renderPage, resolvePageName} from 'lib/render';
 import './pages';
 
 const app = express();
@@ -16,10 +16,17 @@ app.get('/*', async (req, res, next) => {
         })
     );
   } catch (e) {
-    if (e.message.includes(`'class' of undefined`)) {
-      return res.status(404).end('not found');
+    if (e.message && e.message.includes(`'class' of undefined`)) {
+      return res.status(404).end(
+          await renderPage(resolvePageName('not-found'), {})
+      );
     } else {
-      res.status(500).end(e.stack);
+      res.status(500).end(
+          await renderPage(resolvePageName('server-error'), {
+            message: e.message,
+            stack: e.stack,
+          })
+      );
     }
   }
 });
