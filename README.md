@@ -1,8 +1,13 @@
 # FrontLess
-#### Ultimate RiotJS SSR Framework
+#### RiotJS Isomorphic Stack
 
 - Progress[50%]
 - Version[pre-alpha]
+
+
+```sh
+  ~$ npx frontless <app-name>
+```
 
 ### Roadmap
 1. ~~Isomorphic async rendering helpers~~
