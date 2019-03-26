@@ -23,7 +23,7 @@ describe('waiter', () => {
         else {
           // eslint-disable-next-line prefer-promise-reject-errors
           reject(
-              `Component was renedered sooner than data was cooked. 
+              `Component renedered sooner than asyc calls. 
                     GOT: ${elapsed}ms; 
                     EXPECTED: >= 3500ms`
           );

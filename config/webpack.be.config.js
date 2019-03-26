@@ -24,7 +24,7 @@ const server = {
         test: /\.tag$/,
         exclude: /node_modules/,
         use: [{
-          loader: 'riot-tag-loader',
+          loader: path.resolve('./config/page.loader.js'),
           options: {
             type: 'es6',
           },

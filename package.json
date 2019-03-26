@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Frontless - isomorhic riot applications",
   "repository": "riot/examples",
-  "main": "app/main.js",
+  "main": "src/lib/index.js",
   "author": "Anton Nesterov",
   "license": "MIT",
   "engines": {
@@ -13,7 +13,8 @@
     "start": "node_modules/.bin/nodemon --ext js,tag --exec \"npm run build-dev && node dist/server.js\"",
     "build-dev": "webpack --mode development --config config/webpack.config.js",
     "build": "webpack --mode production --config config/webpack.config.js",
-    "lint": "eslint ./src --fix"
+    "lint": "eslint ./src --fix",
+    "test": "jest"
   },
   "keywords": [
     "riot",
