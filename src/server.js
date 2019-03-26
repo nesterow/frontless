@@ -1,9 +1,13 @@
 
 import express from 'express';
 import {renderPage, resolvePageName} from 'lib/render';
+import frontless from 'lib/server/express';
+
 import './pages';
 
 const app = express();
+frontless(app);
+
 app.use('/dist', express.static('dist/public'));
 
 app.get('/*', async (req, res, next) => {

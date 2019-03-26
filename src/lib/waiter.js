@@ -71,7 +71,10 @@ export const RiotWaiter = {
       done: false,
       promise: new Promise((resolve) => _resolve = resolve),
     };
-    promise.resolve = _resolve;
+    promise.resolve = () => {
+      _resolve();
+      promise.done = true;
+    };
     setTimeout(() => {
       promise.resolve();
       if (!promise.done) {
@@ -98,7 +101,6 @@ export const RiotWaiter = {
         .find((e) => e.name === (name + this._riot_id));
     if (op) {
       op.resolve();
-      op.done = true;
     }
     this.trigger('done', name);
     this.trigger('done:' + name);
