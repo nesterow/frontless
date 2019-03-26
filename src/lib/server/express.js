@@ -16,5 +16,4 @@ export default (expressApp) => {
   expressApp.MESSAGE = FrontLess.MESSAGE;
   expressApp.PARSE = FrontLess.PARSE;
   expressApp.UPDATE = FrontLess.UPDATE;
-  expressApp.use(FrontLessMidleware);
 };

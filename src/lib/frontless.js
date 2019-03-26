@@ -1,4 +1,4 @@
-import * as riot from 'riot';
+import evbus from './evbus';
 
 /**
  * Provides general purpose SSR methods
@@ -9,7 +9,7 @@ export const RiotFrontLess = {
   /**
    * @property {string|null} - a unique tag id, the same on client and server
    * */
-  _uid: null,
+  _id: null,
 
   /**
    * @property {Riot.Observer} - an event bus
@@ -41,11 +41,13 @@ export const RiotFrontLess = {
     }
 
     if (!this.bus) {
-      this.bus = this.parent ? this.parent.bus : riot.observable();
+      this.bus = this.parent ? this.parent.bus : evbus;
     }
 
-    this.setUID();
-    this.initState();
+    this.on('mount', ()=>{
+      this.setUID();
+      this.initState();
+    });
   },
 
   /** @return {boolean} */
@@ -55,19 +57,19 @@ export const RiotFrontLess = {
 
   /** Set a unique tag id */
   setUID() {
-    const tagName = this.root.tagName;
+    if (!this._id) {
+      const tagName = this.root.tagName;
 
-    if (this.opts.req) {
-      this.opts.req._counters = this.opts.req._counters || {};
+      if (this.opts.req) {
+        this.opts.req._counters = this.opts.req._counters || {};
+      }
+      const stack = this.opts.req._counters;
+      stack [tagName] = stack [tagName] || 0;
+      stack [tagName] ++;
+      this._id = tagName + stack [tagName];
     }
-
-    const stack = this.opts.req._counters;
-    stack [tagName] = stack [tagName] || 0;
-    stack [tagName] ++;
-    this._uid = tagName + stack [tagName];
-
     // subscribe tag on updates
-    this.bus.on('update:'+this._uid, (data, opts) => {
+    this.bus.on('update:'+this._id, (data, opts) => {
       Object.entries(data).map((entry) => {
         const [key, value] = entry;
         if (typeof this [key] !== 'function') {
@@ -105,7 +107,7 @@ export const RiotFrontLess = {
               }
               return value;
             });
-        this.opts.req.initialState [tag._uid] = JSON.parse(cookedData);
+        this.opts.req.initialState [tag._id] = JSON.parse(cookedData);
         this.update();
       });
     }
@@ -122,7 +124,7 @@ export const RiotFrontLess = {
       const meta = Array.from(document.getElementsByTagName('meta'))
           .find((e) => e.name === 'state');
       const cache = JSON.parse( meta.getAttribute('content') || '{}');
-      const data = cache [this._uid];
+      const data = cache [this._id];
 
       if (data) {
         this.on('before-mount', ()=>{
@@ -138,14 +140,15 @@ export const RiotFrontLess = {
 
   /**
    *
-   * @param {string|Object} tagContext - Uniq tag or an object containing _uid
+   * @param {string|Object} tagContext - Uniq tag or an object containing _id
    * @param {Object} data - object with data
-   * @return {{ opts: {_uid: "uniq-tag-id"}, data:{} }}
+   * @return {{ opts: {_id: "uniq-tag-id"}, data:{} }}
    */
   MESSAGE(tagContext, data) {
     if (typeof tagContext === 'string') {
       tagContext = {
-        _uid: tagContext,
+        _t: '/m/',
+        _id: tagContext,
       };
     }
     if (!tagContext) {
@@ -153,7 +156,8 @@ export const RiotFrontLess = {
     }
     return {
       opts: {
-        _uid: tagContext._uid,
+        _t: '/m/',
+        _id: tagContext._id,
         ...tagContext.opts,
       },
       data,
@@ -162,21 +166,25 @@ export const RiotFrontLess = {
 
   /**
    * Update a tag from context
-   * @param {{opts:{_uid: "uniq-tag-id"}, data: {}}} message - an update message
+   * @param {{opts:{_id: "uniq-tag-id"}, data: {}}} message - an update message
    */
   RECEIVE(message) {
     const {opts, data} = message;
-    this.bus.trigger('update:'+opts._uid, data, opts);
+    if (opts && opts._t === '/m/') {
+      this.bus.trigger('update:'+opts._id, data, opts);
+    }
   },
 
   /**
    * Update a tag from context
-   * @param {{opts:{_uid: "uniq-tag-id"}, data: {}}} message - an update message
+   * @param {{opts:{_id: "uniq-tag-id"}, data: {}}} message - an update message
    * @return {["tag_id", Object]}
    */
   PARSE(message) {
     const {opts, data} = message;
-    return [opts._uid, data];
+    if (opts && opts._t === '/m/') {
+      return [opts._id, data];
+    }
   },
 
 };
