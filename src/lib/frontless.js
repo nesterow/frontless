@@ -23,9 +23,9 @@ export const RiotFrontLess = {
     }
 
     const stack = this.opts.req._counters;
-    stack[tagName] = stack[tagName] || 0;
-    stack[tagName] ++;
-    this._uid = tagName + stack[tagName];
+    stack [tagName] = stack [tagName] || 0;
+    stack [tagName] ++;
+    this._uid = tagName + stack [tagName];
   },
 
   /**
@@ -39,16 +39,20 @@ export const RiotFrontLess = {
       this.opts.req.tags.map((tag) => {
         const cookedData = JSON.stringify(tag,
             (key, value) => {
-              if (key.startsWith('_')) return undefined;
-              if (typeof value === 'function') return undefined;
+              if (key.startsWith('_')) {
+                return undefined;
+              }
+              if (typeof value === 'function') {
+                return undefined;
+              }
               if (key === 'opts') {
                 const data = {...tag.opts};
-                delete data['req'];
+                delete data ['req'];
                 return data;
               }
               return value;
             });
-        this.opts.req.initialState[tag._uid] = JSON.parse(cookedData);
+        this.opts.req.initialState [tag._uid] = JSON.parse(cookedData);
         this.update();
       });
     }
@@ -65,13 +69,13 @@ export const RiotFrontLess = {
       const meta = Array.from(document.getElementsByTagName('meta'))
           .find((e) => e.name === 'state');
       const cache = JSON.parse( meta.getAttribute('content') || '{}');
-      const data = cache[this._uid];
+      const data = cache [this._uid];
 
       if (data) {
         this.on('before-mount', ()=>{
           for (const k in data) {
             if (data.hasOwnProperty(k)) {
-              this[k] = data[k];
+              this [k] = data [k];
             }
           }
         });

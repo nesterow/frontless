@@ -34,7 +34,7 @@ module.exports = function(source) {
   // replace root tag name for pages
   if (this.resourcePath.includes('/src/pages/')) {
     let tagNewName = this.resourcePath.replace(/(^(.*)\/pages\/|\.tag$)/gi, '');
-    tagNewName = tagNewName.replace(/\//gi, '-');
+    tagNewName = tagNewName.replace(/\//gi, '-') + '-front-less-page';
     source = source.trim();
     const rootTag = source.match(/^<(.*)>/gi) [0];
     source = source.replace(rootTag, `<${tagNewName}>`);

@@ -1,6 +1,7 @@
 import riot from './riot';
 
 riot.settings.asyncRenderTimeout = 20000;
+const PAGE_SUFFIX = '-front-less-page';
 
 /**
  *
@@ -23,3 +24,16 @@ export async function renderPage(tag, opts={}) {
   const unwrap = new RegExp('\<(\/?)' +tag+ '\>', 'gi');
   return Promise.resolve(data.replace(unwrap, ''));
 }
+
+/**
+ * Resolve tag name
+ * @param {string} path - requested route
+ * @return {string} - tag name
+ * */
+export function resolvePageName(path) {
+  const parts = path.split('/').filter((e) => !!e);
+  const name = (parts.length ? parts.join('-') : 'index') + PAGE_SUFFIX;
+  console.log(parts, name);
+  return name;
+};
+

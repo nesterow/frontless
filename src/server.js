@@ -1,20 +1,26 @@
 
 import express from 'express';
-import {renderPage} from './lib/render';
+import {renderPage, resolvePageName} from './lib/render';
 import './pages';
 
 const app = express();
 app.use('/dist', express.static('dist/public'));
-app.get('/', async (req, res, next) => {
+
+app.get('/*', async (req, res, next) => {
   try {
+    const tagName = resolvePageName(req.params [0]);
     res.end(
-        await renderPage('index', {
+        await renderPage(tagName, {
           title: 'Ello',
           req,
         })
     );
   } catch (e) {
-    console.log(e);
+    if (e.message.includes(`'class' of undefined`)) {
+      return res.status(404).end('not found');
+    } else {
+      res.status(500).end(e.stack);
+    }
   }
 });
 
