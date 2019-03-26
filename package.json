@@ -1,6 +1,6 @@
 {
   "name": "frontless",
-  "version": "0.0.1@pre-alpha",
+  "version": "0.0.1-prealpha",
   "description": "Frontless - Isomorhic RiotJS Stack",
   "repository": "https://github.com/nesterow/frontless",
   "main": "src/lib/index.js",
