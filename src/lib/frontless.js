@@ -137,7 +137,7 @@ export const RiotFrontLess = {
   },
 
   /**
-   * 
+   *
    * @param {string|Object} tagContext - Uniq tag or an object containing _uid
    * @param {Object} data - object with data
    * @return {{ opts: {_uid: "uniq-tag-id"}, data:{} }}
