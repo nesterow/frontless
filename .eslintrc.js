@@ -13,5 +13,6 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+        "prefer-const": "off"
     }
 };
