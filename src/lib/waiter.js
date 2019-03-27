@@ -66,6 +66,7 @@ export const RiotWaiter = {
 
     this._isAwaiting = true;
     let _resolve;
+    let _timeout;
     const promise = {
       name: name + this._riot_id,
       done: false,
@@ -74,8 +75,9 @@ export const RiotWaiter = {
     promise.resolve = () => {
       _resolve();
       promise.done = true;
+      clearTimeout(_timeout);
     };
-    setTimeout(() => {
+    _timeout = setTimeout(() => {
       promise.resolve();
       if (!promise.done) {
         this._isAwaiting = false;
