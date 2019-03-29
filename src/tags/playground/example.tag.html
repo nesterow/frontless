@@ -1,0 +1,21 @@
+<example>
+  <ul class="tab tab-block">
+    <li class={{'tab-item': true, active: view === 1}} onclick={()=> update({view:1})}>
+      <a >Client</a>
+    </li>
+    <li class={{'tab-item': true, active: view === 2}} onclick={()=> update({view:2})}>
+      <a >Server</a>
+    </li>
+  </ul>
+  <div show={view === 1}>
+    <code data-gist-id={opts.client} style={codeStyle}></code>
+  </div>
+  <div show={view === 2}>
+    <code data-gist-id={opts.server} style={codeStyle}></code>
+  </div>
+  
+  <script>
+    this.view = 1;
+    this.codeStyle = { width: '50vw' };
+  </script>
+</example>
