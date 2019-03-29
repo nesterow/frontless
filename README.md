@@ -1,8 +1,8 @@
 # FrontLess
-#### RiotJS Isomorphic Stack
+##### pre-alpha
+#### RiotJS Isomorphic Stack 
 
-- Progress[50%]
-- Version[pre-alpha]
+- Progress[60%]
 
 
 ```sh
