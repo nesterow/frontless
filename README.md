@@ -15,6 +15,7 @@
 3. ~~Use RiotJS tags as a templates on BE~~
 4. ~~Find solution for routing using `src/pages` as a root~~
 5. ~~Add error views, handle routing errors~~
-6. Implement shared state transport using feathersjs
-7. Implement session/auth middlewares
-8. Write documentation
+6. Find a solution to mount components from html chunks
+7. Implement shared state transport using feathersjs [60%]
+8. Implement session/auth middlewares
+9. Write documentation
