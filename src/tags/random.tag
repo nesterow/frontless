@@ -37,9 +37,6 @@
       this.logs = []
     }
 
-    this.on('update', ()=>{
-      console.log(this._id, this.data)
-    })
     
     
   </script>

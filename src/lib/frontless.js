@@ -125,16 +125,7 @@ export const RiotFrontLess = {
           .find((e) => e.name === 'state');
       const cache = JSON.parse( meta.getAttribute('content') || '{}');
       const data = cache [this._id];
-
-      if (data) {
-        this.on('before-mount', ()=>{
-          for (const k in data) {
-            if (data.hasOwnProperty(k)) {
-              this [k] = data [k];
-            }
-          }
-        });
-      }
+      this.update(data);
     }
   },
 

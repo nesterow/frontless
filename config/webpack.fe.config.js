@@ -21,9 +21,9 @@ const client = {
           loader: 'riot-tag-loader',
           options: {
             hot: true,
-            type: 'es6'
+            type: 'es6',
           }
-        }]
+        }],
       },
       {
         test: /\.js$/,
@@ -35,9 +35,13 @@ const client = {
             presets: ['@babel/preset-env']
           }
         }
-      }
-    ]
-  }
+      },
+      {
+        test: /\.css$/,
+        use: [{loader: 'style-loader'}, {loader: 'css-loader'}],
+      },
+    ],
+  },
 };
 
 module.exports = client
