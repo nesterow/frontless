@@ -3,6 +3,6 @@ module.exports = {
   automock: false,
   transform: {
     '^.+\\.js?$': 'babel-jest',
-    '^.+\\.tag$': 'riot-jest-transformer',
+    '^.+\\.tag.html$': 'riot-jest-transformer',
   },
 };

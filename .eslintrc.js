@@ -13,6 +13,7 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
-        "prefer-const": "off"
+        "prefer-const": "off",
+        "new-cap": "off"
     }
 };
