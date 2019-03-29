@@ -4,8 +4,8 @@
     </div>
     <test-child2 />
     <script>
-        import './test-child.tag';
-        import './test-child2.tag';
+        import './test-child.tag.html';
+        import './test-child2.tag.html';
         this.items = [];
         // at least 100 children tags with different async operations
         for (let i = 0; i <= 100; ++i)

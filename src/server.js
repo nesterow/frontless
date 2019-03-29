@@ -1,6 +1,6 @@
 import frontless from 'lib/server';
 import services from './api';
-import 'tags/views/layout.tag';
+import 'tags/views/layout.tag.html';
 import './pages';
 
 const application = frontless(services, (app, express) => {

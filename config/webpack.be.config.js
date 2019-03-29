@@ -21,7 +21,7 @@ const server = {
   module: {
     rules: [
       {
-        test: /\.tag$/,
+        test: /\.tag.html$/,
         exclude: /node_modules/,
         use: [{
           loader: path.resolve('./config/webpack.page.loader.js'),

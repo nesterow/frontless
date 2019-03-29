@@ -1,4 +1,4 @@
-const pages = require.context('.', true, /^(.*\.(tag$))[^.]*$/im);
+const pages = require.context('.', true, /^(.*\.(tag.html$))[^.]*$/im);
 pages.keys().forEach(function(key) {
   pages(key);
 });

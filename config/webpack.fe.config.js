@@ -15,7 +15,7 @@ const client = {
   module: {
     rules: [
       {
-        test: /\.tag$/,
+        test: /\.tag.html$/,
         exclude: /node_modules/,
         use: [{
           loader: 'riot-tag-loader',

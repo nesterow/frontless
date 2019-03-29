@@ -1,6 +1,6 @@
 import riot from '../riot';
-import './test-parent.tag';
-import './test-child.tag';
+import './test-parent.tag.html';
+import './test-child.tag.html';
 riot.settings.asyncRenderTimeout = 10000;
 
 describe('waiter', () => {

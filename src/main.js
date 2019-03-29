@@ -1,5 +1,5 @@
 import riot from 'lib/riot';
-const tags = require.context('./tags', true, /^(.*\.(tag$))[^.]*$/im);
+const tags = require.context('./tags', true, /^(.*\.(tag.html$))[^.]*$/im);
 tags.keys().forEach(function(key) {
   if (!key.includes('views/')) tags(key);
 });
