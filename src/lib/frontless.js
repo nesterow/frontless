@@ -55,6 +55,25 @@ export const RiotFrontLess = {
     return !process.browser;
   },
 
+  /** @return {boolean} */
+  isClient() {
+    return !!process.browser;
+  },
+
+  /** Unwrap tag content */
+  unwrapAsync() {
+    this.on('before-ready', () => {
+      this.unwrap();
+    });
+  },
+
+  /** Unwrap tag content */
+  unwrap() {
+    if (this.root.parentNode) {
+      this.root.parentNode.innerHTML = this.root.innerHTML;
+    }
+  },
+
   /** Set a unique tag id */
   setUID() {
     if (!this._id) {

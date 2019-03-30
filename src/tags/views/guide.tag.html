@@ -1,0 +1,46 @@
+<guide>
+  <html style={{
+    padding: 24
+  }}>
+    <section>
+      <header class="navbar">
+        <section class="navbar-section">
+          <a href="/" class="navbar-brand mr-2">Home</a>
+          <a href="/" class="btn btn-link">Docs</a>
+          <a href="/" class="btn btn-link">GitHub</a>
+        </section>
+        <section class="navbar-section">
+          <div class="input-group input-inline">
+            <input class="form-input" type="text" placeholder="search">
+          </div>
+        </section>
+      </header>
+      <div class="container" style={{width: '90%'}}>
+        <div class="panel" style={{margin:48}}>
+          <div class="btn-group btn-group-block">
+            <a href="/playground" class="btn">Search Example</a>
+            <a href="/playground/form" class="btn">User Input</a>
+            <a href="/playground/todo" class="btn">Todo List</a>
+            <a href="/playground/state" class="btn">Persisting State</a>
+            <a href="/playground/chunks" class="btn">Partials</a>
+          </div> 
+        </div>
+        <div class="columns">
+          <div class="column" style={{padding: 48}}>
+            <yield from="example"/>
+          </div>
+          <div class="column">
+            <yield from="code"/>
+          </div>
+        </div>
+      </div>
+    </section>
+    <yield to="head">
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" defer></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.7.1/gist-embed.min.js" defer></script>
+    </yield>
+  </html>
+  <script>
+    this.unwrapAsync();
+  </script>
+</guide>

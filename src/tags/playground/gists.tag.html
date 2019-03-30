@@ -1,0 +1,22 @@
+<gists>
+  <ul class="tab tab-block">
+    <li each={ tab in opts.tabs } 
+      class={{'tab-item': true, active: view === tab.id }} 
+      onclick={()=> parent.update({view:tab.id})}>
+      <a> {tab.title} </a>
+    </li>
+  </ul>
+  <div each={ tab in opts.tabs } show={view === tab.id}>
+    <code data-gist-id={tab.id} style={codeStyle}></code>
+  </div>
+
+  <script>
+    this.view = this.opts.tabs ? this.opts.tabs[0].id : null;
+    this.codeStyle = { width: '50vw' };
+    this.on('mount', () => {
+      if (this.isClient()) {
+        if (window.$) $("[data-gist-id]").gist();
+      }
+    })
+  </script>
+</gists>

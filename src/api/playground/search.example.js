@@ -504,9 +504,10 @@ const mock = [
 export default (app) => {
   app.use('playground/search-example', {
     async get(name) {
+      const query = name.trim();
       return app.MESSAGE('search-example', {
         data: mock.filter(e => (
-          e.firstName.includes(name) || e.lastName.includes(name)
+          e.firstName.includes(query) || e.lastName.includes(query)
         ))
         .slice(0,12),
       });

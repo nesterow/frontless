@@ -6,5 +6,5 @@ tags.keys().forEach(function(key) {
 
 riot.settings.asyncRenderTimeout = 10000;
 riot.mount('*');
-
+window.riot = riot;
 

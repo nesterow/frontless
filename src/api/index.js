@@ -1,5 +1,7 @@
 
 import searchExample from './playground/search.example';
+import formExample from './playground/form.example';
+
 export default (app) => {
   app.use('todos', {
     async get(name) {
@@ -8,5 +10,8 @@ export default (app) => {
       });
     },
   });
+  
   searchExample(app);
+  formExample(app);
+  
 };

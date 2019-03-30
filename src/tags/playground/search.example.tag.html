@@ -1,11 +1,9 @@
 <search-example>
   <div class="columns">
     <div class="column col-mx-6 col-mx-auto">
+      <h3 class="text-center"> Deewdle </h3>
       <div style={flexCenter}>
         <div class="input-group input-inline has-icon-right">
-          <span class="input-group-addon">
-           💓 Deewdle >>
-          </span>
           <input onkeyup={ search } class="form-input" type="text" id="echo" placeholder="Find your dude...">
           <i if={loading} class="form-icon loading"></i>
         </div>
@@ -39,7 +37,7 @@
     this.loading = false;
 
     const find = async (q) => {
-      return await client.service('playground/search-example').get(q || 'a');
+      return await client.service('playground/search-example').get(q || ' ');
     }
 
     // the compoent will be rendered

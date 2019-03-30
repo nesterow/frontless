@@ -10,7 +10,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "start": "node_modules/.bin/nodemon --ext js,tag --exec \"npm run build-dev && node dist/server.js\"",
+    "start": "node_modules/.bin/nodemon --ext js,html --exec \"npm run build-dev && node dist/server.js\"",
     "build-dev": "webpack --mode development --config config/webpack.config.js",
     "build": "webpack --mode production --config config/webpack.config.js",
     "lint": "eslint ./src --fix",
@@ -54,7 +54,8 @@
     "riot-compiler": "^3.6.0",
     "socket.io": "^2.2.0",
     "spectre.css": "^0.5.8",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "validate.js": "^0.12.0"
   },
   "nodemonConfig": {
     "ignore": [

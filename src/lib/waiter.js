@@ -40,8 +40,11 @@ export const RiotWaiter = {
         this.trigger('before-ready');
         while (this._readyPromises.pop()) {} ;
         this._isAwaiting = false;
-        this.trigger('ready');
-        clearTimeout(timeout);
+        this.trigger('before-ready');
+        setTimeout(()=>{
+          this.trigger('ready');
+          clearTimeout(timeout);
+        });
       };
 
       Promise.all(operations)
