@@ -74,6 +74,19 @@ export const RiotFrontLess = {
     }
   },
 
+  /**
+   * Serialize a form to object
+   * @param {HTMLFormElement} element - a <form> element
+   * @return {object}
+  */
+  form(element) {
+    let result = {};
+    new FormData(element).forEach((value, key) => {
+      result[key] = value;
+    });
+    return result;
+  },
+
   /** Set a unique tag id */
   setUID() {
     if (!this._id) {

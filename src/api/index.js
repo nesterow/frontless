@@ -10,8 +10,6 @@ export default (app) => {
       });
     },
   });
-  
   searchExample(app);
   formExample(app);
-  
 };
