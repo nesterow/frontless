@@ -37,7 +37,8 @@ const formValidationModel = {
   },
   agree: {
     presence: {
-      message: '^Before signing up you have to agree with our community terms an donditions',
+      // eslint-disable-next-line max-len
+      message: '^Before signing up you have to agree with our community terms an conditions',
     },
   },
 };

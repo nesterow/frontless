@@ -1,11 +1,10 @@
 import feathers from '@feathersjs/client';
 import axios from 'axios';
 import evbus from './evbus';
+import io from 'socket.io-client';
+import socketio from '@feathersjs/socketio-client';
 
-const app = feathers();
-const rest = feathers.rest('http://localhost:5050');
-app.configure(rest.axios(axios));
-app.hooks({
+const hooks = {
   after: {
     all: [(context) => {
       const {opts} = context.result;
@@ -16,6 +15,24 @@ app.hooks({
       return Promise.resolve(context);
     }],
   },
-});
+};
+
+
+const ws = io('http://localhost:5050/');
+const rest = feathers.rest('http://localhost:5050');
+
+const app = feathers();
+const wsc = feathers();
+
+
+app.configure(rest.axios(axios));
+wsc.configure(socketio(ws, {
+  timeout: 2000,
+}));
+
+wsc.hooks(hooks);
+app.hooks(hooks);
+app.io = wsc;
+app.ws = ws;
 
 export default app;
