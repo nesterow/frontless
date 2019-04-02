@@ -1,6 +1,5 @@
 
-const messages = [
-];
+const messages = [];
 /**
  * @param {{from: String, message: String}} message - add message to stack
  * */
