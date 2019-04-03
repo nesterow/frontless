@@ -10,7 +10,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "start": "node_modules/.bin/nodemon --ext js,html --exec \"npm run build-dev && node dist/server.js\"",
+    "start": "node_modules/.bin/nodemon --ext js,html --exec \"npm run build-dev && node dist/server.js ./config.env\"",
     "build-dev": "webpack --mode development --config config/webpack.config.js",
     "build": "webpack --mode production --config config/webpack.config.js",
     "lint": "eslint ./src --fix",
@@ -53,6 +53,7 @@
     "@feathersjs/socketio-client": "^1.2.1",
     "axios": "^0.18.0",
     "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "lodash": "^4.17.11",

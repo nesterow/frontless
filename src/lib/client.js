@@ -17,9 +17,11 @@ const hooks = {
   },
 };
 
+const endpoint = process.settings.origin;
 
-const ws = io('http://localhost:5050/');
-const rest = feathers.rest('http://localhost:5050');
+
+const ws = io(endpoint);
+const rest = feathers.rest(endpoint);
 
 const app = feathers();
 const wsc = feathers();

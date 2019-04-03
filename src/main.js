@@ -1,3 +1,4 @@
+import './settings';
 import riot from 'lib/riot';
 const tags = require.context('./tags', true, /^(.*\.(tag.html$))[^.]*$/im);
 tags.keys().forEach(function(key) {

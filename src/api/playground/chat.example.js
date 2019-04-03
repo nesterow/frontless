@@ -55,5 +55,4 @@ export default (app) => {
   app.service('playground/messages').publish('patched', (data, context) => {
     return [app.channel('playground/messages')];
   });
-
 };

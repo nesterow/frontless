@@ -20,5 +20,4 @@ export default (app) => {
   searchExample(app);
   formExample(app);
   chatExample(app);
-  
 };

@@ -19,35 +19,6 @@ api.PARSE = FrontLess.PARSE;
 app.UPDATE = FrontLess.UPDATE;
 api.UPDATE = FrontLess.UPDATE;
 
-const sessionMiddleware = session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {secure: false},
-})
-
-app.use(cors());
-app.use(sessionMiddleware);
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.configure(express.rest());
-app.configure(socketio({}, function(io) {
-  io.use(function(socket, next) {
-    sessionMiddleware(socket.request, socket.request.res, next);
-  });
-  io.use(function(socket, next) {
-    socket.feathers.request = socket.request;
-    next();
-  });
-}));
-app.configure(authentication({
-  session: true,
-  secret: '123sd234sdfsdf',
-  service: 'users',
-}));
-app.configure(local());
-
-
 /**
  * FrontLess express middleware.
  * Provides methods for parsing frontless HTTP requests and valid responces
@@ -103,6 +74,42 @@ export async function FrontLessMidleware(req, res, next) {
 };
 
 export default (services, configure) => {
+
+  const sessionMiddleware = session({
+    secret: process.env.HTTP_SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: process.env.HTTP_SESSION_SECURE === 'yes'},
+  });
+
+  const corsMiddleware = cors({
+    origin: process.settings.origin,
+  });
+
+  app.use(corsMiddleware);
+  app.use(sessionMiddleware);
+  app.use(express.json());
+  app.use(express.urlencoded({extended: true}));
+  app.configure(express.rest());
+  app.configure(socketio({}, function(io) {
+    // io.use(function(socket, next) {
+    //   corsMiddleware(socket.request, socket.request.res, next);
+    // });
+    io.use(function(socket, next) {
+      sessionMiddleware(socket.request, socket.request.res, next);
+    });
+    io.use(function(socket, next) {
+      socket.feathers.request = socket.request;
+      next();
+    });
+  }));
+  app.configure(authentication({
+    session: true,
+    secret: process.env.REST_AUTH_SECRET,
+    service: process.env.REST_AUTH_SERVICE,
+  }));
+  app.configure(local());
+
   configure(app, express);
   app.use('/*', FrontLessMidleware);
   services(app);
