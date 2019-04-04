@@ -57,6 +57,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "lodash": "^4.17.11",
+    "qs": "^6.7.0",
     "riot": "^3.13.2",
     "riot-compiler": "^3.6.0",
     "socket.io": "^2.2.0",
