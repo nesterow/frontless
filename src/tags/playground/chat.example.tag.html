@@ -1,7 +1,13 @@
 <chat-example>
   <div class="panel">
     <div class="panel-header">
-      <div class="panel-title h6">Chat</div>
+      <div class="panel-title h6" if={ user }>Chat</div>
+      <div class="enter" if={ !user }>
+        <div class="input-group">
+          <input class="form-input" type="text" placeholder="Your nickname.." ref="username">
+          <button class="btn btn-primary input-group-btn" onclick={enter}>Join Chat &rarr;</button>
+        </div>
+      </div>
     </div>
     <div class="panel-body chat" ref="container">
       <div each={ m in messages} class={tile: true, me: m.from === user}>
@@ -18,12 +24,7 @@
       <div class="tile" if={statuses.length} style="position:sticky;">
         <span each={s in statuses}>{s.nickname}, </span> &nbsp; ... are typing
       </div>
-      <div class="enter" if={ !user }>
-      <div class="input-group">
-        <input class="form-input" type="text" placeholder="Nickname.." ref="username">
-        <button class="btn btn-primary input-group-btn" onclick={enter}>Start chat</button>
-      </div>
-    </div>
+      
     </div>
     <div class="panel-footer" if={ user }>
       <div class="input-group">
@@ -68,8 +69,8 @@
     this.enter = async (ev) => {
       const username = this.refs.username.value.trim();
       if (username) {
-        await client.io.service('playground/messages').get(username);
-        this.user = username;
+        const data = await client.io.service('playground/messages').get(username);
+        this.user = data.nickname;
         this.update();
         this.scroll();
       }

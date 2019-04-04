@@ -20,9 +20,10 @@ export default (app) => {
 
     // enter chat with nickname
     async get(nickname, params) {
-      params.request.session['nickname'] = nickname;
+      const username = nickname + Math.round(Math.random() * 250);
+      params.request.session['nickname'] = username;
       params.request.session.save();
-      return Promise.resolve({});
+      return Promise.resolve({nickname: username});
     },
 
     // send a status message

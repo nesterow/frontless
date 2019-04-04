@@ -15,7 +15,7 @@
             "@": "./src",
             "@@": "./src/pages",
             "tags": "./src/tags",
-            "lib": "./src/lib"
+            "lib": "./lib"
           }
         }],
         ["@babel/plugin-transform-modules-commonjs", {
