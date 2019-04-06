@@ -6,6 +6,7 @@ tags.keys().forEach(function(key) {
 });
 
 riot.settings.asyncRenderTimeout = 10000;
-riot.mount('*');
+document.addEventListener('turbolinks:load', ()=>{
+  riot.mount('*');
+});
 window.riot = riot;
-
