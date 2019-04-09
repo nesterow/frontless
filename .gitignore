@@ -1,4 +1,6 @@
 dist/
+out/
+.idea/
 node_modules/
 package-lock.json
 yarn.lock
