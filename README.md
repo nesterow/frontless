@@ -3,11 +3,11 @@
 ##### Version: [pre-alpha]
 
 ### About
-A library for building _isomorphic_ applications with RiotJS. 
-_Frontless_ isn't a framework, it is rather _a library_ that glues awesome technologies in a single _stack_.
-
 _Frontless_ provides a way of building web appications with SPA user experience with less effort.
 Instead of communicating with REST API in a stadard way, _Frontless_ expects to receive a ready component state from the server and then updates UI.
+
+_Frontless_ isn't a framework, it is rather _a library_ that glues awesome technologies in a single _stack_.
+
 
 ### Getting Started
 ```sh
