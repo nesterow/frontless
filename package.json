@@ -65,6 +65,7 @@
     "socket.io": "^2.2.0",
     "spectre.css": "^0.5.8",
     "turbolinks": "^5.2.0",
+    "url-pattern": "^1.0.3",
     "validate.js": "^0.12.0"
   },
   "nodemonConfig": {
