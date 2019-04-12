@@ -18,10 +18,10 @@
       <div class="container" style={{width: '90%'}}>
         <div class="panel" style={{margin:48}}>
           <div class="btn-group btn-group-block">
-            <a href="/playground" class="btn">SSR</a>
-            <a href="/playground/form" class="btn">Form</a>
-            <a href="/playground/chat" class="btn">Chat</a>
-            <a href="/playground/routing" class="btn">Routing</a>
+            <a href="/playground" class={{btn: true, active: pathIs('/playground')}}>SSR</a>
+            <a href="/playground/form" class={{btn: true, active: pathIs('/playground/form')}}>Form</a>
+            <a href="/playground/chat" class={{btn: true, active: pathIs('/playground/chat')}}>Chat</a>
+            <a href="/playground/routing" class={{btn: true, active: pathIs('/playground/routing')}}>Routing</a>
           </div> 
         </div>
         <div class="columns">
@@ -35,8 +35,8 @@
       </div>
     </section>
     <yield to="head">
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" defer></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.7.1/gist-embed.min.js" defer></script>
+      <link href="https://github.githubassets.com/assets/gist-embed-a9a1cf2ca01efd362bfa52312712ae94.css" type="text/css" rel="stylesheet">
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bvanderhoof/gist-embed/dist/gist-embed.min.js" defer></script>
     </yield>
   </html>
   <script>

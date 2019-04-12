@@ -15,8 +15,13 @@
     this.codeStyle = { width: '50vw' };
     this.on('mount', () => {
       if (this.isClient()) {
-        if (window.$) $("[data-gist-id]").gist();
+        window.GistEmbed.init();
       }
     })
   </script>
+  <style>
+    code {
+      padding: 0px;
+    }
+  </style>
 </gists>
