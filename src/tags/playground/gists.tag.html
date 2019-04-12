@@ -7,10 +7,13 @@
     </li>
   </ul>
   <div each={ tab in opts.tabs } show={view === tab.id}>
-    <code data-gist-id={tab.id} style={codeStyle}></code>
+    <code data-gist-id={tab.id} style={codeStyle}>
+      <img src={loading} width="100%" />
+    </code>
   </div>
 
   <script>
+    this.loading = require('assets/code-loading.png');
     this.view = this.opts.tabs ? this.opts.tabs[0].id : null;
     this.codeStyle = { width: '50vw' };
     this.on('mount', () => {
