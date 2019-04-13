@@ -39,7 +39,7 @@ Instead of writing routing manifests and rendering layouts on the browser _Front
 
 ##### Examples
 ###### Home Page (`pages/index.tag.html`)
-Accessible at `https://example.com/`
+###### Accessible at `https://example.com/`
 ```html
 <index-page>
     <html>
@@ -54,7 +54,7 @@ Accessible at `https://example.com/`
 </index-page>
 ```
 ###### A root page (`pages/notes/index.tag.html`)
-Accessible at `https://example.com/notes`
+###### Accessible at `https://example.com/notes`
 ```html
 <notes-page>
     <html></html>
@@ -63,8 +63,8 @@ Accessible at `https://example.com/notes`
 </notes-page>
 ```
 
-###### other page (`pages/notes/edit.tag.html`)
-Accessible at `https://example.com/notes/edit`
+###### Other page (`pages/notes/edit.tag.html`)
+###### Accessible at `https://example.com/notes/edit`
 ```html
 <notes-edit-page>
     <html></html>
@@ -95,7 +95,8 @@ In order to synchrinize data access and render _Frontless_ provides two methods 
 </profile>
 ```
 
-#### 4. Isomorphic context
+
+### Isomorphic context
 
 1. `this.opts.req` - points to express.js request object (server).
 2. `this.onServer(callback)` - executes when a component mounts on server.
