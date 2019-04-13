@@ -3,6 +3,16 @@
 
 _Frontless_ was inspired by technologies like Next.js and Meteor. It is built for rapid web development and prototyping. 
 
+## Getting Started
+`npx frontless <app-name>`
+###### or
+`npx create-frontless <app-name>`
+##### then
+`yarn`
+
+`yarn start`
+
+
 ## Features
 
 #### 1. Server Sent State
