@@ -9,7 +9,6 @@ _Frontless_ was inspired by technologies like Next.js and Meteor. It is built fo
 `npx create-frontless <app-name>`
 ##### then
 `yarn`
-
 `yarn start`
 
 
