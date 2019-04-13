@@ -7,7 +7,7 @@ Frontless was inspired by technologies like Next.js and Meteor. It is built for 
 
 #### 1. Server Sent State
 ###### "Server Sent View Model"
-Classic MVVM approach significanly complicates work with data. In fact, on practice, a frontend developer would end up writing the code that is better performed by server rather than a client (requesting data, filtering data, cooking a view model, caching, etc). I believe that the server has to be responsible for the view model. There are things which the server does better and working with data is one of them. Frontend's responsibility is to render a view.
+Classic MVVM approach significanly complicates work with data. In fact, on practice, a frontend developer would end up writing the code that would be better performed by server rather than a client (requesting data, filtering data, cooking a view model, caching, etc). I believe that the server has to be responsible for the view model. There are things which the server does better and working with data is one of them. Frontend's responsibility is to render a view.
 
 _Server Sent State_ is simply a JSON-formatted message with a component state. If the message was intended for a certain component the contents of message would merge with component's state updating UI.
 
