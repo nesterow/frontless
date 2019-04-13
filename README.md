@@ -1,5 +1,4 @@
 ![RiotJS Isomorphic Stack - Riot + FeatherJS + Turbolinks + Webpack](https://github.com/nesterow/frontless/raw/master/assets/logos/techs.png)
-# Frontless
 RiotJS Isomorphic Stack
 
 Frontless was inspired by technologies like Next.js and Meteor. It is built for rapid web development and prototyping. 
