@@ -37,6 +37,62 @@ Create a file named `greeting.tag.html` in `src/tags/`
 </greeting>
 ```
 
+#### 3. Add riot tag to the page
+###### `src/pages/mypage.tag.html`
+```html
+<mypage>
+  <html>
+    <greeting></greeting>
+  </html>
+  <script>
+    import 'tags/greeting.tag.html';
+  </script>
+</mypage>
+```
+
+#### 3. Handle user input
+Now in the `greeting.tag.html` add a basic event handler.
+Reload the page and try pressing the button.
+###### `src/tags/greeting.tag.html`
+```html
+<greeting>
+  
+  <h1>Hello {name}!<h1>
+  <button onclick={countClicks}> Count {count} </button>
+
+  <script>
+    this.name = 'John';
+    this.count = 0;
+    
+    this.countClicks = (ev) => {
+      this.count ++;
+    }
+  </script>
+</greeting>
+```
+
+#### 3. Pass parameters in subroute
+Let's play with sub-routes. Whenever you use `this.route('/foo/:bar/)` you can check if the user navigated down to a sub-path.
+Subpaths are relative to the page url. In following example we pass username into route as a first parameter.
+###### `src/tags/greeting.tag.html`
+```html
+<greeting>
+  
+  <h1 if={ route('/:name') }>Hello { $route.params.name }!<h1>
+  <h1 if={ !route('/:name') }>Hello Anon!<h1>
+
+  <button onclick={countClicks}> Count {count} </button>
+
+  <script>
+    this.count = 0;
+    
+    this.countClicks = (ev) => {
+      this.count ++;
+    }
+  </script>
+</greeting>
+```
+Now you can open  `http://localhost:5050/mypage/Adam`. And the component will render a greeting for "Adam". If you reload the page component state won't change. 
 
 ## Features
 
