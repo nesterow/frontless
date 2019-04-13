@@ -38,8 +38,7 @@ get() {
 Instead of writing routing manifests and rendering layouts on the browser _Frontless_ does it on the server side. All html content in `src/pages` is rendered by server as RiotJS templates. All page layouts are _server side components_ they don't share javascript code with the client generating markup on the server side. However, all the components included in the pages _do share javascript code with the browser_.
 
 ##### Examples
-###### Home Page (`pages/index.tag.html`)
-###### Accessible at `https://example.com/`
+###### Home Page (`pages/index.tag.html`). At `https://example.com/`
 ```html
 <index-page>
     <html>
@@ -53,8 +52,7 @@ Instead of writing routing manifests and rendering layouts on the browser _Front
     </script>
 </index-page>
 ```
-###### A root page (`pages/notes/index.tag.html`)
-###### Accessible at `https://example.com/notes`
+###### A root page (`pages/notes/index.tag.html`). At `https://example.com/notes`
 ```html
 <notes-page>
     <html></html>
@@ -63,8 +61,7 @@ Instead of writing routing manifests and rendering layouts on the browser _Front
 </notes-page>
 ```
 
-###### Other page (`pages/notes/edit.tag.html`)
-###### Accessible at `https://example.com/notes/edit`
+###### Other page (`pages/notes/edit.tag.html`). At `https://example.com/notes/edit`
 ```html
 <notes-edit-page>
     <html></html>
