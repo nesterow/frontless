@@ -121,7 +121,7 @@ In order to synchrinize data access and render _Frontless_ provides two methods 
 ```
 Then open [http://localhost:5050](http://localhost:5050) in your browser. Navigate to the playground for examples 
 
-#### 1. Create your first page
+#### 2. Create your first page
 Create a file named `mypage.tag.html` in `src/pages/`
 ###### `src/pages/mypage.tag.html`
 ```html
@@ -133,7 +133,7 @@ Create a file named `mypage.tag.html` in `src/pages/`
 ```
 Then open [http://localhost:5050/mypage/](http://localhost:5050/mypage/) in your browser.
 
-#### 2. Create a riot tag
+#### 3. Create a riot tag
 Create a file named `greeting.tag.html` in `src/tags/`
 ###### `src/tags/greeting.tag.html`
 ```html
@@ -145,7 +145,7 @@ Create a file named `greeting.tag.html` in `src/tags/`
 </greeting>
 ```
 
-#### 3. Add riot tag to the page
+#### 4. Add riot tag to the page
 ###### `src/pages/mypage.tag.html`
 ```html
 <mypage>
@@ -158,7 +158,7 @@ Create a file named `greeting.tag.html` in `src/tags/`
 </mypage>
 ```
 
-#### 3. Handle user input
+#### 5. Handle user input
 Now in the `greeting.tag.html` add a basic event handler.
 Reload the page and try pressing the button.
 ###### `src/tags/greeting.tag.html`
@@ -179,7 +179,7 @@ Reload the page and try pressing the button.
 </greeting>
 ```
 
-#### 3. Pass parameters in a subroute
+#### 6. Pass parameters in a subroute
 Let's play with sub-routes. Whenever you use `this.route('/foo/:bar/)` you can check if the user navigated down to a sub-path.
 Subpaths are relative to the page url. In following example we pass username into route as a first parameter.
 The same method is used when you need to register a subpath and use `this.$route` object to get data.
@@ -203,11 +203,11 @@ The same method is used when you need to register a subpath and use `this.$route
 ```
 Now you can open  `http://localhost:5050/mypage/Adam`. And the component will render a greeting for "Adam". If you reload the page component state won't change. 
 
-#### 4. Working with API and Server Sent State.
+#### 7. Working with API and Server Sent State.
 The api services are located in the `src/api` directory. 
 Frontless uses FeathersJS as a Rest API service. You should refer to the [FeathersJS documentation](https://docs.feathersjs.com/) for more information.
 
-#### 5. Creating a service.
+#### 8. Creating an API service.
 Based on the previos example lets create a service which would update a user based on the paramenters we passed to it.
 We will use method 'MESSAGE()' in order to pass state to the component.
 
@@ -234,7 +234,7 @@ export default (app) => {
   });
 };
 ```
-Now let's add an input 
+#### 9. Getting server sent state.
 ###### `src/api/greeting.tag.html`
 ```html
 <greeting>
