@@ -4,10 +4,38 @@
 _Frontless_ was inspired by technologies like Next.js and Meteor. It is built for rapid web development and prototyping. 
 
 ## Getting Started
+
+#### Createing an application
 `npx frontless <app-name>` or `npx create-frontless <app-name>`
 ```
   yarn
   yarn start
+```
+Then open [http://localhost:5050](http://localhost:5050) in your browser.
+
+#### Directory structure
+```
+├── assets                       -- scss, images, etc
+│   └── ...
+├── config                       -- configuration, mostly webpack
+│   └── ...
+├── docs                         -- documentation
+│   └── ...
+├── lib                          -- frontless core
+│   └── ...
+├── src
+│   ├── api                      -- feathers api
+│   │   └── ...
+│   ├── pages                    -- pages
+│   │   ├── ...
+│   │   └── index.tag.html       -- index page
+│   └── tags                     -- riot.js tags
+│       ├── ...
+│       └── views                -- base layouts
+│           ├── ....
+│           └── layout.tag.html  -- html layout
+└── config.env                   -- environment variables.
+
 ```
 
 
