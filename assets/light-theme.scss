@@ -1,5 +1,6 @@
 body[data-theme="white"] {
   @import url('https://fonts.googleapis.com/css?family=Exo+2');
+  overflow-y: scroll;
   .btn:not(.btn-link) {
     font-family: "Exo 2", sans-serif;
     border-bottom: 3px solid #5755d9;
