@@ -3,96 +3,6 @@
 
 _Frontless_ was inspired by technologies like Next.js and Meteor. It is built for rapid web development and prototyping. 
 
-## Getting Started
-
-#### 1. Create an application
-`npx frontless <app-name>` or `npx create-frontless <app-name>`
-```
-  yarn
-  yarn start
-```
-Then open [http://localhost:5050](http://localhost:5050) in your browser. Navigate to the playground for examples 
-
-#### 1. Create your first page
-Create a file named `mypage.tag.html` in `src/pages/`
-###### `src/pages/mypage.tag.html`
-```html
-<mypage>
-  <html>
-    <h1>Hello World!<h1>
-  </html>
-</mypage>
-```
-Then open [http://localhost:5050/mypage/](http://localhost:5050/mypage/) in your browser.
-
-#### 2. Create a riot tag
-Create a file named `greeting.tag.html` in `src/tags/`
-###### `src/tags/greeting.tag.html`
-```html
-<greeting>
-  <h1>Hello {name}!<h1>
-  <script>
-    this.name = 'John';
-  </script>
-</greeting>
-```
-
-#### 3. Add riot tag to the page
-###### `src/pages/mypage.tag.html`
-```html
-<mypage>
-  <html>
-    <greeting></greeting>
-  </html>
-  <script>
-    import 'tags/greeting.tag.html';
-  </script>
-</mypage>
-```
-
-#### 3. Handle user input
-Now in the `greeting.tag.html` add a basic event handler.
-Reload the page and try pressing the button.
-###### `src/tags/greeting.tag.html`
-```html
-<greeting>
-  
-  <h1>Hello {name}!<h1>
-  <button onclick={countClicks}> Count {count} </button>
-
-  <script>
-    this.name = 'John';
-    this.count = 0;
-    
-    this.countClicks = (ev) => {
-      this.count ++;
-    }
-  </script>
-</greeting>
-```
-
-#### 3. Pass parameters in subroute
-Let's play with sub-routes. Whenever you use `this.route('/foo/:bar/)` you can check if the user navigated down to a sub-path.
-Subpaths are relative to the page url. In following example we pass username into route as a first parameter.
-###### `src/tags/greeting.tag.html`
-```html
-<greeting>
-  
-  <h1 if={ route('/:name') }>Hello { $route.params.name }!<h1>
-  <h1 if={ !route('/:name') }>Hello Anon!<h1>
-
-  <button onclick={countClicks}> Count {count} </button>
-
-  <script>
-    this.count = 0;
-    
-    this.countClicks = (ev) => {
-      this.count ++;
-    }
-  </script>
-</greeting>
-```
-Now you can open  `http://localhost:5050/mypage/Adam`. And the component will render a greeting for "Adam". If you reload the page component state won't change. 
 
 ## Features
 
@@ -200,3 +110,148 @@ In order to synchrinize data access and render _Frontless_ provides two methods 
 12. `this.notFound()` - true if a subpath does not match any pattern.
 
 
+
+## Getting Started
+
+#### 1. Create an application
+`npx frontless <app-name>` or `npx create-frontless <app-name>`
+```
+  yarn
+  yarn start
+```
+Then open [http://localhost:5050](http://localhost:5050) in your browser. Navigate to the playground for examples 
+
+#### 1. Create your first page
+Create a file named `mypage.tag.html` in `src/pages/`
+###### `src/pages/mypage.tag.html`
+```html
+<mypage>
+  <html>
+    <h1>Hello World!<h1>
+  </html>
+</mypage>
+```
+Then open [http://localhost:5050/mypage/](http://localhost:5050/mypage/) in your browser.
+
+#### 2. Create a riot tag
+Create a file named `greeting.tag.html` in `src/tags/`
+###### `src/tags/greeting.tag.html`
+```html
+<greeting>
+  <h1>Hello {name}!<h1>
+  <script>
+    this.name = 'John';
+  </script>
+</greeting>
+```
+
+#### 3. Add riot tag to the page
+###### `src/pages/mypage.tag.html`
+```html
+<mypage>
+  <html>
+    <greeting></greeting>
+  </html>
+  <script>
+    import 'tags/greeting.tag.html';
+  </script>
+</mypage>
+```
+
+#### 3. Handle user input
+Now in the `greeting.tag.html` add a basic event handler.
+Reload the page and try pressing the button.
+###### `src/tags/greeting.tag.html`
+```html
+<greeting>
+  
+  <h1>Hello {name}!<h1>
+  <button onclick={countClicks}> Count {count} </button>
+
+  <script>
+    this.name = 'John';
+    this.count = 0;
+    
+    this.countClicks = (ev) => {
+      this.count ++;
+    }
+  </script>
+</greeting>
+```
+
+#### 3. Pass parameters in a subroute
+Let's play with sub-routes. Whenever you use `this.route('/foo/:bar/)` you can check if the user navigated down to a sub-path.
+Subpaths are relative to the page url. In following example we pass username into route as a first parameter.
+The same method is used when you need to register a subpath and use `this.$route` object to get data.
+###### `src/tags/greeting.tag.html`
+```html
+<greeting>
+  
+  <h1 if={ route('/:name') }>Hello { $route.params.name }!<h1>
+  <h1 if={ !route('/:name') }>Hello Anon!<h1>
+
+  <button onclick={countClicks}> Count {count} </button>
+
+  <script>
+    this.count = 0;
+    
+    this.countClicks = (ev) => {
+      this.count ++;
+    }
+  </script>
+</greeting>
+```
+Now you can open  `http://localhost:5050/mypage/Adam`. And the component will render a greeting for "Adam". If you reload the page component state won't change. 
+
+#### 4. Working with API and Server Sent State.
+The api services are located in the `src/api` directory. 
+Frontless uses FeathersJS as a Rest API service. You should refer to the [FeathersJS documentation](https://docs.feathersjs.com/) for more information.
+
+#### 5. Creating a service.
+Based on the previos example lets create a service which would update a user based on the paramenters we passed to it.
+We will use method 'MESSAGE()' in order to pass state to the component.
+
+###### `src/api/greeting.js`
+```javascript
+export default (app) => {
+  
+  const {MESSAGE} = app;
+
+  app.use('greeting', {
+
+    async get(name) {
+      
+      // send a message to a component with _id='greeter-component'
+      return MESSAGE('greeter-component', {
+
+        //the name will be asigned to the 'greeter-component'
+        name: name
+      
+      });
+
+    },
+
+  });
+};
+```
+Now let's add an input 
+###### `src/api/greeting.tag.html`
+```html
+<greeting>
+  
+  <h1>Hello { name }!<h1>
+  
+  <input type="text" onchage={ getName } >
+
+  <script>
+    import client from 'lib/client';
+
+    this._id = 'greeter-component'; // notice, we need to set a proper id to the component;
+    this.name = 'Adam';
+    this.getName = (ev) => {
+      if (ev.target.value)
+        client.service('greeting').get(ev.target.value);
+    }
+  </script>
+</greeting>
+```
