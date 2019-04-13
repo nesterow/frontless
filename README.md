@@ -5,37 +5,36 @@ _Frontless_ was inspired by technologies like Next.js and Meteor. It is built fo
 
 ## Getting Started
 
-#### Createing an application
+#### 1. Create an application
 `npx frontless <app-name>` or `npx create-frontless <app-name>`
 ```
   yarn
   yarn start
 ```
-Then open [http://localhost:5050](http://localhost:5050) in your browser.
+Then open [http://localhost:5050](http://localhost:5050) in your browser. Navigate to the playground for examples 
 
-#### Directory structure
+#### 1. Create your first page
+Create a file named `mypage.tag.html` in `src/pages/`
+###### `src/pages/mypage.tag.html`
+```html
+<mypage>
+  <html>
+    <h1>Hello World!<h1>
+  </html>
+</mypage>
 ```
-├── assets                       -- scss, images, etc
-│   └── ...
-├── config                       -- configuration, mostly webpack
-│   └── ...
-├── docs                         -- documentation
-│   └── ...
-├── lib                          -- frontless core
-│   └── ...
-├── src
-│   ├── api                      -- feathers api
-│   │   └── ...
-│   ├── pages                    -- pages
-│   │   ├── ...
-│   │   └── index.tag.html       -- index page
-│   └── tags                     -- riot.js tags
-│       ├── ...
-│       └── views                -- base layouts
-│           ├── ....
-│           └── layout.tag.html  -- html layout
-└── config.env                   -- environment variables.
+Then open [http://localhost:5050/mypage/](http://localhost:5050/mypage/) in your browser.
 
+#### 2. Create a riot tag
+Create a file named `greeting.tag.html` in `src/tags/`
+###### `src/tags/greeting.tag.html`
+```html
+<greeting>
+  <h1>Hello {name}!<h1>
+  <script>
+    this.name = 'John';
+  </script>
+</greeting>
 ```
 
 
