@@ -8,7 +8,7 @@
 _Frontless_ was inspired by technologies like Next.js and Meteor. It is built for rapid web development and prototyping. 
 
 - - - -- - - -- - - -- - - -- - - -- - - -- - - -
-*Current state of project is **Unstable Alpha**.|
+*Current state of the project is **Unstable Alpha**. 
 - - - -- - - -- - - -- - - -- - - -- - - -- - - - 
 
 #### Installation
