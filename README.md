@@ -24,9 +24,9 @@ _Frontless_ was inspired by technologies like Next.js and Meteor. It is built fo
 
 #### 1. Server Sent State
 ###### "Server Sent View Model"
-Classic MVVM approach significanly complicates work with data. In fact, on practice, a frontend developer would end up writing the code that would be better performed by server rather than a client (requesting data, filtering data, cooking a view model, caching, etc). I believe that the server has to be responsible for the view model. There are things which the server does better and working with data is one of them. Frontend's responsibility is to render a view.
+Classic MVVM approach significanly complicates work with data. In fact, on practice a frontend developer would end up writing the code that would be better performed by server rather than a client (requesting data, filtering data, cooking a view model, caching, etc). I believe that the server has to be responsible for the view model. There are things which the server does better and working with data is one of them. Frontend's responsibility is to render a view.
 
-_Server Sent State_ is simply a JSON-formatted message with a component state. If the message was intended for a certain component the contents of message would merge with component's state updating UI.
+_Server Sent State_ is simply a JSON-formatted message with a component state. If the message were intended for a certain component, the contents of the message would merge with the component's state updating UI.
 
 #### Example
 ###### Server Side (feathers.js)
@@ -108,23 +108,6 @@ In order to synchrinize data access and render _Frontless_ provides two methods 
     </script>
 </profile>
 ```
-
-
-### Isomorphic context
-
-1. `this.opts.req` - points to express.js request object (server).
-2. `this.onServer(callback)` - executes when a component mounts on server.
-3. `this.onClient(callback)` - executes only on the client side.
-4. `this.form(HTMLFormElement)` - serialize form to an object. On client.
-5. `lib/client` - FeathersJS client. Isomorphic.
-6. `this.bus` - A global eventbus. Isomorphic.
-7.  `this.pushQuery(object)` - push url query. Isomorphic.
-8. `this.getQuery()` - get serialized url query. Isomorphic.
-9. `this.replaceQuery(object)` - push url query. Isomorphic.
-10. `this.rootPath()` - current url path. Isomorphic.
-11. `this.route(pattern)` - Matches current subroute after layout entry against a pattern. `https://example.com/notes/edit/archived/:id` would match `/:type/:id` if `/notes/edit/` is a page.
-12. `this.notFound()` - true if a subpath does not match any pattern.
-
 
 
 ## Getting Started
