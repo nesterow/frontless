@@ -1,7 +1,12 @@
 ![RiotJS Isomorphic Stack - Riot + FeatherJS + Turbolinks + Webpack](https://github.com/nesterow/frontless/raw/master/assets/logos/techs.png)
 ### RiotJS Isomorphic Stack
+![Generic badge](https://img.shields.io/badge/VERSION-0.1alpha-green.svg)
+![Generic badge](https://img.shields.io/badge/Status-Unstable-red.svg)]
+![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
 
 _Frontless_ was inspired by technologies like Next.js and Meteor. It is built for rapid web development and prototyping. 
+
+* Current state of project is **Unstable Alpha**. 
 
 #### Installation
 `npx frontless <app-name>` or `npx create-frontless <app-name>`
