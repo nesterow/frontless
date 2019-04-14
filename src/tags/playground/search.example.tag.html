@@ -31,44 +31,48 @@
     import client from 'lib/client';
     import {debounce} from 'lodash';
 
-    // component id
-    this._id = 'search-example';
-    this.data = [];
-    this.loading = false;
+    export default {
+      
+      _id: 'search-example',
+      data: [],
+      loading: false,
 
-    const find = async (q) => {
-      return await client.service('playground/search-example').get(q || ' ');
-    }
-
-    // the compoent will be rendered
-    // when the last method done(<name>) is called 
-    this.on('server', async () => {
-      this.await('get users');
-      await find();
-      this.done('get users');
-    })
-    
-    // this works on the client
-    this.search = debounce(
-      async function(ev){
-        this.update({loading:true})
-        await find(ev.target.value)
-        this.update({loading:false})
+      find: async (q) => {
+        return await client.service('playground/search-example').get(q || ' ');
       },
-    200);
+
+      // the compoent will be rendered
+      // when the last method done(<name>) is called
+      onBeforeMount(){
+        this.on('server', async () => {
+          this.await('get users');
+          await find();
+          this.done('get users');
+        })
+      },
+      
+      
+      // this works on the client
+      search: debounce(
+        async function(ev){
+          this.update({loading:true})
+          await find(ev.target.value)
+          this.update({loading:false})
+        },
+      200),
 
 
-    // styles
-    this.flexCenter = {
-      'justify-content': 'center', 
-      'display': 'flex',
-      'flex-wrap': 'wrap',
-    };
+      // styles
+      flexCenter: {
+        'justify-content': 'center', 
+        'display': 'flex',
+        'flex-wrap': 'wrap',
+      },
 
-    this.divCard = {
-      width:250,
-      margin: 6
-    };
-
+      divCard: {
+        width:250,
+        margin: 6
+      },
+    }
   </script>
 </search-example>

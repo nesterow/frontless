@@ -40,6 +40,10 @@
     </yield>
   </html>
   <script>
-    this.unwrapAsync();
+    export default {
+      onBeforeMount(props) {
+        this.unwrapAsync();
+      }
+    }
   </script>
 </guide>

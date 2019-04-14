@@ -1,6 +1,6 @@
 {
   "name": "frontless",
-  "version": "0.1-alpha",
+  "version": "0.1.0-alpha",
   "description": "Frontless - Isomorhic RiotJS Stack",
   "repository": "https://github.com/nesterow/frontless",
   "main": "src/lib/index.js",
@@ -63,7 +63,7 @@
     "file-loader": "^3.0.1",
     "lodash": "^4.17.11",
     "qs": "^6.7.0",
-    "riot": "^3.13.2",
+    "riot": "^4.0.0-rc.1",
     "riot-compiler": "^3.6.0",
     "socket.io": "^2.2.0",
     "spectre.css": "^0.5.8",
