@@ -1,15 +1,23 @@
-import './settings';
-import dotenv from 'dotenv';
-import frontless from 'lib/server';
-import services from './api';
-import 'tags/views/layout.tag.html';
-import 'tags/views/guide.tag.html';
-import './pages';
+import { Server } from 'http'
+import express from 'express'
+import bodyParser from 'body-parser'
+import ssr from 'react-ssr'
+import routes from './routes'
 
-dotenv.config({path: process.argv[process.argv.length - 1]});
+const app = express()
+const router = express.Router()
+const renderer = ssr({ routes })
 
-const application = frontless(services, (app, express) => {
-  app.use('/dist', express.static('dist/public'));
-});
+// app.use(staticResources(app, express))
+app.use(bodyParser.json({ limit: '2mb' }))
+app.use(bodyParser.urlencoded({ limit: '2mb', extended: true }))
 
-application.listen(5050);
+app.get('/*', renderer)
+
+new Server(app).listen(8000, err => {
+  if (err) {
+    return console.error(`👎  ${err}`)
+  }
+
+  console.info(`👍  Server launched at: localhost:8000`)
+})

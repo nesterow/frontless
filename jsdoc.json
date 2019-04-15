@@ -1,7 +1,0 @@
-{
-  "plugins": ["node_modules/jsdoc-riot",  "plugins/markdown", "plugins/summarize"],
-  "source": {
-    "include": ["./src", "./lib"],
-    "includePattern": ".+\\.js|tag.html(doc)?$"
-  }
-}

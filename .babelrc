@@ -1,27 +1,5 @@
 {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "modules": false,
-          "targets":  {"node": "current"}
-        }
-      ]
-    ],
-    "plugins": [
-        ["module-resolver", {
-          "root": ["./src"],
-          "alias": {
-            "@": "./src",
-            "@@": "./src/pages",
-            "tags": "./src/tags",
-            "lib": "./lib",
-            "assets": "./assets"
-          }
-        }],
-        ["@babel/plugin-transform-modules-commonjs", {
-          "allowTopLevelThis": true
-        }],
-        "@babel/plugin-proposal-class-properties"
-      ],
-  }
+  "plugins": [
+    "react-ssr"
+  ]
+}

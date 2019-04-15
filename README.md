@@ -1,256 +1,37 @@
-![RiotJS Isomorphic Stack - Riot + FeatherJS + Turbolinks + Webpack](https://github.com/nesterow/frontless/raw/master/assets/logos/techs.png)
-![Generic badge](https://img.shields.io/badge/Status-Unstable-yellow.svg)
-![Generic badge](https://img.shields.io/badge/Version-0.1alpha-green.svg)
-![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
+# react-ssr-examples
 
-### RiotJS Isomorphic Stack
+This repository aims to provide you with a reasonable base to refer to on recommended approaches for getting started with react-ssr. Generally speaking, we advise you use babel (to make use of our babel plugin) and a module bundler to produce a server bundle and client bundle. In our example we'll use Webpack.
 
-_Frontless_ was inspired by technologies like Next.js and Meteor. It is built for rapid web development and prototyping. 
+Also, as a heads up, these examples use StandardJS, because it's beautiful. Don't be put off by the lack of semi-colons.
 
-- - - -- - - -- - - -- - - -- - - -- - - -- - - -
-*Current state of the project is **Unstable Alpha**. 
-- - - -- - - -- - - -- - - -- - - -- - - -- - - - 
+## Generic setup
 
-#### Installation
-`npx frontless <app-name>` or `npx create-frontless <app-name>`
-```
-  yarn
-  yarn start
-```
-Оpen [http://localhost:5050](http://localhost:5050) in your browser. Navigate to the playground for examples 
+Assuming a simple Node server with Express, you'll need to instantiate react-sst and pass in any of the `options` listed lower down. An array of static React routes is the only thing required (you should put the array in a separate file, unlike the example...).
 
+```js
+import express from 'express'
+import ssr from 'react-ssr'
+import HomePage from './HomePage'
+import NotFoundPage from './NotFoundPage'
 
-## Features
-
-#### 1. Server Sent State
-###### "Server Sent View Model"
-Classic MVVM approach significanly complicates work with data. In fact, on practice a frontend developer would end up writing the code that would be better performed by server rather than a client (requesting data, filtering data, cooking a view model, caching, etc). I believe that the server has to be responsible for the view model. There are things which the server does better and working with data is one of them. Frontend's responsibility is to render a view.
-
-_Server Sent State_ is simply a JSON-formatted message with a component state. If the message were intended for a certain component, the contents of the message would merge with the component's state updating UI.
-
-#### Example
-###### Server Side (feathers.js)
-```javascript
-//...
-get() {
-   return MESSAGE('component-id',{
-       title: "Hello World"
-   });
-}
-//...
-```
-###### Client Side (riot.js)
-```javascript
-    //...
-    this._id = 'component-id';
-    this.title = "";
-    client.service('/example')
-    .get().then(()=>{
-        console.log('Title:', this.title)
-    })
-    //...
-```
-
-#### 2. Natural Routing
-Instead of writing routing manifests and rendering layouts on the browser _Frontless_ does it on the server side. All html content in `src/pages` is rendered by server as RiotJS templates. All page layouts are _server side components_ they don't share javascript code with the client generating markup on the server side. However, all the components included in the pages _do share javascript code with the browser_.
-
-##### Examples
-###### Home Page (`pages/index.tag.html`). At `https://example.com/`
-```html
-<index-page>
-    <html>
-        <-- RiotJS components included below will be 
-        rendered in the browser as well -->
-        <datepicker value="today"></datepicker>
-    </html>
-    <script>
-        //it won't render on the client side
-        this.today = new Date().now()
-    </script>
-</index-page>
-```
-###### A root page (`pages/notes/index.tag.html`). At `https://example.com/notes`
-```html
-<notes-page>
-    <html></html>
-    <script>
-    </script>
-</notes-page>
-```
-
-###### Other page (`pages/notes/edit.tag.html`). At `https://example.com/notes/edit`
-```html
-<notes-edit-page>
-    <html></html>
-    <script>
-    </script>
-</notes-edit-page>
-```
-
-#### 3. Async Rendering
-In order to synchrinize data access and render _Frontless_ provides two methods in the contexts of all riot components: `this.await()` and `this.done()`. The render function will complete rendering whenever the last `done()` call is made. 
-
-##### Example
-###### Getting all data then rendering component
-
-```html
-<profile>
-    <div>markup</div>
-    <script>
-        import client from 'lib/client';
-        this.onServer(async ()=>{
-            this.await('get user profile')
-            const userId = this.opts.req.session.id; 
-            this.profile = await client.service('users').get(userId);
-            this.messages = await client.service('msg').get(userId)
-            this.done('get user profile') // component is ready
-        })
-    </script>
-</profile>
-```
-
-
-## Getting Started
-
-#### 1. Create an application
-`npx frontless <app-name>` or `npx create-frontless <app-name>`
-```
-  yarn
-  yarn start
-```
-Then open [http://localhost:5050](http://localhost:5050) in your browser. Navigate to the playground for examples 
-
-#### 2. Create your first page
-Create a file named `mypage.tag.html` in `src/pages/`
-###### `src/pages/mypage.tag.html`
-```html
-<mypage>
-  <html>
-    <h1>Hello World!<h1>
-  </html>
-</mypage>
-```
-Then open [http://localhost:5050/mypage/](http://localhost:5050/mypage/) in your browser.
-
-#### 3. Create a riot tag
-Create a file named `greeting.tag.html` in `src/tags/`
-###### `src/tags/greeting.tag.html`
-```html
-<greeting>
-  <h1>Hello {name}!<h1>
-  <script>
-    this.name = 'John';
-  </script>
-</greeting>
-```
-
-#### 4. Add riot tag to the page
-###### `src/pages/mypage.tag.html`
-```html
-<mypage>
-  <html>
-    <greeting></greeting>
-  </html>
-  <script>
-    import 'tags/greeting.tag.html';
-  </script>
-</mypage>
-```
-
-#### 5. Handle user input
-Now in the `greeting.tag.html` add a basic event handler.
-Reload the page and try pressing the button.
-###### `src/tags/greeting.tag.html`
-```html
-<greeting>
-  
-  <h1>Hello {name}!<h1>
-  <button onclick={countClicks}> Count {count} </button>
-
-  <script>
-    this.name = 'John';
-    this.count = 0;
-    
-    this.countClicks = (ev) => {
-      this.count ++;
-    }
-  </script>
-</greeting>
-```
-
-#### 6. Pass parameters in a subroute
-Let's play with sub-routes. Whenever you use `this.route('/foo/:bar/)` you can check if the user navigated down to a sub-path.
-Subpaths are relative to the page url. In following example we pass username into route as a first parameter.
-The same method is used when you need to register a subpath and use `this.$route` object to get data.
-###### `src/tags/greeting.tag.html`
-```html
-<greeting>
-  
-  <h1 if={ route('/:name') }>Hello { $route.params.name }!<h1>
-  <h1 if={ !route('/:name') }>Hello Anon!<h1>
-
-  <button onclick={countClicks}> Count {count} </button>
-
-  <script>
-    this.count = 0;
-    
-    this.countClicks = (ev) => {
-      this.count ++;
-    }
-  </script>
-</greeting>
-```
-Now you can open  `http://localhost:5050/mypage/Adam`. And the component will render a greeting for "Adam". If you reload the page component state won't change. 
-
-#### 7. Working with API and Server Sent State.
-The api services are located in the `src/api` directory. 
-Frontless uses FeathersJS as a Rest API service. You should refer to the [FeathersJS documentation](https://docs.feathersjs.com/) for more information.
-
-#### 8. Creating an API service.
-Based on the previos example lets create a service which would update a user based on the paramenters we passed to it.
-We will use method 'MESSAGE()' in order to pass state to the component.
-
-###### `src/api/greeting.js`
-```javascript
-export default (app) => {
-  
-  const {MESSAGE} = app;
-
-  app.use('greeting', {
-
-    async get(name) {
-      
-      // send a message to a component with _id='greeter-component'
-      return MESSAGE('greeter-component', {
-
-        //the name will be asigned to the 'greeter-component'
-        name: name
-      
-      });
-
+const app = express()
+const renderer = ssr({
+  routes: [
+    {
+      path: '/',
+      exact: true,
+      component: HomePage
     },
-
-  });
-};
-```
-#### 9. Getting server sent state.
-###### `src/api/greeting.tag.html`
-```html
-<greeting>
-  
-  <h1>Hello { name }!<h1>
-  
-  <input type="text" onchage={ getName } >
-
-  <script>
-    import client from 'lib/client';
-
-    this._id = 'greeter-component'; // notice, we need to set a proper id to the component;
-    this.name = 'Adam';
-    this.getName = (ev) => {
-      if (ev.target.value)
-        client.service('greeting').get(ev.target.value);
+    {
+      path: '/about',
+      redirectTo: '/'
+    },
+    {
+      path: '**',
+      component: NotFoundPage
     }
-  </script>
-</greeting>
+  ]
+})
+
+app.get('*', renderer) // send all routes to ssr
 ```
