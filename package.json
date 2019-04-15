@@ -1,11 +1,11 @@
 {
   "name": "frontless",
-  "version": "1.0.0a",
+  "version": "0.0.0-alpha",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "build": "",
+    "start": "node dist/bundle.js",
+    "build": "rollup -c rollup.config.js",
     "test": "jest"
   },
   "repository": {
@@ -36,7 +36,7 @@
     "react-router": "^4.2.0",
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2",
-    "react-ssr": "^0.4.0"
+    "react-ssr": "^1.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
@@ -54,6 +54,7 @@
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-scss": "^1.0.1",
     "webpack": "^4.30.0"
   }
 }

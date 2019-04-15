@@ -1,9 +1,11 @@
-import resolve from 'rollup-plugin-node-resolve';
-import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
-import json from 'rollup-plugin-json';
-import globals from 'rollup-plugin-node-globals';
-import minify from 'rollup-plugin-babel-minify';
+import resolve from 'rollup-plugin-node-resolve'
+import babel from 'rollup-plugin-babel'
+import commonjs from 'rollup-plugin-commonjs'
+import json from 'rollup-plugin-json'
+import globals from 'rollup-plugin-node-globals'
+import minify from 'rollup-plugin-babel-minify'
+import scss from 'rollup-plugin-scss'
+
 export default [
   {
     input: 'src/App.jsx',
@@ -33,6 +35,7 @@ export default [
       minify({
         comments: false,
       }),
+      scss()
     ]
   },
   {
@@ -57,6 +60,7 @@ export default [
       babel({
         exclude: 'node_modules/**'
       }),
+      scss()
     ]
   }
 ]

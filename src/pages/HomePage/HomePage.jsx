@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
+import './HomePage.scss';
 
 class HomePage extends Component {
   static fetchData () {
     return new Promise((resolve, reject) => {
       resolve({
+        userId: 123,
+        title: 'That guy',
+        body: 'fat'
       })
     })
   }
