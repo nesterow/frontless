@@ -1,7 +1,7 @@
 {
-  "name": "react-ssr-example",
-  "version": "1.0.0",
-  "description": "An example React app that integrates with react-ssr.",
+  "name": "frontless",
+  "version": "1.0.0a",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
@@ -17,7 +17,8 @@
     "server-side",
     "rendering",
     "ssr",
-    "react-ssr"
+    "react-ssr",
+    "isomorphic"
   ],
   "author": "Owen Ayres",
   "license": "MIT",
@@ -26,7 +27,9 @@
   },
   "homepage": "https://github.com/oayres/react-ssr-examples#readme",
   "dependencies": {
+    "express": "^4.16.4",
     "http": "^0.0.0",
+    "process": "^0.11.10",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
@@ -36,11 +39,21 @@
     "react-ssr": "^0.4.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
     "babel-cli": "^6.26.0",
     "babel-plugin-add-react-displayname": "^0.0.5",
     "babel-plugin-react-ssr": "^1.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "jest": "^24.7.2",
+    "jest": "^24.7.1",
+    "nodemon": "^1.18.11",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-babel-minify": "^8.0.0",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-node-resolve": "^4.2.3",
     "webpack": "^4.30.0"
   }
 }

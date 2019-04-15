@@ -8,7 +8,7 @@ const app = express()
 const router = express.Router()
 const renderer = ssr({ routes })
 
-// app.use(staticResources(app, express))
+app.use('/assets', express.static('assets'));
 app.use(bodyParser.json({ limit: '2mb' }))
 app.use(bodyParser.urlencoded({ limit: '2mb', extended: true }))
 
