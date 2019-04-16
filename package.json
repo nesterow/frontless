@@ -51,6 +51,7 @@
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2",
     "react-ssr": "^1.2.3",
+    "rollup-plugin-postprocess": "^1.0.2",
     "socket.io-client": "^2.2.0",
     "utf-8-validate": "^5.0.2",
     "uws": "uNetworking/uWebSockets.js#v15.9.0",
@@ -58,6 +59,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/plugin-proposal-decorators": "^7.4.0",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",

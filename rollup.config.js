@@ -6,6 +6,7 @@ import globals from 'rollup-plugin-node-globals'
 import alias from 'rollup-plugin-strict-alias';
 import minify from 'rollup-plugin-babel-minify'
 import scss from 'rollup-plugin-scss'
+import postprocess from 'rollup-plugin-postprocess';
 
 const optPlugins = []
 
@@ -74,7 +75,10 @@ export default [
       babel({
         exclude: 'node_modules/**'
       }),
-      scss()
+      scss(),
+      postprocess([
+        [/commonjsRequire\.resolve/ig, 'require\.resolve']
+      ])
     ]
   }
 ]

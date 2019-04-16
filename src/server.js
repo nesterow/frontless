@@ -20,8 +20,10 @@ import Html from './pages/Html.jsx'
 
 const api = feathers()
 const app = express(api)
+
 const router = express.Router()
 const renderer = ssr({ 
+  debug: true,
   routes,
   Html
 })
@@ -37,14 +39,7 @@ const corsMiddleware = cors({
   origin: '*',
 })
 
-app.use('/assets', express.static('assets'))
-app.use(corsMiddleware)
-app.use(sessionMiddleware)
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-app.configure(express.rest())
-
-app.configure(socketio({}, function(io) {
+app.configure(socketio(function(io) {
   io.use(function(socket, next) {
     sessionMiddleware(socket.request, socket.request.res, next);
   })
@@ -54,6 +49,15 @@ app.configure(socketio({}, function(io) {
   })
 }))
 
+
+app.use('/assets', express.static('assets'))
+app.use(corsMiddleware)
+app.use(sessionMiddleware)
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
+app.configure(express.rest())
+
 app.configure(authentication({
   session: true,
   secret: process.env.REST_AUTH_SECRET,
@@ -62,18 +66,26 @@ app.configure(authentication({
 
 app.configure(local())
 
-
-app.use('/*', function (req, res, next) {
+app.use(function (req, res, next) {
+ 
+  if ('EIO' in req.query)
+    return next();
   if (req.headers.accept &&
-    req.headers.accept.includes('/json')) {
+      req.headers.accept.includes('/json')) {
     return next();
   }
+  if (req.feathers &&
+    req.feathers.headers.accept.includes('/json')) {
+  return next();
+}
   renderer(req, res, next);
 })
 
 services(app);
 
-new Server(app).listen(8000, err => {
+const server = new Server(app)
+app.setup(server);
+server.listen(8000, err => {
   if (err) {
     return console.error(`👎  ${err}`)
   }

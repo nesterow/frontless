@@ -1,36 +1,35 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 import {Link} from 'react-router-dom';
 import './HomePage.scss';
 
 import {withFrontless} from 'lib/frontless'
-import lient from '@/client';
+import client from '@/client';
 
 class HomePage extends Component {
+  
+  static displayName = 'homePage'
 
-  static fetchData () {
-    return new Promise((resolve, reject) => {
-      resolve({
-        userId: '123',
-        title: 'That guy',
-        body: 'fat'
-      })
+  static fetchData ({req, res, match}) {
+    return client.service('/ping').get('ping').then((res)=>{
+      return {...res.data}
     })
   }
 
   render () {
-    const { userId, id, title, body } = this.props // from the json above
+    const { data } = this.props // from the json above
 
     return (
-      <div key={id}>
+      <div>
         <Link to="/about">About</Link>
-        <p>User ID: {userId}</p>
-        <p>Title: {title}</p>
-        <p>Body: {body}</p>
+        <button onClick={() => { client.service('/ping').get('ping') }}>update</button>
+        <p>Response: {data}</p>
       </div>
     )
   }
 }
 
-const homeComponentID = withFrontless(HomePage)
-
+const homeComponentID = withRouter(
+  withFrontless(HomePage)
+)
 export default homeComponentID

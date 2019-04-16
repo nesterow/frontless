@@ -10,6 +10,7 @@ const routes = [
   },
   {
     path: '/about',
+    exact: true,
     component: AboutPage
   },
   {

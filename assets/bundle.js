@@ -27095,6 +27095,21 @@
               ) : null;
             };
 
+            function _defineProperty(obj, key, value) {
+              if (key in obj) {
+                Object.defineProperty(obj, key, {
+                  value: value,
+                  enumerable: true,
+                  configurable: true,
+                  writable: true
+                });
+              } else {
+                obj[key] = value;
+              }
+
+              return obj;
+            }
+
             var _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
             function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31457,20 +31472,22 @@
                 subscribeToSSS() {
                   if (typeof window !== 'undefined') {
                     const eventName = 'update:' + DecoratedComponent.displayName;
-                    evbus.on(eventName, props => {
-                      DecoratedComponent.defaultProps = { ...DecoratedComponent.defaultProps,
-                        ...props
-                      };
-                      this.setState({
-                        timestamp: new Date().getTime()
+
+                    const handler = props => {
+                      this.setState({ ...props
                       });
-                    });
+                    };
+
+                    evbus.removeAllListeners(eventName);
+                    evbus.on(eventName, handler);
                   }
                 }
 
                 render() {
                   this.subscribeToSSS();
-                  return react_2(DecoratedComponent, this.props, null);
+                  return react_2(DecoratedComponent, { ...this.props,
+                    ...this.state
+                  }, null);
                 }
 
               }
@@ -41675,34 +41692,37 @@
             app.hooks(hooks);
 
             class HomePage extends react_1 {
-              static fetchData() {
-                return new Promise((resolve, reject) => {
-                  resolve({
-                    userId: '123',
-                    title: 'That guy',
-                    body: 'fat'
-                  });
+              static fetchData({
+                req,
+                res,
+                match
+              }) {
+                console.log('123', this);
+                return app.service('/ping').get('ping').then(res => {
+                  return { ...res.data
+                  };
                 });
               }
 
               render() {
                 const {
-                  userId,
-                  id,
-                  title,
-                  body
+                  data
                 } = this.props; // from the json above
 
-                return react.createElement("div", {
-                  key: id
-                }, react.createElement(Link, {
+                return react.createElement("div", null, react.createElement(Link, {
                   to: "/about"
-                }, "About"), react.createElement("p", null, "User ID: ", userId), react.createElement("p", null, "Title: ", title), react.createElement("p", null, "Body: ", body));
+                }, "About"), react.createElement("button", {
+                  onClick: () => {
+                    app.service('/ping').get('ping');
+                  }
+                }, "update"), react.createElement("p", null, "Response: ", data));
               }
 
             }
 
-            const homeComponentID = withFrontless(HomePage);
+            _defineProperty(HomePage, "displayName", 'homePage');
+
+            const homeComponentID = withRouter(withFrontless(HomePage));
             homeComponentID.ssrWaitsFor = [Link];
             homeComponentID.displayName = "homeComponentID";
 
@@ -41710,10 +41730,14 @@
 
             class AboutPage extends react_1 {
               render() {
-                return react.createElement("div", null, "about");
+                return react.createElement("div", null, react.createElement(Link, {
+                  to: "/"
+                }, "Home"), "about");
               }
 
             }
+
+            AboutPage.ssrWaitsFor = [Link];
 
             class NotFoundPage extends react_1 {
               render() {
@@ -41728,6 +41752,7 @@
               component: _default
             }, {
               path: '/about',
+              exact: true,
               component: AboutPage
             }, {
               path: '**',
