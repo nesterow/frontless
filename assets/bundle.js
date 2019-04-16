@@ -41697,7 +41697,6 @@
                 res,
                 match
               }) {
-                console.log('123', this);
                 return app.service('/ping').get('ping').then(res => {
                   return { ...res.data
                   };
