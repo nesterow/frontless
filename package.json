@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/bundle.js",
-    "build": "rollup -c rollup.config.js",
+    "start": "node_modules/.bin/nodemon --ext js,html,scss,css --ignore 'assets/*' --ignore 'dist/*' --exec \"npm run build-dev && node dist/bundle.js ./config.env\"",
+    "build-dev": "rollup -c rollup.config.js --silent --environment ENV:development",
+    "build": "rollup -c rollup.config.js --silent --environment ENV:production",
     "test": "jest"
   },
   "repository": {
