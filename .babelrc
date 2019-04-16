@@ -8,6 +8,17 @@
     "@babel/preset-react"
     ],
   "plugins": [
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "@": "./src",
+        "@@": "./src/pages",
+        "lib": "./lib",
+        "assets": "./assets",
+        "client": "./src/client.js"
+      }
+    }],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
     "react-ssr"
   ]
 }
