@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import {Link} from 'react-router-dom';
-import './HomePage.scss';
 
 import {withFrontless} from 'lib/frontless'
 import client from '@/client';
+import Appbar from 'muicss/lib/react/appbar';
+import Button from 'muicss/lib/react/button';
+import Container from 'muicss/lib/react/container';
+import DatePicker from 'react-datepicker';
 
 class HomePage extends Component {
   
@@ -21,9 +24,11 @@ class HomePage extends Component {
 
     return (
       <div>
-        <Link to="/about">About</Link>
-        <button onClick={() => { client.service('/ping').get('ping') }}>update</button>
-        <p>Response: {data}</p>
+       <Appbar><p>Response: {data}</p></Appbar>
+        <Container>
+          <Button color="primary" onClick={() => { client.service('/ping').get('ping') }}>button</Button>
+          <DatePicker/>
+        </Container>
       </div>
     )
   }

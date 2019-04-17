@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config({path: process.argv[process.argv.length - 1]})
 
 import ssr from 'react-ssr'
-
+import helmet from 'helmet';
 import feathers from '@feathersjs/feathers'
 import express from '@feathersjs/express'
 import socketio from '@feathersjs/socketio'
@@ -16,7 +16,7 @@ import cors from 'cors'
 
 import services from './api';
 import routes from './routes'
-import Html from './pages/Html.jsx'
+import Html from './pages/Layout.jsx'
 
 const api = feathers()
 const app = express(api)
@@ -38,6 +38,8 @@ const sessionMiddleware = session({
 const corsMiddleware = cors({
   origin: '*',
 })
+
+app.use(helmet());
 
 app.configure(socketio(function(io) {
   io.use(function(socket, next) {

@@ -7,6 +7,7 @@ import alias from 'rollup-plugin-strict-alias';
 import minify from 'rollup-plugin-babel-minify'
 import scss from 'rollup-plugin-scss'
 import postprocess from 'rollup-plugin-postprocess';
+import cssbundle from 'rollup-plugin-css-bundle'
 
 const optPlugins = []
 
@@ -25,6 +26,8 @@ if (process.ENV === 'production') {
 export default [
   {
     input: 'src/App.jsx',
+    sourcemap: false,
+    treeshake: false,
     output: {
       file: 'assets/bundle.js',
       format: 'umd',
@@ -41,19 +44,22 @@ export default [
       commonjs({
         namedExports: {
           'lib/index.js': [ 'withFrontless' ],
-          'node_modules/react/index.js': [ 'Component', 'createElement' ]
+          'node_modules/react-is/index.js': [ 'isForwardRef', 'isElement', 'isValidElementType', 'ForwardRef' ],
+          'node_modules/react-dom/index.js': [ 'findDOMNode', 'createPortal' ],
+          'node_modules/react/index.js': [ 'Component', 'createElement', 'Children', 'isValidElement', 'cloneElement', 'PureComponent', 'createRef', 'Fragment', 'createFactory', 'createContext', 'useState' ]
         }
       }),
       json(),
       babel({
         exclude: 'node_modules/**'
       }),
-      scss(),
       ...optPlugins
     ]
   },
   {
     input: 'src/server.js',
+    sourcemap: false,
+    treeshake: false,
     output: {
       file: 'dist/bundle.js',
       format: 'cjs'
@@ -68,17 +74,29 @@ export default [
       commonjs({
         namedExports: {
           'lib/index.js': [ 'withFrontless' ],
-          'node_modules/react/index.js': [ 'Component', 'createElement' ]
+          'node_modules/react-is/index.js': [ 'isForwardRef', 'isElement', 'isValidElementType', 'ForwardRef' ],
+          'node_modules/react-dom/index.js': [ 'findDOMNode', 'createPortal' ],
+          'node_modules/react/index.js': [ 'Component', 'createElement', 'Children', 'isValidElement', 'cloneElement', 'PureComponent', 'createRef', 'Fragment', 'createFactory', 'createContext', 'useState' ]
         }
       }),
       json(),
       babel({
         exclude: 'node_modules/**'
       }),
-      scss(),
       postprocess([
-        [/commonjsRequire\.resolve/ig, 'require\.resolve']
+        [/commonjsRequire\.resolve/ig, 'require\.resolve'],
+        [/_isInBrowser2\[\'default\'\]/ig, 'false']
       ])
+    ]
+  },
+  {
+    input: 'src/styles.js',
+    output: {
+      file: 'assets/styles.js',
+      format: 'cjs'
+    },
+    plugins: [
+      scss()
     ]
   }
 ]
