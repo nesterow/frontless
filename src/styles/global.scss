@@ -1,0 +1,9 @@
+iframe {
+  min-height: 600px;
+  background: url("/assets/code-loading.png");
+  background-size: cover; 
+}
+
+iframe[style] {
+  background: none;
+}

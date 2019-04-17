@@ -14,7 +14,7 @@ import session from 'express-session'
 import cors from 'cors'
 
 
-import services from './api';
+import services from './services';
 import routes from './routes'
 import Html from './pages/Layout.jsx'
 

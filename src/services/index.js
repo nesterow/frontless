@@ -17,6 +17,14 @@ export default (app) => {
     },
   });
 
+  app.use('random', {
+    async get(name) {
+      return MESSAGE('randomNumber', {
+        number: Math.round(Math.random() * 10000),
+      });
+    },
+  });
+
 
   usersService(app);
 
