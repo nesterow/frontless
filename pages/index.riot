@@ -1,19 +1,22 @@
-<index>
+<index-page>
   ololo {state.text}
-  <test />
-  <div></div>
+  <test>
+      sss
+  </test>
+  <div>
+    <a href='/errors/404'>asdasd</a>
+  </div>
   <script>
     
     import Test from './test.riot'
-    
+
     export default {
       components: {
         Test,
       },
-      async onMounted(state, props) {
-        
-        
+      onMounted(state, props) {
+        console.log('index')
       },
     }
   </script>
-</index>
+</index-page>

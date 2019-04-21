@@ -1,12 +1,14 @@
 {
   "name": "frontless",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "repository": "git@github.com:nesterow/frontless.git",
   "author": "Anton Nesterov <arch.nesterov@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "@babel/preset-env": "^7.4.3",
+    "@feathersjs/authentication": "^2.1.16",
+    "@feathersjs/authentication-local": "^1.2.9",
     "@feathersjs/express": "^1.3.1",
     "@feathersjs/feathers": "^3.3.1",
     "@feathersjs/socketio": "^3.2.9",
@@ -17,16 +19,20 @@
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "ejs": "^2.6.1",
+    "eventbusjs": "^0.2.0",
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
     "gulp": "^4.0.0",
     "lodash": "^4.17.11",
     "qs": "^6.7.0",
+    "require-globify": "^1.4.1",
     "riot": "^4.0.0-rc.2",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "vinyl-source-stream": "^2.0.0",
+    "browserify": "^16.2.3",
+    "gulp-nodemon": "^2.4.2",
     "riotify": "^4.0.0",
-    "browserify": "^16.2.3"
+    "vinyl-source-stream": "^2.0.0"
   }
 }
