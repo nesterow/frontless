@@ -7,15 +7,14 @@
     <a href='/errors/404'>asdasd</a>
   </div>
   <script>
-    
     import Test from './test.riot'
-
+    import client from 'client'
     export default {
       components: {
         Test,
       },
       onMounted(state, props) {
-        console.log('index')
+        console.log(this)
       },
     }
   </script>

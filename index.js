@@ -60,21 +60,21 @@ app.configure(local());
 
 
 function resolvePath(path) {
-
-  try {
-    const fullPath = ('pages/' + path )
+  const fullPath = ('pages/' + path )
     .replace(/\/\//g, '/').replace(/\/$/, '')
-  
+  try {
+    
+    try {
+      if (fs.statSync(fullPath + '.riot').isFile())
+        return fullPath + '.riot';
+    }
+    catch (e) { }
+
     if (fs.statSync(fullPath + '/index.riot').isFile())
       return fullPath + '/index.riot';
 
-    if (fs.statSync(fullPath + '.riot').isFile())
-      return fullPath + '.riot';
-  
   } catch (e) {
-
     return false;
-
   }
 
 }
@@ -129,8 +129,9 @@ app.use('/*', async (req, res) => {
     })
   } catch(e) {
 
-    const component = require('./' + (path || 'pages/errors/400.riot')).default
-    const {output, state} = await render('section', component, { req, stack: e.stack });
+    const component = require('./' + ('pages/errors/400.riot')).default
+    
+    const {output, state} = await render('section', component, { req, stack: (e.message.stack || e.message) });
     ejs.renderFile('./pages/layout/base.ejs', {req, output, state}, null, function(err, data) {
       if (err) {
         return res.status(500).end(err)

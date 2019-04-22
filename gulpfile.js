@@ -1,3 +1,5 @@
+process.env.NODE_PATH = `${__dirname}:${__dirname}/node_modules`
+
 const gulp       = require('gulp')
 const browserify = require('browserify')
 const globify    = require('require-globify')
@@ -10,7 +12,7 @@ gulp.task('start', function (done) {
     script: 'index.js'
   , args: ['./config.env']
   , ignore: ['node_modules/', 'assets/']
-  , ext: 'js ejs riot'
+  , ext: 'js ejs riot json env'
   , env: { 'NODE_ENV': 'development' }
   , tasks: ['default']
   , done: done
