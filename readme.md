@@ -37,15 +37,15 @@ I believe that the server has to be responsible for the view model. There are th
 
 ## Roadmap v1.0
 
-[x] Async SSR
-[x] Natural Page Routing  
-[ ] Database Interfaces
-[ ] Users and Sessions
-[ ] Server Sent State (w/feathers.js) [50%]
-[ ] Socket IO (w/feathers.js) [50%]
-[ ] Markup Hydration (riot.js)
-[ ] Configuration / Deployment Scripts
-[ ] Template cache on server side based on git hash
-[ ] Deployment scripts
-[ ] PWA Bootstrap w/ version control
-[ ] Documentation
+* [x] Async SSR
+* [x] Natural Page Routing  
+* [ ] Database Interfaces
+* [ ] Users and Sessions
+* [ ] Server Sent State (w/feathers.js) [50%]
+* [ ] Socket IO (w/feathers.js) [50%]
+* [ ] Markup Hydration (riot.js)
+* [ ] Configuration / Deployment Scripts
+* [ ] Template cache on server side based on git hash
+* [ ] Deployment scripts
+* [ ] PWA Bootstrap w/ version control
+* [ ] Documentation
