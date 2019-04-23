@@ -37,8 +37,8 @@ I believe that the server has to be responsible for the view model. There are th
 
 ## Roadmap v1.0
 
-[-] Async SSR
-[-] Natural Page Routing  
+[x] Async SSR
+[x] Natural Page Routing  
 [ ] Database Interfaces
 [ ] Users and Sessions
 [ ] Server Sent State (w/feathers.js) [50%]
