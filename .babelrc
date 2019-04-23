@@ -1,27 +1,25 @@
 {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "modules": false,
-          "targets":  {"node": "current"}
-        }
-      ]
+  "presets": [
+    ["@babel/preset-env",
+    {
+      "modules": false,
+      "targets":  {"node": "current"}
+    }],
+    "@babel/preset-react"
     ],
-    "plugins": [
-        ["module-resolver", {
-          "root": ["./src"],
-          "alias": {
-            "@": "./src",
-            "@@": "./src/pages",
-            "tags": "./src/tags",
-            "lib": "./lib",
-            "assets": "./assets"
-          }
-        }],
-        ["@babel/plugin-transform-modules-commonjs", {
-          "allowTopLevelThis": true
-        }],
-        "@babel/plugin-proposal-class-properties"
-      ],
-  }
+  "plugins": [
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "@": "./src",
+        "@@": "./src/pages",
+        "lib": "./lib",
+        "assets": "./assets",
+        "client": "./src/client.js"
+      }
+    }],
+    "@babel/plugin-proposal-class-properties",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "react-ssr"
+  ]
+}

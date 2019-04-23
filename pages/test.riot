@@ -1,0 +1,26 @@
+<test>
+  test { state.text }
+  <button onclick={onClick}>
+    click
+  </button>
+  <script>
+    export default {
+      onBeforeMount(){
+        console.log('test 1')
+      },
+      fetch() {
+        this.state = {
+          text: 'test'
+        }
+      },
+      onClick(ev) {
+        alert(1)
+        this.state = {
+          text: 'test'
+        }
+        console.log(this)
+        this.update()
+      }
+    }
+  </script>
+</test>

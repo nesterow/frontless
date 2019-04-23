@@ -1,0 +1,21 @@
+<index-page>
+  ololo {state.text}
+  <test>
+      sss
+  </test>
+  <div>
+    <a href='/errors/404'>asdasd</a>
+  </div>
+  <script>
+    import Test from './test.riot'
+    import client from 'client'
+    export default {
+      components: {
+        Test,
+      },
+      onMounted(state, props) {
+        console.log(this)
+      },
+    }
+  </script>
+</index-page>
