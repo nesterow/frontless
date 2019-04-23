@@ -24,7 +24,7 @@ Classic MVVM approach significanly complicates work with data. In fact, on pract
 I believe that the server has to be responsible for the view model. There are things which the server does better and working with data is one of them.
 
 
-## The stack
+## The Stack
 | Server        | Client        |
 | ------------- |:-------------:|
 | Routing (Express.JS ) | Navigating (Browser) |
@@ -33,3 +33,19 @@ I believe that the server has to be responsible for the view model. There are th
 | Session / User State (Express.js) | JWT, Cookies |
 | Realtime (Feathers, SocketIO) | FeathersJS Client |
 | DB Interface (FeathersJS Client) | Rest/IO (FeathersJS Client) |
+
+
+## Roadmap v1.0
+
+[-] Async SSR
+[-] Natural Page Routing  
+[ ] Database Interfaces
+[ ] Users and Sessions
+[ ] Server Sent State (w/feathers.js) [50%]
+[ ] Socket IO (w/feathers.js) [50%]
+[ ] Markup Hydration (riot.js)
+[ ] Configuration / Deployment Scripts
+[ ] Template cache on server side based on git hash
+[ ] Deployment scripts
+[ ] PWA Bootstrap w/ version control
+[ ] Documentation
