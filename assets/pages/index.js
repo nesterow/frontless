@@ -16368,6 +16368,8 @@ process.umask = function() { return 0; };
         if (state === void 0) {
           state = {};
         }
+        
+        // console.log(element.childNodes.length, element.firstChild, 123);
 
         this.props = Object.freeze(Object.assign({}, initialProps, evaluateProps(element, attributes, parentScope)));
         this.state = computeState(this.state, state);
@@ -16381,12 +16383,19 @@ process.umask = function() { return 0; };
         defineProperty(this, 'root', element); // before mount lifecycle event
 
         this.onBeforeMount(this.props, this.state); // handlte the template and its attributes
+        
+        // if (element.firstChild) {
+        //   while (element.firstChild) {
+        //     element.removeChild(element.firstChild)
+        //   }
+        // }
 
         this[ATTRIBUTES_KEY_SYMBOL].mount(element, parentScope);
         this[TEMPLATE_KEY_SYMBOL].mount(element, this); // create the slots and mount them
 
         this[SLOTS_KEY_SYMBOL] = createSlots(element, slots || []).mount(parentScope);
         this.onMounted(this.props, this.state);
+        // console.log(element.childNodes.length, 123);
         return this;
       },
 
@@ -18538,7 +18547,11 @@ const Turbolinks = require('turbolinks')
 Turbolinks.start();
 
 
-
+function hydrate(el, component, props) {
+   const clone = el.cloneNode(false)
+   el.parentNode.replaceChild(clone, el)
+   return riot.component(component)(clone, props)
+}
 
 const riot = require('riot')
 riot.install(function(component){
@@ -18576,8 +18589,12 @@ document.addEventListener('turbolinks:load', ()=>{
   })
 
   const root = document.querySelector('section[is]')
-  root.innerHTML = '';
-  riot.mount(root)
+  // root.innerHTML = '';
+  // riot.mount(root)
+  const ComponentImplementation = tags.find((tag) => tag.module.default.name === root.getAttribute('is') )
+  const component = ComponentImplementation.module.default;
+  const hydrated = hydrate(root, component, component.props);
+
 });
 
 

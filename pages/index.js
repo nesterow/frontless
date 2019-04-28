@@ -4,7 +4,11 @@ const Turbolinks = require('turbolinks')
 Turbolinks.start();
 
 
-
+function hydrate(el, component, props) {
+   const clone = el.cloneNode(false)
+   el.parentNode.replaceChild(clone, el)
+   return riot.component(component)(clone, props)
+}
 
 const riot = require('riot')
 riot.install(function(component){
@@ -42,7 +46,11 @@ document.addEventListener('turbolinks:load', ()=>{
   })
 
   const root = document.querySelector('section[is]')
-  root.innerHTML = '';
-  riot.mount(root)
+  // root.innerHTML = '';
+  // riot.mount(root)
+  const ComponentImplementation = tags.find((tag) => tag.module.default.name === root.getAttribute('is') )
+  const component = ComponentImplementation.module.default;
+  const hydrated = hydrate(root, component, component.props);
+
 });
 
