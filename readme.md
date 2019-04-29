@@ -1,6 +1,5 @@
 <img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.png" height="50"/>
 
---------------------------------------------
 ![Generic badge](https://img.shields.io/badge/Status-Prototype-yellow.svg)
 ![Generic badge](https://img.shields.io/badge/Version-0.0.1proto-green.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
