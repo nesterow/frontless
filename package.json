@@ -26,6 +26,7 @@
     "eventbusjs": "^0.2.0",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
+    "frontless-utils": "^0.0.2",
     "gulp": "^4.0.0",
     "lodash": "^4.17.11",
     "qs": "^6.7.0",

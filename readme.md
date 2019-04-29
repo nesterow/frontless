@@ -27,7 +27,7 @@ I believe that the server has to be responsible for the view model. There are th
 ## The Stack
 | Server        | Client        |
 | ------------- |:-------------:|
-| Routing (Express.JS ) | Navigating (Browser) |
+| Routing (Express.JS ) | Navigation (Turbolinks) |
 | View Model (FeathersJS)    | Data Representation (RiotJS) |
 | Layout Rendering (RiotJS SSR) | User input (RiotJS)  |
 | Session / User State (Express.js) | JWT, Cookies |
@@ -43,7 +43,7 @@ I believe that the server has to be responsible for the view model. There are th
 * [ ] Users and Sessions
 * [ ] Server Sent State (w/feathers.js) [50%]
 * [ ] Socket IO (w/feathers.js) [50%]
-* [ ] Markup Hydration (riot.js)
+* [x] Markup Hydration (riot.js) [-]
 * [ ] Configuration / Deployment Scripts
 * [ ] Template cache on server side based on git hash
 * [ ] Deployment scripts

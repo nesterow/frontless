@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config({path: process.argv[process.argv.length - 1]});
 
-
+const riot = require('riot')
 const fs = require('fs')
 const ejs = require('ejs')
 const express = require('@feathersjs/express')
@@ -13,8 +13,9 @@ const authentication = require('@feathersjs/authentication')
 const local = require('@feathersjs/authentication-local')
 const register = require('@riotjs/ssr/register')
 register();
+const {renderAsync} = require('frontless-utils')
 
-const riot = require('riot')
+
 
 
 const sessionMiddleware = session({
@@ -79,35 +80,6 @@ function resolvePath(path) {
 
 }
 
-async function render(tagName, component, props) {
-  const cleanup = require('jsdom-global')()
-  const root = document.createElement(tagName)
-  const element = riot.component(component)(root, props)
-  const prop = riot.__.globals.DOM_COMPONENT_INSTANCE_PROPERTY
-  const elements = element.$$('*')
-  
-  let state = {};
-  let rootInstance = element [prop]
-  if (rootInstance && rootInstance.fetch) {
-    await rootInstance.fetch(props)
-    state[rootInstance.id || rootInstance.name] = rootInstance.state
-  }
-
-  for (let i in elements) {
-    const el = elements [i]
-    let instance = el [prop]
-    if (instance && instance.fetch) {
-      await instance.fetch(props)
-      state[instance.id || instance.name] = instance.state
-    }
-  }
-  element.update()
-  const output = element.root.outerHTML
-  cleanup()
-  state = JSON.stringify(state)
-  return Promise.resolve({output, state})
-}
-
 app.use('/*', async (req, res) => {
 
   req._res = res;
@@ -119,7 +91,7 @@ app.use('/*', async (req, res) => {
   try {
     const path = resolvePath(req.params [0])
     const component = require('./' + (path || 'pages/errors/404.riot')).default
-    const {output, state} = await render('section', component, { req, });
+    const {output, state} = await renderAsync('section', component, { req, });
 
     ejs.renderFile('./pages/layout/base.ejs', {req, output, state}, null, function(err, data) {
       if (err) {
