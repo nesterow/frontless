@@ -1,5 +1,5 @@
 const riot = require('riot')
-const {isTagRegistered, hydrate} = require('frontless-utils')
+const {isTagRegistered, enumerateTags, hydrate} = require('frontless-utils')
 const EventBus = require('eventbusjs')
 const Turbolinks = require('turbolinks')
 Turbolinks.start();
@@ -7,6 +7,8 @@ Turbolinks.start();
 
 riot.install(function(component){
   
+  enumerateTags(component);
+
   component.onServerState = function (data) {
     component.update(data);
   }.bind(component);

@@ -1,20 +1,24 @@
 <index-page>
-  ololo {state.text}
-  <test>
-      sss
-  </test>
-  <div>
-    <a href='/errors/404'>asdasd</a>
+  
+  <div style="text-align: center; margin-top: 25vh;">
+    <img src="/assets/media/logo.png" />
+    <br>
+    <br>
+    <a href="/playground">
+      <img src="/assets/media/playground.png" />
+    </a>
   </div>
+
   <script>
     import Test from './test.riot'
     import client from 'client'
     export default {
+      layout: 'base',
       components: {
         Test,
       },
       onMounted(state, props) {
-        console.log(this)
+        
       },
     }
   </script>

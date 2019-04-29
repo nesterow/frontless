@@ -6,7 +6,7 @@
   <script>
     export default {
       onBeforeMount(){
-        console.log('test 1')
+
       },
       fetch() {
         this.state = {
@@ -14,12 +14,9 @@
         }
       },
       onClick(ev) {
-        alert(1)
-        this.state = {
-          text: 'test'
-        }
-        console.log(this)
-        this.update()
+        this.update({
+          text: 'test 234'
+        })
       }
     }
   </script>

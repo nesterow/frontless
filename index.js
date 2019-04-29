@@ -91,9 +91,9 @@ app.use('/*', async (req, res) => {
   try {
     const path = resolvePath(req.params [0])
     const component = require('./' + (path || 'pages/errors/404.riot')).default
-    const {output, state} = await renderAsync('section', component, { req, });
-
-    ejs.renderFile('./pages/layout/base.ejs', {req, output, state}, null, function(err, data) {
+    const {output, state, layout} = await renderAsync('section', component, { req, });
+    
+    ejs.renderFile(`./pages/layout/${layout}.ejs`, {req, output, state}, null, function(err, data) {
       if (err) {
         return res.status(500).end(err)
       }
@@ -103,8 +103,8 @@ app.use('/*', async (req, res) => {
 
     const component = require('./' + ('pages/errors/400.riot')).default
     
-    const {output, state} = await render('section', component, { req, stack: (e.message.stack || e.message) });
-    ejs.renderFile('./pages/layout/base.ejs', {req, output, state}, null, function(err, data) {
+    const {output, state} = await renderAsync('section', component, { req, stack: (e.message.stack || e.message) });
+    ejs.renderFile(`./pages/layout/${layout}.ejs`, {req, output, state}, null, function(err, data) {
       if (err) {
         return res.status(500).end(err)
       }

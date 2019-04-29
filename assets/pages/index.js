@@ -13775,9 +13775,21 @@ module.exports.renderAsync = async function renderAsync(tagName, component, prop
   }
   element.update()
   const output = element.root.outerHTML
+  const {layout = 'base'} = component.exports;
+
   cleanup()
   state = JSON.stringify(state)
-  return Promise.resolve({output, state})
+  
+
+  return Promise.resolve({output, state, layout})
+}
+
+let TAG_COUNT = {}
+module.exports.enumerateTags = function setTagId (tag) {
+  if (tag.id === void 0) {
+    TAG_COUNT [tag.name] = (TAG_COUNT [tag.name] || 0) + 1
+    tag.id = tag.name + TAG_COUNT [tag.name]
+  }
 }
 
 
@@ -18592,7 +18604,7 @@ var _default = {
 exports.default = _default;
 },{}],95:[function(require,module,exports){
 const riot = require('riot')
-const {isTagRegistered, hydrate} = require('frontless-utils')
+const {isTagRegistered, enumerateTags, hydrate} = require('frontless-utils')
 const EventBus = require('eventbusjs')
 const Turbolinks = require('turbolinks')
 Turbolinks.start();
@@ -18600,6 +18612,8 @@ Turbolinks.start();
 
 riot.install(function(component){
   
+  enumerateTags(component);
+
   component.onServerState = function (data) {
     component.update(data);
   }.bind(component);
@@ -18615,7 +18629,7 @@ riot.install(function(component){
 
 })
 
-const tags = [{name:'errors/400',module:require('./errors/400.riot')},{name:'errors/404',module:require('./errors/404.riot')},{name:'index',module:require('./index.riot')},{name:'test',module:require('./test.riot')}]
+const tags = [{name:'errors/400',module:require('./errors/400.riot')},{name:'errors/404',module:require('./errors/404.riot')},{name:'index',module:require('./index.riot')},{name:'playground',module:require('./playground.riot')},{name:'test',module:require('./test.riot')}]
 
 document.addEventListener('turbolinks:load', ()=>{
   const STATE = JSON.parse(
@@ -18642,7 +18656,7 @@ document.addEventListener('turbolinks:load', ()=>{
 });
 
 
-},{"./errors/400.riot":93,"./errors/404.riot":94,"./index.riot":96,"./test.riot":97,"eventbusjs":61,"frontless-utils":62,"riot":74,"turbolinks":91}],96:[function(require,module,exports){
+},{"./errors/400.riot":93,"./errors/404.riot":94,"./index.riot":96,"./playground.riot":97,"./test.riot":98,"eventbusjs":61,"frontless-utils":62,"riot":74,"turbolinks":91}],96:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18659,44 +18673,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _default = {
   'css': null,
   'exports': {
+    layout: 'base',
     components: {
       Test: _test.default
     },
 
-    onMounted(state, props) {
-      console.log(this);
-    }
+    onMounted(state, props) {}
 
   },
   'template': function (template, expressionTypes, bindingTypes, getComponent) {
-    return template('<!----><test expr0></test><div><a href="/errors/404">asdasd</a></div>', [{
-      'expressions': [{
-        'type': expressionTypes.TEXT,
-        'childNodeIndex': 0,
-        'evaluate': function (scope) {
-          return ['\n  ololo ', scope.state.text, '\n  '].join('');
-        }
-      }]
-    }, {
-      'type': bindingTypes.TAG,
-      'getComponent': getComponent,
-      'evaluate': function (scope) {
-        return 'test';
-      },
-      'slots': [{
-        'id': 'default',
-        'html': '\n      sss\n  ',
-        'bindings': []
-      }],
-      'attributes': [],
-      'redundantAttribute': 'expr0',
-      'selector': '[expr0]'
-    }]);
+    return template('<div style="text-align: center; margin-top: 25vh;"><img src="/assets/media/logo.png"/><br/><br/><a href="/playground"><img src="/assets/media/playground.png"/></a></div>', []);
   },
   'name': 'index-page'
 };
 exports.default = _default;
-},{"./test.riot":97,"client":1}],97:[function(require,module,exports){
+},{"./test.riot":98,"client":1}],97:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18706,9 +18697,25 @@ exports.default = void 0;
 var _default = {
   'css': null,
   'exports': {
-    onBeforeMount() {
-      console.log('test 1');
-    },
+    layout: 'playground'
+  },
+  'template': function (template, expressionTypes, bindingTypes, getComponent) {
+    return template('<h2>playground</h2>', []);
+  },
+  'name': 'playground'
+};
+exports.default = _default;
+},{}],98:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  'css': null,
+  'exports': {
+    onBeforeMount() {},
 
     fetch() {
       this.state = {
@@ -18717,17 +18724,14 @@ var _default = {
     },
 
     onClick(ev) {
-      alert(1);
-      this.state = {
-        text: 'test'
-      };
-      console.log(this);
-      this.update();
+      this.update({
+        text: 'test 234'
+      });
     }
 
   },
   'template': function (template, expressionTypes, bindingTypes, getComponent) {
-    return template('<!----><button expr1>\n    click\n  </button>', [{
+    return template('<!----><button expr0>\n    click\n  </button>', [{
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
@@ -18736,8 +18740,8 @@ var _default = {
         }
       }]
     }, {
-      'redundantAttribute': 'expr1',
-      'selector': '[expr1]',
+      'redundantAttribute': 'expr0',
+      'selector': '[expr0]',
       'expressions': [{
         'type': expressionTypes.EVENT,
         'name': 'onclick',
