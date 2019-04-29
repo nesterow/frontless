@@ -13775,7 +13775,7 @@ module.exports.renderAsync = async function renderAsync(tagName, component, prop
   }
   element.update()
   const output = element.root.outerHTML
-  const {layout = 'base'} = component.exports;
+  const {layout = 'base'} = component.exports || {}
 
   cleanup()
   state = JSON.stringify(state)
@@ -18629,7 +18629,7 @@ riot.install(function(component){
 
 })
 
-const tags = [{name:'errors/400',module:require('./errors/400.riot')},{name:'errors/404',module:require('./errors/404.riot')},{name:'index',module:require('./index.riot')},{name:'playground',module:require('./playground.riot')},{name:'test',module:require('./test.riot')}]
+const tags = [{name:'errors/400',module:require('./errors/400.riot')},{name:'errors/404',module:require('./errors/404.riot')},{name:'index',module:require('./index.riot')},{name:'playground/base',module:require('./playground/base.riot')},{name:'playground/chat',module:require('./playground/chat.riot')},{name:'playground/form',module:require('./playground/form.riot')},{name:'playground/index',module:require('./playground/index.riot')},{name:'test',module:require('./test.riot')}]
 
 document.addEventListener('turbolinks:load', ()=>{
   const STATE = JSON.parse(
@@ -18656,7 +18656,7 @@ document.addEventListener('turbolinks:load', ()=>{
 });
 
 
-},{"./errors/400.riot":93,"./errors/404.riot":94,"./index.riot":96,"./playground.riot":97,"./test.riot":98,"eventbusjs":61,"frontless-utils":62,"riot":74,"turbolinks":91}],96:[function(require,module,exports){
+},{"./errors/400.riot":93,"./errors/404.riot":94,"./index.riot":96,"./playground/base.riot":97,"./playground/chat.riot":98,"./playground/form.riot":99,"./playground/index.riot":100,"./test.riot":101,"eventbusjs":61,"frontless-utils":62,"riot":74,"turbolinks":91}],96:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18687,7 +18687,7 @@ var _default = {
   'name': 'index-page'
 };
 exports.default = _default;
-},{"./test.riot":98,"client":1}],97:[function(require,module,exports){
+},{"./test.riot":101,"client":1}],97:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18697,15 +18697,191 @@ exports.default = void 0;
 var _default = {
   'css': null,
   'exports': {
-    layout: 'playground'
+    state: {
+      url: ''
+    },
+
+    async fetch(props) {
+      const url = props.req.params[0];
+      this.update({
+        url
+      });
+    },
+
+    buttonClass(eos) {
+      return this.state.url.endsWith(eos) ? 'btn active' : 'btn';
+    },
+
+    onMounted() {}
+
   },
   'template': function (template, expressionTypes, bindingTypes, getComponent) {
-    return template('<h2>playground</h2>', []);
+    return template('<section><div class="container"><div class="panel"><div class="btn-group btn-group-block"><a expr1 href="/playground">SSR</a><a expr2 href="/playground/form">Form</a><a expr3 href="/playground/chat">Chat</a><a expr4 href="/playground/routing">Routing</a></div></div><div class="columns"><div class="column"><slot name="example"></slot></div><div class="column"><slot name="code"></slot></div></div></div></section>', [{
+      'redundantAttribute': 'expr1',
+      'selector': '[expr1]',
+      'expressions': [{
+        'type': expressionTypes.ATTRIBUTE,
+        'name': 'class',
+        'evaluate': function (scope) {
+          return scope.buttonClass('playground');
+        }
+      }]
+    }, {
+      'redundantAttribute': 'expr2',
+      'selector': '[expr2]',
+      'expressions': [{
+        'type': expressionTypes.ATTRIBUTE,
+        'name': 'class',
+        'evaluate': function (scope) {
+          return scope.buttonClass('/form');
+        }
+      }]
+    }, {
+      'redundantAttribute': 'expr3',
+      'selector': '[expr3]',
+      'expressions': [{
+        'type': expressionTypes.ATTRIBUTE,
+        'name': 'class',
+        'evaluate': function (scope) {
+          return scope.buttonClass('/chat');
+        }
+      }]
+    }, {
+      'redundantAttribute': 'expr4',
+      'selector': '[expr4]',
+      'expressions': [{
+        'type': expressionTypes.ATTRIBUTE,
+        'name': 'class',
+        'evaluate': function (scope) {
+          return scope.buttonClass('/routing');
+        }
+      }]
+    }]);
   },
   'name': 'playground'
 };
 exports.default = _default;
 },{}],98:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _base = _interopRequireDefault(require("./base.riot"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = {
+  'css': null,
+  'exports': {
+    layout: 'playground',
+    components: {
+      Playground: _base.default
+    }
+  },
+  'template': function (template, expressionTypes, bindingTypes, getComponent) {
+    return template('<playground expr5></playground>', [{
+      'type': bindingTypes.TAG,
+      'getComponent': getComponent,
+      'evaluate': function (scope) {
+        return 'playground';
+      },
+      'slots': [{
+        'id': 'example',
+        'html': '<h2>\n      chat\n    </h2>',
+        'bindings': []
+      }],
+      'attributes': [],
+      'redundantAttribute': 'expr5',
+      'selector': '[expr5]'
+    }]);
+  },
+  'name': 'playground-chat'
+};
+exports.default = _default;
+},{"./base.riot":97}],99:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _base = _interopRequireDefault(require("./base.riot"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = {
+  'css': null,
+  'exports': {
+    layout: 'playground',
+    components: {
+      Playground: _base.default
+    }
+  },
+  'template': function (template, expressionTypes, bindingTypes, getComponent) {
+    return template('<playground expr6></playground>', [{
+      'type': bindingTypes.TAG,
+      'getComponent': getComponent,
+      'evaluate': function (scope) {
+        return 'playground';
+      },
+      'slots': [{
+        'id': 'example',
+        'html': '<h2>\n      form\n    </h2>',
+        'bindings': []
+      }],
+      'attributes': [],
+      'redundantAttribute': 'expr6',
+      'selector': '[expr6]'
+    }]);
+  },
+  'name': 'playground-form'
+};
+exports.default = _default;
+},{"./base.riot":97}],100:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _base = _interopRequireDefault(require("./base.riot"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = {
+  'css': null,
+  'exports': {
+    layout: 'playground',
+    components: {
+      Playground: _base.default
+    }
+  },
+  'template': function (template, expressionTypes, bindingTypes, getComponent) {
+    return template('<playground expr7></playground>', [{
+      'type': bindingTypes.TAG,
+      'getComponent': getComponent,
+      'evaluate': function (scope) {
+        return 'playground';
+      },
+      'slots': [{
+        'id': 'example',
+        'html': '<h2>\n      playground\n    </h2>',
+        'bindings': []
+      }],
+      'attributes': [],
+      'redundantAttribute': 'expr7',
+      'selector': '[expr7]'
+    }]);
+  },
+  'name': 'playground-index'
+};
+exports.default = _default;
+},{"./base.riot":97}],101:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
