@@ -1,0 +1,65 @@
+<gist>
+
+  <ul class="tab tab-block" if={state.gists.length > 1}>
+    <li each={ (item, index) in state.gists } class="tab-item {state.active === index ? 'active' : ''}">
+      <a onclick={ () => setActive(index) }>{item.name || item.file}</a>
+    </li>
+  </ul>
+
+  <div class="loading loading-lg gist-wrapper">
+    <iframe src={getActive()} class="gist-window" onload={reset}>
+    </iframe>
+  </div>
+
+  <script>
+    export default {
+      state: {
+        gists: [],
+        active: 0
+      },
+      
+      gistTemplate: "data:text/html;charset=utf-8,%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2F-username-%2F-gist-.js%3Ffile%3D-file-%22%3E%3C%2Fscript%3E"
+      
+      onMounted(props) {
+        this.update({
+          gists: (props.files || []).map( (f) => {
+            f.src = this.gistTemplate
+              .replace('-username-', props.username)
+              .replace('-file-', f.file)
+              .replace('-gist-', f.id || props.gist)
+            return f
+          })
+        })  
+      },
+
+      setActive(index){
+        this.$('.gist-wrapper').classList.add('loading');
+        this.update({active: index})
+        this.update()
+        console.log(index)
+      },
+
+      reset(ev){
+        this.$('.gist-wrapper').classList.remove('loading');
+      },
+
+      getActive(){
+        return this.state.gists.length ? this.state.gists [this.state.active].src : ''
+      }
+
+    }
+  </script>
+  <style>
+    gist iframe {
+      width: 100%;
+      border: 0px solid;
+      padding: 0px;
+      margin: 0px;
+      display: flex;
+    }
+    gist .gist-wrapper {
+      display: flex;
+      height: 75vh;
+    }
+  </style>
+</gist>

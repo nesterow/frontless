@@ -1,14 +1,21 @@
 <playground-index>
   <playground>
     <div slot="example">
-      <h3>Random Number</h4>
       <random />
     </div>
+    <gist slot="code" 
+    username="nesterow" 
+    gist="ca2da6c35c20c91bb2fb7a97d47c662f" files={[
+      {file: 'RandomNumber.md'},
+      {file: 'component.html'},
+      {file: 'service.js'},
+    ]} />
   </playground>
   <script>
     
     import Playground from './base.riot'
     import Random from 'components/examples/random.riot'
+    import Gist from 'components/gist.riot'
 
     const aSecondDelay = () => new Promise((resolve) => {
       setTimeout(resolve, 1000)
@@ -18,7 +25,8 @@
       layout: 'playground',
       components: {
         Playground,
-        Random
+        Random,
+        Gist
       },
       async fetch() {
         await aSecondDelay()

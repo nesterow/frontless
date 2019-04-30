@@ -1,7 +1,10 @@
 <random>
-
+  <h4>Random Number</h4>
   <div class={ state.loading ? 'random-number loading' : 'random-number'}>
     <h2> {state.randomNumber} </h2>
+    <small if={state.error} class="text-error">
+      Server error.
+    </small>
   </div>
   <br>
   <div class="btn-group">
@@ -43,21 +46,35 @@
       },
 
       generateOnServer(){
-        this.update({loading: true})
-        client.service('random-number').create({}).then(()=>{
-          this.update({loading: false})
-        })
+        this.update({error: false, loading: true})
+        client.service('random-number').create({})
+          .then(() => {
+            this.update({loading: false})
+          })
+          .catch((err) => {
+            this.update({
+              loading: false,
+              error: true
+            })
+          })
       }
 
     }
   </script>
   <style>
+    random {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 52px;
+    }
     random .random-number {
       padding: 16px;
       display: inline-block;
       border: 1px solid #ccc;
       width: 310px;
       text-align: center;
+      background: #fff;
     }
     random .loading {
       color: rgba(2,2,2,.1) !important;
