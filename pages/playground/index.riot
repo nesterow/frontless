@@ -1,17 +1,27 @@
 <playground-index>
   <playground>
-    <h2 slot="example">
-      playground
-    </h2>
+    <div slot="example">
+      <h3>Random Number</h4>
+      <random />
+    </div>
   </playground>
   <script>
     
     import Playground from './base.riot'
+    import Random from 'components/examples/random.riot'
+
+    const aSecondDelay = () => new Promise((resolve) => {
+      setTimeout(resolve, 1000)
+    })
 
     export default {
       layout: 'playground',
       components: {
         Playground,
+        Random
+      },
+      async fetch() {
+        await aSecondDelay()
       }
     }
   </script>

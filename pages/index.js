@@ -7,13 +7,15 @@ Turbolinks.start();
 
 riot.install(function(component){
   
-  enumerateTags(component);
+  enumerateTags(component)
 
-  component.onServerState = function (data) {
-    component.update(data);
-  }.bind(component);
+  component.onServerState = function (response) {
+    setTimeout(() => {
+      component.update(response.target.result.data)
+    })
+  }.bind(component)
 
-  const onMounted = component.onMounted || function () {};
+  const onMounted = component.onMounted || function () {}.bind(component)
   const eventName = (component.id || component.name) + ':update'
 
   component.onMounted = function (props, state) {
@@ -25,6 +27,7 @@ riot.install(function(component){
 })
 
 const tags = require('./**/*.riot', {mode: 'list'})
+  .concat(require('../components/**/*.riot', {mode: 'list'}))
 
 document.addEventListener('turbolinks:load', ()=>{
   const STATE = JSON.parse(
@@ -32,9 +35,9 @@ document.addEventListener('turbolinks:load', ()=>{
   )
 
   tags.forEach((tag) => {
-    const component = tag.module.default;
+    const component = tag.module.default
     if (component.exports) {
-      component.exports.state = STATE[component.exports.id || component.name] || component.exports.state;
+      component.exports.state = STATE[component.exports.id || component.name] || component.exports.state
     }
     if (!isTagRegistered(component.name)) { 
       riot.register(component.name, component)
@@ -42,11 +45,13 @@ document.addEventListener('turbolinks:load', ()=>{
   })
 
   const root = document.querySelector('section[is]')
-  // root.innerHTML = '';
-  // riot.mount(root)
-  const ComponentImplementation = tags.find((tag) => tag.module.default.name === root.getAttribute('is') )
-  const component = ComponentImplementation.module.default;
-  const hydrated = hydrate(root, component, component.props);
+  if (root) {
+    document.body.classList.add('disabled')
+    const ComponentImplementation = tags.find((tag) => tag.module.default.name === root.getAttribute('is') )
+    const component = ComponentImplementation.module.default
+    const hydrated = hydrate(root, component, component.props)
+    setTimeout(() => document.body.classList.remove('disabled'))
+  }
 
 });
 

@@ -9,6 +9,23 @@
     <script src="/assets/pages/index.js"></script>
   </head>
   <body>
+    <style>
+      body {
+        padding: 2%;
+      }
+      .columns {
+        margin-left: .4rem;
+        margin-right: .4rem;
+        margin-top: .4rem;
+      }
+      .column.example, .column.code {
+        padding-top: 26px;
+      }
+      .column.code {
+        background: #eee;
+        min-height: 88vh;
+      }
+    </style>
     <%- output %>
   </body>
 </html>

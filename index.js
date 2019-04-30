@@ -80,7 +80,7 @@ function resolvePath(path) {
 
 }
 
-app.use('/*', async (req, res) => {
+app.use('/*', async (req, res, next) => {
 
   req._res = res;
   if (req.headers.accept &&
@@ -130,5 +130,5 @@ app.message = (id, data) => {
 require('./services')(app)
 
 app.listen(6767, () => {
-  console.log(`👍🏻 app is listening on ${6767}`)
+  console.log(`👍🏻 app is listening on ${6767} \r\n`)
 })

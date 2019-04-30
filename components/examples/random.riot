@@ -1,0 +1,66 @@
+<random>
+
+  <div class={ state.loading ? 'random-number loading' : 'random-number'}>
+    <h2> {state.randomNumber} </h2>
+  </div>
+  <br>
+  <div class="btn-group">
+    <button class="btn" onclick={ generateNumber } disabled={state.loading}>
+      Generate on Client
+    </button>
+    <button class="btn" onclick={ generateOnServer } disabled={state.loading}>
+      Generate on Server
+    </button>
+  </div>
+
+  <script>
+    
+    import client from 'client';
+
+    //emulate DB request
+    const asyncDelay = () => new Promise((resolve) => {
+      setTimeout(resolve, 500)
+    })
+
+    export default {
+      
+      id: 'random-number-id',
+
+      state: {
+        randomNumber: 0,
+      },
+
+      async fetch() {
+        // DB requests on the server
+        await asyncDelay()
+        this.generateNumber()
+      },
+
+      generateNumber() {
+        this.update({
+          randomNumber: parseInt(Math.random() * 100000)
+        })
+      },
+
+      generateOnServer(){
+        this.update({loading: true})
+        client.service('random-number').create({}).then(()=>{
+          this.update({loading: false})
+        })
+      }
+
+    }
+  </script>
+  <style>
+    random .random-number {
+      padding: 16px;
+      display: inline-block;
+      border: 1px solid #ccc;
+      width: 310px;
+      text-align: center;
+    }
+    random .loading {
+      color: rgba(2,2,2,.1) !important;
+    }
+  </style>
+</random>

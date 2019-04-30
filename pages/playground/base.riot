@@ -1,31 +1,23 @@
 <playground>
   <section>
-      <!--  <header class="navbar">
-        <section class="navbar-section">
-          <a href="/" class="navbar-brand mr-2">Home</a>
-          <a href="/" class="btn btn-link">Docs</a>
-          <a href="/" class="btn btn-link">GitHub</a>
-        </section>
-        <section class="navbar-section">
-          <div class="input-group input-inline">
-            <input class="form-input" type="text" placeholder="search">
-          </div>
-        </section>
-      </header>  -->
       <div class="container">
         <div class="panel">
           <div class="btn-group btn-group-block">
+            <a href="/" class="btn home">
+              <i class="icon icon-arrow-left"></i>
+            </a>
             <a href="/playground" class={ buttonClass('playground') }>SSR</a>
-            <a href="/playground/form" class={ buttonClass('/form') }>Form</a>
+            <a href="/playground/state" class={ buttonClass('/state') }>Server Sent State</a>
+            <a href="/playground/form" class={ buttonClass('/form') }>Form Validation</a>
             <a href="/playground/chat" class={ buttonClass('/chat') }>Chat</a>
-            <a href="/playground/routing" class={ buttonClass('/routing') }>Routing</a>
+            <a href="/playground/todo" class={ buttonClass('/todo') }>Todo List</a>
           </div> 
         </div>
         <div class="columns">
-          <div class="column">
+          <div class="column example">
             <slot name="example"/>
           </div>
-          <div class="column">
+          <div class="column code">
             <slot name="code"/>
           </div>
         </div>
@@ -33,9 +25,11 @@
     </section>
     <script>
       export default {
+        
         state: {
           url: ''
         },
+
         async fetch(props) {
           const url = props.req.params [0];
 
@@ -56,4 +50,11 @@
         
       }
     </script>
+    <style>
+      .btn.home {
+        width:36px;
+        flex: unset !important;
+        padding: 9px;
+      }
+    </style>
 </playground>

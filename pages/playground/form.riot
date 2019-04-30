@@ -1,8 +1,35 @@
 <playground-form>
   <playground>
-    <h2 slot="example">
-      form
-    </h2>
+     <form slot="example" class="form-horizontal" onsubmit={ submit }>
+      <h2>Form Validation</h2>
+      <div class="form-group">
+        <input class="form-input" name="username" type="text" placeholder="Name" autocomplete="off">
+        <p class="form-input-hint">{error}</p>
+      </div>
+      <div class="form-group">
+        <input class="form-input" name="email" type="email" placeholder="Email" autocomplete="off">
+        <p class="form-input-hint" >{error}</p>
+      </div>
+      <div class="form-group">
+        <input class="form-input" name="password1" type="password" placeholder="Password" autocomplete="off">
+        <p class="form-input-hint">{error}</p>
+      </div>
+      <div class="form-group">
+        <input class="form-input" name="password2" type="password" placeholder="Repeat password" autocomplete="off">
+        <p class="form-input-hint">{error}</p>
+      </div>
+      <div class="form-group">
+          <label class="form-switch">
+            <input type="checkbox" name="agree">
+            <i class="form-icon"></i> 
+            I agree with terms and conditions.
+          </label>
+          <p class="form-input-hint">{error}</p>
+      </div>
+      <div class="form-group">
+          <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+    </form>
   </playground>
   <script>
     
@@ -12,6 +39,9 @@
       layout: 'playground',
       components: {
         Playground,
+      },
+      submit(ev) {
+        ev.preventDefault()
       }
     }
   </script>
