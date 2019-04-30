@@ -102,13 +102,13 @@ app.use('/*', async (req, res, next) => {
   } catch(e) {
 
     const component = require('./' + ('pages/errors/400.riot')).default
-    
+    console.log(e)
     const {output, state, layout} = await renderAsync('section', component, { req, stack: (e.message.stack || e.message) });
     ejs.renderFile(`./pages/layout/${layout}.ejs`, {req, output, state}, null, function(err, data) {
       if (err) {
         return res.status(500).end(err)
       }
-      res.status(400).end(data)
+      res.status(400).end(e.stack)
     })
   }
   

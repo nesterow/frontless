@@ -19168,7 +19168,7 @@ var _default = {
 
   },
   'template': function (template, expressionTypes, bindingTypes, getComponent) {
-    return template('<playground expr16></playground>', [{
+    return template('<playground expr13></playground>', [{
       'type': bindingTypes.TAG,
       'getComponent': getComponent,
       'evaluate': function (scope) {
@@ -19176,15 +19176,45 @@ var _default = {
       },
       'slots': [{
         'id': 'example',
-        'html': '<form expr17 class="form-horizontal"><h2>Form Validation</h2><div class="form-group"><input class="form-input" name="username" type="text" placeholder="Name" autocomplete="off"/><p expr18 class="form-input-hint"><!----></p></div><div class="form-group"><input class="form-input" name="email" type="email" placeholder="Email" autocomplete="off"/><p expr19 class="form-input-hint"><!----></p></div><div class="form-group"><input class="form-input" name="password1" type="password" placeholder="Password" autocomplete="off"/><p expr20 class="form-input-hint"><!----></p></div><div class="form-group"><input class="form-input" name="password2" type="password" placeholder="Repeat password" autocomplete="off"/><p expr21 class="form-input-hint"><!----></p></div><div class="form-group"><label class="form-switch"><input type="checkbox" name="agree"/><i class="form-icon"></i> \n            I agree with terms and conditions.\n          </label><p expr22 class="form-input-hint"><!----></p></div><div class="form-group"><button type="submit" class="btn btn-primary">Register</button></div></form>',
+        'html': '<form expr14 class="form-horizontal"><h2>Form Validation</h2><div class="form-group"><input class="form-input" name="username" type="text" placeholder="Name" autocomplete="off"/><p expr15 class="form-input-hint"><!----></p></div><div class="form-group"><input class="form-input" name="email" type="email" placeholder="Email" autocomplete="off"/><p expr16 class="form-input-hint"><!----></p></div><div class="form-group"><input class="form-input" name="password1" type="password" placeholder="Password" autocomplete="off"/><p expr17 class="form-input-hint"><!----></p></div><div class="form-group"><input class="form-input" name="password2" type="password" placeholder="Repeat password" autocomplete="off"/><p expr18 class="form-input-hint"><!----></p></div><div class="form-group"><label class="form-switch"><input type="checkbox" name="agree"/><i class="form-icon"></i> \n            I agree with terms and conditions.\n          </label><p expr19 class="form-input-hint"><!----></p></div><div class="form-group"><button type="submit" class="btn btn-primary">Register</button></div></form>',
         'bindings': [{
-          'redundantAttribute': 'expr17',
-          'selector': '[expr17]',
+          'redundantAttribute': 'expr14',
+          'selector': '[expr14]',
           'expressions': [{
             'type': expressionTypes.EVENT,
             'name': 'onsubmit',
             'evaluate': function (scope) {
               return scope.submit;
+            }
+          }]
+        }, {
+          'redundantAttribute': 'expr15',
+          'selector': '[expr15]',
+          'expressions': [{
+            'type': expressionTypes.TEXT,
+            'childNodeIndex': 0,
+            'evaluate': function (scope) {
+              return scope.error;
+            }
+          }]
+        }, {
+          'redundantAttribute': 'expr16',
+          'selector': '[expr16]',
+          'expressions': [{
+            'type': expressionTypes.TEXT,
+            'childNodeIndex': 0,
+            'evaluate': function (scope) {
+              return scope.error;
+            }
+          }]
+        }, {
+          'redundantAttribute': 'expr17',
+          'selector': '[expr17]',
+          'expressions': [{
+            'type': expressionTypes.TEXT,
+            'childNodeIndex': 0,
+            'evaluate': function (scope) {
+              return scope.error;
             }
           }]
         }, {
@@ -19207,41 +19237,11 @@ var _default = {
               return scope.error;
             }
           }]
-        }, {
-          'redundantAttribute': 'expr20',
-          'selector': '[expr20]',
-          'expressions': [{
-            'type': expressionTypes.TEXT,
-            'childNodeIndex': 0,
-            'evaluate': function (scope) {
-              return scope.error;
-            }
-          }]
-        }, {
-          'redundantAttribute': 'expr21',
-          'selector': '[expr21]',
-          'expressions': [{
-            'type': expressionTypes.TEXT,
-            'childNodeIndex': 0,
-            'evaluate': function (scope) {
-              return scope.error;
-            }
-          }]
-        }, {
-          'redundantAttribute': 'expr22',
-          'selector': '[expr22]',
-          'expressions': [{
-            'type': expressionTypes.TEXT,
-            'childNodeIndex': 0,
-            'evaluate': function (scope) {
-              return scope.error;
-            }
-          }]
         }]
       }],
       'attributes': [],
-      'redundantAttribute': 'expr16',
-      'selector': '[expr16]'
+      'redundantAttribute': 'expr13',
+      'selector': '[expr13]'
     }]);
   },
   'name': 'playground-form'
@@ -19283,7 +19283,7 @@ var _default = {
 
   },
   'template': function (template, expressionTypes, bindingTypes, getComponent) {
-    return template('<playground expr13></playground>', [{
+    return template('<playground expr20></playground>', [{
       'type': bindingTypes.TAG,
       'getComponent': getComponent,
       'evaluate': function (scope) {
@@ -19291,7 +19291,7 @@ var _default = {
       },
       'slots': [{
         'id': 'example',
-        'html': '<div><random expr14></random></div>',
+        'html': '<div><random expr21></random></div>',
         'bindings': [{
           'type': bindingTypes.TAG,
           'getComponent': getComponent,
@@ -19300,12 +19300,12 @@ var _default = {
           },
           'slots': [],
           'attributes': [],
-          'redundantAttribute': 'expr14',
-          'selector': '[expr14]'
+          'redundantAttribute': 'expr21',
+          'selector': '[expr21]'
         }]
       }, {
         'id': 'code',
-        'html': '<gist expr15 username="nesterow" gist="ca2da6c35c20c91bb2fb7a97d47c662f"></gist>',
+        'html': '<gist expr22 username="nesterow" gist="ca2da6c35c20c91bb2fb7a97d47c662f"></gist>',
         'bindings': [{
           'type': bindingTypes.TAG,
           'getComponent': getComponent,
@@ -19338,13 +19338,13 @@ var _default = {
               }];
             }
           }],
-          'redundantAttribute': 'expr15',
-          'selector': '[expr15]'
+          'redundantAttribute': 'expr22',
+          'selector': '[expr22]'
         }]
       }],
       'attributes': [],
-      'redundantAttribute': 'expr13',
-      'selector': '[expr13]'
+      'redundantAttribute': 'expr20',
+      'selector': '[expr20]'
     }]);
   },
   'name': 'playground-index'
