@@ -1,7 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config({path: process.argv[process.argv.length - 1]});
 
-const riot = require('riot')
 const fs = require('fs')
 const ejs = require('ejs')
 const express = require('@feathersjs/express')

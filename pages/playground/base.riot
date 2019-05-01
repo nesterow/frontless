@@ -1,4 +1,10 @@
 <playground>
+  <header class="header">
+    <a href="/playground/docs">
+      <i class="icon icon-location"></i>
+      Docs
+    </a>
+  </header>
   <section>
       <div class="container">
         <div class="panel">
@@ -11,7 +17,6 @@
             <a href="/playground/form" class={ buttonClass('/form') }>Form Validation</a>
             <a href="/playground/chat" class={ buttonClass('/chat') }>Chat</a>
             <a href="/playground/todo" class={ buttonClass('/todo') }>Todo List</a>
-            <a href="/playground/docs" class={ buttonClass('/docs') }>Docs</a>
           </div> 
         </div>
         <div class="columns">
@@ -56,6 +61,16 @@
         width:36px;
         flex: unset !important;
         padding: 9px;
+      }
+      .header{
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        padding: 6px;
+        padding-right: 48px;
+        text-align: right;
       }
     </style>
 </playground>
