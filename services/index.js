@@ -1,7 +1,8 @@
-module.exports = (app) => {
+module.exports = function (app, db) {
   
-  require('./users')(app)
-  
+  require('./users')(app, db)
+
+  //Playground services
   require('./playground/random')(app)
   require('./playground/form')(app)
 }

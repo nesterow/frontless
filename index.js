@@ -1,3 +1,13 @@
+console.log(`
+███████╗██████╗  ██████╗ ███╗   ██╗████████╗██╗     ███████╗███████╗███████╗
+██╔════╝██╔══██╗██╔═══██╗████╗  ██║╚══██╔══╝██║     ██╔════╝██╔════╝██╔════╝
+█████╗  ██████╔╝██║   ██║██╔██╗ ██║   ██║   ██║     █████╗  ███████╗███████╗
+██╔══╝  ██╔══██╗██║   ██║██║╚██╗██║   ██║   ██║     ██╔══╝  ╚════██║╚════██║
+██║     ██║  ██║╚██████╔╝██║ ╚████║   ██║   ███████╗███████╗███████║███████║
+╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚══════╝╚══════╝╚══════╝
+<<<<<<<<<<<<   FeathersJS - RiotJS - Turbolinks - Express    >>>>>>>>>>>>>>> 
+----------------------------------------------------------------------------                                                                         
+`)
 const dotenv = require('dotenv');
 dotenv.config({path: process.argv[process.argv.length - 1]});
 
@@ -102,12 +112,12 @@ app.use('/*', async (req, res, next) => {
 
     const component = require('./' + ('pages/errors/400.riot')).default
     console.log(e)
-    const {output, state, layout} = await renderAsync('section', component, { req, stack: (e.message.stack || e.message) });
+    const {output, state, layout} = await renderAsync('section', component, { req, stack: (e.stack || e.message) });
     ejs.renderFile(`./pages/layout/${layout}.ejs`, {req, output, state}, null, function(err, data) {
       if (err) {
         return res.status(500).end(err)
       }
-      res.status(400).end(e.stack)
+      res.status(400).end(data)
     })
   }
   
@@ -126,8 +136,27 @@ app.message = (id, data) => {
   }
 }
 
-require('./services')(app)
 
-app.listen(6767, () => {
-  console.log(`👍🏻 app is listening on ${6767} \r\n`)
-})
+const start = (db) => {
+  require('./services')(app, db)
+  app.listen(6767, () => {
+    console.log(`👍  app is listening on ${6767} \r\n`)
+  })
+}
+
+if (process.env.MONGODB_URI) {
+  const MongoClient = require('mongodb').MongoClient
+  MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+    .then((db) => {
+      console.error(`✔️ MongoDB connection is active`)
+      start(db)
+    })
+    .catch(() => {
+      console.error(`❌  MongoDB connection error`)
+      console.log('↪️ Trying to continue without MongoDB')
+      start()
+    })
+} else {
+  start()
+}
+

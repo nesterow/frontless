@@ -34,6 +34,7 @@ I believe that the server has to be responsible for the view model. There are th
 | Session / User State (Express.js) | JWT, Cookies |
 | Realtime (Feathers, SocketIO) | FeathersJS Client |
 | DB Interface (FeathersJS Client) | Rest/IO (FeathersJS Client) |
+| Database (MongoDB, feathers-mongo) | FeathersJS Client |
 
 
 ## Roadmap v1.0
@@ -42,9 +43,9 @@ I believe that the server has to be responsible for the view model. There are th
 * [x] Natural Page Routing  
 * [ ] Database Interfaces
 * [ ] Users and Sessions
-* [ ] Server Sent State (w/feathers.js) [50%]
+* [x] Server Sent State (w/feathers.js)
 * [ ] Socket IO (w/feathers.js) [50%]
-* [x] Markup Hydration (riot.js) [-]
+* [x] Markup Hydration (riot.js)
 * [ ] Configuration / Deployment Scripts
 * [ ] Template cache on server side based on git hash
 * [ ] Deployment scripts
