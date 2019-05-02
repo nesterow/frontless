@@ -18,6 +18,7 @@
     "@feathersjs/socketio": "^3.2.9",
     "@feathersjs/socketio-client": "^1.2.1",
     "@riotjs/compiler": "^4.0.0",
+    "@riotjs/hydrate": "^1.0.0-beta.1",
     "@riotjs/ssr": "^4.0.0-beta.1",
     "axios": "^0.18.0",
     "cors": "^2.8.5",

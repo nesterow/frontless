@@ -1,5 +1,6 @@
 const riot = require('riot')
-const {isTagRegistered, enumerateTags, hydrate} = require('frontless-utils')
+const {isTagRegistered, enumerateTags} = require('frontless-utils')
+const hydrate = require('@riotjs/hydrate')
 const EventBus = require('eventbusjs')
 const Turbolinks = require('turbolinks')
 Turbolinks.start();
@@ -49,7 +50,8 @@ document.addEventListener('turbolinks:load', ()=>{
     document.body.classList.add('disabled')
     const ComponentImplementation = tags.find((tag) => tag.module.default.name === root.getAttribute('is') )
     const component = ComponentImplementation.module.default
-    const hydrated = hydrate(root, component, component.props)
+    const hydrateWithCurrentPage = hydrate(component)
+    hydrateWithCurrentPage(root, component.props)
     setTimeout(() => document.body.classList.remove('disabled'))
   }
 
