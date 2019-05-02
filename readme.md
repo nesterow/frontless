@@ -39,8 +39,8 @@ I believe that the server has to be responsible for the view model. There are th
 
 ## Features
 #### 1. Natural Routing
-All files ending with `*.riot` placed in the `pages` become site pages much like php scripts or html pages in the static sites.
-Unlike `next.js` frontless does not provide complex routing schemes, so at the time all parameters can only be passed trough http query.
+All files ending with `*.riot` placed in the `pages` become site pages, much like php scripts or html pages.
+Unlike `next.js`, Frontless does not provide complex routing schemes, so at the time all parameters can only be passed trough HTTP query.
 
 #### 2. Server side rendering
 All RiotJS components included in pages will render after all data is fetched. 
