@@ -8,7 +8,7 @@ module.exports = (app) => {
 
     async create() {
       await emulateDelay();
-      return app.message('random-number-id', {
+      return app.setState('random-number-id', {
         randomNumber: parseInt(Math.random() * 100000)
       })
     },

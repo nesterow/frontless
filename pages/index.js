@@ -40,9 +40,9 @@ document.addEventListener('turbolinks:load', ()=>{
     if (component.exports) {
       component.exports.state = STATE[component.exports.id || component.name] || component.exports.state
     }
-    if (!isTagRegistered(component.name)) { 
+    try { 
       riot.register(component.name, component)
-    }
+    } catch(e) {}
   })
 
   const root = document.querySelector('section[is]')

@@ -126,7 +126,7 @@ app.use('/*', async (req, res, next) => {
 })
 
 
-app.message = (id, data) => {
+app.setState = (id, data) => {
   return {
     opts: {
       _t: '/m/',

@@ -1,0 +1,60 @@
+<caesar>
+  <div class={ state.loading ? 'loading' : ''}>
+    <div class="form-group">
+      <label class="form-label" for="input-example-3">
+        Encrypt/Decrypt a message
+      </label>
+      <textarea 
+        class="form-input" 
+        placeholder="A text to encrypt/decrypt" 
+        rows="3" onkeyup={setValue} 
+        value={state.result}></textarea>
+    </div>
+    <div class="btn-group btn-group-block">
+      <button class="btn" onclick={encrypt} disabled={state.decrypt || !state.result}>
+        Encrypt
+      </button>
+      <button class="btn" onclick={decrypt} disabled={!state.decrypt || !state.result}>
+        Decrypt
+      </button>
+    </div>
+  </div>
+  <script>
+    
+    import client from 'client'
+
+    export default {
+      
+      id: 'caesar-shift',
+
+      state: {
+        loading: false,
+        decrypt: false,
+        result: ''
+      },
+
+      setValue(ev) {
+        this.update({
+          decrypt: false,
+          result: ev.target.value.trim()
+        })
+      }
+
+      encrypt(){
+        this.update({loading: true, decrypt: true})
+        client.service('caesar').get(this.state.result)
+          .then(() => this.update({loading: false}))
+      },
+
+      decrypt(){
+        this.update({loading: true, decrypt: false})
+        client.service('caesar').get(this.state.result, {
+          query: {
+            decrypt: true
+          }
+        })
+        .then(() => this.update({loading: false}))
+      }
+    }
+  </script>
+</caesar>

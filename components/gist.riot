@@ -7,8 +7,7 @@
   </ul>
 
   <div class="loading loading-lg gist-wrapper">
-    <iframe src={getActive()} class="gist-window" onload={reset}>
-    </iframe>
+    <iframe src={getActive()} class="gist-window" onload={reset}></iframe>
   </div>
 
   <script>
@@ -29,14 +28,13 @@
               .replace('-gist-', f.id || props.gist)
             return f
           })
-        })  
+        })
       },
 
       setActive(index){
         this.$('.gist-wrapper').classList.add('loading');
         this.update({active: index})
         this.update()
-        console.log(index)
       },
 
       reset(ev){
