@@ -44,7 +44,7 @@ Unlike `next.js`, Frontless does not provide complex routing schemes, so at the 
 
 #### 2. Server side rendering
 All RiotJS components included in pages will render after all data is fetched. 
-Use method `fetch(props)` in your components to make db queries an setting components' state on the server.
+Use method `fetch(props)` in your components to make db queries and setting components' state on the server.
 Unlike similar method in `next.js`, in Frontless you can fetch data in any children component 
 and your page will be rendered after all fetch operations are complete.
 
@@ -62,11 +62,11 @@ export default {
 ```
 
 ### Server sent state
-##### * or Server Sent View Model 
+###### * or Server Sent View Model 
 Some API requests can return a ready view-model for a specific component. 
 After it happens the target component will update its state from received response. 
 This is convenient whenever you want to update the view after a request is done. 
-Given that, the server should return a ready view-model it eliminates extra steps you would do to parse response.
+Given that, the server should return a ready view-model which eliminates extra steps you would do to handle response.
 
 Normally, you should follow 3 steps to make it work:
 
