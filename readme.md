@@ -1,7 +1,7 @@
 <img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.png" height="50"/>
 
 ![Status](https://img.shields.io/badge/Status-Alpha-yellow.svg)
-![version](https://img.shields.io/badge/Version-0.0.2-alpha.1-yellow.svg)
+![version](https://img.shields.io/badge/Version-0.0.2alpha.1-yellow.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
 
 
