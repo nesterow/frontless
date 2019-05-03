@@ -6,7 +6,7 @@
 
 
 
-### A hybrid application stack 
+### A hybrid application stack for RiotJS
 Frontless aims to provide classic web development experience with modern approach. 
 It was heavily inspired by NextJS.
 
@@ -113,7 +113,7 @@ The UI will update automatically. However, you still nedd to handle loading stat
 * [ ] Users and Sessions
 * [x] Server Sent State (w/feathers.js)
 * [ ] Socket IO (w/feathers.js) [50%]
-* [x] Markup Hydration (riot.js)
+* [ ] Hybrid application store
 * [ ] Configuration / Deployment Scripts
 * [ ] Template cache on server side based on git hash
 * [ ] Deployment scripts
