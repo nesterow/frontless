@@ -6,7 +6,7 @@
 
 
 
-### A hybrid application stack for RiotJS
+### Hybrid application stack for RiotJS
 Frontless aims to provide classic web development experience with modern approach. 
 It was heavily inspired by NextJS.
 
