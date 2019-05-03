@@ -1,7 +1,19 @@
+/*
+███████╗██████╗  ██████╗ ███╗   ██╗████████╗██╗     ███████╗███████╗███████╗
+██╔════╝██╔══██╗██╔═══██╗████╗  ██║╚══██╔══╝██║     ██╔════╝██╔════╝██╔════╝
+█████╗  ██████╔╝██║   ██║██╔██╗ ██║   ██║   ██║     █████╗  ███████╗███████╗
+██╔══╝  ██╔══██╗██║   ██║██║╚██╗██║   ██║   ██║     ██╔══╝  ╚════██║╚════██║
+██║     ██║  ██║╚██████╔╝██║ ╚████║   ██║   ███████╗███████╗███████║███████║
+╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚══════╝╚══════╝╚══════╝
+<<<<<<<<<<<<   FeathersJS - RiotJS - Turbolinks - Express    >>>>>>>>>>>>>>> 
+----------------------------------------------------------------------------
+@GitHub: https://github.com/nesterow/frontless
+@License: MIT
+@Author: Anton Nesterov <arch.nesterov@gmail.com>
+*/
 
 const dotenv = require('dotenv');
 dotenv.config({path: process.argv[process.argv.length - 1]});
-
 
 const express = require('@feathersjs/express')
 const feathers = require('@feathersjs/feathers')
