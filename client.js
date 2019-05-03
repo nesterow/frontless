@@ -20,7 +20,7 @@ const hooks = {
   },
 };
 
-const endpoint = 'http://localhost:6767'
+const endpoint = typeof window !== 'undefined' ? location.origin : process.env.ORIGIN
 
 
 const ws = io(endpoint)
