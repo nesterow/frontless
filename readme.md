@@ -1,16 +1,18 @@
 <img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.png" height="50"/>
 
-![Generic badge](https://img.shields.io/badge/Status-Prototype-yellow.svg)
-![Generic badge](https://img.shields.io/badge/Version-0.0.1proto-green.svg)
+![Status](https://img.shields.io/badge/Status-Alpha-yellow.svg)
+![version](https://img.shields.io/badge/Version-0.0.2-alpha.1-yellow.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
+
+
+![FeathersJS](https://img.shields.io/badge/FeathersJS-3.3.1-green.svg)
+![RiotJS](https://img.shields.io/badge/RiotJS-4.0.0-rc.5-yellow.svg)
+![Turbolinks](https://img.shields.io/badge/Turbolinks-5.2.0-yellow.svg)
+![ExpressJS](https://img.shields.io/badge/Express-4.16.4-yellow.svg)
 
 ### RiotJS Isomorphic Stack
 Frontless aims to provide classic web development experience with modern approach. 
 Heavily inspired by NextJS.
-
-- - - -- - - -- - - -- - - -- - - -- - - -- - - -
-*Current state of the project is **Prototype**. 
-- - - -- - - -- - - -- - - -- - - -- - - -- - - - 
 
 #### Installation
 `npx frontless <app-name>` or `npx create-frontless <app-name>`
