@@ -1,17 +1,16 @@
 <playground-chat>
   <playground>
-    <h2 slot="example">
-      chat
-    </h2>
+    <chat slot="example" />
   </playground>
   <script>
     
     import Playground from './base.riot'
-
+    import Chat from 'components/examples/chat.riot'
     export default {
       layout: 'playground',
       components: {
         Playground,
+        Chat
       }
     }
   </script>

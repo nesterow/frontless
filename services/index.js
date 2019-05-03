@@ -6,4 +6,5 @@ module.exports = function (app, db) {
   require('./playground/random')(app)
   require('./playground/caesar')(app)
   require('./playground/form')(app)
+  require('./playground/chat')(app)
 }
