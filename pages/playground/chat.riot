@@ -1,16 +1,29 @@
 <playground-chat>
   <playground>
     <chat slot="example" />
+    <div slot="code">
+      <gist 
+          username="nesterow" 
+          gist="71166ffd0f1b74a4ea6b6ec649ce885c" 
+          files={[
+            {file: 'chat.riot.html', name: 'RiotJS'},
+            {file: 'chat.service.js', name: 'FeathersJS'},
+            {file: 'readme.md', name: 'Readme'},
+          ]} />
+    </div>
   </playground>
   <script>
     
     import Playground from './base.riot'
     import Chat from 'components/examples/chat.riot'
+    import Gist from 'components/gist.riot'
+
     export default {
       layout: 'playground',
       components: {
         Playground,
-        Chat
+        Chat,
+        Gist
       }
     }
   </script>
