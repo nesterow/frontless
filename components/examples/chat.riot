@@ -1,0 +1,130 @@
+<chat>
+<div class="panel">
+    <div class="panel-header">
+      <div class="panel-title h6" if={ state.user }>Chat</div>
+      <div class="enter" if={ !state.user }>
+        <div class="input-group">
+          <input class="form-input" type="text" placeholder="Your nickname.." id="username">
+          <button class="btn btn-primary input-group-btn" onclick={join}>Join Chat &rarr;</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body chat" id="container">
+      <div each={ m in state.messages} class="tile {  m.from === state.user && 'me'}">
+        <div class="tile-icon">
+          <figure class="avatar" data-initial={m.from && m.from.substr(0,2)}></figure>
+        </div>
+        <div class="tile-content">
+          <p class="tile-title text-bold">{m.from}</p>
+          <p class="tile-subtitle">
+            {m.message}
+          </p>
+        </div>
+      </div>
+      
+    </div>
+    <div class="panel-footer" if={ state.user }>
+      <div class="input-group">
+        <input class="form-input" type="text" placeholder="Hello" id="message">
+        <button class="btn btn-primary input-group-btn" onclick={send}>Send</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    
+    import client from 'client'
+    import {isServer} from 'frontless-utils'
+
+    export default {
+      id: 'chat-example',
+      state: {
+        user: null,
+        messages: [],
+        statuses: [],
+      },
+
+      //fetch initial data (on server)
+      //you can use this method on client as well
+      async fetch(props) {
+        const user = props.req.session ['nickname']
+        const messages = await client.service('chat/example').find()
+        this.update({
+          user,
+          messages,
+        })
+      },
+
+      onMounted() {
+        if (!isServer) {
+          this.scroll()
+          client.ws.on('chat/example created', (data) => {
+            this.state.messages.push(data)
+            this.state.statuses = this.state.statuses.filter((u) => u.nickname !== data.from)
+            this.update()
+            this.scroll()
+          })
+        }
+      }
+
+      async join(ev){
+        const username = this.$('#username').value.trim()
+        if (username) {
+          const data = await client.io.service('chat/example').get(username)
+          this.update({
+            user: data.nickname
+          })
+          this.scroll()
+        }
+      },
+
+      async send(ev){
+        const message = this.$('#message').value.trim()
+        if (message) {
+          await client.io.service('chat/example').create({
+            message,
+          });
+          this.$('#message').value = ''
+          this.scroll()
+        }
+      },
+
+      scroll(){
+        if (!isServer) {
+          const container = this.$('#container')
+          container.scrollTop = container.scrollHeight - container.clientHeight
+        }
+      }
+    }
+  </script>
+  <style>
+    chat .chat {
+      min-height: 450px;
+      max-height: 450px;
+      overflow-y: scroll;
+      flex-wrap: wrap;
+      box-shadow: 0px 0px 4px #ccc inset;
+      padding: 24px;
+    }
+    chat .tile-title {
+      margin: 0px;
+    }
+    chat .enter {
+      justify-content: center;
+      margin: 24px;
+    }
+    chat .tile {
+      padding: 6px;
+      border-radius: 6px;
+      margin: 6px;
+      width: 85%;
+      background: #eee;
+    }
+    chat .me {
+      width: 85%;
+      margin-right: 0%;
+      margin-left: 15%;
+      background: #fef;
+
+    }
+  </style>
+</chat>
