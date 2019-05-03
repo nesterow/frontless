@@ -1,4 +1,5 @@
 const riot = require('riot')
+const {assign} = require('lodash')
 const {isTagRegistered, enumerateTags} = require('frontless-utils')
 const hydrate = require('@riotjs/hydrate')
 const EventBus = require('eventbusjs')
@@ -11,17 +12,16 @@ riot.install(function(component){
   enumerateTags(component)
 
   component.onServerState = function (response) {
-    setTimeout(() => {
-      component.update(response.target.result.data)
-    })
+    this.state = assign(this.state, response.target.result.data)
+    this.update()
   }.bind(component)
 
   const onMounted = component.onMounted || function () {}.bind(component)
   const eventName = (component.id || component.name) + ':update'
 
   component.onMounted = function (props, state) {
-    EventBus.removeEventListener(eventName, component.onServerState, component)
-    EventBus.addEventListener(eventName, component.onServerState, component)
+    EventBus.removeEventListener(eventName, component.onServerState.bind(this), component)
+    EventBus.addEventListener(eventName, component.onServerState.bind(this), component)
     return onMounted.bind(this)(props, state)
   }.bind(component);
 
@@ -50,8 +50,13 @@ document.addEventListener('turbolinks:load', ()=>{
     document.body.classList.add('disabled')
     const ComponentImplementation = tags.find((tag) => tag.module.default.name === root.getAttribute('is') )
     const component = ComponentImplementation.module.default
-    const hydrateWithCurrentPage = hydrate(component)
-    hydrateWithCurrentPage(root, component.props)
+
+    while (root.firstChild) {
+      root.firstChild.remove()
+    }
+    
+    const hydrateWithCurrentPage = riot.mount(root, component)
+    // hydrateWithCurrentPage(root, component.props)
     setTimeout(() => document.body.classList.remove('disabled'))
   }
 
