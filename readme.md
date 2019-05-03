@@ -6,6 +6,7 @@
 
 ### RiotJS Isomorphic Stack
 Frontless aims to provide classic web development experience with modern approach. 
+Heavily inspired by NextJS.
 
 - - - -- - - -- - - -- - - -- - - -- - - -- - - -
 *Current state of the project is **Prototype**. 
