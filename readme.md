@@ -5,10 +5,6 @@
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
 
 
-![FeathersJS](https://img.shields.io/badge/FeathersJS-3.3.1-green.svg)
-![RiotJS](https://img.shields.io/badge/RiotJS-4.0.0rc.5-yellow.svg)
-![Turbolinks](https://img.shields.io/badge/Turbolinks-5.2.0-green.svg)
-![ExpressJS](https://img.shields.io/badge/Express-4.16.4-green.svg)
 
 ### RiotJS Isomorphic Stack
 Frontless aims to provide classic web development experience with modern approach. 
@@ -30,6 +26,12 @@ I believe that the server has to be responsible for the view model. There are th
 
 
 ## The Stack
+
+![FeathersJS](https://img.shields.io/badge/FeathersJS-3.3.1-green.svg)
+![RiotJS](https://img.shields.io/badge/RiotJS-4.0.0rc.5-yellow.svg)
+![Turbolinks](https://img.shields.io/badge/Turbolinks-5.2.0-green.svg)
+![ExpressJS](https://img.shields.io/badge/Express-4.16.4-green.svg)
+
 | Server        | Client        |
 | ------------- |:-------------:|
 | Routing (Express.JS ) | Navigation (Turbolinks) |
