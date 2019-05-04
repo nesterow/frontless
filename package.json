@@ -9,7 +9,7 @@
     "start": "cross-env gulp start"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-env": "^7.4.4",
     "@feathersjs/authentication": "^2.1.16",
     "@feathersjs/authentication-local": "^1.2.9",
     "@feathersjs/client": "^3.7.8",
@@ -29,7 +29,7 @@
     "express-session": "^1.16.1",
     "feathers-mongodb": "^4.0.4",
     "frontless-utils": "^0.2.3",
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.1",
     "lodash": "^4.17.11",
     "mongodb": "^3.2.3",
     "qs": "^6.7.0",

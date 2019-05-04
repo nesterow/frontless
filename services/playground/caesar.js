@@ -11,7 +11,7 @@ module.exports = (app) => {
     
     async get(string, params) {
       const {query = {}} = params;
-      const shift = query.decrypt ? -4 : 4;
+      const shift = query.decrypt ? -1 : 1;
       return app.setState('caesar-shift', {
         result: caesar(string, shift)
       })
