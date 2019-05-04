@@ -51,12 +51,12 @@ document.addEventListener('turbolinks:load', ()=>{
     const ComponentImplementation = tags.find((tag) => tag.module.default.name === root.getAttribute('is') )
     const component = ComponentImplementation.module.default
 
-    while (root.firstChild) {
-      root.firstChild.remove()
-    }
+    // while (root.firstChild) {
+    //   root.firstChild.remove()
+    // }
     
-    const hydrateWithCurrentPage = riot.mount(root, component)
-    // hydrateWithCurrentPage(root, component.props)
+    // const mounted = riot.mount(root, component)
+    hydrate(component)(root)
     setTimeout(() => document.body.classList.remove('disabled'))
   }
 
