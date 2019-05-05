@@ -24,7 +24,12 @@ const authentication = require('@feathersjs/authentication')
 const local = require('@feathersjs/authentication-local')
 const register = require('@riotjs/ssr/register')
 register();
-const {FrontlessMiddleware} = require('frontless-utils')
+const {FrontlessMiddleware, withJSS} = require('frontless-utils')
+
+const riot = require('riot')
+riot.install(function(component){
+  withJSS(component)
+})
 
 
 
@@ -71,8 +76,8 @@ app.configure(authentication({
 app.configure(local())
 
 
-app.use('/*@:args',  FrontlessMiddleware(__dirname))
-app.use('/*',  FrontlessMiddleware(__dirname))
+app.use('/*@:args',  FrontlessMiddleware(__dirname, ['styles']))
+app.use('/*',  FrontlessMiddleware(__dirname, ['styles']))
 
 app.setState = (id, data) => {
   return {

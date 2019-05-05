@@ -1,6 +1,6 @@
 const riot = require('riot')
 const {assign} = require('lodash')
-const {isTagRegistered, enumerateTags} = require('frontless-utils')
+const {isTagRegistered, enumerateTags, withJSS} = require('frontless-utils')
 const hydrate = require('@riotjs/hydrate')
 const EventBus = require('eventbusjs')
 const Turbolinks = require('turbolinks')
@@ -9,6 +9,7 @@ Turbolinks.start();
 
 riot.install(function(component){
   
+  withJSS(component)
   enumerateTags(component)
 
   component.onServerState = function (response) {
@@ -35,10 +36,18 @@ document.addEventListener('turbolinks:load', ()=>{
     document.querySelector('meta[name="state"]').getAttribute('content')
   )
 
+  const ATTRS = JSON.parse(
+    document.querySelector('meta[name="attributes"]').getAttribute('content')
+  )
+
   tags.forEach((tag) => {
     const component = tag.module.default
     if (component.exports) {
       component.exports.state = STATE[component.exports.id || component.name] || component.exports.state
+      const attributes = ATTRS[component.exports.id || component.name]
+      if (attributes) attributes.map((attr) => {
+        component.exports[attr.name] = attr.data
+      })
     }
     try { 
       riot.register(component.name, component)

@@ -12,7 +12,7 @@ gulp.task('start', function (done) {
     script: 'index.js'
   , args: ['./config.env']
   , ignore: ['node_modules/', 'assets/']
-  , ext: 'js ejs riot json env'
+  , ext: 'js ejs riot json jss env'
   , env: { 'NODE_ENV': 'development' }
   , tasks: ['default']
   , done: done

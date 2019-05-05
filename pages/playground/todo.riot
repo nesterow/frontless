@@ -1,17 +1,17 @@
 <playground-todo>
   <playground>
-    <h2 slot="example">
-      Soon... 
-    </h2>
+    <todo-list slot="example">
+    </todo-list>
   </playground>
   <script>
     
     import Playground from './base.riot'
-
+    import TodoList from 'components/examples/todo/todo-list.riot'
     export default {
       layout: 'playground',
       components: {
         Playground,
+        TodoList
       }
     }
   </script>
