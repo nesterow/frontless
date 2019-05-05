@@ -1,0 +1,22 @@
+<todo-list>
+  
+  <section class={ classes.todoapp }>
+    <h1>Todos</h1>
+    <input class={ classes.newTodo } placeholder="What needs to be done?" autofocus="">
+    <section class="main">
+      <input id="toggle-all" class={styled({
+        toggleAll: true
+      })} type="checkbox">
+      <label for="toggle-all"></label>
+      <ul class={ classes.todoList }>
+      </ul>
+    </section>
+  <section>
+
+  <script>
+    import styles from './todo-list.jss'
+    export default {
+      styles,
+    }
+  </script>
+</todo-list>
