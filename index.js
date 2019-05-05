@@ -71,8 +71,8 @@ app.configure(authentication({
 app.configure(local())
 
 
+app.use('/*@:args',  FrontlessMiddleware(__dirname))
 app.use('/*',  FrontlessMiddleware(__dirname))
-
 
 app.setState = (id, data) => {
   return {
