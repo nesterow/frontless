@@ -9,6 +9,13 @@
       })} type="checkbox">
       <label for="toggle-all"></label>
       <ul class={ classes.todoList }>
+        <li>
+          <div class="view">
+            <input class={classes.toggle} type="checkbox">
+            <label>asdasd</label>
+            <button class="destroy"></button>
+          </div>
+        </li>
       </ul>
     </section>
   <section>
@@ -17,6 +24,9 @@
     import styles from './todo-list.jss'
     export default {
       styles,
+      onMounted(){
+        console.log(9,this)
+      }
     }
   </script>
 </todo-list>

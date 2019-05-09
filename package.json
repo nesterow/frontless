@@ -1,12 +1,13 @@
 {
   "name": "frontless",
-  "version": "0.0.2-alpha.2",
+  "version": "0.0.3-alpha.2",
   "main": "index.js",
   "repository": "git@github.com:nesterow/frontless.git",
   "author": "Anton Nesterov <arch.nesterov@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env gulp start"
+    "start": "cross-env gulp start",
+    "build": "cross-env gulp build"
   },
   "dependencies": {
     "@babel/preset-env": "^7.4.4",
@@ -42,8 +43,12 @@
   },
   "devDependencies": {
     "browserify": "^16.2.3",
+    "browserify-hmr": "^0.3.7",
     "gulp-nodemon": "^2.4.2",
     "riotify": "^4.0.0",
-    "vinyl-source-stream": "^2.0.0"
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.11.1",
+    "uglifyify": "^5.0.1",
+    "minify-stream": "^1.2.0"
   }
 }
