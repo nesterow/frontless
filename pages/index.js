@@ -31,7 +31,9 @@ riot.install(function(component){
 const tags = require('./**/*.riot', {mode: 'list'})
   .concat(require('../components/**/*.riot', {mode: 'list'}))
 
-document.addEventListener('turbolinks:load', ()=>{
+
+const initialize = () => {
+
   const STATE = JSON.parse(
     document.querySelector('meta[name="state"]').getAttribute('content')
   )
@@ -69,5 +71,7 @@ document.addEventListener('turbolinks:load', ()=>{
     setTimeout(() => document.body.classList.remove('disabled'))
   }
 
-});
+}
+window.initialize = initialize;
+document.addEventListener('turbolinks:load', initialize);
 

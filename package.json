@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "browserify": "^16.2.3",
-    "browserify-hmr": "^0.3.7",
+    "browserify-hmr": "git+https://github.com/nesterow/browserify-hmr",
     "gulp-nodemon": "^2.4.2",
     "riotify": "^4.0.0",
     "vinyl-source-stream": "^2.0.0",
