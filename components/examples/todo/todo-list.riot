@@ -1,19 +1,24 @@
 <todo-list>
   
-  <section class={ classes.todoapp }>
+  <section class="{classes.todoapp}">
     <h1>Todos</h1>
-    <input class={ classes.newTodo } placeholder="What needs to be done?" autofocus="">
+    <input onkeyup={create} class="{classes.newTodo}" placeholder="What needs to be done?" autofocus/>
     <section class="main">
-      <input id="toggle-all" class={styled({
-        toggleAll: true
-      })} type="checkbox">
+      <input id="toggle-all" class="{jss({ toggleAll: true })}" type="checkbox">
       <label for="toggle-all"></label>
-      <ul class={ classes.todoList }>
-        <li>
+      <ul class="{classes.todoList}">
+        <li each="{item in state.items}">
           <div class="view">
-            <input class={classes.toggle} type="checkbox">
-            <label>LAbel</label>
-            <button class="destroy"></button>
+            <input class="{classes.toggle}" type="checkbox">
+            <label onclick="{(ev)=> edit(item)}" if="{!item.editing}">{item.text}</label>
+            <input 
+              onblur="{()=> save(item)}" 
+              onkeyup="{(ev)=> enter(ev, item)}"
+              value="{item.text}"
+              if="{item.editing}" 
+              class="{classes.edit + ' item'}"
+              autofocus />
+            <button class="destroy" onclick="{()=> destroy(item)}"></button>
           </div>
         </li>
       </ul>
@@ -22,11 +27,48 @@
 
   <script>
     import styles from './todo-list.jss'
+    import {debounce} from 'lodash'
+
     export default {
       styles,
+      state: {
+        items: [{text: 'Todo #1'}, {text: 'Todo #2'}]
+      },
       onMounted(){
-        console.log(1,this)
-      }
+        this.save = debounce(this.save.bind(this), 100)
+      },
+      create(ev){
+        const {value} = ev.target
+        if (ev.key !== 'Enter' || !value.trim())
+          return;
+        this.state.items.unshift({
+          text: value
+        })
+        this.update()
+        ev.target.value = ''
+      },
+      destroy(item) {
+        this.state.items.splice(this.state.items.indexOf(item),1)
+        this.update()
+      },
+      edit(item){
+        this.state.items.map(e => {
+          if(e.editing) this.save(e)
+        })
+        item.editing = true
+        this.update()
+        setTimeout(()=> this.$('li input.item').focus(), 100)
+      },
+      enter(ev, item){
+        if(ev.key === 'Enter')
+          return this.save(item);
+        let t = ev.target;
+        item.text = t.value
+      },
+      save(item) {
+        item.editing = false
+        this.update()
+      },
     }
   </script>
 </todo-list>

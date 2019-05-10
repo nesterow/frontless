@@ -54,12 +54,15 @@ module.exports = {
     fontWeight: 'inherit',
     lineHeight: '1.4em',
     color: 'inherit',
-    padding: '6px',
+    padding: '16px',
     border: '1px solid #999',
     boxShadow: 'inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2)',
     boxSizing: 'border-box',
     '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',
+    '&:focus' : {
+      outline: 'none'
+    }
   },
   
   newTodo: {
@@ -165,6 +168,9 @@ module.exports = {
           content: '"×"',
           position: 'relative',
           top: -5
+        },
+        '&:focus': {
+          outline: 'none',
         }
       }
     },

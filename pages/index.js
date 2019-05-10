@@ -1,6 +1,7 @@
 const riot = require('riot')
 const {assign} = require('lodash')
-const {enumerateTags, withJSS} = require('frontless-utils')
+const {enumerateTags} = require('frontless-utils')
+const withJSS = require('riot-jss')
 const hydrate = require('@riotjs/hydrate')
 const EventBus = require('eventbusjs')
 const Turbolinks = require('turbolinks')
@@ -8,7 +9,7 @@ Turbolinks.start()
 
 
 riot.install(function(component){
-  
+
   withJSS(component)
   enumerateTags(component)
 
