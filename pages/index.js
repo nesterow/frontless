@@ -75,4 +75,5 @@ const initialize = () => {
 }
 window.initialize = initialize;
 document.addEventListener('turbolinks:load', initialize);
+document.addEventListener('hmr:updated', () => location.reload())
 
