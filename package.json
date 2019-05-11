@@ -36,7 +36,7 @@
     "mongodb": "^3.2.3",
     "qs": "^6.7.0",
     "require-globify": "^1.4.1",
-    "riot": "^4.0.0-rc.6",
+    "riot": "^4.0.0-rc.9",
     "socket.io-client": "^2.2.0",
     "turbolinks": "^5.2.0",
     "validate.js": "^0.12.0",
