@@ -1,7 +1,6 @@
 const riot = require('riot')
 const {assign} = require('lodash')
 const {enumerateTags} = require('frontless-utils')
-const withJSS = require('riot-jss')
 const hydrate = require('@riotjs/hydrate')
 const EventBus = require('eventbusjs')
 const Turbolinks = require('turbolinks')
@@ -10,7 +9,6 @@ Turbolinks.start()
 
 riot.install(function(component){
 
-  withJSS(component)
   enumerateTags(component)
 
   component.onServerState = function (response) {
@@ -34,13 +32,13 @@ const tags = require('./**/*.riot', {mode: 'list'})
 
 
 const initialize = () => {
-
+ 
   const STATE = JSON.parse(
-    document.querySelector('meta[name="state"]').getAttribute('content')
+    decodeURIComponent(document.querySelector('meta[name="state"]').getAttribute('content'))
   )
 
   const ATTRS = JSON.parse(
-    document.querySelector('meta[name="attributes"]').getAttribute('content')
+    decodeURIComponent(document.querySelector('meta[name="attributes"]').getAttribute('content'))
   )
 
   tags.forEach((tag) => {

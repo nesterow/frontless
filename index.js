@@ -23,13 +23,9 @@ const socketio = require('@feathersjs/socketio')
 const authentication = require('@feathersjs/authentication')
 const local = require('@feathersjs/authentication-local')
 const register = require('@riotjs/ssr/register')
-register();
+register()
+
 const {FrontlessMiddleware} = require('frontless-utils')
-const withJSS = require('riot-jss')
-const riot = require('riot')
-riot.install(function(component){
-  withJSS(component)
-})
 
 
 

@@ -1,3 +1,19 @@
 <page-400>
-  <pre style="padding: 26px;"> { props.stack } </pre>
+  <pre style="padding: 26px;">
+    { unescape(state.stack) }
+  </pre>
+  <script>
+    import {escape, unescape} from 'querystring'
+    export default {
+      state: {
+        stack: ''
+      },
+      unescape,
+      onMounted(props){
+        this.update({
+          stack: escape(props.stack)
+        })
+      }
+    }
+  </script>
 </page-400>

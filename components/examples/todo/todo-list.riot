@@ -2,15 +2,15 @@
   
   <section class="{classes.todoapp}">
     <h1>Todos</h1>
-    <input onkeyup={create} class="{classes.newTodo}" placeholder="What needs to be done?" autofocus/>
+    <input onkeyup="{create}" class="{classes.newTodo}" placeholder="What needs to be done?" autofocus/>
     <section class="main">
       <input id="toggle-all" class="{jss({ toggleAll: true })}" type="checkbox">
       <label for="toggle-all"></label>
       <ul class="{classes.todoList}">
         <li each="{item in state.items}">
           <div class="view">
-            <input class="{classes.toggle}" type="checkbox">
-            <label onclick="{(ev)=> edit(item)}" if="{!item.editing}">{item.text}</label>
+            <input class="{classes.toggle}" type="checkbox" />
+            <label onclick="{(ev)=> edit(item)}" if={!item.editing}>{item.text}</label>
             <input 
               onblur="{()=> save(item)}" 
               onkeyup="{(ev)=> enter(ev, item)}"
@@ -26,13 +26,14 @@
   <section>
 
   <script>
+    import withJSS from 'riot-jss'
     import styles from './todo-list.jss'
     import {debounce} from 'lodash'
-
-    export default {
+    
+    export default withJSS({
       styles,
       state: {
-        items: [{text: 'Todo #1'}, {text: 'Todo #2'}]
+        items: [{text: 'Todo #1'}, {text: 'Todo #2'}],
       },
       onMounted(){
         this.save = debounce(this.save.bind(this), 100)
@@ -69,6 +70,6 @@
         item.editing = false
         this.update()
       },
-    }
+    })
   </script>
 </todo-list>
