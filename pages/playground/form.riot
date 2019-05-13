@@ -39,7 +39,8 @@
             {file: 'form.riot.html', name: 'RiotJS'},
             {file: 'form.service.js', name: 'FeathersJS'},
             {file: 'readme.md', name: 'Readme'},
-          ]} />
+          ]}>
+      </gist>
   </playground>
   <script>
     
@@ -65,7 +66,8 @@
       submit(ev) {
         ev.preventDefault()
         const payload = serializeForm(ev.target)
-        this.update({loading: true, success: false})
+        console.log('unceccesary call')
+        this.update({loading: true, success: false});
         client.service('form-validation').
           create(payload).
           then(() => {

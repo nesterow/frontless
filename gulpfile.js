@@ -26,7 +26,7 @@ gulp.task('build', function(){
   return browserify({ entries: ['pages/index.js'] })
     .transform(globify)
     .transform(riotify) // pass options if you need
-    .transform('uglifyify', { sourceMap: false })
+    .plugin('tinyify', { flat: false })
     .bundle()
     .pipe(require('minify-stream')({ sourceMap: false }))
     .pipe(source('pages/index.js'))

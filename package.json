@@ -29,14 +29,14 @@
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "feathers-mongodb": "^4.0.4",
-    "frontless-utils": "^0.3.6",
-    "riot-jss": "1.0.0-beta.5",
+    "frontless-utils": "^0.3.7",
     "gulp": "^4.0.1",
     "lodash": "^4.17.11",
     "mongodb": "^3.2.3",
     "qs": "^6.7.0",
     "require-globify": "^1.4.1",
-    "riot": "^4.0.0-rc.10",
+    "riot": "^4.0.0-rc.11",
+    "riot-jss": "1.0.0",
     "socket.io-client": "^2.2.0",
     "turbolinks": "^5.2.0",
     "validate.js": "^0.12.0",
@@ -46,10 +46,11 @@
     "browserify": "^16.2.3",
     "browserify-hmr": "git+https://github.com/nesterow/browserify-hmr#master",
     "gulp-nodemon": "^2.4.2",
+    "minify-stream": "^1.2.0",
     "riotify": "^4.0.0",
-    "vinyl-source-stream": "^2.0.0",
-    "watchify": "^3.11.1",
+    "tinyify": "^2.5.0",
     "uglifyify": "^5.0.1",
-    "minify-stream": "^1.2.0"
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.11.1"
   }
 }

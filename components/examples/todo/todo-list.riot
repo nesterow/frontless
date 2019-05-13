@@ -29,8 +29,7 @@
     import withJSS from 'riot-jss'
     import styles from './todo-list.jss'
     import {debounce} from 'lodash'
-    
-    export default withJSS({
+    const TodoList = {
       styles,
       state: {
         items: [{text: 'Todo #1'}, {text: 'Todo #2'}],
@@ -70,6 +69,7 @@
         item.editing = false
         this.update()
       },
-    })
+    }
+    export default withJSS(TodoList)
   </script>
 </todo-list>
