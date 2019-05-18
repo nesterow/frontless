@@ -1,6 +1,6 @@
 const riot = require('riot')
 const {assign} = require('lodash')
-const {enumerateTags} = require('frontless-utils')
+const {enumerateTags, plugin} = require('frontless-utils')
 const hydrate = require('@riotjs/hydrate')
 const EventBus = require('eventbusjs')
 const Turbolinks = require('turbolinks')
@@ -29,6 +29,9 @@ riot.install(function(component){
 
 const tags = require('./**/*.riot', {mode: 'list'})
   .concat(require('../components/**/*.riot', {mode: 'list'}))
+
+// Plug-in pages and tags
+plugin(require('frontless-plugin/pages'), tags)
 
 
 const initialize = () => {

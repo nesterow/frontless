@@ -25,9 +25,10 @@ const local = require('@feathersjs/authentication-local')
 const register = require('@riotjs/ssr/register')
 register()
 
-const {FrontlessMiddleware} = require('frontless-utils')
+const {FrontlessMiddleware, install, withPlugins} = require('frontless-utils')
 
-
+const pluginExample = require('frontless-plugin')
+install(pluginExample)
 
 
 const sessionMiddleware = session({
@@ -44,6 +45,9 @@ const corsMiddleware = cors({
 
 const api = feathers()
 const app = express(api)
+withPlugins(app, __dirname)
+
+app.emit('setup', app)
 
 app.use(corsMiddleware)
 app.use(sessionMiddleware)
@@ -71,7 +75,7 @@ app.configure(authentication({
 }));
 app.configure(local())
 
-
+app.emit('setup:ssr', app)
 app.use('/*@:args',  FrontlessMiddleware(__dirname, ['styles']))
 app.use('/*',  FrontlessMiddleware(__dirname, ['styles']))
 
@@ -87,6 +91,7 @@ app.setState = (id, data) => {
 
 
 const start = (db) => {
+  app.emit('connected', app, db)
   require('./services')(app, db)
   app.listen(6767, () => {
     console.log(`👍  app is listening on ${6767} \r\n`)
