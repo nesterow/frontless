@@ -1,7 +1,7 @@
 <img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.png" height="50"/>
 
 ![Status](https://img.shields.io/badge/Status-Alpha-yellow.svg)
-![version](https://img.shields.io/badge/Version-0.0.2alpha.1-yellow.svg)
+![version](https://img.shields.io/badge/Version-0.0.4alpha.2-yellow.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
 
 
@@ -37,7 +37,7 @@ I believe that the server has to be responsible for the view model. There are th
 | DB Interface (FeathersJS Client) | Rest/IO (FeathersJS Client) |
 
 [![FeathersJS](https://img.shields.io/badge/FeathersJS-3.3.1-green.svg)](https://github.com/feathersjs/feathers)
-[![RiotJS](https://img.shields.io/badge/RiotJS-4.0.0rc.5-yellow.svg)](https://github.com/riot/riot)
+[![RiotJS](https://img.shields.io/badge/RiotJS-4.0.0rc.13-yellow.svg)](https://github.com/riot/riot)
 [![Turbolinks](https://img.shields.io/badge/Turbolinks-5.2.0-green.svg)](https://github.com/turbolinks/turbolinks)
 [![ExpressJS](https://img.shields.io/badge/Express-4.16.4-green.svg)](https://github.com/expressjs/express)
 
@@ -112,7 +112,7 @@ The UI will update automatically. However, you still nedd to handle loading stat
 * [x] Database Interface
 * [ ] Users and Sessions
 * [x] Server Sent State (w/feathers.js)
-* [ ] Socket IO (w/feathers.js) [50%]
+* [x] Socket IO (w/feathers.js)
 * [ ] Hybrid application store
 * [ ] Configuration / Deployment Scripts
 * [ ] Template cache on server side based on git hash
