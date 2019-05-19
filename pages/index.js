@@ -27,12 +27,9 @@ riot.install(function(component){
 
 })
 
+
 const tags = require('./**/*.riot', {mode: 'list'})
   .concat(require('../components/**/*.riot', {mode: 'list'}))
-
-// Plug-in pages and tags
-plugin(require('frontless-plugin/pages'), tags)
-
 
 const initialize = () => {
  

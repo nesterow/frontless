@@ -27,7 +27,7 @@ register()
 
 const {FrontlessMiddleware, install, withPlugins} = require('frontless-utils')
 
-const pluginExample = require('frontless-plugin')
+const pluginExample = require('components/nesterow/frontless-plugin')
 install(pluginExample)
 
 
