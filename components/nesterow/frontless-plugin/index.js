@@ -1,10 +1,8 @@
-const {FrontlessMiddleware} = require('frontless-utils');
-
 module.exports = ({
   name: 'Example plugin',
   setup(app, dirname) {
     app.use((req, res, next) => {
-      console.log('Example plugin middleware')
+      // console.log('Example plugin middleware')
       next();
     })
   },

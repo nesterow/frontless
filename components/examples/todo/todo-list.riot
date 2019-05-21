@@ -1,15 +1,27 @@
 <todo-list>
   
   <section class="{classes.todoapp}">
-    <h1>Todos</h1>
+    <i class="icon icon-message {classes.promptIcon}"></i>
     <input onkeyup="{create}" class="{classes.newTodo}" placeholder="What needs to be done?" autofocus/>
-    <section class="main">
-      <input id="toggle-all" class="{jss({ toggleAll: true })}" type="checkbox">
-      <label for="toggle-all"></label>
+    <section class="{classes.main} {state.loading && 'loading loading-lg'}">
+      <div class="{classes.filters}">
+        <button onclick="{() => setStatus()}"
+          class="{jss({ filterButton: true, filterActive: !state.query.status })}"> 
+            All ({state.totals.all}) 
+        </button>
+        <button onclick="{() => setStatus('active')}" 
+          class="{jss({ filterButton: true, filterActive: state.query.status === 'active' })}"> 
+          Active ({state.totals.active})
+        </button>
+        <button onclick="{() => setStatus('done')}" 
+          class="{jss({ filterButton: true, filterActive: state.query.status === 'done' })}"> 
+          Done ({state.totals.done}) 
+        </button>
+      </div>
       <ul class="{classes.todoList}">
         <li each="{item in state.items}">
           <div class="view">
-            <input class="{classes.toggle}" type="checkbox" />
+            <input class="{classes.toggle}" type="checkbox" checked={item.status === 'done'} onchange={(ev) => markDone(ev, item)}/>
             <label onclick="{(ev)=> edit(item)}" if={!item.editing}>{item.text}</label>
             <input 
               onblur="{()=> save(item)}" 
@@ -22,35 +34,177 @@
           </div>
         </li>
       </ul>
+      <ul class="{classes.pagination}" if="{state.pagination.total > state.pagination.limit}">
+        <li class="{!state.pagination.page && 'disabled'}" onclick={prevPage}>
+          << Prev
+        </li>
+        <li class="{lastPage && 'disabled'}" onclick={nextPage}>
+          Next >>
+        </li>
+      </ul>
+       <div class={classes.pageCounter}>
+          Page {state.pagination.page + 1} of {totalPages}
+       </div>
     </section>
+   
   <section>
 
   <script>
     import withJSS from 'riot-jss'
     import styles from './todo-list.jss'
     import {debounce} from 'lodash'
+    import client from 'client'
+    
+    const Todos = client.service('todos')
+    const TodosCount = client.service('todo/count')
+
     const TodoList = {
       styles,
       state: {
-        items: [{text: 'Todo #1'}, {text: 'Todo #2'}],
+        items: [],
+        totals: {
+          all: 0,
+          active: 0,
+          done: 0
+        },
+        query: {},
+        pagination: {
+          limit: 5,
+          skip: 0,
+          total: 0,
+          page: 0,
+        }
       },
+
+      async fetch(){
+        
+        const totals = await TodosCount.find({});
+        let query = {
+          $sort: {
+            time: -1
+          },
+        };
+        query.status = this.state.query.status;
+        query.$limit = this.state.pagination.limit;
+        query.$skip = this.state.pagination.skip;
+
+        const todos = await Todos.find({
+          query, 
+        });
+
+        this.update({
+          items: todos.data,
+          totals,
+          pagination: {
+            limit: todos.limit,
+            skip: todos.skip,
+            total: todos.total,
+            page: this.state.pagination.page,
+          }
+        })
+      },
+
       onMounted(){
         this.save = debounce(this.save.bind(this), 100)
       },
-      create(ev){
+
+      async create(ev){
         const {value} = ev.target
         if (ev.key !== 'Enter' || !value.trim())
           return;
-        this.state.items.unshift({
-          text: value
+        this.start();
+        await Todos.create({
+          text: value,
+          status: 'active',
+          time: new Date().getTime()
         })
-        this.update()
-        ev.target.value = ''
+        this.update({
+          pagination: {
+            page: 0,
+            limit: 5,
+            skip: 0
+          }
+        })
+        await this.fetch()
+        ev.target.value = '';
+        this.end();
       },
-      destroy(item) {
-        this.state.items.splice(this.state.items.indexOf(item),1)
-        this.update()
+      
+      async destroy(item) {
+        this.start();
+        await Todos.remove(item._id)
+        await this.fetch()
+        this.end();
       },
+
+      async save(item) {
+        this.start()
+        delete item.editing;
+        await Todos.update(item._id, item);
+        await this.fetch();
+        this.end()
+      },
+
+      async markDone(ev, item){
+        this.start();
+        delete item.editing;
+        item.status = ev.target.checked ? 'done' : 'active';
+        await Todos.update(item._id, item);
+        await this.fetch()
+        this.end();
+      },
+
+      async setStatus(status) {
+        this.start();
+        this.update({
+          query: {
+            status: status,
+          }
+        });
+        await this.fetch()
+        this.end();
+      },
+
+      async nextPage(){
+        const {pagination} = this.state; 
+        const page = pagination.page + 1;
+        const skip = page * pagination.limit;
+        pagination.skip = pagination.total > skip ? skip : pagination.skip;
+        pagination.page = pagination.skip === skip ? page : pagination.page;
+        this.update({ pagination, })
+        this.start()
+        await this.fetch()
+        this.end()
+      },
+
+      async prevPage(){
+        const {pagination} = this.state; 
+        const page = pagination.page - 1;
+        const skip = page >= 0 ? page * pagination.limit: pagination.skip;
+        pagination.skip = skip;
+        pagination.page = page >= 0 ? page : 0;
+        this.update({ pagination, })
+        this.start()
+        await this.fetch()
+        this.end()
+      },
+
+      get lastPage(){
+        return (this.state.pagination.page + 1) === this.totalPages
+      },
+
+      get totalPages(){
+        return Math.ceil(this.state.pagination.total / this.state.pagination.limit)
+      },
+
+      start(){
+        this.update({loading: true})
+      },
+
+      end(){
+        this.update({loading: false})
+      },
+
       edit(item){
         this.state.items.map(e => {
           if(e.editing) this.save(e)
@@ -64,10 +218,6 @@
           return this.save(item);
         let t = ev.target;
         item.text = t.value
-      },
-      save(item) {
-        item.editing = false
-        this.update()
       },
     }
     export default withJSS(TodoList)

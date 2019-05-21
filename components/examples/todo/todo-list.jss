@@ -1,6 +1,66 @@
 
 module.exports = {
-
+  promptIcon: {
+    position: 'absolute',
+    fontSize: 35,
+    color: 'darkgrey',
+    top: 10,
+    left: 12,
+  },
+  filters: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    '& *:last-child:not(:first-child)': {
+      borderBottomRightRadius: 0,
+      borderTopRightRadius: 0,
+    },
+    '& *:first-child:not(:last-child)': {
+      borderBottomLeftRadius: 0,
+      borderTopLeftRadius: 0,
+    }
+  },
+  filterButton: {
+    cursor: 'pointer',
+    display: 'inline-block',
+    outline: 0,
+    fontSize: '.7rem',
+    height: '1.4rem',
+    padding: '.05rem .3rem',
+    flex: '1 0 0',
+    background: '#fff',
+    borderColor: '#ccc',
+    border: '1px solid',
+    color: '#333',
+  },
+  filterActive: {
+    background: 'burlywood',
+  },
+  pagination: {
+    display: 'flex',
+    listStyle: 'none',
+    margin: '.2rem 0',
+    padding: '.2rem 0',
+    '& li': {
+      flex: '1 0 50%',
+      fontSize: '13px',
+      padding: '10px',
+      color: 'burlywood',
+      textDecoration: 'none',
+      cursor: 'pointer',
+    },
+    '& li:last-child':{
+      textAlign: 'right'
+    }
+  },
+  pageCounter: {
+    textAlign: 'center',
+    pointerEvents: 'none',
+    position: 'absolute',
+    bottom: '12px',
+    left: '46%',
+    fontSize: '13px',
+    color: 'burlywood',
+  },
   hidden: {
     display: 'none',
   },
@@ -8,41 +68,10 @@ module.exports = {
   main : {
     position: 'relative',
     zIndex: 2,
-    borderTop: '1px solid #e6e6e6'
-  },
-
-  toggleAll: {
-    width: 1,
-    height: 1,
-    border: 'none',
-    opacity: 0,
-    position: 'absolute',
-    right: '100%',
-    bottom: '100%',
-    
-    '&:checked + label:before': {
-      color: '#737373',
+    borderTop: '1px solid #e6e6e6',
+    '&::after': {
+      color: 'burlywood !important'
     },
-
-    '& + label': {
-      width: 60,
-      height: 34,
-      fontSize: 0,
-      position: 'absolute',
-      top: 5,
-      left: 0,
-      transform: 'rotate(90deg)',
-      '-webkit-transform': 'rotate(90deg)',
-
-      '&::before': {
-        content: '"❯"',
-        fontSize: 22,
-        color: '#e6e6e6',
-        padding: '10px 27px 10px 27px',
-      }
-
-    },
-
   },
 
   edit: {
@@ -73,7 +102,12 @@ module.exports = {
     width: '100%',
     '&:focus': {
       outline: 'none',
-    }
+    },
+    '&::placeholder': {
+      fontStyle: 'italic',
+      fontWeight: 300,
+      color: '#aaa'
+    },
   },
 
   todoapp: {
@@ -82,12 +116,6 @@ module.exports = {
     margin: '130px 0 40px 0',
     position: 'relative',
     boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2),0 25px 50px 0 rgba(0, 0, 0, 0.1)',
-    
-    '& input::-webkit-input-placeholder, & input::-moz-placeholder, & input::input-placeholder': {
-      fontStyle: 'italic',
-      fontWeight: 300,
-      color: '#e6e6e6'
-    },
 
     '& h1': {
       position: 'absolute',

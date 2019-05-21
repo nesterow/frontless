@@ -1,5 +1,5 @@
 module.exports = function (app, db) {
-  
+
   require('./users')(app, db)
 
   //Playground services
@@ -7,4 +7,6 @@ module.exports = function (app, db) {
   require('./playground/caesar')(app)
   require('./playground/form')(app)
   require('./playground/chat')(app)
+  require('./playground/todos')(app, db)
+  
 }
