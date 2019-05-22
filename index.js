@@ -38,8 +38,17 @@ const sessionMiddleware = session({
   cookie: {secure: process.env.HTTP_SESSION_SECURE === 'yes'},
 });
 
+// Use CORS
+// you can use dynamic resolution if allowed hosts are kept in some storage
+const ALOWED_HOSTS = ['*']
+const origin = async (host, cb) => {
+  if (ALOWED_HOSTS.includes('*') || ALOWED_HOSTS.includes(host))
+    return cb(null, true);
+  return cb('Host is not alowed', false);
+}
+
 const corsMiddleware = cors({
-  origin: '*',
+  origin,
 });
 
 
@@ -57,9 +66,7 @@ app.configure(express.rest())
 app.use('/assets', express.static('assets'))
 
 app.configure(socketio({}, function(io) {
-  // io.use(function(socket, next) {
-  //   corsMiddleware(socket.request, socket.request.res, next);
-  // });
+  io.origins(origin)
   io.use(function(socket, next) {
     sessionMiddleware(socket.request, socket.request.res, next)
   });
