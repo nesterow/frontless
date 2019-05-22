@@ -12,6 +12,9 @@
   </head>
   <body>
     <style>
+      *::-webkit-scrollbar, iframe *::-webkit-scrollbar{
+        width:6px;
+      }
       body {
         padding: 2%;
       }
@@ -29,7 +32,6 @@
       }
       .column.code {
         border-left: 12px solid #f7f7f7;
-        min-height: 88vh;
       }
     </style>
     <%- output %>

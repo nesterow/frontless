@@ -1,7 +1,7 @@
 module.exports = (app) => {
 
   const emulateDelay = () => new Promise((resolve) => {
-    setTimeout(resolve, 550);
+    setTimeout(resolve, 100);
   })
 
   app.use('random-number', {
