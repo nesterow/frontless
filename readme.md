@@ -7,8 +7,7 @@
 
 
 ### Isomorphic application stack for RiotJS
-Frontless aims to provide classic web development experience with modern approach. 
-It was heavily inspired by NextJS.
+Frontless aims to provide classic web development experience with modern approach. It was heavily inspired by NextJS.
 
 #### Installation
 `npx frontless <app-name>` or `npx create-frontless <app-name>`
@@ -19,13 +18,7 @@ It was heavily inspired by NextJS.
 Оpen [http://localhost:6767](http://localhost:6767) in your browser. Navigate to the playground for examples 
 
 
-## About
-There are things that the server does better.
-Classic MVVM approach significanly complicates work with data. In fact, on practice a frontend developer would end up writing the code that would be better performed by server rather than a client (routing, requesting data, filtering data, cooking a view model, caching, etc). 
-I believe that the server has to be responsible for the view model. There are things which the server does better and working with data is one of them.
-
-
-## The Stack
+### The Stack
 
 | Server        | Client        |
 | ------------- |:-------------:|
@@ -37,15 +30,30 @@ I believe that the server has to be responsible for the view model. There are th
 | DB Interface (FeathersJS Client) | Rest/IO (FeathersJS Client) |
 
 [![FeathersJS](https://img.shields.io/badge/FeathersJS-3.3.1-green.svg)](https://github.com/feathersjs/feathers)
-[![RiotJS](https://img.shields.io/badge/RiotJS-4.0.0rc.13-yellow.svg)](https://github.com/riot/riot)
+[![RiotJS](https://img.shields.io/badge/RiotJS-4.0.0@rc.17-yellow.svg)](https://github.com/riot/riot)
 [![Turbolinks](https://img.shields.io/badge/Turbolinks-5.2.0-green.svg)](https://github.com/turbolinks/turbolinks)
 [![ExpressJS](https://img.shields.io/badge/Express-4.16.4-green.svg)](https://github.com/expressjs/express)
 
 
-## Features
+### About
+Classic MVVM approach significanly complicates work with data. In fact, on practice, a frontend developer would end up writing the code that would be better performed by server rather than a client. I believe that the server has to be responsible for things like _routing_, _data requests_, _user state_, and and some cases _component's view-model_. Theese are routines that the server does better than browser.
+
+
+### Features
+Frameworks like NextJS or Nuxt attempt to bring client applications to server side, but Frontless tries to be flexible and simple: 
+- It is just an ExpressJS application. 
+- It uses FeathersJS on client and server.
+- It is build with RiotJS.
+- It provides **natural routing** `index.riot -> GET /`
+- It allows to update component's state directly from request
+
+
+### Core concepts:
+
 #### 1. Natural Routing
 All files ending with `*.riot` placed in the `pages` become site pages, much like php scripts or html pages.
-Unlike `next.js`, Frontless does not provide complex routing schemes, so at the time all parameters can only be passed trough HTTP query.
+[`index.riot -> GET /`, `page.riot -> GET /page`]
+
 
 #### 2. Server side rendering
 All RiotJS components included in pages will render after all data is fetched. 
@@ -67,7 +75,6 @@ export default {
 ```
 
 ### Server sent state
-###### * or Server Sent View Model 
 Some API requests can return a ready view-model for a specific component. 
 After it happens the target component will update its state from received response. 
 This is convenient whenever you want to update the view after a request is done. 
@@ -104,7 +111,6 @@ The UI will update automatically. However, you still nedd to handle loading stat
 
 
 
-
 ## Roadmap v1.0
 
 * [x] Async SSR
@@ -113,7 +119,7 @@ The UI will update automatically. However, you still nedd to handle loading stat
 * [ ] Users and Sessions
 * [x] Server Sent State (w/feathers.js)
 * [x] Socket IO (w/feathers.js)
-* [ ] Hybrid application store
+* [x] Plugin support
 * [ ] Configuration / Deployment Scripts
 * [ ] Template cache on server side based on git hash
 * [ ] Deployment scripts
