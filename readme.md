@@ -50,12 +50,12 @@ Frameworks like NextJS or Nuxt attempt to bring client applications to server si
 
 ### Core concepts:
 
-#### 1. Natural Routing
+##### 1. Natural Routing
 All files ending with `*.riot` placed in the `pages` become site pages, much like php scripts or html pages.
 [`index.riot -> GET /`, `page.riot -> GET /page`]
 
 
-#### 2. Server side rendering
+##### 2. Server side rendering
 All RiotJS components included in pages will render after all data is fetched. 
 Use method `fetch(props)` in your components to make db queries and setting components' state on the server.
 Unlike similar method in `next.js`, in Frontless you can fetch data in any children component 
@@ -74,7 +74,7 @@ export default {
 }
 ```
 
-### Server sent state
+#### 3. Server sent state
 Some API requests can return a ready view-model for a specific component. 
 After it happens the target component will update its state from received response. 
 This is convenient whenever you want to update the view after a request is done. 
