@@ -43,7 +43,7 @@ Classic MVVM approach significanly complicates work with data. In fact, on pract
 Frameworks like NextJS or Nuxt attempt to bring client applications to server side, but Frontless tries to be flexible and simple: 
 - It is just an ExpressJS application. 
 - It uses FeathersJS on client and server.
-- It is build with RiotJS.
+- It is built with RiotJS.
 - It provides **natural routing** `index.riot -> GET /`
 - It allows to update component's state directly from request
 
