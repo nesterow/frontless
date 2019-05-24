@@ -1,0 +1,29 @@
+<playground-routes>
+  <playground>
+    <routes slot="example">
+    </routes>
+    <div slot="code">
+      <gist 
+          username="nesterow" 
+          gist="3481cde9f35f384b356b9b8496749a26" 
+          files={[
+            {file: 'readme.md', name: 'Readme'},
+            {file: 'routes.riot.html', name: 'RiotJS (View)'},
+          ]} />
+    </div>
+  </playground>
+  <script>
+    import Playground from './base.riot'
+    import Routes from 'components/examples/routes/routes.riot'
+    import Gist from 'components/gist.riot'
+
+    export default {
+      layout: 'playground',
+      components: {
+        Playground,
+        Routes,
+        Gist
+      }
+    }
+  </script>
+</playground-routes>

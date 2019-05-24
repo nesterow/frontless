@@ -1,0 +1,83 @@
+<routes>
+  <form class="card" onsubmit={ submit }>
+    <div class="card-header">
+      <h5 class="card-title h5">Positional Arguments</h5>
+      <div class="card-subtitle text-gray">
+        Save form state to the URL query then reload the page.
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <small>First name (positional argument)</small>
+        <input name="firstName" value={state.firstName} class="form-input"  placeholder="First name" />
+      </div>
+      <div class="form-group">
+        <small>Last name (positional argument)</small>
+        <input name="lastName" value={state.lastName} class="form-input"  placeholder="Last name" />
+      </div>
+      <div class="form-group">
+        <small>Age (url query)</small>
+        <input name="age" value={state.age} class="form-input" placeholder="Age" />
+      </div>
+      <div class="form-group">
+        <small>Profession (url query)</small>
+        <input name="profession" value={state.profession} class="form-input" placeholder="Profession" />
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Push URL Data</button>
+      </div>
+    </div>
+  </form>
+  <div>
+    <button class="btn btn-sm" onclick={redirectToHome}>
+      Redirect to Home
+    </button>
+    &nbsp;
+    <button class="btn btn-sm" onclick={reload}>
+      Reload Location
+    </button>
+  </div>
+  <script>
+    import {serializeForm} from 'frontless-utils'
+
+    export default {
+      state: {
+        firstName: '',
+        lastName: '',
+        age: '',
+        profession: ''
+      },
+      async fetch(props) {
+        const {params, query} = props.req;
+        const {args} = params;
+        const [firstName = '', lastName = ''] = args || [];
+        const {age = '', profession = ''} = query;
+        this.update({
+          firstName: firstName,
+          lastName: lastName,
+          age,
+          profession
+        })
+        return Promise.resolve()
+      },
+      submit(ev){
+        ev.preventDefault()
+        const payload = serializeForm(ev.target)
+        this.pushState([payload.firstName, payload.lastName], {
+          age: payload.age,
+          profession: payload.profession
+        })
+      },
+      redirectToHome(){
+        this.redirect('/playground', ['a', 'b'], {
+          c: '1'
+        })
+      },
+      reload(){
+        location.reload()
+      }
+    }
+  </script>
+</routes>
