@@ -25,7 +25,7 @@ const local = require('@feathersjs/authentication-local')
 const register = require('@riotjs/ssr/register')
 register()
 
-const {FrontlessMiddleware, install, withPlugins} = require('frontless-utils')
+const {FrontlessMiddleware, install, withPlugins, withRouter} = require('frontless-utils')
 
 const pluginExample = require('components/nesterow/frontless-plugin')
 install(pluginExample)

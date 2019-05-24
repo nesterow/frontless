@@ -1,0 +1,30 @@
+<playground-routes>
+  <playground>
+    <routes slot="example">
+    </routes>
+    <div slot="code">
+      <!--  <gist 
+          username="nesterow" 
+          gist="1300b85d52f9564af6807b74ee6da658" 
+          files={[
+            {file: 'readme.md', name: 'Readme'},
+            {file: 'todos.riot.html', name: 'RiotJS (View)'},
+            {file: 'service.js', name: 'FeathersJS (View-Model)'},
+          ]} />  -->
+    </div>
+  </playground>
+  <script>
+    import Playground from './base.riot'
+    import Routes from 'components/examples/routes/routes.riot'
+    import Gist from 'components/gist.riot'
+
+    export default {
+      layout: 'playground',
+      components: {
+        Playground,
+        Routes,
+        Gist
+      }
+    }
+  </script>
+</playground-routes>

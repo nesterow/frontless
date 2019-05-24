@@ -1,6 +1,5 @@
 const riot = require('riot')
 const {assign} = require('lodash')
-const {enumerateTags, plugin} = require('frontless-utils')
 const hydrate = require('@riotjs/hydrate')
 const EventBus = require('eventbusjs')
 const Turbolinks = require('turbolinks')
@@ -8,8 +7,6 @@ Turbolinks.start()
 
 
 riot.install(function(component){
-
-  enumerateTags(component)
 
   component.onServerState = function (response) {
     this.state = assign(this.state, response.target.result.data)
