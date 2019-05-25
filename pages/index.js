@@ -1,3 +1,4 @@
+require('plugins')
 const riot = require('riot')
 const {assign} = require('lodash')
 const hydrate = require('@riotjs/hydrate')

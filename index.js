@@ -15,6 +15,7 @@
 const dotenv = require('dotenv');
 dotenv.config({path: process.argv[process.argv.length - 1]});
 
+cookieParser = require('cookie-parser')
 const express = require('@feathersjs/express')
 const feathers = require('@feathersjs/feathers')
 const session = require('express-session')
@@ -25,7 +26,9 @@ const local = require('@feathersjs/authentication-local')
 const register = require('@riotjs/ssr/register')
 register()
 
-const {FrontlessMiddleware, install, withPlugins, withRouter} = require('frontless-utils')
+require('./plugins')
+
+const {FrontlessMiddleware, install, withPlugins} = require('frontless-utils')
 
 const pluginExample = require('components/nesterow/frontless-plugin')
 install(pluginExample)
@@ -58,6 +61,7 @@ withPlugins(app, __dirname)
 
 app.emit('setup', app)
 
+app.use(cookieParser())
 app.use(corsMiddleware)
 app.use(sessionMiddleware)
 app.use(express.json())

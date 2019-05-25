@@ -1,3 +1,5 @@
+const local = require('@feathersjs/authentication-local')
+
 module.exports = (app) => {
   app.use('users', {
 
@@ -9,7 +11,7 @@ module.exports = (app) => {
       return {}
     },
 
-    async create() {
+    async create(ctx) {
       return {}
     },
 
@@ -22,4 +24,14 @@ module.exports = (app) => {
     },
 
   })
+
+  app.service('users').hooks({
+    before: {
+      create: [
+        local.hooks.hashPassword()
+      ]
+    },
+    after: local.hooks.protect('password')
+  })
+
 }
