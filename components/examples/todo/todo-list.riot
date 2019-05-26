@@ -77,6 +77,7 @@
       },
 
       async fetch(){
+        console.log('fetching')
         const totals = await TodosCount.find({});
         let query = {
           $sort: {
@@ -219,6 +220,6 @@
         item.text = t.value
       },
     }
-    export default withJSS(TodoList)
+    export default () => withJSS(TodoList)
   </script>
 </todo-list>

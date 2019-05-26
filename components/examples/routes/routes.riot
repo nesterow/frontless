@@ -42,7 +42,7 @@
   <script>
     import {serializeForm} from 'frontless-utils'
 
-    export default {
+    export default () => ({
       state: {
         firstName: '',
         lastName: '',
@@ -78,6 +78,6 @@
       reload(){
         location.reload()
       }
-    }
+    })
   </script>
 </routes>

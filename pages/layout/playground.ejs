@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
     <script src="/assets/pages/index.js"></script>
-    <%- document.head.innerHTML %>
-  </head>
-  <body>
     <style>
       *::-webkit-scrollbar, iframe *::-webkit-scrollbar{
         width:6px;
@@ -34,6 +31,9 @@
         border-left: 12px solid #f7f7f7;
       }
     </style>
+    <%- document.head.innerHTML %>
+  </head>
+  <body>
     <%- output %>
   </body>
 </html>

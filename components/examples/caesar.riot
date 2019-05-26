@@ -23,7 +23,7 @@
     
     import client from 'client'
 
-    export default {
+    export default () => ({
       
       id: 'caesar-shift',
 
@@ -55,6 +55,6 @@
         })
         .then(() => this.update({loading: false}))
       }
-    }
+    })
   </script>
 </caesar>

@@ -21,7 +21,7 @@
       setTimeout(resolve, 100)
     })
 
-    export default {
+    export default () => ({
       layout: 'playground',
       components: {
         Playground,
@@ -31,6 +31,6 @@
       async fetch() {
         await aSecondDelay()
       }
-    }
+    })
   </script>
 </playground-index>

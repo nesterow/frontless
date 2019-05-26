@@ -22,6 +22,7 @@ riot.install(function(component){
     EventBus.addEventListener(eventName, component.onServerState.bind(this), component)
     return onMounted.bind(this)(props, state)
   }.bind(component);
+  
 
 })
 
@@ -42,11 +43,15 @@ const initialize = () => {
   tags.forEach((tag) => {
     const component = tag.module.default
     if (component.exports) {
-      component.exports.state = STATE[component.exports.id || component.name] || component.exports.state
-      const attributes = ATTRS[component.exports.id || component.name]
-      if (attributes) attributes.map((attr) => {
-        component.exports[attr.name] = attr.data
-      })
+      let initilaExports = typeof component.exports === 'function' ? component.exports() : component.exports;
+      component.exports = () => {
+        initilaExports.state = STATE [initilaExports.id || component.name] || initilaExports.state;
+        const attributes = ATTRS [initilaExports.id || component.name]
+        if (attributes) attributes.map((attr) => {
+          initilaExports[attr.name] = attr.data
+        })
+        return initilaExports
+      }
     }
     try { 
       riot.register(component.name, component)
@@ -58,6 +63,7 @@ const initialize = () => {
     document.body.classList.add('disabled')
     const ComponentImplementation = tags.find((tag) => tag.module.default.name === root.getAttribute('is') )
     const component = ComponentImplementation.module.default
+    console.log(component)
 
     // while (root.firstChild) {
     //   root.firstChild.remove()

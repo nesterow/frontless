@@ -48,7 +48,7 @@
     import client from 'client'
     import {serializeForm} from 'frontless-utils'
 
-    export default {
+    export default () => ({
       layout: 'playground',
       id: 'form-validation',
       components: {
@@ -74,7 +74,7 @@
             this.update({loading: false})
           })
       }
-    }
+    })
   </script>
   <style>
     .form-input-hint{
