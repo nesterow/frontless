@@ -1,0 +1,34 @@
+<playground-users>
+  <playground>
+    <div slot="example">
+      <h2>
+        users
+      </h2>
+    </div>
+    <div slot="code">
+      <gist 
+          username="nesterow" 
+          gist="ee77fa46ba15508d91d7811f1e47d64a" 
+          files={[
+            {file: 'readme.md', name: 'Readme'},
+            {file: 'caesar.riot.html', name: 'RiotJS (View)'},
+            {file: 'caesar.service.js', name: 'FeathersJS (View-Model)'},
+          ]} />
+    </div>
+  </playground>
+  <script>
+    
+    import Playground from './base.riot'
+    import Caesar from 'components/examples/caesar.riot'
+    import Gist from 'components/gist.riot'
+
+    export default {
+      layout: 'playground',
+      components: {
+        Playground,
+        Caesar,
+        Gist
+      },
+    }
+  </script>
+</playground-users>

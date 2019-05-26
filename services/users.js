@@ -1,6 +1,10 @@
 const local = require('@feathersjs/authentication-local')
+const {MONGO_DATABASE} = process.env
 
-module.exports = (app) => {
+module.exports = (app, mongo) => {
+  
+  const Model =  mongo.db(MONGO_DATABASE).collection('users')
+
   app.use('users', {
 
     async find() {

@@ -101,9 +101,9 @@ app.setState = (id, data) => {
 }
 
 
-const start = (db) => {
-  app.emit('connected', app, db)
-  require('./services')(app, db)
+const start = (mongo) => {
+  app.emit('connected', app, mongo)
+  require('./services')(app, mongo)
   app.listen(6767, () => {
     console.log(`👍  app is listening on ${6767} \r\n`)
   })
@@ -112,14 +112,14 @@ const start = (db) => {
 if (process.env.MONGODB_URI) {
   const MongoClient = require('mongodb').MongoClient
   MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
-    .then((db) => {
+    .then((mongo) => {
       console.error(`✔️ MongoDB connection is active`)
-      start(db)
+      start(mongo)
     })
     .catch(() => {
       console.error(`❌  MongoDB connection error`)
       console.log('↪️ Trying to continue without MongoDB')
-      start()
+      start(null)
     })
 } else {
   start()

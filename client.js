@@ -5,10 +5,13 @@ const socketio = require('@feathersjs/socketio-client')
 const auth = require('@feathersjs/authentication-client')
 const isClient = typeof window !== 'undefined'
 
+
+const COOKIE_NAME = 'frontless.jwt'
+
 function factory(request) {
 
   const authOptions = {
-    cookie: 'frontless.jwt',
+    cookie: COOKIE_NAME,
   }
   
   let hooks = {}
@@ -35,7 +38,7 @@ function factory(request) {
     hooks = {
       before: {
         all: [(ctx) => {
-          ctx.params.accessToken = request.cookies['frontless.jwt']
+          ctx.params.accessToken = request.cookies [COOKIE_NAME]
         }]
       }
     }

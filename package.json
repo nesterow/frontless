@@ -32,7 +32,7 @@
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "feathers-mongodb": "^4.0.4",
-    "frontless-utils": "^0.4.3",
+    "frontless-utils": "^0.4.4",
     "gulp": "^4.0.1",
     "lodash": "^4.17.11",
     "mongodb": "^3.2.3",
