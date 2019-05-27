@@ -1,6 +1,39 @@
 const local = require('@feathersjs/authentication-local')
-const errors = require('@feathersjs/errors')
+const validate = require('validate.js')
 const {MONGO_DATABASE} = process.env
+
+const formModel = {
+  
+  username: {
+    presence: {
+      message: '^Login is required',
+    },
+    length: {
+      maximum: 12,
+      minimum: 4,
+      message: '^Username must be from 6 to 12 symbols',
+    },
+  },
+
+
+  password: {
+    presence: {
+      message: '^Password is required',
+    },
+    length: {
+      minimum: 6,
+      message: '^Minimum 6 symbols',
+    },
+  },
+
+  agree: {
+    presence: {
+      message: '^Before signing up you have to agree with our terms an conditions',
+    },
+  },
+
+}
+
 
 module.exports = (app, mongo) => {
   
@@ -21,11 +54,23 @@ module.exports = (app, mongo) => {
     },
 
     async create(form) {
+
+      const errors = validate(form, formModel)
+      if (errors) {
+        return app.setState('signup-form', {
+          errors,
+        })
+      }
+      
       const {exists} = await this.get(form.username)
       if (!exists) {
-        return new errors.Conflict('user already exists')
+        return Model.insert(form)
       } else {
-        return new Error('user already exists')
+        return app.setState('signup-form', {
+          errors: {
+            username: ["User already exists"]
+          }
+        });
       }
     },
 
