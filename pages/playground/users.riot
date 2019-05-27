@@ -1,10 +1,36 @@
 <playground-users>
   <playground>
-    <div slot="example">
+    <form slot="example" class="form-horizontal {state.loading && 'loading'}" onsubmit={ submit }>
       <h2>
-        users
+        Register User
       </h2>
-    </div>
+      <div class="form-group {state.errors.username && 'has-error'}">
+        <input class="form-input" name="username" type="text" placeholder="Name" autocomplete="off">
+        <p class="form-input-hint" each={error in state.errors.username}>{error}</p>
+      </div>
+      <div class="form-group {state.errors.password && 'has-error'}">
+        <input class="form-input" name="password" type="password" placeholder="Password" autocomplete="off">
+        <p class="form-input-hint" each={error in state.errors.password}>{error}</p>
+      </div>
+      <div class="form-group {state.errors.password2 && 'has-error'}">
+        <input class="form-input" name="password2" type="password" placeholder="Repeat password" autocomplete="off">
+        <p class="form-input-hint" each={error in state.errors.password2}>{error}</p>
+      </div>
+      <div class="form-group {state.errors.agree && 'has-error'}">
+          <label class="form-switch">
+            <input type="checkbox" name="agree">
+            <i class="form-icon"></i> 
+            I agree with terms and conditions.
+          </label>
+          <p class="form-input-hint" each={error in state.errors.agree}>{error}</p>
+      </div>
+      <div class="form-group">
+          <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+      <div class="form-group has-success" if={state.success} >
+        <p class="form-input-hint">Success!</p>
+      </div>
+    </form>
     <div slot="code">
       <gist 
           username="nesterow" 
@@ -22,6 +48,8 @@
     import Caesar from 'components/examples/caesar.riot'
     import Gist from 'components/gist.riot'
 
+    import {serializeForm} from 'frontless-utils'
+
     export default () => ({
       layout: 'playground',
       components: {
@@ -29,6 +57,27 @@
         Caesar,
         Gist
       },
+      state: {
+        errors: {}
+      },
+      submit(ev) {
+        ev.preventDefault()
+        const Users = this.service('users')
+        window.users = Users;
+        const payload = serializeForm(ev.target, ['password2'])
+        console.log(1, payload, Users)
+        
+        Users.create(payload).
+        
+        then((res)=>{
+          console.log(res)
+        }).
+
+        catch((err) => {
+          console.log(err)
+        })
+
+      }
     })
   </script>
 </playground-users>

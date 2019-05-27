@@ -8,6 +8,9 @@ const CilentPlugin = (instance) => {
       return client.factory(this.req)
     }.bind(instance)
   })
+  instance.service = function(name) {
+    return this.client.service(name)
+  }.bind(instance);
 };
 
 riot.install(CilentPlugin)
