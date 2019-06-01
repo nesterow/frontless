@@ -2,8 +2,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <meta name="state" content='<%- state %>' />
-    <meta name="attributes" content='<%- shared %>' />
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
@@ -35,5 +33,8 @@
   </head>
   <body>
     <%- output %>
+    <script type="data/json" id="globals"><%- req.session.globals %></script>
+    <script type="data/json" id="state"><%- state %></script>
+    <script type="data/json" id="attributes"><%- shared %></script>
   </body>
 </html>
