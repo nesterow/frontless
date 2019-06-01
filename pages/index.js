@@ -65,14 +65,7 @@ const initialize = () => {
   if (root) {
     document.body.classList.add('disabled')
     const ComponentImplementation = tags.find((tag) => tag.module.default.name === root.getAttribute('is') )
-    const component = ComponentImplementation.module.default
-    console.log(component)
-
-    // while (root.firstChild) {
-    //   root.firstChild.remove()
-    // }
-    
-    // const mounted = riot.mount(root, component)
+    const component = ComponentImplementation.module.default;
     hydrate(component)(root)
     setTimeout(() => document.body.classList.remove('disabled'))
   }

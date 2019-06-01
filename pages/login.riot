@@ -1,0 +1,115 @@
+<login-page>
+
+  <div class="center-block">
+    <form class="form-block form-horizontal {state.loading && 'loading'}" onsubmit={ submit }>
+      <h2>Sign In</h2>
+      <div class="form-group {state.errors.username && 'has-error'}">
+        <input onfocus={reset} class="form-input" name="username" type="text" placeholder="Login" autocomplete="off">
+        <p class="form-input-hint" each={error in state.errors.username}>{error}</p>
+      </div>
+      <div class="form-group {state.errors.password && 'has-error'}">
+        <input onfocus={reset} class="form-input" name="password" type="password" placeholder="Password" autocomplete="off">
+        <p class="form-input-hint" each={error in state.errors.password}>{error}</p>
+      </div>
+      <div class="form-group">
+          <button type="submit" class="btn btn-block btn-primary">Sign In</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+
+    import {serializeForm} from 'frontless-utils'
+    import validate from 'validate.js'
+
+    const formModel = {
+      username: {
+        presence: {
+          message: '^Login is required',
+        },
+        length: {
+          maximum: 12,
+          minimum: 4,
+          message: '^Username must be from 6 to 12 symbols',
+        },
+      },
+      password: {
+        presence: {
+          message: '^Password is required',
+        },
+        length: {
+          minimum: 6,
+          message: '^Minimum 6 symbols',
+        },
+      },
+    }
+
+    export default () => ({
+      state: {
+        errors:{},
+        success: false,
+      },
+      onRendered(){
+        if (this.globals.authenticated) {
+          this.redirect('/profile')
+        }
+      },
+      submit(ev) {
+        ev.preventDefault()
+        const data = serializeForm(ev.target)
+        
+        const errors = validate(data, formModel)
+        if (errors) {
+          return this.update({
+            errors,
+          })
+        }
+        this.client.authenticate({
+          strategy: 'local',
+          username: data.username,
+          password: data.password
+        }).
+        
+        then((res) => {
+         console.log(res)
+         return this.client.passport.verifyJWT(res.accessToken)
+        }).
+        
+        then((res) => {
+          this.redirect('/profile')
+        }).
+
+        catch((err) => {  
+          console.log(err)
+        })
+
+      },
+
+      reset(){
+        this.update({
+          errors:{}
+        })
+      }
+    })
+
+  </script>
+  
+  <style>
+    .form-block {
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+    }
+    .center-block {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .center-block .form-input-hint {
+      margin: 0px;
+    }
+  </style>
+
+</login-page>

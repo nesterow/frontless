@@ -1,10 +1,11 @@
 //** RiotJS plugins that supposed to work the same way on client and server */
 const riot = require('riot')
 const client = require('client')
+const {extend} = require('lodash')
 
 const isBrowser = typeof window !== 'undefined'
 
-const {extend} = require('lodash')
+
 
 const Global = (instance) => {
 
@@ -46,8 +47,8 @@ const AuthPlugin = (instance) => {
   instance.fetch = function(props) {
     if (!isBrowser) {
       const {authenticated, user} = props.req.session;
-      const {logged, group} = (instance.access || {});
-      if (logged) {
+      const {loggedIn, group} = (instance.access || {});
+      if (loggedIn) {
         if (!authenticated) {
           return this.redirect('/login')
         }
