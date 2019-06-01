@@ -20,6 +20,9 @@ riot.install(function(component){
   component.onMounted = function (props, state) {
     EventBus.removeEventListener(eventName, component.onServerState.bind(this), component)
     EventBus.addEventListener(eventName, component.onServerState.bind(this), component)
+    if (component.onRendered) {
+      setTimeout(component.onRendered.bind(component))
+    }
     return onMounted.bind(this)(props, state)
   }.bind(component);
   
@@ -62,14 +65,7 @@ const initialize = () => {
   if (root) {
     document.body.classList.add('disabled')
     const ComponentImplementation = tags.find((tag) => tag.module.default.name === root.getAttribute('is') )
-    const component = ComponentImplementation.module.default
-    console.log(component)
-
-    // while (root.firstChild) {
-    //   root.firstChild.remove()
-    // }
-    
-    // const mounted = riot.mount(root, component)
+    const component = ComponentImplementation.module.default;
     hydrate(component)(root)
     setTimeout(() => document.body.classList.remove('disabled'))
   }

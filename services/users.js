@@ -1,4 +1,5 @@
 const local = require('@feathersjs/authentication-local')
+const auth = require('@feathersjs/authentication')
 const validate = require('validate.js')
 const {MONGO_DATABASE} = process.env
 
@@ -78,7 +79,7 @@ module.exports = (app, mongo) => {
       return []
     },
 
-    async delete() {
+    async remove(ctx) {
       return []
     },
 
@@ -92,5 +93,17 @@ module.exports = (app, mongo) => {
     },
     after: local.hooks.protect('password')
   })
+
+  app.service('authentication').hooks({
+    before: {
+     create: [
+      // You can chain multiple strategies
+      auth.hooks.authenticate(['local']),
+     ],
+     remove: [
+      auth.hooks.authenticate('jwt')
+     ]
+    }
+   });
 
 }

@@ -1,9 +1,9 @@
 <img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.png" height="50"/>
 
 ![Status](https://img.shields.io/badge/Status-Alpha-yellow.svg)
-![version](https://img.shields.io/badge/Version-0.0.4@alpha.2-yellow.svg)
+![version](https://img.shields.io/badge/Version-0.5.0@alpha-yellow.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
-
+[![Open Demo](https://img.shields.io/badge/Demo-➡-green.svg)](https://l2n8209x5z.sse.codesandbox.io)
 
 
 ## Riot Isomorphic/SSR Stack
@@ -131,12 +131,36 @@ client.service('myservice').create({})
 Notice that you don't need to handle API call as the server supposed to return ready view-model for your component. 
 The UI will update automatically. However, you still nedd to handle loading states and errors.
 
+#### Access control
+Access to pages can be controlled trough options set in the `access` property:
+```
+export default ()=> ({
+  access: {
+    loggedIn: true,
+  },
+  state:{},
+  ...
+})
+```
+By default two options are awailable: `loggedIn` and `group`.
+
+### Authentication
+Authentication is impemented with [@feathersjs/authentication-local](https://docs.feathersjs.com/api/authentication/local.html) module. 
+In order to customize user model you need to modify [verifier class](./components/verifier.js) and [the plugins](./plugins.js)
+
+### Security
+- Under no circumstances, It is NOT recommended to turn off the *CORS middlewares*.
+- When working with Riot Components, it is NOT recommended to use sensitive variables or use any sentive data as open text
+- When working with Riot Components, is is HIGHLY recommended to use functional approach. Every component should be returned from a function like `export default ()=> ({...component})`. This is needed to avoid [module caching](https://nodejs.org/api/modules.html#modules_caching) 
+
+
+
 ## Authors
 
 * **Anton Nesterov** - [@nesterow](https://github.com/nesterow)
 
 ## Credits
-* **Gianluca Guarini** - [@GianlucaGuarini](https://github.com/GianlucaGuarini) - *[[riot/hydrate]](https://github.com/riot/hydrate)*, *[[Riot.js]](https://github.com/riot/riot)*
+* **Gianluca Guarini** - [@GianlucaGuarini](https://github.com/GianlucaGuarini) - *[riot/hydrate](https://github.com/riot/hydrate)*, *[Riot.js](https://github.com/riot/riot)*
 
 ## License
 
@@ -149,12 +173,11 @@ This project is licensed under the MIT License - see the [LICENSE.md](.github/LI
 * [x] Async SSR
 * [x] Natural Routing  
 * [x] Database Interface
-* [ ] Users and Sessions
+* [x] Users and Sessions
 * [x] Server Sent State (w/feathers.js)
 * [x] Socket IO (w/feathers.js)
 * [x] Plugin support
-* [ ] Configuration / Deployment Scripts
-* [ ] Template cache on server side based on git hash
+* [ ] Configuration
 * [ ] Deployment scripts
 * [ ] PWA Bootstrap w/ version control
 * [ ] Documentation [15%]

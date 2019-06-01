@@ -1,0 +1,24 @@
+<profile>
+
+  <div class="text-center">
+    <h1>Welcome, {state.username}!</h1>
+    <a class="btn btn-link" href="/">Home</a>
+    <a class="btn btn-link" onclick={logout}>
+      Logout
+    </a>
+  </div>
+
+  </div>
+  <script>
+    export default () => ({
+      access: {
+        loggedIn: true
+      },
+      onRendered(){
+        this.update({
+          username: this.globals.username
+        })
+      }
+    })
+  </script>
+</profile>
