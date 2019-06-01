@@ -77,7 +77,6 @@
       },
 
       async fetch(){
-        console.log('fetching')
         const totals = await TodosCount.find({});
         let query = {
           $sort: {
