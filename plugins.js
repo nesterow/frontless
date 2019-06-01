@@ -2,7 +2,7 @@
 const riot = require('riot')
 const client = require('client')
 const {extend} = require('lodash')
-
+const {withRouter} = require('frontless-utils')
 const isBrowser = typeof window !== 'undefined'
 
 
@@ -76,6 +76,7 @@ const AuthPlugin = (instance) => {
 
 }
 
+riot.install(withRouter)
 riot.install(Global)
 riot.install(ClientPlugin)
 riot.install(AuthPlugin)
