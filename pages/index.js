@@ -20,6 +20,9 @@ riot.install(function(component){
   component.onMounted = function (props, state) {
     EventBus.removeEventListener(eventName, component.onServerState.bind(this), component)
     EventBus.addEventListener(eventName, component.onServerState.bind(this), component)
+    if (component.onRendered) {
+      setTimeout(component.onRendered.bind(component))
+    }
     return onMounted.bind(this)(props, state)
   }.bind(component);
   

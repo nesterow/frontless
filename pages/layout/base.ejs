@@ -2,8 +2,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <meta name="state" content='<%- state %>' />
-    <meta name="attributes" content='<%- shared %>' />
+    <meta name="state" content='<%- state %>' data-turbolinks-temporary/>
+    <meta name="attributes" content='<%- shared %>' data-turbolinks-temporary/>
+    <script type="data/json" id="globals" data-turbolinks-temporary><%- req.session.globals %></script>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <script src="/assets/pages/index.js"></script>
     <%- document.head.innerHTML %>

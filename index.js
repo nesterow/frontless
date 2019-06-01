@@ -23,6 +23,7 @@ const cors = require('cors')
 const socketio = require('@feathersjs/socketio')
 const authentication = require('@feathersjs/authentication')
 const local = require('@feathersjs/authentication-local')
+const Verifier = require('components/verifier')
 const register = require('@riotjs/ssr/register')
 register()
 
@@ -30,8 +31,9 @@ require('./plugins')
 
 const {FrontlessMiddleware, install, withPlugins} = require('frontless-utils')
 
-const pluginExample = require('components/nesterow/frontless-plugin')
-install(pluginExample)
+// install frontless plugins
+// const pluginExample = require('components/nesterow/frontless-plugin')
+// install(pluginExample)
 
 
 const sessionMiddleware = session({
@@ -69,6 +71,28 @@ app.use(express.urlencoded({extended: true}))
 app.configure(express.rest())
 app.use('/assets', express.static('assets'))
 
+app.use((req, res, next) => {
+  const token = req.cookies ['feathers-jwt']
+  app.passport.verifyJWT(token, {
+    secret: process.env.REST_AUTH_SECRET,
+  }).
+
+  then((user) => {
+    req.session.authenticated = true
+    req.session.user = user
+    req.session.save()
+    next()
+  }).
+
+  catch((err)=> {
+    req.session.authenticated = false
+    req.session.user = { userId: null }
+    req.session.save()
+    next()
+  })
+  
+})
+
 app.configure(socketio({}, function(io) {
   io.origins(origin)
   io.use(function(socket, next) {
@@ -83,8 +107,29 @@ app.configure(authentication({
   session: true,
   secret: process.env.REST_AUTH_SECRET,
   service: process.env.REST_AUTH_SERVICE,
+  cookie: {
+    enabled: true,
+    name: 'feathers-jwt',
+    httpOnly: false,
+    secure: false
+  },
+  jwt: {
+    header: { typ: 'access' },
+    audience: process.env.ORIGIN,
+    subject: 'anonymous',
+    issuer: 'frontless',
+    algorithm: 'HS256',
+    expiresIn: '10d' // the access token expiry
+   },
 }));
-app.configure(local())
+app.configure(local({
+  session: true,
+  usernameField: 'username',
+  passwordField: 'password',
+  entityUsernameField: 'username', 
+  entityPasswordField: 'password',
+  Verifier,
+}))
 
 app.emit('setup:ssr', app)
 app.use('/*@:args',  FrontlessMiddleware(__dirname, ['styles']))
@@ -104,6 +149,7 @@ app.setState = (id, data) => {
 const start = (mongo) => {
   app.emit('connected', app, mongo)
   require('./services')(app, mongo)
+  app.mongo = mongo;
   app.listen(6767, () => {
     console.log(`👍  app is listening on ${6767} \r\n`)
   })

@@ -59,9 +59,11 @@
         valid: false,
         errors: {}
       },
+      
       onMounted() {
         this.checkName = debounce(this.checkName.bind(this), 600)
       },
+
       checkName(ev) {
         const {value} = ev.target
         this.service('users').get(value).then(res => {

@@ -3,15 +3,17 @@ const axios = require('axios')
 const io = require('socket.io-client')
 const socketio = require('@feathersjs/socketio-client')
 const auth = require('@feathersjs/authentication-client')
+const { CookieStorage } = require('cookie-storage');
 const isClient = typeof window !== 'undefined'
 
 
-const COOKIE_NAME = 'frontless.jwt'
+const COOKIE_NAME = 'feathers-jwt'
 
 function factory(request) {
 
   const authOptions = {
     cookie: COOKIE_NAME,
+    storage: new CookieStorage()
   }
   
   let hooks = {}
