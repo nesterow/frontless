@@ -116,7 +116,7 @@ app.configure(authentication({
   jwt: {
     header: { typ: 'access' },
     audience: process.env.ORIGIN,
-    subject: 'anonymous',
+    subject: 'authentication',
     issuer: 'frontless',
     algorithm: 'HS256',
     expiresIn: '10d' // the access token expiry
