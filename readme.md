@@ -3,7 +3,7 @@
 ![Status](https://img.shields.io/badge/Status-Alpha-yellow.svg)
 ![version](https://img.shields.io/badge/Version-0.5.0@alpha-yellow.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
-[![Open Demo](https://img.shields.io/badge/Demo-➡-green.svg)](https://l2n8209x5z.sse.codesandbox.io)
+[![Open Demo](https://img.shields.io/badge/CodeSandbox-▶-green.svg)](https://l2n8209x5z.sse.codesandbox.io)
 
 
 ## Riot Isomorphic/SSR Stack
