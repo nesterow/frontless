@@ -6,6 +6,19 @@ const {withRouter} = require('frontless-utils')
 const isBrowser = typeof window !== 'undefined'
 
 
+// First register components
+if (!isBrowser) {
+  const glob = require( 'glob' )
+  const path = require( 'path' )
+
+  const register = (file) => {
+    const tag = require( path.resolve( file ) );
+    const component = tag.default;
+    riot.register(component.name, component)
+  } 
+
+  glob.sync( './**/*.riot' ).forEach( ( file ) => register(file))
+}
 
 const Global = (instance) => {
 
@@ -43,7 +56,7 @@ const ClientPlugin = (instance) => {
 
 const AuthPlugin = (instance) => {
 
-  const fetch = instance.fetch || (function() {});
+  const fetch = instance.fetch || (() => Promise.resolve());
   instance.fetch = function(props) {
     if (!isBrowser) {
       const {authenticated, user} = props.req.session;
@@ -62,7 +75,7 @@ const AuthPlugin = (instance) => {
         username: user.username
       })
     }
-    return fetch.bind(instance)(props)
+    return Promise.resolve(fetch.bind(instance)(props))
   }.bind(instance)
 
 

@@ -55,8 +55,8 @@ gulp.task('default', function(){
   const b = browserify({ 
       entries: ['pages/index.js'],
       plugin: [
-        hmr, 
-        watchify
+        // hmr, 
+        // watchify
       ], // load hmr as plugin
       debug: true,
       cache: {},

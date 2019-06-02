@@ -13,7 +13,6 @@ riot.install(function(component){
   component.onServerState = function (response) {
     this.state = assign(this.state, response.target.result.data)
     this.update()
-    console.log(123123, response)
   }.bind(component)
 
   const onMounted = component.onMounted || function () {}.bind(component)

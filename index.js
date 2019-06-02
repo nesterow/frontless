@@ -27,6 +27,10 @@ const Verifier = require('components/verifier')
 const register = require('@riotjs/ssr/register')
 register()
 
+// const tags = require(, {mode: 'list'})
+//   .concat(require('../components/**/*.riot', {mode: 'list'}))
+
+
 require('./plugins')
 
 const {FrontlessMiddleware, install, withPlugins} = require('frontless-utils')
@@ -70,6 +74,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.configure(express.rest())
 app.use('/assets', express.static('assets'))
+app.use('/worker.js', express.static('./worker.js'))
 
 app.use((req, res, next) => {
   const token = req.cookies ['feathers-jwt']
