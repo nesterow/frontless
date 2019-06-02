@@ -178,5 +178,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](.github/LI
 * [x] Plugin support
 * [ ] Configuration
 * [ ] Deployment scripts
-* [ ] PWA Bootstrap w/ version control
+* [ ] PWA Bootstrap [80%]
 * [ ] Documentation [15%]
