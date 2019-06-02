@@ -48,7 +48,7 @@ Essential understanding of following technologies is _recommended_.
 | DB Interface (FeathersJS Client) | Rest/IO (FeathersJS Client) |
 
 [![FeathersJS](https://img.shields.io/badge/FeathersJS-3.3.1-green.svg)](https://github.com/feathersjs/feathers)
-[![RiotJS](https://img.shields.io/badge/RiotJS-4.0.0@rc.17-yellow.svg)](https://github.com/riot/riot)
+[![RiotJS](https://img.shields.io/badge/RiotJS-4.0.2-green.svg)](https://github.com/riot/riot)
 [![Turbolinks](https://img.shields.io/badge/Turbolinks-5.2.0-green.svg)](https://github.com/turbolinks/turbolinks)
 [![ExpressJS](https://img.shields.io/badge/Express-4.16.4-green.svg)](https://github.com/expressjs/express)
 
