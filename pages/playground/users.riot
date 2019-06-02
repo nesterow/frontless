@@ -78,13 +78,12 @@
       submit(ev) {
         ev.preventDefault()
         const Users = this.service('users')
-        window.users = Users;
         const payload = serializeForm(ev.target)
         Users.create(payload).
+        
         then((res)=>{
           const {code} = res;
           ev.target.reset()
-
         })
 
       }

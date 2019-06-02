@@ -8,15 +8,13 @@ const isBrowser = typeof window !== 'undefined'
 
 // First register components
 if (!isBrowser) {
-  const glob = require( 'glob' )
-  const path = require( 'path' )
-
+  const glob = require('glob')
+  const path = require('path')
   const register = (file) => {
-    const tag = require( path.resolve( file ) );
+    const tag = require(path.resolve(file))
     const component = tag.default;
     riot.register(component.name, component)
-  } 
-
+  };
   glob.sync( './**/*.riot' ).forEach( ( file ) => register(file))
 }
 
