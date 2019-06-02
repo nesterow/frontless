@@ -79,7 +79,7 @@ module.exports = (app, mongo) => {
       return []
     },
 
-    async remove(ctx) {
+    async remove() {
       return []
     },
 

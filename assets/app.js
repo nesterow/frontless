@@ -6,5 +6,11 @@ navigator.serviceWorker.register('/worker.js')
     .catch(err => console.log('Boo!', err));
 
 navigator.serviceWorker.addEventListener('message', (event) => {
-  console.log(123, event.data)
+  switch(event.data.type) {
+    case 'revisit':
+      Turbolinks.visit(event.data.url)
+      break;
+    default:
+      break;
+  }
 })
