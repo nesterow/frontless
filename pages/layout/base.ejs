@@ -3,10 +3,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <meta name="turbolinks-cache-control" content="no-cache">
-    <script src="/assets/app.js"></script>
-    <script src="/assets/pages/index.js"></script>
+    <% if (CACHE_PAGES.filter((e) => e.endsWith(req.params [0] || '')).length) { %> 
+      <meta name="turbolinks-cache-control" content="no-cache">
+    <%}%>
+    <script src="/assets/boot.js"></script>
+    <script src="/assets/application.js"></script>
     <%- document.head.innerHTML %>
+    
   </head>
   <body>
     <%- output %>

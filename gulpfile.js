@@ -29,8 +29,11 @@ function runCommand(command, args, options = undefined) {
 
 gulp.task('start', function (done) {
   gulp.task('default')()
+  gulp.task('worker')()
+  gulp.task('boot')()
   return nodemon({
     script: 'index.js'
+  , tasks: ['worker', 'boot']
   , args: ['./config.env']
   , ignore: ['node_modules/', 'assets/']
   , ext: 'js ejs riot json jss env'
@@ -47,7 +50,21 @@ gulp.task('build', function(){
     .plugin('tinyify', { flat: false })
     .bundle()
     .pipe(require('minify-stream')({ sourceMap: false }))
-    .pipe(source('pages/index.js'))
+    .pipe(source('application.js'))
+    .pipe(gulp.dest('assets/'))
+})
+
+gulp.task('worker', function(){
+  return browserify({ entries: ['worker/index.js'] })
+    .bundle()
+    .pipe(source('worker.js'))
+    .pipe(gulp.dest('assets/'))
+})
+
+gulp.task('boot', function(){
+  return browserify({ entries: ['worker/boot.js'] })
+    .bundle()
+    .pipe(source('boot.js'))
     .pipe(gulp.dest('assets/'))
 })
 
@@ -67,7 +84,7 @@ gulp.task('default', function(){
   
   const bundle = () => {
     b.bundle()
-    .pipe(source('pages/index.js'))
+    .pipe(source('application.js'))
     .pipe(gulp.dest('assets/'))
   }
   bundle()
