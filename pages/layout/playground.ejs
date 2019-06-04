@@ -33,9 +33,10 @@
         border-left: 12px solid #f7f7f7;
       }
     </style>
-    <%- document.head.innerHTML %>
+    <%- head %>
   </head>
   <body>
+    <style data-ssr-jss><%- stylesheet %></style>
     <%- output %>
     <script type="data/json" id="globals"><%- req.session.globals %></script>
     <script type="data/json" id="state"><%- state %></script>
