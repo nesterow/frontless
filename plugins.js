@@ -87,6 +87,7 @@ const AuthPlugin = (instance) => {
 
 }
 
+
 riot.install(withRouter)
 riot.install(Global)
 riot.install(ClientPlugin)

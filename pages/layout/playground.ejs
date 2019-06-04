@@ -34,9 +34,9 @@
       }
     </style>
     <%- head %>
-    <style><%- stylesheet %></style>
   </head>
   <body>
+    <style data-ssr-jss><%- stylesheet %></style>
     <%- output %>
     <script type="data/json" id="globals"><%- req.session.globals %></script>
     <script type="data/json" id="state"><%- state %></script>

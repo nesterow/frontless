@@ -9,9 +9,9 @@
     <script src="/assets/boot.js"></script>
     <script src="/assets/application.js"></script>
     <%- head %>
-    <style><%- stylesheet %></style>
   </head>
   <body>
+      <style data-ssr-jss><%- stylesheet %></style>
     <%- output %>
     <script type="data/json" id="globals"><%- req.session.globals %></script>
     <script type="data/json" id="state"><%- state %></script>
