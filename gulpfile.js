@@ -55,14 +55,14 @@ gulp.task('build', function(){
 })
 
 gulp.task('worker', function(){
-  return browserify({ entries: ['worker/index.js'] })
+  return browserify({ entries: ['components/webworker/index.js'] })
     .bundle()
     .pipe(source('worker.js'))
     .pipe(gulp.dest('assets/'))
 })
 
 gulp.task('boot', function(){
-  return browserify({ entries: ['worker/boot.js'] })
+  return browserify({ entries: ['components/webworker/boot.js'] })
     .bundle()
     .pipe(source('boot.js'))
     .pipe(gulp.dest('assets/'))

@@ -27,7 +27,7 @@ const Verifier = require('components/verifier')
 const register = require('@riotjs/ssr/register')
 register()
 
-const {CACHE_PAGES} = require('./worker/config')
+const {CACHE_PAGES} = require('./components/webworker/config')
 global.CACHE_PAGES = CACHE_PAGES
 
 require('./plugins')

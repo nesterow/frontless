@@ -74,5 +74,8 @@ const initialize = () => {
 
 }
 window.initialize = initialize;
-document.addEventListener('turbolinks:load', () => initialize());
+document.addEventListener('turbolinks:load', () => {
+  const fromCache = !!document.body.getAttribute('from-cache')
+  if (!fromCache) initialize();
+});
 document.addEventListener('hmr:updated', () => setTimeout(() => location.reload(), 1800))

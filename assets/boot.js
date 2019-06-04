@@ -8,6 +8,9 @@ navigator.serviceWorker.register('/worker.js')
 
 navigator.serviceWorker.addEventListener('message', (event) => {
   switch(event.data.type) {
+    case 'before:revisit':
+      console.log('before:revisit')
+      break;
     case 'revisit':
       Turbolinks.visit(event.data.url)
       break;
