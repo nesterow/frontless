@@ -36,7 +36,6 @@ const isPage = (string) => {
 
 self.addEventListener('install', (event) => {
   self.skipWaiting()
-  console.log(123123)
   event.waitUntil(caches.open('appdata').then(
     (cache) => {
       return cache.addAll(__ALL__)
@@ -50,18 +49,38 @@ self.addEventListener('fetch', event => {
       .then (cache => {
         return cache.match(event.request)
           .then(function(response) {
-
             // return immediately and delete from cache
             // then ask turbolinks to revisit location
             if (response && isPage(event.request.url)) {
+              message({ type: 'before:revisit', url: event.request.url })
               setTimeout(() => {
                 cache.delete(event.request).then((success)=>{
                   if (success) {
                     message({ type: 'revisit', url: event.request.url })
                   }
                 })
-              },100)
-              return response
+              },100);
+              
+              return response.text().then((text) => {
+                
+                try {
+                  return new Response(text.replace('<body', '<body from-cache="true" '), {
+                    headers: new Headers([
+                      ['Content-Type', 'text/html']
+                    ]),
+                    status:     response.status,
+                    statusText: response.statusText,
+                    type: response.type
+                  })
+                } catch(e) {
+                  return new Response(text, {
+                    status:     response.status,
+                    statusText: response.statusText,
+                    type: response.type
+                  })
+                }
+                
+              })
             }
 
             // (revisit) get fresh data from server and put it  in cache
@@ -72,12 +91,18 @@ self.addEventListener('fetch', event => {
                   })
                 ).
                 then(() => {
+                  message({ type: 'after:revisit', url: event.request.url })
                   return cache.match(event.request)
                 })
             }
 
-            // handle other requests normally
-            return response || fetch(event.request)
+
+          // handle other requests normally
+          return response || fetch(event.request).then((data) => {
+            return data
+          })
+           
+            
           }
         )
     })

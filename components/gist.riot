@@ -5,16 +5,17 @@
       <a onclick={ () => setActive(index) }>{item.name || item.file}</a>
     </li>
   </ul>
-
-  <div class="loading loading-lg gist-wrapper">
+  <div class="{state.loading && 'loading loading-lg'} gist-wrapper">
     <iframe src={getActive()} class="gist-window" onload={reset}></iframe>
   </div>
 
   <script>
+    import {isServer} from 'frontless-utils' 
     export default {
       state: {
         gists: [],
-        active: 0
+        active: 0,
+        loading: true
       },
       
       gistTemplate: "data:text/html;charset=utf-8,%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2F-username-%2F-gist-.js%3Ffile%3D-file-%22%3E%3C%2Fscript%3E"
@@ -32,13 +33,11 @@
       },
 
       setActive(index){
-        this.$('.gist-wrapper').classList.add('loading');
-        this.update({active: index})
-        this.update()
+        this.update({loading: true, active: index})
       },
 
       reset(ev){
-        this.$('.gist-wrapper').classList.remove('loading');
+        this.update({loading: false})
       },
 
       getActive(){
@@ -55,6 +54,7 @@
       margin: 0px;
       display: flex;
       box-shadow: 0px -2px 3px #eee inset;
+      height: calc(100vh - 190px);
     }
     gist .gist-wrapper {
       display: flex;
