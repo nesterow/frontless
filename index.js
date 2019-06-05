@@ -29,10 +29,10 @@ register()
 
 const {CACHE_PAGES} = require('./components/webworker/config')
 global.CACHE_PAGES = CACHE_PAGES
-
 require('./plugins')
 
-const {FrontlessMiddleware, install, withPlugins} = require('frontless-utils')
+const FrontlessMiddleware = require('components/utils/middleware')
+const {install, withPlugins} = require('components/utils/plugins')
 
 // install frontless plugins
 // const pluginExample = require('components/nesterow/frontless-plugin')

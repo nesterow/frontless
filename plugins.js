@@ -2,7 +2,7 @@
 const riot = require('riot')
 const client = require('client')
 const {extend} = require('lodash')
-const {withRouter} = require('frontless-utils')
+const {withRouter} = require('components/utils')
 const isBrowser = typeof window !== 'undefined'
 
 
