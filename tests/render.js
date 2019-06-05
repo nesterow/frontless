@@ -5,7 +5,9 @@ import render from '../components/utils/render'
 import {expect, use} from 'chai'
 import sinonChai from 'sinon-chai'
 
-describe('render function', () => {
+describe('render function', function() {
+
+  this.timeout(5000)
 
   before(() => {
     JSDOMGlobal()
@@ -14,13 +16,16 @@ describe('render function', () => {
   })
 
   it('it can render pages', async () => {
+    
+    
+
     const PAGE_NAME = 'index-page'
     const Page = require('./render/page.riot').default
     register('index-page', Page)
     register('test', require('./render/test.riot').default)
     register('with-jss', require('./render/with-jss.riot').default)
 
-    const {output, state, shared, layout, head, stylesheet } = await render(PAGE_NAME, Page, {}, ['styles']) 
+    const {output, state, shared, layout, head, stylesheet } = await render(PAGE_NAME, Page, {}, ['styles'])
     
     expect(typeof output).to.be.equal('string')
     expect(output).to.match(/<index-page is="page"/)
@@ -46,7 +51,6 @@ describe('render function', () => {
     expect(ATTRS["test"][0].name).to.be.equal('styles')
     expect(ATTRS["with-jss"][0].name).to.be.equal('styles')
     expect(ATTRS["with-jss"][0].data.test.fontWeight).to.be.equal(600)
-
 
     return true
   })
