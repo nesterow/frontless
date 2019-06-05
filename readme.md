@@ -9,7 +9,7 @@
 ## Riot Isomorphic/SSR Stack
 Frontless aims to provide classic web development experience with modern approach. 
 
-Classic MVVM approach significanly complicates work with data. In fact, on practice, a frontend developer would end up writing the code that would be better performed by server rather than a client. I believe that the server has to be responsible for things like _routing_, _data requests_, _user state_, and and some cases _component's view-model_. Theese are routines that the server does better than browser. 
+Classic MVVM approach significanly complicates work with data. In fact, on practice, a frontend developer would end up writing the code that would be better performed by server rather than a client. I believe that the server has to be responsible for things like _routing_, _data requests_, _user state_, and and some cases _component's view-model_. These are routines that the server does better than browser. 
 
 - It is just an ExpressJS application. 
 - It uses FeathersJS on client and server.
