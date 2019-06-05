@@ -1,8 +1,8 @@
 
 module.exports = {
   promptIcon: {
-    position: 'absolute',
-    fontSize: 35,
+    position: 'absolute !important',
+    fontSize: '35px !important',
     color: 'darkgrey',
     top: 10,
     left: 12,
