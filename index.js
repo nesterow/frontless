@@ -15,7 +15,7 @@
 const dotenv = require('dotenv');
 dotenv.config({path: process.argv[process.argv.length - 1]});
 
-cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser')
 const express = require('@feathersjs/express')
 const feathers = require('@feathersjs/feathers')
 const session = require('express-session')
