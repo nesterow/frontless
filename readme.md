@@ -1,6 +1,6 @@
 <img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.png" height="50"/>
 
-![version](https://img.shields.io/badge/Version-0.5.0@alpha-yellow.svg)
+![version](https://img.shields.io/badge/Version-0.5.2@alpha-yellow.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
 [![Open Demo](https://img.shields.io/badge/CodeSandbox-▶-green.svg)](https://l2n8209x5z.sse.codesandbox.io)
 
