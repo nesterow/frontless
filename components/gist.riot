@@ -10,7 +10,8 @@
   </div>
 
   <script>
-    import {isServer} from 'components/utils' 
+    import {isServer} from 'components/utils';
+
     export default {
       state: {
         gists: [],
@@ -18,7 +19,7 @@
         loading: true
       },
       
-      gistTemplate: "data:text/html;charset=utf-8,%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2F-username-%2F-gist-.js%3Ffile%3D-file-%22%3E%3C%2Fscript%3E"
+      gistTemplate: "data:text/html;charset=utf-8,%3Cscript%20src%3D%22https%3A%2F%2Fgist.github.com%2F-username-%2F-gist-.js%3Ffile%3D-file-%22%3E%3C%2Fscript%3E",
       
       onMounted(props) {
         this.update({
