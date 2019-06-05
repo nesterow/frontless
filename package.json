@@ -23,7 +23,7 @@
     "@riotjs/compiler": "^4.2.5",
     "@riotjs/hydrate": "^4.0.0",
     "@riotjs/ssr": "^4.1.0",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "cookie-parser": "^1.4.4",
     "cookie-storage": "^5.0.1",
     "cors": "^2.8.5",
