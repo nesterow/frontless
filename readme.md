@@ -27,7 +27,7 @@ Before you start, it is highly recommended to have essential understanding of fo
 
 
 | SERVER        | CLIENT        |
-| ------------- |-------------|
+| :------------- |:-------------|
 | Routing *[express.js]* | Navigation *[turbolinks]* |
 | View Model *[feathers]*    | Data Representation *[riot.js]* |
 | Layout Rendering *[riot/ssr]* | User input *[riot.js]*  |
