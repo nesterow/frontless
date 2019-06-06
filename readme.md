@@ -17,8 +17,26 @@ At the core, *Frontless* is just an `express.js` server that provides routing, d
 - It provides **natural routing** `page.riot -> GET /page`
 - It allows to update components' state directly from server response
 
+### The Stack
+Before you start, it is highly recommended to have essential understanding of following technologies:
+<br>
+[![FeathersJS](https://img.shields.io/badge/FeathersJS-3.3.1-green.svg)](https://github.com/feathersjs/feathers)
+[![RiotJS](https://img.shields.io/badge/RiotJS-4.0.2-green.svg)](https://github.com/riot/riot)
+[![Turbolinks](https://img.shields.io/badge/Turbolinks-5.2.0-green.svg)](https://github.com/turbolinks/turbolinks)
+[![ExpressJS](https://img.shields.io/badge/Express-4.16.4-green.svg)](https://github.com/expressjs/express)
+
+
+| Server        | Client        |
+| ------------- |:-------------:|
+| Routing (Express.JS ) | Navigation (Turbolinks) |
+| View Model (FeathersJS)    | Data Representation (RiotJS) |
+| Layout Rendering (RiotJS SSR) | User input (RiotJS)  |
+| Session / User State (Express.js) | JWT, Cookies |
+| Realtime (Feathers, SocketIO) | FeathersJS Client |
+| DB Interface (FeathersJS Client) | Rest/IO (FeathersJS Client) |
+
 ### Getting Started
-1. Clone this repo or use NPX
+1. Clone [this repo](https://github.com/nesterow/frontless) or use NPX
 
 ```
   npx create-frontless <app-name>
@@ -34,24 +52,6 @@ At the core, *Frontless* is just an `express.js` server that provides routing, d
   npm start
 ```
 Оpen [http://localhost:6767](http://localhost:6767) in your browser. Navigate to the playground for examples 
-
-
-### The Stack
-Essential understanding of following technologies is _recommended_.
-
-| Server        | Client        |
-| ------------- |:-------------:|
-| Routing (Express.JS ) | Navigation (Turbolinks) |
-| View Model (FeathersJS)    | Data Representation (RiotJS) |
-| Layout Rendering (RiotJS SSR) | User input (RiotJS)  |
-| Session / User State (Express.js) | JWT, Cookies |
-| Realtime (Feathers, SocketIO) | FeathersJS Client |
-| DB Interface (FeathersJS Client) | Rest/IO (FeathersJS Client) |
-
-[![FeathersJS](https://img.shields.io/badge/FeathersJS-3.3.1-green.svg)](https://github.com/feathersjs/feathers)
-[![RiotJS](https://img.shields.io/badge/RiotJS-4.0.2-green.svg)](https://github.com/riot/riot)
-[![Turbolinks](https://img.shields.io/badge/Turbolinks-5.2.0-green.svg)](https://github.com/turbolinks/turbolinks)
-[![ExpressJS](https://img.shields.io/badge/Express-4.16.4-green.svg)](https://github.com/expressjs/express)
 
 
 ### Core concepts
