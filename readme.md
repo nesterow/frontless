@@ -11,7 +11,7 @@
 It lets you build server-side rendered web applications using [RiotJS](https://riot.js.org) and [FeathersJS](http://feathersjs.com).
 At the core, *Frontless* is just an `express.js` server that provides routing, data access, web sockets and user sessions
 
-- It is just an Express aplication you can customize at your will
+- It is just an express.js aplication you can customize at will
 - It is built with ❤️ RiotJS.
 - It provides natural HTTP routing `[page.riot -> GET /page]`
 - It uses FeathersJS on client and server
