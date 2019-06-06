@@ -20,20 +20,20 @@ At the core, *Frontless* is just an `express.js` server that provides routing, d
 ### The Stack
 Before you start, it is highly recommended to have essential understanding of following technologies:
 <br>
-[![FeathersJS](https://img.shields.io/badge/FeathersJS-3.3.1-green.svg)](https://github.com/feathersjs/feathers)
-[![RiotJS](https://img.shields.io/badge/RiotJS-4.0.2-green.svg)](https://github.com/riot/riot)
-[![Turbolinks](https://img.shields.io/badge/Turbolinks-5.2.0-green.svg)](https://github.com/turbolinks/turbolinks)
-[![ExpressJS](https://img.shields.io/badge/Express-4.16.4-green.svg)](https://github.com/expressjs/express)
+[FeathersJS](https://github.com/feathersjs/feathers) | 
+[RiotJS](https://github.com/riot/riot) |
+[Turbolinks](https://github.com/turbolinks/turbolinks) |
+[ExpressJS](https://github.com/expressjs/express)
 
 
-| Server        | Client        |
-| ------------- |:-------------:|
-| Routing (Express.JS ) | Navigation (Turbolinks) |
-| View Model (FeathersJS)    | Data Representation (RiotJS) |
-| Layout Rendering (RiotJS SSR) | User input (RiotJS)  |
-| Session / User State (Express.js) | JWT, Cookies |
-| Realtime (Feathers, SocketIO) | FeathersJS Client |
-| DB Interface (FeathersJS Client) | Rest/IO (FeathersJS Client) |
+| SERVER        | CLIENT        |
+| ------------- |-------------|
+| Routing *[express.js]* | Navigation *[turbolinks]* |
+| View Model *[feathers]*    | Data Representation *[riot.js]* |
+| Layout Rendering *[riot/ssr]* | User input *[riot.js]*  |
+| Sessions *[express.js]* | JWT, Cookies |
+| Realtime *[feathers, socket.io]* | FeathersJS Client |
+| DB Interface *[@feathers/client]* | Rest/IO *[@feathers/client]* |
 
 ### Getting Started
 1. Clone [this repo](https://github.com/nesterow/frontless) or use NPX
