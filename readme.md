@@ -24,7 +24,7 @@ Before you start, it is highly recommended to have essential understanding of fo
 [RiotJS](https://github.com/riot/riot) |
 [Turbolinks](https://github.com/turbolinks/turbolinks) |
 [ExpressJS](https://github.com/expressjs/express)
-
+<details><summary>Summary</summary>
 
 | SERVER        | CLIENT        |
 | :------------- |:-------------|
@@ -34,6 +34,8 @@ Before you start, it is highly recommended to have essential understanding of fo
 | Sessions *[express.js]* | JWT, Cookies |
 | Realtime *[feathers, socket.io]* | FeathersJS Client |
 | DB Interface *[@feathers/client]* | Rest/IO *[@feathers/client]* |
+
+</details>
 
 ### Getting Started
 1. Clone [this repo](https://github.com/nesterow/frontless) or use NPX
