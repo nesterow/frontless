@@ -24,7 +24,7 @@ Before you start, it is highly recommended to have essential understanding of fo
 [RiotJS](https://github.com/riot/riot) |
 [Turbolinks](https://github.com/turbolinks/turbolinks) |
 [ExpressJS](https://github.com/expressjs/express)
-<details><summary>Summary</summary>
+<details><summary>Stack summary</summary>
 
 | SERVER        | CLIENT        |
 | :------------- |:-------------|
