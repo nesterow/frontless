@@ -6,7 +6,7 @@
 [![Open Demo](https://img.shields.io/badge/CodeSandbox-▶-green.svg)](https://h5l5o.sse.codesandbox.io/)
 
 
-## Riot Isomorphic/SSR Stack
+## Riot Isomorphic Stack
 *Frontless* is an isomorphic web framework built for next generation web applications. 
 It lets you build server-side rendered web applications using [RiotJS](https://riot.js.org) and [FeathersJS](http://feathersjs.com).
 At the core, *Frontless* is just an `express.js` server that provides routing, data access, web sockets and user sessions
