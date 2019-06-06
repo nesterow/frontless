@@ -56,14 +56,15 @@ Before you start, it is highly recommended to have essential understanding of fo
 Оpen [http://localhost:6767](http://localhost:6767) in your browser. Navigate to the playground for examples 
 
 
-### Core concepts
+### Routing
+All files ending with `*.riot` extension that placed in the `pages` directory become site pages. It works similar to php scripts or html pages.
+For example: `index.riot -> GET /`, `page.riot -> GET /page`.
 
-#### Natural Routing
-All files ending with `*.riot` placed in the `pages` become site pages, much like php scripts or html pages.
-[`index.riot -> GET /`, `page.riot -> GET /page`]
 
-#### Passing arguments in url
-Passing positional argument to the page is possible trough `@` modifier. A semicolon-separated string after `@` will be parsed as positional arguments.
+#### Positional arguments
+*Positional* URL arguments in Frontless are drop-in replacement for complex routing schemes. 
+Passing a positional argument to the page is possible trough `@` modifier. 
+A semicolon-separated string after `@` will be parsed as positional arguments.
 For example consider following request:
 ```
 GET /page@some_id;data?q=1
@@ -77,7 +78,6 @@ export default {
   }
 }
 ```
-
 
 #### Server side rendering
 All RiotJS components included in pages will render after all data is fetched. 
