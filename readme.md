@@ -7,9 +7,9 @@
 
 
 ## Riot Isomorphic/SSR Stack
-Frontless aims to provide classic web development experience with modern approach. 
-
-Classic MVVM approach significantly complicates work with data. In fact, on practice, a frontend developer would end up writing the code that would be better performed by server rather than a client. I believe that the server has to be responsible for things like routing, data requests, user state, and and some cases component's view-model. These are routines that the server does better than browser.
+*Frontless* is an isomorphic web framework built for next generation web applications. 
+It lets you build server-side rendered web applications using [RiotJS](https://riot.js.org) and [FeathersJS](http://feathersjs.com).
+At the core, *Frontless* is just an `express.js` server that provides routing, data access, web sockets and user sessions
 
 - It is just an ExpressJS application. 
 - It uses FeathersJS on client and server.
