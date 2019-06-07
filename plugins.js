@@ -15,7 +15,7 @@ if (!isBrowser) {
     const component = tag.default;
     riot.register(component.name, component)
   };
-  glob.sync( './**/*.riot' ).forEach( ( file ) => register(file))
+  glob.sync( './**/*.riot' ).forEach( ( file ) => !file.startsWith('./tests/') && register(file))
 }
 
 const Global = (instance) => {
