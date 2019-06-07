@@ -6,19 +6,39 @@
 [![Open Demo](https://img.shields.io/badge/CodeSandbox-▶-green.svg)](https://h5l5o.sse.codesandbox.io/)
 
 
-## Riot Isomorphic/SSR Stack
-Frontless aims to provide classic web development experience with modern approach. 
+## Riot Isomorphic Stack
+*Frontless* is an isomorphic web framework built for next generation web applications. 
+It lets you build server-side rendered web applications using [RiotJS](https://riot.js.org) and [FeathersJS](http://feathersjs.com).
+At the core, *Frontless* is just an `express.js` server that provides routing, data access, web sockets and user sessions
 
-Classic MVVM approach significanly complicates work with data. In fact, on practice, a frontend developer would end up writing the code that would be better performed by server rather than a client. I believe that the server has to be responsible for things like _routing_, _data requests_, _user state_, and and some cases _component's view-model_. Theese are routines that the server does better than browser. 
-
-- It is just an ExpressJS application. 
-- It uses FeathersJS on client and server.
+- It is just an express.js aplication you can customize at will
 - It is built with ❤️ RiotJS.
-- It provides **natural routing** `page.riot -> GET /page`
+- It provides natural HTTP routing `[page.riot -> GET /page]`
+- It uses FeathersJS on client and server
 - It allows to update components' state directly from server response
 
+### The Stack
+Before you start, it is highly recommended to have essential understanding of following technologies:
+<br>
+[FeathersJS](https://github.com/feathersjs/feathers) | 
+[RiotJS](https://github.com/riot/riot) |
+[Turbolinks](https://github.com/turbolinks/turbolinks) |
+[ExpressJS](https://github.com/expressjs/express)
+<details><summary>Stack summary</summary>
+
+| SERVER        | CLIENT        |
+| :------------- |:-------------|
+| Routing *[express.js]* | Navigation *[turbolinks]* |
+| View Model *[feathers]*    | Data Representation *[riot.js]* |
+| Layout Rendering *[riot/ssr]* | User input *[riot.js]*  |
+| Sessions *[express.js]* | JWT, Cookies |
+| Realtime *[feathers, socket.io]* | FeathersJS Client |
+| DB Interface *[@feathers/client]* | Rest/IO *[@feathers/client]* |
+
+</details>
+
 ### Getting Started
-1. Clone this repo or use NPX
+1. Clone [this repo](https://github.com/nesterow/frontless) or use NPX
 
 ```
   npx create-frontless <app-name>
@@ -36,32 +56,15 @@ Classic MVVM approach significanly complicates work with data. In fact, on pract
 Оpen [http://localhost:6767](http://localhost:6767) in your browser. Navigate to the playground for examples 
 
 
-### The Stack
-Essential understanding of following technologies is _recommended_.
-
-| Server        | Client        |
-| ------------- |:-------------:|
-| Routing (Express.JS ) | Navigation (Turbolinks) |
-| View Model (FeathersJS)    | Data Representation (RiotJS) |
-| Layout Rendering (RiotJS SSR) | User input (RiotJS)  |
-| Session / User State (Express.js) | JWT, Cookies |
-| Realtime (Feathers, SocketIO) | FeathersJS Client |
-| DB Interface (FeathersJS Client) | Rest/IO (FeathersJS Client) |
-
-[![FeathersJS](https://img.shields.io/badge/FeathersJS-3.3.1-green.svg)](https://github.com/feathersjs/feathers)
-[![RiotJS](https://img.shields.io/badge/RiotJS-4.0.2-green.svg)](https://github.com/riot/riot)
-[![Turbolinks](https://img.shields.io/badge/Turbolinks-5.2.0-green.svg)](https://github.com/turbolinks/turbolinks)
-[![ExpressJS](https://img.shields.io/badge/Express-4.16.4-green.svg)](https://github.com/expressjs/express)
+### Routing
+All files ending with `*.riot` extension that placed in the `pages` directory become site pages. It works similar to php scripts or html pages.
+For example: `index.riot -> GET /`, `page.riot -> GET /page`.
 
 
-### Core concepts
-
-#### Natural Routing
-All files ending with `*.riot` placed in the `pages` become site pages, much like php scripts or html pages.
-[`index.riot -> GET /`, `page.riot -> GET /page`]
-
-#### Passing arguments in url
-Passing positional argument to the page is possible trough `@` modifier. A semicolon-separated string after `@` will be parsed as positional arguments.
+#### Positional arguments
+*Positional* URL arguments in Frontless are drop-in replacement for complex routing schemes. 
+Passing a positional argument to the page is possible trough `@` modifier. 
+A semicolon-separated string after `@` will be parsed as positional arguments.
 For example consider following request:
 ```
 GET /page@some_id;data?q=1
@@ -75,7 +78,6 @@ export default {
   }
 }
 ```
-
 
 #### Server side rendering
 All RiotJS components included in pages will render after all data is fetched. 
