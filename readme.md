@@ -37,7 +37,7 @@ Before you start, it is highly recommended to have essential understanding of fo
 
 </details>
 
-### Getting Started
+## Getting Started
 1. Clone [this repo](https://github.com/nesterow/frontless) or use NPX
 
 ```
@@ -55,7 +55,7 @@ Before you start, it is highly recommended to have essential understanding of fo
 ```
 Оpen [http://localhost:6767](http://localhost:6767) in your browser. Navigate to the playground for examples 
 
-### [Documentation](https://nesterow.github.io/frontless/)
+## [Documentation](https://nesterow.github.io/frontless/)
 [Frontless Docs](https://nesterow.github.io/frontless/) | [Feathers Docs](https://docs.feathersjs.com/) | [Riot Docs](https://riot.js.org/)
 
 
