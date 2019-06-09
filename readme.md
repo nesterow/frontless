@@ -63,13 +63,6 @@ Before you start, it is highly recommended to have essential understanding of fo
 [Frontless Docs](https://nesterow.github.io/frontless/) | [Feathers Docs](https://docs.feathersjs.com/) | [Riot Docs](https://riot.js.org/)
 
 
-## Authors
-
-* **Anton Nesterov** - [@nesterow](https://github.com/nesterow)
-
-## Credits
-* **Gianluca Guarini** - [@GianlucaGuarini](https://github.com/GianlucaGuarini) - *[riot/hydrate](https://github.com/riot/hydrate)*, *[Riot.js](https://github.com/riot/riot)*
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](.github/LICENSE.md) file for details
@@ -89,3 +82,12 @@ This project is licensed under the MIT License - see the [LICENSE.md](.github/LI
 * [ ] Deployment scripts
 * [ ] PWA Bootstrap [80%]
 * [ ] Documentation [15%]
+
+
+## Authors
+
+* **Anton Nesterov** - [@nesterow](https://github.com/nesterow)
+
+## Credits
+* **Gianluca Guarini** - [@GianlucaGuarini](https://github.com/GianlucaGuarini) - *[riot/hydrate](https://github.com/riot/hydrate)*, *[Riot.js](https://github.com/riot/riot)*
+
