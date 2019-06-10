@@ -46,8 +46,7 @@ function factory(request) {
     }
   }
   
-  const endpoint = isClient ? location.origin : process.env.ORIGIN
-  
+  const endpoint = (isClient ? location.origin : process.env.ORIGIN) || 'http://localhost:6767'
   
   const ws = io(endpoint)
   const rest = feathers.rest(endpoint)
