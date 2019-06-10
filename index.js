@@ -12,8 +12,13 @@
 @Author: Anton Nesterov <arch.nesterov@gmail.com>
 */
 
-const dotenv = require('dotenv');
-dotenv.config({path: process.argv[process.argv.length - 1]});
+const {NODE_ENV} = process.env;
+
+if (NODE_ENV !== 'test')
+{
+  const dotenv = require('dotenv')
+  dotenv.config({path: process.argv[process.argv.length - 1]})
+}
 
 const cookieParser = require('cookie-parser')
 const express = require('@feathersjs/express')
@@ -40,7 +45,7 @@ const {install, withPlugins} = require('components/utils/plugins')
 
 
 const sessionMiddleware = session({
-  secret: process.env.HTTP_SESSION_SECRET,
+  secret: process.env.HTTP_SESSION_SECRET || 'secret',
   resave: false,
   saveUninitialized: true,
   cookie: {secure: process.env.HTTP_SESSION_SECURE === 'yes'},
@@ -48,7 +53,7 @@ const sessionMiddleware = session({
 
 // Use CORS
 // you can use dynamic resolution if allowed hosts are kept in some storage
-const ALOWED_HOSTS = process.env.ALOWED_HOSTS.split(',')
+const ALOWED_HOSTS = (process.env.ALOWED_HOSTS || '*').split(',')
 const origin = async (host, cb) => {
   if (ALOWED_HOSTS.includes('*') || ALOWED_HOSTS.includes(host))
     return cb(null, true);
@@ -79,7 +84,7 @@ app.use('/boot.js', express.static('assets/boot.js'))
 app.use((req, res, next) => {
   const token = req.cookies ['feathers-jwt']
   app.passport.verifyJWT(token, {
-    secret: process.env.REST_AUTH_SECRET,
+    secret: process.env.REST_AUTH_SECRET || 'secret',
   }).
 
   then((user) => {
@@ -110,8 +115,8 @@ app.configure(socketio({}, function(io) {
 }));
 app.configure(authentication({
   session: true,
-  secret: process.env.REST_AUTH_SECRET,
-  service: process.env.REST_AUTH_SERVICE,
+  secret: process.env.REST_AUTH_SECRET || 'secret',
+  service: process.env.REST_AUTH_SERVICE || 'users',
   cookie: {
     enabled: true,
     name: 'feathers-jwt',
@@ -151,12 +156,24 @@ app.setState = (id, data) => {
 }
 
 
+let Resolve = () => 0
+let Reject = () => 0 
+const ReadyPromise = new Promise((resolve, reject) => {
+  Resolve = resolve;
+  Reject = reject;
+})  
+
 const start = (mongo) => {
   app.emit('connected', app, mongo)
   require('./services')(app, mongo)
   app.mongo = mongo;
-  app.listen(6767, () => {
+  let server = app.listen(6767, (err) => {
     console.log(`👍  app is listening on ${6767} \r\n`)
+    Resolve({app, mongo, server})
+  }).
+  on('error', (error) => {
+    console.log(`❌ ${error} \r\n`)
+    Reject(error)
   })
 }
 
@@ -176,3 +193,4 @@ if (process.env.MONGODB_URI) {
   start()
 }
 
+module.exports = ReadyPromise

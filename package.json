@@ -8,7 +8,8 @@
   "scripts": {
     "start": "cross-env gulp start",
     "build": "cross-env gulp build",
-    "test": "NODE_PATH=\".:./node_modules\" mocha -r esm tests/*.js"
+    "test": "NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm tests/*.js -not -path tests/e2e/*",
+    "test:e2e": "NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm tests/e2e/*.js"
   },
   "dependencies": {
     "@babel/preset-env": "^7.4.4",
@@ -63,6 +64,7 @@
     "jsdom-global": "3.0.2",
     "mocha": "^6.1.4",
     "sinon": "^7.3.2",
-    "sinon-chai": "^3.3.0"
+    "sinon-chai": "^3.3.0",
+    "loadtest": "^3.0.7"
   }
 }
