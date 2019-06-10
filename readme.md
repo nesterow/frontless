@@ -62,6 +62,17 @@ Before you start, it is highly recommended to have essential understanding of fo
 ## [Documentation](https://nesterow.github.io/frontless/)
 [Frontless Docs](https://nesterow.github.io/frontless/) | [Feathers Docs](https://docs.feathersjs.com/) | [Riot Docs](https://riot.js.org/)
 
+## Contrubute ❤️
+
+If you found a problem and know the solution:
+- Fork repository
+- Fix the problem
+- Push your fix to a separate branch
+- Make pull request to the `development` branch
+
+If you need help, just [open an issue](https://github.com/nesterow/frontless/issues)
+
+If you understand how it works under the hood, or feel like you can make this project better don't hesitate to message me directly.
 
 ## License
 
