@@ -34,7 +34,7 @@ gulp.task('start', function (done) {
   return nodemon({
     script: 'index.js'
   , tasks: ['worker', 'boot']
-  , args: ['./config.env']
+  , args: ['./config/environ.env']
   , ignore: ['node_modules/', 'assets/']
   , ext: 'js ejs riot json jss env'
   , env: { 'NODE_ENV': 'development' }

@@ -3,11 +3,10 @@ const axios = require('axios')
 const io = require('socket.io-client')
 const socketio = require('@feathersjs/socketio-client')
 const auth = require('@feathersjs/authentication-client')
+const {COOKIE_NAME} = require('config/browser')
 const { CookieStorage } = require('cookie-storage');
 const isClient = typeof window !== 'undefined'
 
-
-const COOKIE_NAME = 'feathers-jwt'
 
 function factory(request) {
 

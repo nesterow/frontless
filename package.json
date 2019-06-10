@@ -7,9 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env gulp start",
-    "build": "cross-env gulp build",
-    "test": "cross-env NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm tests/*.js -not -path tests/e2e/*",
-    "test:e2e": "cross-env NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm tests/e2e/*.js"
+    "build": "cross-env NODE_ENV=production gulp build",
+    "test": "cross-env NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm specs/*.js -not -path tests/e2e/*",
+    "test:e2e": "cross-env NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm specs/e2e/*.js"
   },
   "dependencies": {
     "@babel/preset-env": "^7.4.4",

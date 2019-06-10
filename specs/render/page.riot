@@ -1,0 +1,29 @@
+<page>
+  <h1>Test Page</h1>
+  <test />
+  <with-jss />
+
+  <script>
+    import delay from './delay'
+    import Test from './test.riot'
+    import WithJss from './with-jss.riot'
+
+    export default () => ({
+      
+      layout: "test-layout",
+
+      components: {
+        Test,
+        WithJss
+      },
+
+      async fetch(){
+        await delay(200)
+        this.update({
+          value: 'test'
+        })
+      }
+
+    })
+  </script>
+</page>

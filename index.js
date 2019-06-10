@@ -20,6 +20,8 @@ if (NODE_ENV !== 'test')
   dotenv.config({path: process.argv[process.argv.length - 1]})
 }
 
+const serverConfig = require('./config/server')
+const browserConfig = require('./config/browser')
 const cookieParser = require('cookie-parser')
 const express = require('@feathersjs/express')
 const feathers = require('@feathersjs/feathers')
@@ -32,7 +34,7 @@ const Verifier = require('components/verifier')
 const register = require('@riotjs/ssr/register')
 register()
 
-const {CACHE_PAGES} = require('./components/webworker/config')
+const {CACHE_PAGES, COOKIE_NAME} = browserConfig;
 global.CACHE_PAGES = CACHE_PAGES
 require('./plugins')
 
@@ -51,17 +53,9 @@ const sessionMiddleware = session({
   cookie: {secure: process.env.HTTP_SESSION_SECURE === 'yes'},
 });
 
-// Use CORS
-// you can use dynamic resolution if allowed hosts are kept in some storage
-const ALOWED_HOSTS = (process.env.ALOWED_HOSTS || '*').split(',')
-const origin = async (host, cb) => {
-  if (ALOWED_HOSTS.includes('*') || ALOWED_HOSTS.includes(host))
-    return cb(null, true);
-  return cb('Host is not alowed', false);
-}
 
 const corsMiddleware = cors({
-  origin,
+  origin: serverConfig.corsResolver,
 });
 
 
@@ -82,7 +76,7 @@ app.use('/worker.js', express.static('assets/worker.js'))
 app.use('/boot.js', express.static('assets/boot.js'))
 
 app.use((req, res, next) => {
-  const token = req.cookies ['feathers-jwt']
+  const token = req.cookies [COOKIE_NAME]
   app.passport.verifyJWT(token, {
     secret: process.env.REST_AUTH_SECRET || 'secret',
   }).
@@ -104,7 +98,7 @@ app.use((req, res, next) => {
 })
 
 app.configure(socketio({}, function(io) {
-  io.origins(origin)
+  io.origins(serverConfig.corsResolver)
   io.use(function(socket, next) {
     sessionMiddleware(socket.request, socket.request.res, next)
   });
@@ -119,7 +113,7 @@ app.configure(authentication({
   service: process.env.REST_AUTH_SERVICE || 'users',
   cookie: {
     enabled: true,
-    name: 'feathers-jwt',
+    name: COOKIE_NAME,
     httpOnly: false,
     secure: false
   },

@@ -1,0 +1,30 @@
+<test>
+  <h2>With JSS</h2>
+  <span class={classes.test}>{state.value}</span>
+  <script>
+    import delay from './delay'
+    import withJss from 'riot-jss'
+
+    export default () => withJss({
+      
+      styles: {
+        test: {
+          fontWeight: 600
+        }
+      },
+      
+      state: {
+        value: '2-tnenopmoc'
+      },
+
+      async fetch(){
+        await delay(100)
+        this.update({
+          value: 'component-2'
+        })
+      }
+
+    })
+
+  </script>
+</test>
