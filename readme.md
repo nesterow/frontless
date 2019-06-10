@@ -59,6 +59,36 @@ Before you start, it is highly recommended to have essential understanding of fo
 ```
 Оpen [http://localhost:6767](http://localhost:6767) in your browser. Navigate to the playground for examples 
 
+## Features
+
+**Natural routing**
+
+All files ending with *.riot extension that placed in the pages directory become site pages. It works similar to php scripts or html pages. For example: [`index.riot -> GET /`, `page.riot -> GET /page`].
+
+**Async SSR**
+
+The pages in Frontless are rendered after all fetch operations in children components are complete. Which means you can make asyncronous queries in children components and don't worry that the server return markup before data is fetched.
+
+**Server sent state**
+
+Some API requests can return a ready view-model for a specific component. After it happens, the target component will update its state from received response. This is convenient whenever you want to update the view after a request is done. Given that, the server should return a ready view-model which eliminates extra steps you would do to handle response.
+
+**State initialization**
+
+All Riot components rendered on the server side initialize in browser with last state they were on the server side. 
+
+**Browser caching**
+
+If your application needs SPA experience you can cache some pages using webworker module.
+
+**RestAPI/Socket.io**
+
+Stay close to the database with power of FeathersJS services.
+
+**It is just Express**
+
+Everything you can do with an express application.
+
 ## [Documentation](https://nesterow.github.io/frontless/)
 [Frontless Docs](https://nesterow.github.io/frontless/) | [Feathers Docs](https://docs.feathersjs.com/) | [Riot Docs](https://riot.js.org/)
 
