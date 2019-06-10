@@ -65,6 +65,7 @@
     "mocha": "^6.1.4",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.3.0",
-    "loadtest": "^3.0.7"
+    "loadtest": "^3.0.7",
+    "cross-env": "^5.2.0"
   }
 }
