@@ -1,15 +1,15 @@
 {
   "name": "frontless",
-  "version": "0.5.3-alpha.0",
+  "version": "0.5.4-alpha.0",
   "main": "index.js",
   "repository": "git@github.com:nesterow/frontless.git",
   "author": "Anton Nesterov <arch.nesterov@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "cross-env gulp start",
-    "build": "cross-env gulp build",
-    "test": "cross-env NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm tests/*.js -not -path tests/e2e/*",
-    "test:e2e": "cross-env NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm tests/e2e/*.js"
+    "build": "cross-env NODE_ENV=production gulp build",
+    "test": "cross-env NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm specs/*.js -not -path tests/e2e/*",
+    "test:e2e": "cross-env NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm specs/e2e/*.js"
   },
   "dependencies": {
     "@babel/preset-env": "^7.4.4",
@@ -21,7 +21,7 @@
     "@feathersjs/feathers": "^3.3.1",
     "@feathersjs/socketio": "^3.2.9",
     "@feathersjs/socketio-client": "^1.2.1",
-    "@riotjs/compiler": "^4.2.5",
+    "@riotjs/compiler": "^4.2.6",
     "@riotjs/hydrate": "^4.0.0",
     "@riotjs/ssr": "^4.1.0",
     "axios": "^0.19.0",
@@ -39,12 +39,12 @@
     "mongodb": "^3.2.3",
     "qs": "^6.7.0",
     "require-globify": "^1.4.1",
-    "riot": "^4.0.5",
+    "riot": "^4.1.1",
     "riot-jss": "^1.0.5",
     "socket.io-client": "^2.2.0",
     "turbolinks": "^5.2.0",
     "validate.js": "^0.12.0",
-    "validator": "^10.11.0"
+    "validator": "^11.0.0"
   },
   "devDependencies": {
     "browserify": "^16.2.3",

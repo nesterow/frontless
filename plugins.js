@@ -2,6 +2,7 @@
 const riot = require('riot')
 const client = require('client')
 const {extend} = require('lodash')
+const {COOKIE_NAME} = require('config/browser')
 const {withRouter} = require('components/utils')
 const isBrowser = typeof window !== 'undefined'
 
@@ -15,7 +16,7 @@ if (!isBrowser) {
     const component = tag.default;
     riot.register(component.name, component)
   };
-  glob.sync( './**/*.riot' ).forEach( ( file ) => !file.startsWith('./tests/') && register(file))
+  glob.sync( './**/*.riot' ).forEach( ( file ) => !file.startsWith('./specs/') && register(file))
 }
 
 const Global = (instance) => {
@@ -80,7 +81,7 @@ const AuthPlugin = (instance) => {
   instance.logout = function() {
     if (isBrowser) {
       const { CookieStorage } = require('cookie-storage')
-      new CookieStorage().removeItem('feathers-jwt')
+      new CookieStorage().removeItem(COOKIE_NAME)
       this.redirect('/login')
     }
   }.bind(instance)

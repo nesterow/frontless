@@ -1,0 +1,26 @@
+<test>
+  <h2>Test Component</h2>
+  <span>{state.value}</span>
+  <script>
+    import delay from './delay'
+    
+    export default () => ({
+
+      state: {
+        value: 'tnenopmoc'
+      },
+
+      async fetch(){
+        await delay(50)
+        this.update({
+          value: 'component'
+        })
+      }
+    })
+  </script>
+  <style>
+    .test-class {
+      cursor: pointer;
+    }
+  </style>
+</test>
