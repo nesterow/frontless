@@ -1,9 +1,12 @@
-<img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.png" height="50"/>
+<img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.png" height="50"/> 
 
 [![Build Status](https://travis-ci.org/nesterow/frontless.svg?branch=master)](https://travis-ci.org/nesterow/frontless)
 ![version](https://img.shields.io/badge/Version-0.5.2@alpha-yellow.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
-[![Open Demo](https://img.shields.io/badge/CodeSandbox-▶-green.svg)](https://h5l5o.sse.codesandbox.io/)
+
+<a href="https://h5l5o.sse.codesandbox.io/" target="_blank">
+  ⚙ View demo on CodeSandbox.io
+</a>
 
 
 ## Riot Isomorphic Stack
@@ -16,6 +19,7 @@ At the core, *Frontless* is just an `express.js` server that provides routing, d
 - It provides natural HTTP routing `[page.riot -> GET /page]`
 - It uses FeathersJS on client and server
 - It allows to update components' state directly from server response
+- It renders pages after all async operetions complete ✊
 
 ### The Stack
 Before you start, it is highly recommended to have essential understanding of following technologies:
@@ -37,7 +41,7 @@ Before you start, it is highly recommended to have essential understanding of fo
 
 </details>
 
-### Getting Started
+## Getting Started
 1. Clone [this repo](https://github.com/nesterow/frontless) or use NPX
 
 ```
@@ -55,114 +59,20 @@ Before you start, it is highly recommended to have essential understanding of fo
 ```
 Оpen [http://localhost:6767](http://localhost:6767) in your browser. Navigate to the playground for examples 
 
+## [Documentation](https://nesterow.github.io/frontless/)
+[Frontless Docs](https://nesterow.github.io/frontless/) | [Feathers Docs](https://docs.feathersjs.com/) | [Riot Docs](https://riot.js.org/)
 
-### Routing
-All files ending with `*.riot` extension that placed in the `pages` directory become site pages. It works similar to php scripts or html pages.
-For example: `index.riot -> GET /`, `page.riot -> GET /page`.
+## Contrubute ❤️
 
+If you found a problem and know the solution:
+- Fork repository
+- Fix the problem
+- Push your fix to a separate branch
+- Make pull request to the `development` branch
 
-#### Positional arguments
-*Positional* URL arguments in Frontless are drop-in replacement for complex routing schemes. 
-Passing a positional argument to the page is possible trough `@` modifier. 
-A semicolon-separated string after `@` will be parsed as positional arguments.
-For example consider following request:
-```
-GET /page@some_id;data?q=1
-```
-This request will fetch `page.riot` and pass positional arguments into 'request.params.args':
-```javascript
-export default {
-  async fetch(props){
-    const {req} = props;
-    const [user_id, data] = req.params.args;
-  }
-}
-```
+If you need help, just [open an issue](https://github.com/nesterow/frontless/issues)
 
-#### Server side rendering
-All RiotJS components included in pages will render after all data is fetched. 
-Use method `fetch(props)` in your components to make db queries and setting components' state on the server.
-Unlike similar method in `next.js`, in Frontless you can fetch data in any children component 
-and your page will be rendered after all fetch operations are complete.
-
-```javascript
-export default {
-  async fetch(props) {
-    const {params, session} = props.req
-    const userProfile = await db.users.get(session.user.id)
-    this.update({
-      username: session.username,
-      userProfile
-    })
-  }
-}
-```
-
-#### Server sent state
-Some API requests can return a ready view-model for a specific component. 
-After it happens the target component will update its state from received response. 
-This is convenient whenever you want to update the view after a request is done. 
-Given that, the server should return a ready view-model which eliminates extra steps you would do to handle response.
-
-Normally, you should follow 3 steps to make it work:
-
-1. Give your component an unique id
-```javascript
-export default {
-  id: 'uniq-id', // target id
-  state: {
-    message:''
-  }
-  ...
-}
-```
-2. Use method app.setState() to compose a response
-```javascript
-app.use('myservice',{
-    async create(data){
-      return app.setState('uniq-id', {
-        message: 'Hello!'
-      })
-    }
-})
-```
-3. On the client make a call to service method which suppose to return new state
-```javascript
-client.service('myservice').create({})
-```
-Notice that you don't need to handle API call as the server supposed to return ready view-model for your component. 
-The UI will update automatically. However, you still nedd to handle loading states and errors.
-
-#### Access control
-Access to pages can be controlled trough options set in the `access` property:
-```
-export default ()=> ({
-  access: {
-    loggedIn: true,
-  },
-  state:{},
-  ...
-})
-```
-By default two options are awailable: `loggedIn` and `group`.
-
-### Authentication
-Authentication is impemented with [@feathersjs/authentication-local](https://docs.feathersjs.com/api/authentication/local.html) module. 
-In order to customize user model you need to modify [verifier class](./components/verifier.js) and [the plugins](./plugins.js)
-
-### Security
-- Under no circumstances, It is NOT recommended to turn off the *CORS middlewares*.
-- When working with Riot Components, it is NOT recommended to use sensitive variables or use any sentive data as open text
-- When working with Riot Components, is is HIGHLY recommended to use functional approach. Every component should be returned from a function like `export default ()=> ({...component})`. This is needed to avoid [module caching](https://nodejs.org/api/modules.html#modules_caching) 
-
-
-
-## Authors
-
-* **Anton Nesterov** - [@nesterow](https://github.com/nesterow)
-
-## Credits
-* **Gianluca Guarini** - [@GianlucaGuarini](https://github.com/GianlucaGuarini) - *[riot/hydrate](https://github.com/riot/hydrate)*, *[Riot.js](https://github.com/riot/riot)*
+If you understand how it works under the hood, or feel like you can make this project better don't hesitate to message me directly.
 
 ## License
 
@@ -183,3 +93,12 @@ This project is licensed under the MIT License - see the [LICENSE.md](.github/LI
 * [ ] Deployment scripts
 * [ ] PWA Bootstrap [80%]
 * [ ] Documentation [15%]
+
+
+## Authors
+
+* **Anton Nesterov** - [@nesterow](https://github.com/nesterow)
+
+## Credits
+* **Gianluca Guarini** - [@GianlucaGuarini](https://github.com/GianlucaGuarini) - *[riot/hydrate](https://github.com/riot/hydrate)*, *[Riot.js](https://github.com/riot/riot)*
+

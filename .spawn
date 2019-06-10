@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-export NODE_PATH="$(pwd):$(pwd)/node_modules"
-node index.js ./config.env
