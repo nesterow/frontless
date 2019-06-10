@@ -79,7 +79,7 @@ All Riot components rendered on the server side initialize in browser with last 
 
 **Browser caching**
 
-If your application needs SPA experience you can cache some pages using webworker module.
+If your application needs SPA experience you can cache the pages using webworker module.
 
 **RestAPI/Socket.io**
 
