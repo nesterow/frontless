@@ -19,7 +19,7 @@ At the core, *Frontless* is just an `express.js` server that provides routing, d
 - It provides natural HTTP routing `[page.riot -> GET /page]`
 - It uses FeathersJS on client and server
 - It allows to update components' state directly from server response
-- It renders pages after all async operetions complete ✊
+- It renders pages after all async operations complete ✊
 
 ### The Stack
 Before you start, it is highly recommended to have essential understanding of following technologies:
