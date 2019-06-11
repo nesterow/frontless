@@ -9,11 +9,11 @@
             <a href="/" class="btn home">
               <i class="icon icon-arrow-left"></i>
             </a>
+             <a href="/playground/todo" class={ buttonClass('/todo') }>Todo List</a>
             <a href="/playground" class={ buttonClass('playground') }>SSR</a>
             <a href="/playground/state" class={ buttonClass('/state') }>Server Sent State</a>
             <a href="/playground/form" class={ buttonClass('/form') }>Form Validation</a>
             <a href="/playground/chat" class={ buttonClass('/chat') }>Chat</a>
-            <a href="/playground/todo" class={ buttonClass('/todo') }>Todo List</a>
             <a href="/playground/routes" class={ buttonClass('/routes') }>Routing</a>
             <a href="/playground/users" class={ buttonClass('/users') }>Users</a>
           </div> 
@@ -22,7 +22,7 @@
           <div class="column example">
             <slot name="example"/>
           </div>
-          <div class="column code">
+          <div class="column code hidden-xs">
             <slot name="code"/>
           </div>
         </div>
@@ -71,5 +71,11 @@
         padding-right: 48px;
         text-align: right;
       }
+      @media(max-width: 1024px) {
+        .hidden-xs{
+          display: none;
+        }
+      }
+      
     </style>
 </playground>
