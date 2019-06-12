@@ -1,6 +1,6 @@
 const riot = require('riot')
 const {SheetsRegistry} = require('jss')
-
+const xss = require("xss")
 
 /** 
  * Render a riot tag.
@@ -83,8 +83,8 @@ module.exports = async function renderAsync(tagName, component, props, sharedAtt
     element.unmount()
     // cleanup()
     const {layout = 'base'} = typeof component.exports === 'function' ? component.exports() : (component.exports || {})
-    state = JSON.stringify(state)
-    shared = JSON.stringify(shared)
+    state = xss(JSON.stringify(state))
+    shared = xss(JSON.stringify(shared))
     const style = stylesheet.toString()
     return Promise.resolve({output, state, shared, layout, head, stylesheet: style })
   }

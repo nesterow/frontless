@@ -33,7 +33,7 @@ riot.install(function(component){
 
 const tags = require('./**/*.riot', {mode: 'list'})
   .concat(require('../components/**/*.riot', {mode: 'list'}))
-
+const xss = require('xss')
 const initialize = () => {
  
   
@@ -44,11 +44,11 @@ const initialize = () => {
       
       component.exports = () => {
         const STATE = JSON.parse(
-          document.getElementById('state').innerText
+          xss.filterXSS(document.getElementById('state').innerText)
         )
       
         const ATTRS = JSON.parse(
-          document.getElementById('attributes').innerText
+          xss.filterXSS(document.getElementById('attributes').innerText)
         )
         initilaExports.state = STATE [initilaExports.id || component.name] || initilaExports.state;
         const attributes = ATTRS [initilaExports.id || component.name]
