@@ -1,5 +1,7 @@
 module.exports = {
 
+  IS_PWA: true,
+
   COOKIE_NAME: 'frontless-jwt',
 
   CACHE_ASSETS: [

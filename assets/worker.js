@@ -94,6 +94,8 @@ self.addEventListener('fetch', event => {
 },{"../../config/browser":2}],2:[function(require,module,exports){
 module.exports = {
 
+  IS_PWA: true,
+
   COOKIE_NAME: 'frontless-jwt',
 
   CACHE_ASSETS: [
