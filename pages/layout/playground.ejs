@@ -5,9 +5,7 @@
     <% if (CACHE_PAGES.filter((e) => e.endsWith(req.params [0] || '')).length) { %> 
       <meta name="turbolinks-cache-control" content="no-cache">
     <%}%>
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.min.css">
     <% if (IS_PWA) {%>
       <script src="/assets/boot.js"></script>
     <% } %>
