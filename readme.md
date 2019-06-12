@@ -1,7 +1,7 @@
 <img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.png" height="50"/> 
 
 [![Build Status](https://travis-ci.org/nesterow/frontless.svg?branch=master)](https://travis-ci.org/nesterow/frontless)
-![version](https://img.shields.io/badge/Version-0.5.2@alpha-yellow.svg)
+![version](https://img.shields.io/badge/Version-0.5.5@alpha-yellow.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
 
 <a href="https://h5l5o.sse.codesandbox.io/" target="_blank">
