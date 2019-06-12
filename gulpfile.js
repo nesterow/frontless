@@ -9,6 +9,12 @@ const watchify   = require('watchify')
 const source     = require('vinyl-source-stream')
 const nodemon    = require('gulp-nodemon')
 
+const sass = require('gulp-sass')
+const cleancss = require('gulp-clean-css')
+const csscomb = require('gulp-csscomb')
+const rename = require('gulp-rename')
+const autoprefixer = require('gulp-autoprefixer')
+
 function runCommand(command, args, options = undefined) {
   const spawned = spawn(command, args, options);
 
@@ -31,12 +37,13 @@ gulp.task('start', function (done) {
   gulp.task('default')()
   gulp.task('worker')()
   gulp.task('boot')()
+  gulp.task('scss')()
   return nodemon({
     script: 'index.js'
-  , tasks: ['worker', 'boot']
+  , tasks: ['worker', 'boot', 'scss']
   , args: ['./config/environ.env']
   , ignore: ['node_modules/', 'assets/']
-  , ext: 'js ejs riot json jss env'
+  , ext: 'js ejs riot json jss scss env'
   , env: { 'NODE_ENV': 'development' }
   , done: done
   })
@@ -110,3 +117,18 @@ gulp.task('install', ()=>{
     })
   }
 })
+
+gulp.task('scss', function() {
+  return gulp.src('./styles.scss')
+    .pipe(sass({outputStyle: 'compact', precision: 10})
+      .on('error', sass.logError)
+    )
+    .pipe(autoprefixer())
+    .pipe(csscomb())
+    .pipe(gulp.dest('./assets/css'))
+    .pipe(cleancss())
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest('./assets/css'));
+});
