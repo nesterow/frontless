@@ -45,7 +45,11 @@ self.addEventListener('fetch', event => {
               return response.text().then((text) => {
                 
                 try {
-                  return new Response(text.replace('<body', '<body from-cache="true" '), {
+                  
+                  let data = text.replace('<body', '<body from-cache="true" ');
+                  data = data.replace(/src\=/ig, 'data-src=');
+
+                  return new Response(data, {
                     headers: new Headers([
                       ['Content-Type', 'text/html']
                     ]),
