@@ -119,10 +119,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](.github/LI
 * [x] Server Sent State (w/feathers.js)
 * [x] Socket IO (w/feathers.js)
 * [x] Plugin support
-* [ ] Configuration
+* [x] Configuration
 * [ ] Deployment scripts
-* [ ] PWA Bootstrap [80%]
-* [ ] Documentation [15%]
+* [ ] PWA Bootstrap [90%]
+* [ ] Documentation [20%]
 
 
 ## Authors
