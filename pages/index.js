@@ -82,14 +82,5 @@ document.addEventListener('turbolinks:load', () => {
 });
 document.addEventListener('turbolinks:before-render', (e) => {
   const fromCache = !!event.data.newBody.getAttribute('from-cache')
-  if (fromCache) {
-    event.data.newBody.querySelectorAll('iframe').forEach(frame => {
-      frame.setAttribute('src', '')
-    })
-    event.data.newBody.querySelectorAll('img').forEach(img => {
-      img.setAttribute('src', '')
-      img.src = ''
-    })
-  }
 })
 document.addEventListener('hmr:updated', () => setTimeout(() => location.reload(), 1800))
