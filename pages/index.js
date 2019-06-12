@@ -80,7 +80,7 @@ document.addEventListener('turbolinks:load', () => {
     initialize()
   }
 });
-document.addEventListener('turbolinks:before-render', (e) => {
-  const fromCache = !!event.data.newBody.getAttribute('from-cache')
-})
+// document.addEventListener('turbolinks:before-render', (e) => {
+//   const fromCache = !!event.data.newBody.getAttribute('from-cache')
+// })
 document.addEventListener('hmr:updated', () => setTimeout(() => location.reload(), 1800))

@@ -48,8 +48,11 @@ self.addEventListener('fetch', event => {
                 try {
                   
                   let data = text.replace('<body', '<body from-cache="true" ');
-                  data = data.replace(/src\=/ig, 'data-src=');
-
+                  data = data.replace(/<img([^>]*)\ssrc\=/gi, '<img$1 data-src="');
+                  data = data.replace(/<iframe([^>]*)\ssrc\=/gi, '<iframe$1 data-src=');
+                  data = data.replace(/<media([^>]*)\ssrc\=/gi, '<media$1 data-src=');
+                  data = data.replace(/<video([^>]*)\ssrc=/gi, '<video$1 data-src=');
+                  data = data.replace(/<audio([^>]*)\ssrc=/gi, '<audio$1 data-src=');
                   return new Response(data, {
                     headers: new Headers([
                       ['Content-Type', 'text/html']
