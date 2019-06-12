@@ -34,8 +34,9 @@ const Verifier = require('components/verifier')
 const register = require('@riotjs/ssr/register')
 register()
 
-const {CACHE_PAGES, COOKIE_NAME} = browserConfig;
+const {CACHE_PAGES, COOKIE_NAME, IS_PWA} = browserConfig;
 global.CACHE_PAGES = CACHE_PAGES
+global.IS_PWA = IS_PWA
 require('./plugins')
 
 const FrontlessMiddleware = require('components/utils/middleware')

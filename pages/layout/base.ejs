@@ -6,7 +6,9 @@
     <% if (CACHE_PAGES.filter((e) => e.endsWith(req.params [0] || '')).length) { %> 
       <meta name="turbolinks-cache-control" content="no-cache">
     <%}%>
+    <% if (IS_PWA) {%>
     <script src="/assets/boot.js"></script>
+    <%}%>
     <script src="/assets/application.js"></script>
     <%- head %>
   </head>
