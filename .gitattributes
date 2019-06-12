@@ -1,2 +1,2 @@
 *.css linguist-detectable=false
-*.riot linguist-language=javascript
+*.riot linguist-language=JavaScript
