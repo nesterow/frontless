@@ -37,6 +37,11 @@ register()
 const {CACHE_PAGES, COOKIE_NAME, IS_PWA} = browserConfig;
 global.CACHE_PAGES = CACHE_PAGES
 global.IS_PWA = IS_PWA
+
+const xss = require("xss")
+const xssOptions = {}
+global.XSS = new xss.FilterXSS(xssOptions)
+
 require('./plugins')
 
 const FrontlessMiddleware = require('components/utils/middleware')
