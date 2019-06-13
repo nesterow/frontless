@@ -124,6 +124,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](.github/LI
 * [ ] PWA Bootstrap [90%]
 * [ ] Documentation [20%]
 
+## Roadmap v2.0
+* [ ] Static site builder [10%]
+* [ ] Global state syncronization
+* [ ] Push Notifications
 
 ## Authors
 
