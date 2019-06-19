@@ -40,7 +40,7 @@ import Verifier from 'components/verifier'
 import 'plugins'
 import { dirname } from 'path';
 
-const FrontlessMiddleware = require('./utils/middleware')
+const FrontlessMiddleware = require('./core/middleware')
 
 
 const sessionMiddleware = session({

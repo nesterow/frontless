@@ -51,7 +51,7 @@ gulp.task('start', function (done) {
 
 gulp.task('build', function(){
 
-  return browserify({ entries: ['pages/index.js'] })
+  return browserify({ entries: ['pages/index.js'], presets: ["env"] })
     .transform(globify)
     .transform(riotify) // pass options if you need
     .plugin('tinyify', { flat: false })
@@ -62,14 +62,14 @@ gulp.task('build', function(){
 })
 
 gulp.task('worker', function(){
-  return browserify({ entries: ['components/webworker/index.js'] })
+  return browserify({ entries: ['components/webworker/index.js'], presets: ["env"] })
     .bundle()
     .pipe(source('worker.js'))
     .pipe(gulp.dest('assets/'))
 })
 
 gulp.task('boot', function(){
-  return browserify({ entries: ['components/webworker/boot.js'] })
+  return browserify({ entries: ['components/webworker/boot.js'], presets: ["env"] })
     .bundle()
     .pipe(source('boot.js'))
     .pipe(gulp.dest('assets/'))
