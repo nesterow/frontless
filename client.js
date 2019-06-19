@@ -1,9 +1,9 @@
+const {COOKIE_NAME, WEBSOCKETS} = require('config/browser')
 const feathers = require('@feathersjs/client')
 const axios = require('axios')
 const io = require('socket.io-client')
 const socketio = require('@feathersjs/socketio-client')
 const auth = require('@feathersjs/authentication-client')
-const {COOKIE_NAME} = require('config/browser')
 const { CookieStorage } = require('cookie-storage');
 const isClient = typeof window !== 'undefined'
 
@@ -47,25 +47,26 @@ function factory(request) {
   
   const endpoint = (isClient ? location.origin : process.env.ORIGIN) || 'http://localhost:6767'
   
-  const ws = io(endpoint)
+  
   const rest = feathers.rest(endpoint)
-  
   const app = feathers()
-  const wsc = feathers()
-  
-  
-  app.configure(rest.axios(axios));
-  wsc.configure(socketio(ws, {
-    timeout: 2000,
-  }))
-  
+
+  app.configure(rest.axios(axios))
   app.configure(auth(authOptions))
-  wsc.configure(auth(authOptions))
-  
-  wsc.hooks(hooks)
   app.hooks(hooks)
-  app.io = wsc
-  app.ws = ws
+
+
+  if (isClient && WEBSOCKETS) {
+    const wsc = feathers()
+    const ws = io(endpoint)
+    wsc.configure(auth(authOptions))
+    wsc.configure(socketio(ws, {
+      timeout: 2000,
+    }))
+    wsc.hooks(hooks)
+    app.io = wsc
+    app.ws = ws
+  }
   
   return app
 
