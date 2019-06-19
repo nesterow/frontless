@@ -20,5 +20,5 @@ if (NODE_ENV !== 'test')
   dotenv.config({path: process.argv[process.argv.length - 1]})
 }
 
-require('components/utils/babel')()
+require('components/core/babel')()
 require('components/server')

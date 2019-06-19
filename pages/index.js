@@ -33,13 +33,17 @@ riot.install(function(component){
 
 const tags = require('./**/*.riot', {mode: 'list'})
   .concat(require('../components/**/*.riot', {mode: 'list'}))
+  
 const xss = require('xss')
 const initialize = () => {
  
   
   tags.forEach((tag) => {
+    
     const component = tag.module.default
+    
     if (component.exports) {
+
       let initilaExports = typeof component.exports === 'function' ? component.exports() : component.exports;
       
       component.exports = () => {
@@ -80,7 +84,5 @@ document.addEventListener('turbolinks:load', () => {
     initialize()
   }
 });
-// document.addEventListener('turbolinks:before-render', (e) => {
-//   const fromCache = !!event.data.newBody.getAttribute('from-cache')
-// })
+
 document.addEventListener('hmr:updated', () => setTimeout(() => location.reload(), 1800))
