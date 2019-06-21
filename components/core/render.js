@@ -94,9 +94,9 @@ module.exports = async function renderAsync(tagName, component, props, sharedAtt
     const {layout = 'base'} = typeof component.exports === 'function' ? component.exports() : (component.exports || {})
     state = xss(JSON.stringify(state))
     shared = xss(JSON.stringify(shared))
+    const g = xss(JSON.stringify(document.__GLOBAL_SHARED_STATE || {}))
     const style = stylesheet.toString()
-    
-    return Promise.resolve({output, state, shared, layout, head, stylesheet: style })
+    return Promise.resolve({output, state, shared, layout, head, stylesheet: style, global: g })
   }
   catch(e) {
     return Promise.reject(e)
