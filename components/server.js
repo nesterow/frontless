@@ -13,9 +13,6 @@
 */
 
 
-import register from '@riotjs/ssr/register'
-register()
-
 import serverConfig from 'config/server'
 import browserConfig from 'config/browser'
 
@@ -38,9 +35,7 @@ import authentication from '@feathersjs/authentication'
 import local from '@feathersjs/authentication-local'
 import Verifier from 'components/verifier'
 import 'plugins'
-import { dirname } from 'path';
-
-const FrontlessMiddleware = require('./core/middleware')
+import FrontlessMiddleware from './core/middleware'
 
 
 const sessionMiddleware = session({

@@ -24,6 +24,8 @@ module.exports = async function renderAsync(tagName, component, props, sharedAtt
 
     let state = {}
     let shared = {}
+    const getShared = (inst) => sharedAttributes.concat(inst.shared || [])
+
     if (element) {
       element.req = props.req;
       element.res = props.res;
@@ -34,7 +36,7 @@ module.exports = async function renderAsync(tagName, component, props, sharedAtt
         element.onServer(props.req, props.res, props.next);
 
       state[element.id || component.name] = element.state
-      shared[element.id || component.name] = sharedAttributes.map((name) => ({name, data: element [name]}))
+      shared[element.id || component.name] = getShared(element).map((name) => ({name, data: element [name]}))
       
       if (element.stylesheet) {
         stylesheet.add(element.stylesheet)
@@ -42,6 +44,7 @@ module.exports = async function renderAsync(tagName, component, props, sharedAtt
     }
 
     const elements = element.$$('*')
+    const rendered = []
 
     for (let i in elements) {
       const el = elements [i]
@@ -56,22 +59,28 @@ module.exports = async function renderAsync(tagName, component, props, sharedAtt
           instance.onServer(props.req, props.res, props.next);
 
         state[instance.id || instance.name] = instance.state
-        shared[instance.id || instance.name] = sharedAttributes.map((name) => ({name, data: instance [name]}))
+        shared[instance.id || instance.name] = getShared(instance).map((name) => ({name, data: instance [name]}))
         instance.update()
         
         if (instance.onRendered) {
-          instance.onRendered(props)
+          rendered.push({instance, props,})
         }
         if (instance.stylesheet) {
           stylesheet.add(instance.stylesheet)
         }
       }
     }
+
     element.update()
+
     if (element.onRendered) {
       element.onRendered(props)
     }
-   
+
+    rendered.map(e => {
+      e.instance.onRendered(e.props)
+    })
+
     element.$$('input,textarea,select,option').map((el) => {
       const value = el.type !== 'password' ? el.value : ''
       el.setAttribute('value', value || '')
@@ -86,6 +95,7 @@ module.exports = async function renderAsync(tagName, component, props, sharedAtt
     state = xss(JSON.stringify(state))
     shared = xss(JSON.stringify(shared))
     const style = stylesheet.toString()
+    
     return Promise.resolve({output, state, shared, layout, head, stylesheet: style })
   }
   catch(e) {
