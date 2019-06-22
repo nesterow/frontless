@@ -43,7 +43,7 @@
     "require-globify": "^1.4.1",
     "riot": "^4.1.1",
     "riot-jss": "^1.0.5",
-    "riot-state": "^1.0.2",
+    "riot-state": "^1.0.3",
     "socket.io-client": "^2.2.0",
     "spectre.css": "^0.5.8",
     "turbolinks": "^5.2.0",
