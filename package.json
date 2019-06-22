@@ -1,6 +1,6 @@
 {
   "name": "frontless",
-  "version": "0.5.8-alpha.1",
+  "version": "0.5.9-alpha.1",
   "main": "index.js",
   "repository": "git@github.com:nesterow/frontless.git",
   "author": "Anton Nesterov <arch.nesterov@gmail.com>",
@@ -43,7 +43,7 @@
     "require-globify": "^1.4.1",
     "riot": "^4.1.1",
     "riot-jss": "^1.0.5",
-    "riot-state": "^1.0.0",
+    "riot-state": "^1.0.2",
     "socket.io-client": "^2.2.0",
     "spectre.css": "^0.5.8",
     "turbolinks": "^5.2.0",

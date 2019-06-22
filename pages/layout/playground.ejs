@@ -38,7 +38,7 @@
   <body>
     <style data-ssr-jss><%- stylesheet %></style>
     <%- output %>
-    <script>document.__GLOBAL_SHARED_STATE = <%- global %>;</script> 
+    <script>document.__GLOBAL_SHARED_STATE = <%- Global %>;</script> 
     <script type="data/json" id="globals"><%- req.session.globals %></script>
     <script type="data/json" id="state"><%- state %></script>
     <script type="data/json" id="attributes"><%- shared %></script>
