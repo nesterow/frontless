@@ -1,7 +1,8 @@
 const riot = require('riot')
 const {SheetsRegistry} = require('jss')
 const xss = require("xss")
-
+const DOM = require('jsdom-global')
+const {CSS_BY_NAME} = riot.__.cssManager;
 /** 
  * Render a riot tag.
  * This method resolves all `fetch()` operations including components children
@@ -10,12 +11,8 @@ const xss = require("xss")
  * */
 module.exports = async function renderAsync(tagName, component, props, sharedAttributes) {
   
-  if (global.document === void 0) {
-    const {JSDOM} = require('jsdom')
-    const {document,Node} = new JSDOM().window
-    global.document = document
-    global.Node = Node
-  }
+  const cleanup = DOM()
+
   try {
     const root = document.createElement(tagName)
     const element = riot.component(component)(root, props)
@@ -60,7 +57,7 @@ module.exports = async function renderAsync(tagName, component, props, sharedAtt
 
         state[instance.id || instance.name] = instance.state
         shared[instance.id || instance.name] = getShared(instance).map((name) => ({name, data: instance [name]}))
-        instance.update()
+        instance.update({})
         
         if (instance.onRendered) {
           rendered.push({instance, props,})
@@ -71,7 +68,7 @@ module.exports = async function renderAsync(tagName, component, props, sharedAtt
       }
     }
 
-    element.update()
+    element.update({})
 
     if (element.onRendered) {
       element.onRendered(props)
@@ -89,14 +86,17 @@ module.exports = async function renderAsync(tagName, component, props, sharedAtt
     const head = document.head.innerHTML
     const output = element.root.outerHTML
     
-    element.unmount()
-    // cleanup()
     const {layout = 'base'} = typeof component.exports === 'function' ? component.exports() : (component.exports || {})
     state = xss(JSON.stringify(state))
     shared = xss(JSON.stringify(shared))
     const g = xss(JSON.stringify(document.__GLOBAL_SHARED_STATE || {}))
     const style = stylesheet.toString()
-    return Promise.resolve({output, state, shared, layout, head, stylesheet: style, global: g })
+    
+    element.unmount()
+    cleanup()
+    CSS_BY_NAME.clear();
+
+    return Promise.resolve({output, state, shared, layout, head, stylesheet: style, Global: g })
   }
   catch(e) {
     return Promise.reject(e)
