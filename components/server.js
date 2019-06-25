@@ -35,7 +35,7 @@ import authentication from '@feathersjs/authentication'
 import local from '@feathersjs/authentication-local'
 import Verifier from 'components/verifier'
 import 'plugins'
-import FrontlessMiddleware from './core/middleware'
+import {Frontless} from '@frontless/core'
 
 
 const sessionMiddleware = session({
@@ -134,8 +134,8 @@ app.configure(local({
 
 const dir = __dirname + '/..'
 app.emit('setup:ssr', app)
-app.use('/*@:args',  FrontlessMiddleware(dir, ['styles']))
-app.use('/*',  FrontlessMiddleware(dir, ['styles']))
+app.use('/*@:args',  Frontless(dir, ['styles']))
+app.use('/*',  Frontless(dir, ['styles']))
 
 app.setState = (id, data) => {
   return {

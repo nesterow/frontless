@@ -3,7 +3,7 @@ const riot = require('riot')
 const client = require('client')
 const {extend} = require('lodash')
 const {COOKIE_NAME} = require('config/browser')
-const {withRouter} = require('components/core')
+const {withRouter} = require('@frontless/core/browser')
 const isBrowser = typeof window !== 'undefined'
 
 

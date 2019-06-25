@@ -20,5 +20,7 @@ if (NODE_ENV !== 'test')
   dotenv.config({path: process.argv[process.argv.length - 1]})
 }
 
-require('components/core/babel')()
+const {babel} = require('@frontless/core')
+babel()
+
 require('components/server')
