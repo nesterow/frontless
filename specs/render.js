@@ -1,7 +1,7 @@
 import JSDOMGlobal from 'jsdom-global'
 import ssr from '@riotjs/ssr/register'
 import {mount, register, install, component} from 'riot'
-import render from '../components/core/render'
+import {render} from '@frontless/core'
 import {expect, use} from 'chai'
 import sinonChai from 'sinon-chai'
 
