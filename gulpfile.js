@@ -1,4 +1,4 @@
-process.env.NODE_PATH = `${__dirname}:${__dirname}/node_modules`
+process.env.NODE_PATH = `${__dirname}:${__dirname}/components:${__dirname}/node_modules`
 const { spawn } = require('child_process');
 const gulp       = require('gulp')
 const browserify = require('browserify')

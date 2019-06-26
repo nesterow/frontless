@@ -8,8 +8,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development gulp start",
     "build": "cross-env NODE_ENV=production gulp build",
-    "test": "cross-env NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm specs/*.js -not -path tests/e2e/*",
-    "test:e2e": "cross-env NODE_PATH=\".:./node_modules\" NODE_ENV=test mocha -r esm specs/e2e/*.js"
+    "test": "cross-env NODE_PATH=\".:./components:./node_modules\" NODE_ENV=test mocha -r esm specs/*.js -not -path tests/e2e/*",
+    "test:e2e": "cross-env NODE_PATH=\".:./components:./node_modules\" NODE_ENV=test mocha -r esm specs/e2e/*.js"
   },
   "dependencies": {
     "@babel/preset-env": "^7.4.5",
