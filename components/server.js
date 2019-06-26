@@ -156,13 +156,13 @@ const ReadyPromise = new Promise((resolve, reject) => {
 })  
 
 const start = (mongo) => {
-
+  const {PORT} = process.env;
   app.emit('connected', app, mongo)
   require('services')(app, mongo)
   app.mongo = mongo;
   
-  let server = app.listen(6767, (err) => {
-    console.log(`👍  app is listening on ${6767} \r\n`)
+  let server = app.listen(PORT, (err) => {
+    console.log(`👍  app is listening on ${PORT} \r\n`)
     Resolve({app, mongo, server})
   }).
   
