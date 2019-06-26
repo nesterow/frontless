@@ -88,8 +88,13 @@ const AuthPlugin = (instance) => {
 
 }
 
+if (isBrowser) {
+  document.__GLOBAL = {}
+}
+const Store = require('components/store')
 
 riot.install(withRouter)
 riot.install(Global)
+riot.install(Store)
 riot.install(ClientPlugin)
 riot.install(AuthPlugin)
