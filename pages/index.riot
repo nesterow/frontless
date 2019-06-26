@@ -14,12 +14,21 @@
     import client from 'client'
     export default () => ({
       layout: 'base',
+      observe: ['title'],
       components: {
         Test,
       },
-      onMounted(state, props) {
-        
+      title: "Home",
+      onMounted() {
+        this.$store.dispatch({
+          type: "TITLE",
+          title: "Index page"
+        })
       },
+      onAction(){
+        this.title = this.$state.title;
+        this.update()
+      }
     })
   </script>
 </index-page>
