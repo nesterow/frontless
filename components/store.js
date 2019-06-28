@@ -1,5 +1,5 @@
-const {isBrowser} = require('@frontless/core')
-const store = require('@frontless/redux')
+import {isBrowser} from '@frontless/core'
+import store from '@frontless/redux'
 
 const state = isBrowser && document.__GLOBAL_SHARED_STATE || {
   title: '',
@@ -15,7 +15,7 @@ const actions = {
 
 
 
-module.exports = store({
+export default store({
   state,
   actions,
 })

@@ -1,6 +1,6 @@
-const Debug = require('debug');
-const bcrypt = require('bcryptjs');
-const { get, omit } = require('lodash');
+import Debug from 'debug'
+import bcrypt from 'bcryptjs'
+import { get, omit } from 'lodash'
 
 const debug = Debug('@feathersjs/authentication-local:verify');
 
@@ -86,4 +86,4 @@ class LocalVerifier {
   }
 }
 
-module.exports = LocalVerifier;
+export default LocalVerifier;

@@ -1,6 +1,6 @@
-const local = require('@feathersjs/authentication-local')
-const auth = require('@feathersjs/authentication')
-const validate = require('validate.js')
+import local from '@feathersjs/authentication-local'
+import auth from '@feathersjs/authentication'
+import validate from 'validate.js'
 const {MONGO_DATABASE} = process.env
 
 const formModel = {
@@ -36,7 +36,7 @@ const formModel = {
 }
 
 
-module.exports = (app, mongo) => {
+export default (app, mongo) => {
   
   const Model =  mongo.db(MONGO_DATABASE).collection('users')
 

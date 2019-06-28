@@ -21,11 +21,11 @@
     "@feathersjs/feathers": "^3.3.1",
     "@feathersjs/socketio": "^3.2.9",
     "@feathersjs/socketio-client": "^1.2.1",
+    "@frontless/core": "1.0.0-rc.8",
+    "@frontless/redux": "1.0.0-rc.2",
     "@riotjs/compiler": "^4.2.6",
     "@riotjs/hydrate": "^4.0.0",
     "@riotjs/ssr": "^4.1.0",
-    "@frontless/core": "1.0.0-rc.8",
-    "@frontless/redux": "1.0.0-rc.2",
     "axios": "^0.19.0",
     "cookie-parser": "^1.4.4",
     "cookie-storage": "^5.0.1",
@@ -51,6 +51,7 @@
     "validator": "^11.0.0"
   },
   "devDependencies": {
+    "babelify": "^10.0.0",
     "browserify": "^16.2.3",
     "browserify-hmr": "git+https://github.com/nesterow/browserify-hmr#master",
     "chai": "^4.2.0",

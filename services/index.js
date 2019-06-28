@@ -1,6 +1,9 @@
-module.exports = function (app, mongo) {
 
-  require('./users')(app, mongo)
+import users from './users'
+
+export default function (app, mongo) {
+
+  users(app, mongo)
 
   //Playground services
   require('./playground/random')(app)
