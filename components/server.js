@@ -34,9 +34,12 @@ import socketio from '@feathersjs/socketio'
 import authentication from '@feathersjs/authentication'
 import local from '@feathersjs/authentication-local'
 import Verifier from 'components/verifier'
+
+
 import 'plugins'
 import {Frontless} from '@frontless/core'
-
+import {MongoClient} from 'mongodb'
+import services from 'services'
 
 const sessionMiddleware = session({
   secret: process.env.HTTP_SESSION_SECRET || 'secret',
@@ -158,7 +161,7 @@ const ReadyPromise = new Promise((resolve, reject) => {
 const start = (mongo) => {
   const {PORT} = process.env;
   app.emit('connected', app, mongo)
-  require('services')(app, mongo)
+  services(app, mongo)
   app.mongo = mongo;
   
   let server = app.listen(PORT, (err) => {
@@ -176,7 +179,6 @@ const start = (mongo) => {
 if (process.env.MONGODB_URI) 
 {
 
-  const {MongoClient} = require('mongodb')
   MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
     .then((mongo) => {
       console.error(`✔️ MongoDB connection is active`)
