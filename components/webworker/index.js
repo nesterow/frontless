@@ -1,5 +1,5 @@
 
-const {CACHE_ASSETS, CACHE_PAGES} = require('../../config/browser')
+import {CACHE_ASSETS, CACHE_PAGES} from 'config/browser'
 
 const __ALL__ = [...CACHE_ASSETS, ...CACHE_PAGES]
 

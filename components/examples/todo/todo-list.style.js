@@ -1,5 +1,5 @@
 
-module.exports = {
+export default {
   promptIcon: {
     position: 'absolute !important',
     fontSize: '35px !important',

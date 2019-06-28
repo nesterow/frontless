@@ -1,9 +1,11 @@
 //** RiotJS plugins that supposed to work the same way on client and server */
-const riot = require('riot')
-const client = require('client')
-const {extend} = require('lodash')
-const {COOKIE_NAME} = require('config/browser')
-const {withRouter} = require('@frontless/core/browser')
+import * as riot from 'riot'
+import client from 'client'
+import {extend} from 'lodash'
+import {COOKIE_NAME} from 'config/browser'
+import {withRouter} from '@frontless/core/browser'
+import Store from 'components/store'
+
 const isBrowser = typeof window !== 'undefined'
 
 
@@ -91,7 +93,6 @@ const AuthPlugin = (instance) => {
 if (isBrowser) {
   document.__GLOBAL = {}
 }
-const Store = require('components/store')
 
 riot.install(withRouter)
 riot.install(Global)
