@@ -90,19 +90,21 @@ gulp.task('boot', function(){
 gulp.task('default', function(){
   const b = browserify({ 
       entries: ['pages/index.js'],
-      plugin: [
-        hmr, 
-        watchify
-      ], // load hmr as plugin
       debug: true,
       cache: {},
       packageCache: {}
     })
+    .plugin(watchify, {
+      delay: 100,
+      ignoreWatch: ['**/node_modules/**', '**/assets/**'],
+    })
+    .plugin(hmr)
     .transform(babelify.configure({
       presets: ["@babel/preset-env"]
     }))
     .transform(globify)
     .transform(riotify) // pass options if you need
+  
   
   const bundle = () => {
     b.bundle()
