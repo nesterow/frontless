@@ -1,6 +1,6 @@
 
 const loadtest = require('loadtest');
-const app = require('index')
+const app = require('index').default
 
 let LAST_LATENCY;
 function statusCallback(error, result, latency) {
@@ -12,10 +12,10 @@ function statusCallback(error, result, latency) {
  
 const baseOptions = {
     maxRequests: 1000,
-    requestsPerSecond: 100,
+    requestsPerSecond: 250,
     statusCallback: statusCallback,
     timeout: 5000,
-    concurrency: 6
+    concurrency: 12
 };
 
 
@@ -33,9 +33,9 @@ describe("Loadtest", function() {
     })
 
 
-    it('perform a load test on `/playground/form`', async () => {
+    it('perform a load test on `/playground/todo`', async () => {
         return new Promise((resolve, reject) => {
-            loadtest.loadTest({url: 'http://localhost:6767/playground/form', ...baseOptions}, function(error) {
+            loadtest.loadTest({url: 'http://localhost:6767/playground/state', ...baseOptions}, function(error) {
                 if (error) {
                     reject(error)
                 }
