@@ -21,7 +21,7 @@
     "@feathersjs/feathers": "^3.3.1",
     "@feathersjs/socketio": "^3.2.9",
     "@feathersjs/socketio-client": "^1.2.1",
-    "@frontless/core": "1.0.0-rc.8",
+    "@frontless/core": "1.0.0-rc.12",
     "@frontless/redux": "1.0.0-rc.2",
     "@riotjs/compiler": "^4.2.6",
     "@riotjs/hydrate": "^4.0.0",

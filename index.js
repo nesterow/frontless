@@ -23,4 +23,4 @@ if (NODE_ENV !== 'test')
 const {babel} = require('@frontless/core')
 babel()
 
-require('components/server')
+module.exports = require('components/server')
