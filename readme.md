@@ -129,6 +129,8 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 * [ ] Documentation [20%]
 
 ## Roadmap v2.0
+* [ ] Modify RiotJS to work with DI (inject `document`, `Node`, and global ctx)
+* [ ] Get rid of Mutex in render function (DI) 
 * [ ] Static site builder [10%]
 * [ ] Global state syncronization
 * [ ] Push Notifications
