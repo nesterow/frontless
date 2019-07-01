@@ -33,9 +33,9 @@ describe("Loadtest", function() {
     })
 
 
-    it('perform a load test on `/playground/todo`', async () => {
+    it('perform a load test on `/playground/routes`', async () => {
         return new Promise((resolve, reject) => {
-            loadtest.loadTest({url: 'http://localhost:6767/playground/state', ...baseOptions}, function(error) {
+            loadtest.loadTest({url: 'http://localhost:6767/playground/routes', ...baseOptions}, function(error) {
                 if (error) {
                     reject(error)
                 }
