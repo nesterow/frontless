@@ -16,7 +16,7 @@ Frontless is a minimalistic, fullstack framework for building universal (ismorph
 At the core Frontless is just a tiny Express server which provides a developer with powerful tools for building SSR web applications.
 
 #### Reduce repeated routine
-On practice, classic MMVM pattern singnificanly complicates work with data making a front-end developer writing the code which would be better performed by server rather than a browser application. I believe that the server has to be responsible for things like routing, data requests, user state (sessions), and and some cases - component's view-model It would make a frontend developer better concentrate on UI rather than repeating the functinality which is done by back-end in a more reliable way
+On practice, classic MMVM pattern singnificanly complicates work with data making a front-end developer writing the code which would be better performed by server rather than a browser application. I believe that the server has to be responsible for things like routing, data requests, user state (sessions), and and some cases - component's view-model It would make a frontend developer better concentrate on UI rather than repeating the functionality which is done by back-end in a more reliable way
 
 - It is just an express.js aplication you can customize at will
 - It is built with ❤️ RiotJS.
