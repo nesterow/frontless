@@ -18,4 +18,7 @@ const actions = {
 export default store({
   state,
   actions,
+}, 
+function() {
+  return isBrowser ? document : require('@frontless/core/src/mutex').release();
 })
