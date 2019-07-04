@@ -1,7 +1,7 @@
 <img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.png" height="50"/> 
 
 [![Build Status](https://travis-ci.org/nesterow/frontless.svg?branch=master)](https://travis-ci.org/nesterow/frontless)
-![version](https://img.shields.io/badge/Version-0.5.5@alpha-yellow.svg)
+![version](https://img.shields.io/badge/Version-1.0.0@alpha-yellow.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
 [![Join the chat at https://gitter.im/frontlessjs/community](https://badges.gitter.im/frontlessjs/community.svg)](https://gitter.im/frontlessjs/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -34,14 +34,16 @@ Before you start, it is highly recommended to have essential understanding of fo
 [ExpressJS](https://github.com/expressjs/express)
 <details><summary>Stack summary</summary>
 
+
 | SERVER        | CLIENT        |
 | :------------- |:-------------|
-| Routing *[express.js]* | Navigation *[turbolinks]* |
-| View Model *[feathers]*    | Data Representation *[riot.js]* |
-| Layout Rendering *[riot/ssr]* | User input *[riot.js]*  |
-| Sessions *[express.js]* | JWT, Cookies |
-| Realtime *[feathers, socket.io]* | FeathersJS Client |
-| DB Interface *[@feathers/client]* | Rest/IO *[@feathers/client]* |
+| Routing - *express.js* | Navigation - *turbolinks* |
+| View Model - *feathers*    | Data Representation - *riot.js* |
+| Layout Rendering - *riot/ssr* | User input - *riot.js*  |
+| Sessions - *express.js* | *JWT, Cookies* |
+| Realtime - *feathers, socket.io]* | *@feathers/client* |
+| DB Interface - *@feathers/client* | Rest/IO - *@feathers/client* |
+
 
 </details>
 
@@ -124,13 +126,12 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 * [x] Socket IO (w/feathers.js)
 * [x] Plugin support
 * [x] Configuration
-* [ ] Deployment scripts
+* [x] Modify RiotJS to work with DI (inject `document`, `Node`, and global ctx)
+* [ ] Deployment scripts [50%]
 * [ ] PWA Bootstrap [90%]
-* [ ] Documentation [20%]
+* [ ] Documentation [40%]
 
 ## Roadmap v2.0
-* [ ] Modify RiotJS to work with DI (inject `document`, `Node`, and global ctx)
-* [ ] Get rid of Mutex in render function (DI) 
 * [ ] Static site builder [10%]
 * [ ] Global state syncronization
 * [ ] Push Notifications
