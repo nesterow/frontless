@@ -11,8 +11,8 @@ function statusCallback(error, result, latency) {
 }
  
 const baseOptions = {
-    maxRequests: 1000,
-    requestsPerSecond: 250,
+    maxRequests: 100,
+    requestsPerSecond: 10,
     statusCallback: statusCallback,
     timeout: 5000,
     concurrency: 12
@@ -20,7 +20,7 @@ const baseOptions = {
 
 
 describe("Test request performance", function() {
-    this.timeout(1000000)
+    this.timeout(10000000)
     before(async () => {
         return app
     })
