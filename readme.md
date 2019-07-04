@@ -34,14 +34,16 @@ Before you start, it is highly recommended to have essential understanding of fo
 [ExpressJS](https://github.com/expressjs/express)
 <details><summary>Stack summary</summary>
 
+
 | SERVER        | CLIENT        |
 | :------------- |:-------------|
-| Routing *[express.js]* | Navigation *[turbolinks]* |
-| View Model *[feathers]*    | Data Representation *[riot.js]* |
-| Layout Rendering *[riot/ssr]* | User input *[riot.js]*  |
-| Sessions *[express.js]* | JWT, Cookies |
-| Realtime *[feathers, socket.io]* | FeathersJS Client |
-| DB Interface *[@feathers/client]* | Rest/IO *[@feathers/client]* |
+| Routing - *express.js* | Navigation - *turbolinks* |
+| View Model - *feathers*    | Data Representation - *riot.js* |
+| Layout Rendering - *riot/ssr* | User input - *riot.js*  |
+| Sessions - *express.js* | *JWT, Cookies* |
+| Realtime - *feathers, socket.io]* | *@feathers/client* |
+| DB Interface - *@feathers/client* | Rest/IO - *@feathers/client* |
+
 
 </details>
 
