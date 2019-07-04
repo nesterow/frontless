@@ -1,7 +1,7 @@
 <img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.png" height="50"/> 
 
 [![Build Status](https://travis-ci.org/nesterow/frontless.svg?branch=master)](https://travis-ci.org/nesterow/frontless)
-![version](https://img.shields.io/badge/Version-0.5.5@alpha-yellow.svg)
+![version](https://img.shields.io/badge/Version-1.0.0@alpha-yellow.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
 [![Join the chat at https://gitter.im/frontlessjs/community](https://badges.gitter.im/frontlessjs/community.svg)](https://gitter.im/frontlessjs/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
