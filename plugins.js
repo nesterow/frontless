@@ -1,5 +1,4 @@
 //** RiotJS plugins that supposed to work the same way on client and server */
-import * as riot from 'riot'
 import client from 'client'
 import {extend} from 'lodash'
 import {COOKIE_NAME} from 'config/browser'
@@ -7,6 +6,7 @@ import {withRouter} from '@frontless/core/browser'
 import Store from 'components/store'
 
 const isBrowser = typeof window !== 'undefined'
+const riot = isBrowser ? require('riot') : require('@frontless/riot')
 
 
 // First register components
@@ -18,7 +18,10 @@ if (!isBrowser) {
     const component = tag.default;
     riot.register(component.name, component)
   };
-  glob.sync( './**/*.riot' ).forEach( ( file ) => !file.startsWith('./specs/') && register(file))
+  const test = (file) => {
+    return !file.startsWith('./specs/') && !file.startsWith('./node_modules/')
+  }
+  glob.sync( './**/*.riot' ).forEach( ( file ) => test(file) && register(file))
 }
 
 const Global = (instance) => {
