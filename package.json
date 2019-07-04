@@ -1,6 +1,6 @@
 {
   "name": "frontless",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "main": "index.js",
   "repository": "git@github.com:nesterow/frontless.git",
   "author": "Anton Nesterov <arch.nesterov@gmail.com>",
@@ -21,7 +21,7 @@
     "@feathersjs/feathers": "^3.3.1",
     "@feathersjs/socketio": "^3.2.9",
     "@feathersjs/socketio-client": "^1.2.1",
-    "@frontless/core": "1.0.1",
+    "@frontless/core": "1.0.2",
     "@frontless/riot": "4.3.2",
     "@frontless/redux": "1.0.0",
     "@riotjs/compiler": "^4.3.2",

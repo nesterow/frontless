@@ -962,7 +962,7 @@ textarea.form-input.input-sm
 .has-icon-left .form-icon,
 .has-icon-right .form-icon
 {position: absolute; z-index: 2; top: 50%; width: .8rem; 
-    height: .8rem; margin: 0 .25rem; transform: translateY(-50%);
+    height: .8rem; margin: 0 .25rem; -webkit-transform: translateY(-50%);         transform: translateY(-50%);
 }
 
 .has-icon-left .form-icon
@@ -1055,7 +1055,7 @@ textarea.form-input.input-sm
 }
 
 .form-checkbox input:checked + .form-icon::before
-{position: absolute; top: 50%; left: 50%; width: 6px; height: 9px; margin-top: -6px; margin-left: -3px; content: ''; transform: rotate(45deg); border: .1rem solid #fff; border-top-width: 0; border-left-width: 0; 
+{position: absolute; top: 50%; left: 50%; width: 6px; height: 9px; margin-top: -6px; margin-left: -3px; content: ''; -webkit-transform: rotate(45deg);         transform: rotate(45deg); border: .1rem solid #fff; border-top-width: 0; border-left-width: 0; 
     background-clip: padding-box;
 }
 
@@ -1076,7 +1076,7 @@ textarea.form-input.input-sm
 }
 
 .form-radio input:checked + .form-icon::before
-{position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; content: ''; transform: translate(-50%, -50%); border-radius: 50%; 
+{position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; content: ''; -webkit-transform: translate(-50%, -50%);         transform: translate(-50%, -50%); border-radius: 50%; 
     background: #fff;
 }
 
@@ -2041,7 +2041,7 @@ video.video-responsive::before
 .accordion input:checked ~ .accordion-header .icon,
 .accordion[open] .accordion-header .icon
 {
-    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);            transform: rotate(90deg);
 }
 
 .accordion input:checked ~ .accordion-body,
@@ -2057,7 +2057,7 @@ video.video-responsive::before
 
 .accordion .accordion-header .icon
 {
-    transition: transform .25s;
+    transition: -webkit-transform .25s;    transition:         transform .25s;    transition:         transform .25s, -webkit-transform .25s;
 }
 
 .accordion .accordion-body
@@ -2103,7 +2103,7 @@ summary.accordion-header::-webkit-details-marker
 
 .avatar .avatar-icon,
 .avatar .avatar-presence
-{position: absolute; z-index: 2; right: 14.64%; bottom: 14.64%; width: 50%; height: 50%; padding: .1rem; transform: translate(50%, 50%); 
+{position: absolute; z-index: 2; right: 14.64%; bottom: 14.64%; width: 50%; height: 50%; padding: .1rem; -webkit-transform: translate(50%, 50%);         transform: translate(50%, 50%); 
 
     background: #fff;
 }
@@ -2129,7 +2129,7 @@ summary.accordion-header::-webkit-details-marker
 }
 
 .avatar[data-initial]::before
-{position: absolute; z-index: 1; top: 50%; left: 50%; content: attr(data-initial); transform: translate(-50%, -50%); 
+{position: absolute; z-index: 1; top: 50%; left: 50%; content: attr(data-initial); -webkit-transform: translate(-50%, -50%);         transform: translate(-50%, -50%); 
 
     color: currentColor;
 }
@@ -2141,7 +2141,7 @@ summary.accordion-header::-webkit-details-marker
 
 .badge[data-badge]::after,
 .badge:not([data-badge])::after
-{display: inline-block; content: attr(data-badge); transform: translate(-.05rem, -.5rem); color: #fff; border-radius: .5rem; 
+{display: inline-block; content: attr(data-badge); -webkit-transform: translate(-.05rem, -.5rem);         transform: translate(-.05rem, -.5rem); color: #fff; border-radius: .5rem; 
     background: #5755d9; background-clip: padding-box; box-shadow: 0 0 0 .1rem #fff;
 }
 
@@ -2158,12 +2158,12 @@ summary.accordion-header::-webkit-details-marker
 
 .badge.btn::after
 {
-    position: absolute; top: 0; right: 0; transform: translate(50%, -50%);
+    position: absolute; top: 0; right: 0; -webkit-transform: translate(50%, -50%);         transform: translate(50%, -50%);
 }
 
 .badge.avatar::after
 {
-    position: absolute; z-index: 100; top: 14.64%; right: 14.64%; transform: translate(50%, -50%);
+    position: absolute; z-index: 100; top: 14.64%; right: 14.64%; -webkit-transform: translate(50%, -50%);         transform: translate(50%, -50%);
 }
 
 .breadcrumb
@@ -2237,7 +2237,7 @@ summary.accordion-header::-webkit-details-marker
 }
 
 .bar-slider .bar-slider-btn
-{position: absolute; top: 50%; right: 0; width: .6rem; height: .6rem; padding: 0; transform: translate(50%, -50%); border: 0; border-radius: 50%; 
+{position: absolute; top: 50%; right: 0; width: .6rem; height: .6rem; padding: 0; -webkit-transform: translate(50%, -50%);         transform: translate(50%, -50%); border: 0; border-radius: 50%; 
     background: #5755d9;
 }
 
@@ -2307,7 +2307,7 @@ summary.accordion-header::-webkit-details-marker
 }
 
 .chip .btn-clear
-{transform: scale(.75); 
+{-webkit-transform: scale(.75);        transform: scale(.75); 
 
     border-radius: 50%;
 }
@@ -2363,7 +2363,7 @@ summary.accordion-header::-webkit-details-marker
 }
 
 .menu
-{z-index: 300; min-width: 180px; margin: 0; padding: .4rem; list-style: none; transform: translateY(.2rem); border-radius: .1rem; background: #fff; 
+{z-index: 300; min-width: 180px; margin: 0; padding: .4rem; list-style: none; -webkit-transform: translateY(.2rem);         transform: translateY(.2rem); border-radius: .1rem; background: #fff; 
     box-shadow: 0 .05rem .2rem rgba(48, 55, 66, .3);
 }
 
@@ -2612,13 +2612,13 @@ summary.accordion-header::-webkit-details-marker
 
 .popover .popover-container
 {position: absolute; z-index: 300; top: 0; 
-    left: 50%; width: 320px; padding: .4rem; transition: transform .2s; transform: translate(-50%, -50%) scale(0); opacity: 0;
+    left: 50%; width: 320px; padding: .4rem; transition: -webkit-transform .2s; transition:         transform .2s; transition:         transform .2s, -webkit-transform .2s; -webkit-transform: translate(-50%, -50%) scale(0);         transform: translate(-50%, -50%) scale(0); opacity: 0;
 }
 
 .popover *:focus + .popover-container,
 .popover:hover .popover-container
 {
-    display: block; transform: translate(-50%, -100%) scale(1); opacity: 1;
+    display: block; -webkit-transform: translate(-50%, -100%) scale(1);         transform: translate(-50%, -100%) scale(1); opacity: 1;
 }
 
 .popover.popover-right .popover-container
@@ -2629,7 +2629,7 @@ summary.accordion-header::-webkit-details-marker
 .popover.popover-right *:focus + .popover-container,
 .popover.popover-right:hover .popover-container
 {
-    transform: translate(0, -50%) scale(1);
+    -webkit-transform: translate(0, -50%) scale(1);            transform: translate(0, -50%) scale(1);
 }
 
 .popover.popover-bottom .popover-container
@@ -2640,7 +2640,7 @@ summary.accordion-header::-webkit-details-marker
 .popover.popover-bottom *:focus + .popover-container,
 .popover.popover-bottom:hover .popover-container
 {
-    transform: translate(-50%, 0) scale(1);
+    -webkit-transform: translate(-50%, 0) scale(1);            transform: translate(-50%, 0) scale(1);
 }
 
 .popover.popover-left .popover-container
@@ -2651,7 +2651,7 @@ summary.accordion-header::-webkit-details-marker
 .popover.popover-left *:focus + .popover-container,
 .popover.popover-left:hover .popover-container
 {
-    transform: translate(-100%, -50%) scale(1);
+    -webkit-transform: translate(-100%, -50%) scale(1);            transform: translate(-100%, -50%) scale(1);
 }
 
 .popover .card
@@ -2683,7 +2683,7 @@ summary.accordion-header::-webkit-details-marker
 }
 
 .step .step-item a::before
-{position: absolute; z-index: 1; top: .2rem; left: 50%; display: block; width: .6rem; height: .6rem; content: ''; transform: translateX(-50%); border: .1rem solid #fff; border-radius: 50%; 
+{position: absolute; z-index: 1; top: .2rem; left: 50%; display: block; width: .6rem; height: .6rem; content: ''; -webkit-transform: translateX(-50%);         transform: translateX(-50%); border: .1rem solid #fff; border-radius: 50%; 
     background: #5755d9;
 }
 
@@ -2759,7 +2759,7 @@ summary.accordion-header::-webkit-details-marker
 
 .tab.tab-block .tab-item .badge[data-badge]::after
 {
-    position: absolute; top: .1rem; right: .1rem; transform: translate(0, 0);
+    position: absolute; top: .1rem; right: .1rem; -webkit-transform: translate(0, 0);         transform: translate(0, 0);
 }
 
 .tab:not(.tab-block) .badge
@@ -2871,13 +2871,13 @@ summary.accordion-header::-webkit-details-marker
 }
 
 .tooltip::after
-{font-size: .7rem; position: absolute; z-index: 300; bottom: 100%; left: 50%; display: block; overflow: hidden; max-width: 320px; padding: .2rem .4rem; content: attr(data-tooltip); transition: opacity .2s, transform .2s; transform: translate(-50%, .4rem); white-space: pre; text-overflow: ellipsis; pointer-events: none; opacity: 0; color: #fff; border-radius: .1rem; 
+{font-size: .7rem; position: absolute; z-index: 300; bottom: 100%; left: 50%; display: block; overflow: hidden; max-width: 320px; padding: .2rem .4rem; content: attr(data-tooltip); transition: opacity .2s, -webkit-transform .2s; transition: opacity .2s, transform .2s; transition: opacity .2s, transform .2s, -webkit-transform .2s; -webkit-transform: translate(-50%, .4rem);         transform: translate(-50%, .4rem); white-space: pre; text-overflow: ellipsis; pointer-events: none; opacity: 0; color: #fff; border-radius: .1rem; 
     background: rgba(48, 55, 66, .95);
 }
 
 .tooltip:focus::after,
 .tooltip:hover::after
-{transform: translate(-50%, -.2rem); 
+{-webkit-transform: translate(-50%, -.2rem);        transform: translate(-50%, -.2rem); 
 
     opacity: 1;
 }
@@ -2890,46 +2890,46 @@ summary.accordion-header::-webkit-details-marker
 
 .tooltip.tooltip-right::after
 {
-    bottom: 50%; left: 100%; transform: translate(-.2rem, 50%);
+    bottom: 50%; left: 100%; -webkit-transform: translate(-.2rem, 50%);         transform: translate(-.2rem, 50%);
 }
 
 .tooltip.tooltip-right:focus::after,
 .tooltip.tooltip-right:hover::after
 {
-    transform: translate(.2rem, 50%);
+    -webkit-transform: translate(.2rem, 50%);            transform: translate(.2rem, 50%);
 }
 
 .tooltip.tooltip-bottom::after
 {top: 100%; 
-    bottom: auto; transform: translate(-50%, -.4rem);
+    bottom: auto; -webkit-transform: translate(-50%, -.4rem);         transform: translate(-50%, -.4rem);
 }
 
 .tooltip.tooltip-bottom:focus::after,
 .tooltip.tooltip-bottom:hover::after
 {
-    transform: translate(-50%, .2rem);
+    -webkit-transform: translate(-50%, .2rem);            transform: translate(-50%, .2rem);
 }
 
 .tooltip.tooltip-left::after
 {right: 100%; 
-    bottom: 50%; left: auto; transform: translate(.4rem, 50%);
+    bottom: 50%; left: auto; -webkit-transform: translate(.4rem, 50%);         transform: translate(.4rem, 50%);
 }
 
 .tooltip.tooltip-left:focus::after,
 .tooltip.tooltip-left:hover::after
 {
-    transform: translate(-.2rem, 50%);
+    -webkit-transform: translate(-.2rem, 50%);            transform: translate(-.2rem, 50%);
 }
 
 @-webkit-keyframes loading
 {
     0%
     {
-        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);                transform: rotate(0deg);
     }
     100%
     {
-        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);                transform: rotate(360deg);
     }
 }
 
@@ -2937,11 +2937,11 @@ summary.accordion-header::-webkit-details-marker
 {
     0%
     {
-        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);                transform: rotate(0deg);
     }
     100%
     {
-        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);                transform: rotate(360deg);
     }
 }
 
@@ -2949,13 +2949,15 @@ summary.accordion-header::-webkit-details-marker
 {
     0%
     {
-        transform: translateY(-1.6rem); 
+        -webkit-transform: translateY(-1.6rem);
+                transform: translateY(-1.6rem); 
 
         opacity: 0;
     }
     100%
     {
-        transform: translateY(0); 
+        -webkit-transform: translateY(0);
+                transform: translateY(0); 
 
         opacity: 1;
     }
@@ -2965,13 +2967,15 @@ summary.accordion-header::-webkit-details-marker
 {
     0%
     {
-        transform: translateY(-1.6rem); 
+        -webkit-transform: translateY(-1.6rem);
+                transform: translateY(-1.6rem); 
 
         opacity: 0;
     }
     100%
     {
-        transform: translateY(0); 
+        -webkit-transform: translateY(0);
+                transform: translateY(0); 
 
         opacity: 1;
     }
@@ -3231,7 +3235,7 @@ a.text-error:visited
 
 .divider[data-content]::after,
 .divider-vert[data-content]::after
-{font-size: .7rem; display: inline-block; padding: 0 .4rem; content: attr(data-content); transform: translateY(-.65rem); color: #bcc3ce; 
+{font-size: .7rem; display: inline-block; padding: 0 .4rem; content: attr(data-content); -webkit-transform: translateY(-.65rem);         transform: translateY(-.65rem); color: #bcc3ce; 
     background: #fff;
 }
 
@@ -3252,14 +3256,14 @@ a.text-error:visited
 }
 
 .divider-vert::before
-{position: absolute; top: .4rem; bottom: .4rem; left: 50%; display: block; content: ''; transform: translateX(-50%); 
+{position: absolute; top: .4rem; bottom: .4rem; left: 50%; display: block; content: ''; -webkit-transform: translateX(-50%);         transform: translateX(-50%); 
 
     border-left: .05rem solid #dadee4;
 }
 
 .divider-vert[data-content]::after
 {position: absolute; top: 50%; 
-    left: 50%; padding: .2rem 0; transform: translate(-50%, -50%);
+    left: 50%; padding: .2rem 0; -webkit-transform: translate(-50%, -50%);         transform: translate(-50%, -50%);
 }
 
 .loading
@@ -3630,7 +3634,7 @@ a.text-error:visited
 .icon::after
 {position: absolute; top: 50%; left: 50%; display: block; 
 
-    content: ''; transform: translate(-50%, -50%);
+    content: ''; -webkit-transform: translate(-50%, -50%);         transform: translate(-50%, -50%);
 }
 
 .icon.icon-2x
@@ -3676,22 +3680,22 @@ a.text-error:visited
 
 .icon-arrow-down::before
 {
-    transform: translate(-50%, -75%) rotate(225deg);
+    -webkit-transform: translate(-50%, -75%) rotate(225deg);            transform: translate(-50%, -75%) rotate(225deg);
 }
 
 .icon-arrow-left::before
 {
-    transform: translate(-25%, -50%) rotate(-45deg);
+    -webkit-transform: translate(-25%, -50%) rotate(-45deg);            transform: translate(-25%, -50%) rotate(-45deg);
 }
 
 .icon-arrow-right::before
 {
-    transform: translate(-75%, -50%) rotate(135deg);
+    -webkit-transform: translate(-75%, -50%) rotate(135deg);            transform: translate(-75%, -50%) rotate(135deg);
 }
 
 .icon-arrow-up::before
 {
-    transform: translate(-50%, -25%) rotate(45deg);
+    -webkit-transform: translate(-50%, -25%) rotate(45deg);            transform: translate(-50%, -25%) rotate(45deg);
 }
 
 .icon-back::after,
@@ -3715,7 +3719,7 @@ a.text-error:visited
 
 .icon-back::before
 {
-    transform: translate(-50%, -50%) rotate(-45deg);
+    -webkit-transform: translate(-50%, -50%) rotate(-45deg);            transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .icon-downward::after
@@ -3725,7 +3729,7 @@ a.text-error:visited
 
 .icon-downward::before
 {
-    transform: translate(-50%, -50%) rotate(-135deg);
+    -webkit-transform: translate(-50%, -50%) rotate(-135deg);            transform: translate(-50%, -50%) rotate(-135deg);
 }
 
 .icon-forward::after
@@ -3735,7 +3739,7 @@ a.text-error:visited
 
 .icon-forward::before
 {
-    transform: translate(-50%, -50%) rotate(135deg);
+    -webkit-transform: translate(-50%, -50%) rotate(135deg);            transform: translate(-50%, -50%) rotate(135deg);
 }
 
 .icon-upward::after
@@ -3745,11 +3749,11 @@ a.text-error:visited
 
 .icon-upward::before
 {
-    transform: translate(-50%, -50%) rotate(45deg);
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);            transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .icon-caret::before
-{width: 0; height: 0; transform: translate(-50%, -25%); 
+{width: 0; height: 0; -webkit-transform: translate(-50%, -25%);         transform: translate(-50%, -25%); 
 
     border-top: .3em solid currentColor; border-right: .3em solid transparent; border-left: .3em solid transparent;
 }
@@ -3778,23 +3782,23 @@ a.text-error:visited
 .icon-resize-horiz::before,
 .icon-resize-vert::before
 {
-    transform: translate(-50%, -90%) rotate(45deg);
+    -webkit-transform: translate(-50%, -90%) rotate(45deg);            transform: translate(-50%, -90%) rotate(45deg);
 }
 
 .icon-resize-horiz::after,
 .icon-resize-vert::after
 {
-    transform: translate(-50%, -10%) rotate(225deg);
+    -webkit-transform: translate(-50%, -10%) rotate(225deg);            transform: translate(-50%, -10%) rotate(225deg);
 }
 
 .icon-resize-horiz::before
 {
-    transform: translate(-90%, -50%) rotate(-45deg);
+    -webkit-transform: translate(-90%, -50%) rotate(-45deg);            transform: translate(-90%, -50%) rotate(-45deg);
 }
 
 .icon-resize-horiz::after
 {
-    transform: translate(-10%, -50%) rotate(135deg);
+    -webkit-transform: translate(-10%, -50%) rotate(135deg);            transform: translate(-10%, -50%) rotate(135deg);
 }
 
 .icon-more-horiz::before,
@@ -3836,11 +3840,11 @@ a.text-error:visited
 .icon-cross::before,
 .icon-cross::after
 {
-    transform: translate(-50%, -50%) rotate(45deg);
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);            transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .icon-check::before
-{width: .9em; height: .5em; transform: translate(-50%, -75%) rotate(-45deg); 
+{width: .9em; height: .5em; -webkit-transform: translate(-50%, -75%) rotate(-45deg);         transform: translate(-50%, -75%) rotate(-45deg); 
 
     border: .1rem solid currentColor; border-top: 0; border-right: 0;
 }
@@ -3851,7 +3855,7 @@ a.text-error:visited
 }
 
 .icon-stop::before
-{width: 1em; height: .1rem; transform: translate(-50%, -50%) rotate(45deg); 
+{width: 1em; height: .1rem; -webkit-transform: translate(-50%, -50%) rotate(45deg);         transform: translate(-50%, -50%) rotate(45deg); 
 
     background: currentColor;
 }
@@ -3880,25 +3884,25 @@ a.text-error:visited
 }
 
 .icon-search::before
-{top: 5%; left: 5%; width: .75em; height: .75em; transform: translate(0, 0) rotate(45deg); 
+{top: 5%; left: 5%; width: .75em; height: .75em; -webkit-transform: translate(0, 0) rotate(45deg);         transform: translate(0, 0) rotate(45deg); 
 
     border: .1rem solid currentColor; border-radius: 50%;
 }
 
 .icon-search::after
-{top: 80%; left: 80%; width: .4em; height: .1rem; transform: translate(-50%, -50%) rotate(45deg); 
+{top: 80%; left: 80%; width: .4em; height: .1rem; -webkit-transform: translate(-50%, -50%) rotate(45deg);         transform: translate(-50%, -50%) rotate(45deg); 
 
     background: currentColor;
 }
 
 .icon-edit::before
-{width: .85em; height: .4em; transform: translate(-40%, -60%) rotate(-45deg); 
+{width: .85em; height: .4em; -webkit-transform: translate(-40%, -60%) rotate(-45deg);         transform: translate(-40%, -60%) rotate(-45deg); 
 
     border: .1rem solid currentColor;
 }
 
 .icon-edit::after
-{top: 95%; left: 5%; width: 0; height: 0; transform: translate(0, -100%); 
+{top: 95%; left: 5%; width: 0; height: 0; -webkit-transform: translate(0, -100%);         transform: translate(0, -100%); 
 
     border: .15em solid currentColor; border-top-color: transparent; border-right-color: transparent;
 }
@@ -3921,7 +3925,7 @@ a.text-error:visited
 }
 
 .icon-share::before
-{top: .25em; left: 100%; width: .4em; height: .4em; transform: translate(-125%, -50%) rotate(-45deg); 
+{top: .25em; left: 100%; width: .4em; height: .4em; -webkit-transform: translate(-125%, -50%) rotate(-45deg);         transform: translate(-125%, -50%) rotate(-45deg); 
 
     border: .1rem solid currentColor; border-top: 0; border-left: 0;
 }
@@ -3951,7 +3955,7 @@ a.text-error:visited
 }
 
 .icon-bookmark::after
-{width: .5em; height: .5em; transform: translate(-50%, 35%) rotate(-45deg) skew(15deg, 15deg); 
+{width: .5em; height: .5em; -webkit-transform: translate(-50%, 35%) rotate(-45deg) skew(15deg, 15deg);         transform: translate(-50%, 35%) rotate(-45deg) skew(15deg, 15deg); 
 
     border: .1rem solid currentColor; border-bottom: 0; border-left: 0; border-radius: .1rem;
 }
@@ -3964,7 +3968,7 @@ a.text-error:visited
 
 .icon-download::before,
 .icon-upload::before
-{width: .5em; height: .5em; transform: translate(-50%, -60%) rotate(-135deg); 
+{width: .5em; height: .5em; -webkit-transform: translate(-50%, -60%) rotate(-135deg);         transform: translate(-50%, -60%) rotate(-135deg); 
 
     border: .1rem solid currentColor; border-right: 0; border-bottom: 0;
 }
@@ -3978,7 +3982,7 @@ a.text-error:visited
 
 .icon-upload::before
 {
-    transform: translate(-50%, -60%) rotate(45deg);
+    -webkit-transform: translate(-50%, -60%) rotate(45deg);            transform: translate(-50%, -60%) rotate(45deg);
 }
 
 .icon-upload::after
@@ -4004,13 +4008,13 @@ a.text-error:visited
 }
 
 .icon-time::before
-{width: .1rem; height: .4em; transform: translate(-50%, -75%); 
+{width: .1rem; height: .4em; -webkit-transform: translate(-50%, -75%);         transform: translate(-50%, -75%); 
 
     background: currentColor;
 }
 
 .icon-time::after
-{width: .1rem; height: .3em; transform: translate(-50%, -75%) rotate(90deg); transform-origin: 50% 90%; 
+{width: .1rem; height: .3em; -webkit-transform: translate(-50%, -75%) rotate(90deg);         transform: translate(-50%, -75%) rotate(90deg); -webkit-transform-origin: 50% 90%;         transform-origin: 50% 90%; 
 
     background: currentColor;
 }
@@ -4022,7 +4026,7 @@ a.text-error:visited
 }
 
 .icon-mail::after
-{width: .5em; height: .5em; transform: translate(-50%, -90%) rotate(-45deg) skew(10deg, 10deg); 
+{width: .5em; height: .5em; -webkit-transform: translate(-50%, -90%) rotate(-45deg) skew(10deg, 10deg);         transform: translate(-50%, -90%) rotate(-45deg) skew(10deg, 10deg); 
 
     border: .1rem solid currentColor; border-top: 0; border-right: 0;
 }
@@ -4051,7 +4055,7 @@ a.text-error:visited
 }
 
 .icon-message::after
-{top: 100%; left: 10%; width: .1rem; height: .3em; transform: translate(0, -90%) rotate(45deg); border-radius: .1rem; 
+{top: 100%; left: 10%; width: .1rem; height: .3em; -webkit-transform: translate(0, -90%) rotate(45deg);         transform: translate(0, -90%) rotate(45deg); border-radius: .1rem; 
     background: currentColor;
 }
 
@@ -4067,7 +4071,7 @@ a.text-error:visited
 }
 
 .icon-photo::after
-{left: 60%; width: .5em; height: .5em; transform: translate(-50%, 25%) rotate(-45deg); 
+{left: 60%; width: .5em; height: .5em; -webkit-transform: translate(-50%, 25%) rotate(-45deg);         transform: translate(-50%, 25%) rotate(-45deg); 
 
     border: .1rem solid currentColor; border-bottom: 0; border-left: 0;
 }
@@ -4081,22 +4085,22 @@ a.text-error:visited
 
 .icon-link::before
 {
-    transform: translate(-70%, -45%) rotate(-45deg);
+    -webkit-transform: translate(-70%, -45%) rotate(-45deg);            transform: translate(-70%, -45%) rotate(-45deg);
 }
 
 .icon-link::after
 {
-    transform: translate(-30%, -55%) rotate(135deg);
+    -webkit-transform: translate(-30%, -55%) rotate(135deg);            transform: translate(-30%, -55%) rotate(135deg);
 }
 
 .icon-location::before
-{width: .8em; height: .8em; transform: translate(-50%, -60%) rotate(-45deg); 
+{width: .8em; height: .8em; -webkit-transform: translate(-50%, -60%) rotate(-45deg);         transform: translate(-50%, -60%) rotate(-45deg); 
 
     border: .1rem solid currentColor; border-radius: 50% 50% 50% 0;
 }
 
 .icon-location::after
-{width: .2em; height: .2em; transform: translate(-50%, -80%); 
+{width: .2em; height: .2em; -webkit-transform: translate(-50%, -80%);         transform: translate(-50%, -80%); 
 
     border: .1rem solid currentColor; border-radius: 50%;
 }
@@ -4113,7 +4117,7 @@ a.text-error:visited
 }
 
 .icon-emoji::after
-{width: .5em; height: .5em; transform: translate(-50%, -40%) rotate(-135deg); 
+{width: .5em; height: .5em; -webkit-transform: translate(-50%, -40%) rotate(-135deg);         transform: translate(-50%, -40%) rotate(-135deg); 
 
     border: .1rem solid currentColor; border-right-color: transparent; border-bottom-color: transparent; border-radius: 50%;
 }
@@ -4228,7 +4232,7 @@ a.text-error:visited
 
 .calendar .calendar-date .date-item.badge::after
 {
-    position: absolute; top: 3px; right: 3px; transform: translate(50%, -50%);
+    position: absolute; top: 3px; right: 3px; -webkit-transform: translate(50%, -50%);         transform: translate(50%, -50%);
 }
 
 .calendar .calendar-date .date-item:disabled,
@@ -4253,7 +4257,7 @@ a.text-error:visited
 }
 
 .calendar .calendar-range::before
-{position: absolute; top: 50%; right: 0; left: 0; height: 1.4rem; content: ''; transform: translateY(-50%); 
+{position: absolute; top: 50%; right: 0; left: 0; height: 1.4rem; content: ''; -webkit-transform: translateY(-50%);         transform: translateY(-50%); 
 
     background: #f1f1fc;
 }
@@ -4389,7 +4393,7 @@ a.text-error:visited
 
 .carousel .carousel-container .item-prev,
 .carousel .carousel-container .item-next
-{position: absolute; z-index: 100; top: 50%; transition: all .4s; transform: translateY(-50%); opacity: 0; color: #f7f8f9; border-color: rgba(247, 248, 249, .5); 
+{position: absolute; z-index: 100; top: 50%; transition: all .4s; -webkit-transform: translateY(-50%);         transform: translateY(-50%); opacity: 0; color: #f7f8f9; border-color: rgba(247, 248, 249, .5); 
     background: rgba(247, 248, 249, .25);
 }
 
@@ -4405,7 +4409,7 @@ a.text-error:visited
 
 .carousel .carousel-nav
 {position: absolute; z-index: 100; 
-    bottom: .4rem; left: 50%; display: flex; width: 10rem; transform: translateX(-50%); justify-content: center;
+    bottom: .4rem; left: 50%; display: flex; width: 10rem; -webkit-transform: translateX(-50%);         transform: translateX(-50%); justify-content: center;
 }
 
 .carousel .carousel-nav .nav-item
@@ -4424,11 +4428,11 @@ a.text-error:visited
 {
     0%
     {
-        transform: translateX(100%);
+        -webkit-transform: translateX(100%);                transform: translateX(100%);
     }
     100%
     {
-        transform: translateX(0);
+        -webkit-transform: translateX(0);                transform: translateX(0);
     }
 }
 
@@ -4436,11 +4440,11 @@ a.text-error:visited
 {
     0%
     {
-        transform: translateX(100%);
+        -webkit-transform: translateX(100%);                transform: translateX(100%);
     }
     100%
     {
-        transform: translateX(0);
+        -webkit-transform: translateX(0);                transform: translateX(0);
     }
 }
 
@@ -4448,13 +4452,15 @@ a.text-error:visited
 {
     0%
     {
-        transform: translateX(0); 
+        -webkit-transform: translateX(0);
+                transform: translateX(0); 
 
         opacity: 1;
     }
     100%
     {
-        transform: translateX(-50%); 
+        -webkit-transform: translateX(-50%);
+                transform: translateX(-50%); 
 
         opacity: 1;
     }
@@ -4464,13 +4470,15 @@ a.text-error:visited
 {
     0%
     {
-        transform: translateX(0); 
+        -webkit-transform: translateX(0);
+                transform: translateX(0); 
 
         opacity: 1;
     }
     100%
     {
-        transform: translateX(-50%); 
+        -webkit-transform: translateX(-50%);
+                transform: translateX(-50%); 
 
         opacity: 1;
     }
@@ -4517,7 +4525,7 @@ a.text-error:visited
 }
 
 .comparison-slider .comparison-after::after
-{position: absolute; top: 50%; right: .4rem; width: 3px; height: 3px; content: ''; transform: translate(50%, -50%); color: #fff; border-radius: 50%; 
+{position: absolute; top: 50%; right: .4rem; width: 3px; height: 3px; content: ''; -webkit-transform: translate(50%, -50%);         transform: translate(50%, -50%); color: #fff; border-radius: 50%; 
     background: currentColor; box-shadow: 0 -5px, 0 5px;
 }
 
@@ -4527,7 +4535,7 @@ a.text-error:visited
 }
 
 .comparison-slider .comparison-resizer
-{position: relative; top: 50%; left: 0; width: 0; min-width: .8rem; max-width: 100%; height: .8rem; resize: horizontal; cursor: ew-resize; transform: translateY(-50%) scaleY(30); 
+{position: relative; top: 50%; left: 0; width: 0; min-width: .8rem; max-width: 100%; height: .8rem; resize: horizontal; cursor: ew-resize; -webkit-transform: translateY(-50%) scaleY(30);         transform: translateY(-50%) scaleY(30); 
     -webkit-animation: first-run 1.5s 1 ease-in-out;            animation: first-run 1.5s 1 ease-in-out; opacity: 0; outline: none;
 }
 
@@ -4694,7 +4702,7 @@ a.text-error:visited
 }
 
 .off-canvas .off-canvas-sidebar
-{position: fixed; z-index: 200; top: 0; bottom: 0; left: 0; overflow-y: auto; min-width: 10rem; transition: transform .25s; transform: translateX(-100%); 
+{position: fixed; z-index: 200; top: 0; bottom: 0; left: 0; overflow-y: auto; min-width: 10rem; transition: -webkit-transform .25s; transition:         transform .25s; transition:         transform .25s, -webkit-transform .25s; -webkit-transform: translateX(-100%);         transform: translateX(-100%); 
 
     background: #f7f8f9;
 }
@@ -4713,7 +4721,7 @@ a.text-error:visited
 .off-canvas .off-canvas-sidebar:target,
 .off-canvas .off-canvas-sidebar.active
 {
-    transform: translateX(0);
+    -webkit-transform: translateX(0);            transform: translateX(0);
 }
 
 .off-canvas .off-canvas-sidebar:target ~ .off-canvas-overlay,
@@ -4730,7 +4738,7 @@ a.text-error:visited
         display: none;
     }
     .off-canvas.off-canvas-sidebar-show .off-canvas-sidebar
-    {position: relative; transform: none; 
+    {position: relative; -webkit-transform: none;         transform: none; 
 
         flex: 0 0 auto;
     }
@@ -4747,9 +4755,9 @@ a.text-error:visited
 }
 
 .parallax .parallax-content
-{width: 100%; height: auto; transition: all .4s ease; transform: perspective(1000px); 
+{width: 100%; height: auto; transition: all .4s ease; -webkit-transform: perspective(1000px);         transform: perspective(1000px); 
 
-    box-shadow: 0 1rem 2.1rem rgba(48, 55, 66, .3); transform-style: preserve-3d;
+    box-shadow: 0 1rem 2.1rem rgba(48, 55, 66, .3); -webkit-transform-style: preserve-3d;         transform-style: preserve-3d;
 }
 
 .parallax .parallax-content::before
@@ -4759,7 +4767,7 @@ a.text-error:visited
 }
 
 .parallax .parallax-front
-{position: absolute; z-index: 1; top: 0; left: 0; display: flex; width: 100%; height: 100%; transition: transform .4s; transform: translateZ(50px) scale(.95); text-align: center; color: #fff; text-shadow: 0 0 20px rgba(48, 55, 66, .75); 
+{position: absolute; z-index: 1; top: 0; left: 0; display: flex; width: 100%; height: 100%; transition: -webkit-transform .4s; transition:         transform .4s; transition:         transform .4s, -webkit-transform .4s; -webkit-transform: translateZ(50px) scale(.95);         transform: translateZ(50px) scale(.95); text-align: center; color: #fff; text-shadow: 0 0 20px rgba(48, 55, 66, .75); 
 
     align-items: center; justify-content: center;
 }
@@ -4772,7 +4780,7 @@ a.text-error:visited
 .parallax .parallax-top-left:focus ~ .parallax-content,
 .parallax .parallax-top-left:hover ~ .parallax-content
 {
-    transform: perspective(1000px) rotateX(3deg) rotateY(-3deg);
+    -webkit-transform: perspective(1000px) rotateX(3deg) rotateY(-3deg);            transform: perspective(1000px) rotateX(3deg) rotateY(-3deg);
 }
 
 .parallax .parallax-top-left:focus ~ .parallax-content::before,
@@ -4784,7 +4792,7 @@ a.text-error:visited
 .parallax .parallax-top-left:focus ~ .parallax-content .parallax-front,
 .parallax .parallax-top-left:hover ~ .parallax-content .parallax-front
 {
-    transform: translate3d(4.5px, 4.5px, 50px) scale(.95);
+    -webkit-transform: translate3d(4.5px, 4.5px, 50px) scale(.95);            transform: translate3d(4.5px, 4.5px, 50px) scale(.95);
 }
 
 .parallax .parallax-top-right
@@ -4795,7 +4803,7 @@ a.text-error:visited
 .parallax .parallax-top-right:focus ~ .parallax-content,
 .parallax .parallax-top-right:hover ~ .parallax-content
 {
-    transform: perspective(1000px) rotateX(3deg) rotateY(3deg);
+    -webkit-transform: perspective(1000px) rotateX(3deg) rotateY(3deg);            transform: perspective(1000px) rotateX(3deg) rotateY(3deg);
 }
 
 .parallax .parallax-top-right:focus ~ .parallax-content::before,
@@ -4807,7 +4815,7 @@ a.text-error:visited
 .parallax .parallax-top-right:focus ~ .parallax-content .parallax-front,
 .parallax .parallax-top-right:hover ~ .parallax-content .parallax-front
 {
-    transform: translate3d(-4.5px, 4.5px, 50px) scale(.95);
+    -webkit-transform: translate3d(-4.5px, 4.5px, 50px) scale(.95);            transform: translate3d(-4.5px, 4.5px, 50px) scale(.95);
 }
 
 .parallax .parallax-bottom-left
@@ -4818,7 +4826,7 @@ a.text-error:visited
 .parallax .parallax-bottom-left:focus ~ .parallax-content,
 .parallax .parallax-bottom-left:hover ~ .parallax-content
 {
-    transform: perspective(1000px) rotateX(-3deg) rotateY(-3deg);
+    -webkit-transform: perspective(1000px) rotateX(-3deg) rotateY(-3deg);            transform: perspective(1000px) rotateX(-3deg) rotateY(-3deg);
 }
 
 .parallax .parallax-bottom-left:focus ~ .parallax-content::before,
@@ -4830,7 +4838,7 @@ a.text-error:visited
 .parallax .parallax-bottom-left:focus ~ .parallax-content .parallax-front,
 .parallax .parallax-bottom-left:hover ~ .parallax-content .parallax-front
 {
-    transform: translate3d(4.5px, -4.5px, 50px) scale(.95);
+    -webkit-transform: translate3d(4.5px, -4.5px, 50px) scale(.95);            transform: translate3d(4.5px, -4.5px, 50px) scale(.95);
 }
 
 .parallax .parallax-bottom-right
@@ -4841,7 +4849,7 @@ a.text-error:visited
 .parallax .parallax-bottom-right:focus ~ .parallax-content,
 .parallax .parallax-bottom-right:hover ~ .parallax-content
 {
-    transform: perspective(1000px) rotateX(-3deg) rotateY(3deg);
+    -webkit-transform: perspective(1000px) rotateX(-3deg) rotateY(3deg);            transform: perspective(1000px) rotateX(-3deg) rotateY(3deg);
 }
 
 .parallax .parallax-bottom-right:focus ~ .parallax-content::before,
@@ -4853,7 +4861,7 @@ a.text-error:visited
 .parallax .parallax-bottom-right:focus ~ .parallax-content .parallax-front,
 .parallax .parallax-bottom-right:hover ~ .parallax-content .parallax-front
 {
-    transform: translate3d(-4.5px, -4.5px, 50px) scale(.95);
+    -webkit-transform: translate3d(-4.5px, -4.5px, 50px) scale(.95);            transform: translate3d(-4.5px, -4.5px, 50px) scale(.95);
 }
 
 .progress
@@ -4928,24 +4936,24 @@ a.text-error:visited
 }
 
 .slider::-webkit-slider-thumb
-{width: .6rem; height: .6rem; margin-top: -.25rem; transition: transform .2s; border: 0; border-radius: 50%; background: #5755d9; 
+{width: .6rem; height: .6rem; margin-top: -.25rem; transition: -webkit-transform .2s; transition:         transform .2s; transition:         transform .2s, -webkit-transform .2s; border: 0; border-radius: 50%; background: #5755d9; 
 
     -webkit-appearance: none;
 }
 
 .slider::-moz-range-thumb
-{width: .6rem; height: .6rem; transition: transform .2s; border: 0; border-radius: 50%; 
+{width: .6rem; height: .6rem; transition: -webkit-transform .2s; transition:         transform .2s; transition:         transform .2s, -webkit-transform .2s; border: 0; border-radius: 50%; 
     background: #5755d9;
 }
 
 .slider::-ms-thumb
-{width: .6rem; height: .6rem; transition: transform .2s; border: 0; border-radius: 50%; 
+{width: .6rem; height: .6rem; transition: -webkit-transform .2s; transition:         transform .2s; transition:         transform .2s, -webkit-transform .2s; border: 0; border-radius: 50%; 
     background: #5755d9;
 }
 
 .slider:active::-webkit-slider-thumb
 {
-    transform: scale(1.25);
+    -webkit-transform: scale(1.25);            transform: scale(1.25);
 }
 
 .slider:active::-moz-range-thumb
@@ -4960,7 +4968,7 @@ a.text-error:visited
 
 .slider:disabled::-webkit-slider-thumb,
 .slider.disabled::-webkit-slider-thumb
-{transform: scale(1); 
+{-webkit-transform: scale(1);        transform: scale(1); 
 
     background: #f7f8f9;
 }

@@ -19,7 +19,7 @@ const baseOptions = {
 };
 
 
-describe("Loadtest", function() {
+describe("Test request performance", function() {
     this.timeout(1000000)
     before(async () => {
         return app
