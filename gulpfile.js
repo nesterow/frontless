@@ -121,10 +121,10 @@ gulp.task('install', ()=>{
   if (!repo) {
     return console.log(`
     Command syntax:
-      gulp install --username/repository
+      gulp install @username/repository
     `)
   } else {
-    const target = repo.replace('--', '');
+    const target = repo.replace('@', '');
     const path = `components/${target}`
     const repoURL = `git@github.com:${target}.git`
     return runCommand('git', ['clone', repoURL, path])
