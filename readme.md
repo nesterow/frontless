@@ -1,11 +1,11 @@
 <img src="https://github.com/nesterow/frontless/blob/master/assets/media/logo.svg" height="50"/> 
-<p style="color: green;"> Feathers + Riot + Turbolinks + Express</p>
 
 [![Build Status](https://travis-ci.org/nesterow/frontless.svg?branch=master)](https://travis-ci.org/nesterow/frontless)
 ![version](https://img.shields.io/badge/Version-1.0.0@alpha-yellow.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
 [![Join the chat at https://gitter.im/frontlessjs/community](https://badges.gitter.im/frontlessjs/community.svg)](https://gitter.im/frontlessjs/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+<p style="color: green;"> Feathers + Riot + Turbolinks + Express</p>
 <a href="https://h5l5o.sse.codesandbox.io/" target="_blank">
   ⚙ View demo on CodeSandbox.io
 </a>
