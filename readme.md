@@ -1,4 +1,4 @@
-<img src="https://github.com/nesterow/frontless/raw/master/assets/media/logo.svg" height="50"/> 
+<img src="https://github.com/nesterow/frontless/blob/master/assets/media/logo.svg" height="50"/> 
 
 [![Build Status](https://travis-ci.org/nesterow/frontless.svg?branch=master)](https://travis-ci.org/nesterow/frontless)
 ![version](https://img.shields.io/badge/Version-1.0.0@alpha-yellow.svg)
