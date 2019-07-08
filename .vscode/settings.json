@@ -2,8 +2,8 @@
   "files.associations": {
     "*.riot": "htmltag",
     "*.jss": "javascript"
-},
-"search.exclude": {
+  },
+  "search.exclude": {
   "**/node_modules": false
-}
+  }
 }
