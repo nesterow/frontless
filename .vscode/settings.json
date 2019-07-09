@@ -1,6 +1,5 @@
 {
   "files.associations": {
-    "*.riot": "htmltag",
     "*.jss": "javascript"
   },
   "search.exclude": {
