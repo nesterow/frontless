@@ -61,7 +61,7 @@ Before you start, it is highly recommended to have essential understanding of fo
 
 ## Features
 
-**Simplify Routing Schemes**
+**Simple Routing Scheme**
 
 Routing in-web applications should be as simple as it is in static sites. With that in mind, any Riot.JS component placed in the pages directory is accessible by browser: [`index.riot -> GET /`, `page.riot -> GET /page`].
 
