@@ -61,7 +61,7 @@ Before you start, it is highly recommended to have essential understanding of fo
 
 ## Features
 
-**Simple Routing Scheme**
+**Simple routing scheme**
 
 Routing in-web applications should be as simple as it is in static sites. With that in mind, any Riot.JS component placed in the pages directory is accessible by browser: [`index.riot -> GET /`, `page.riot -> GET /page`].
 
@@ -78,7 +78,7 @@ export default {
 }
 ```
 
-**Synchronous Rendering**
+**Synchronous rendering**
 
 A common developer routine is to handle asynchronous calls to APIs and databases before rendering UI. Frontless can render pages after all asynchronous calls are complete. Including children riot components nested inside the page markup.
 
@@ -94,11 +94,11 @@ All Riot components rendered on the server side initialize in browser with last 
 
 If your application needs SPA experience you can cache the pages using webworker module.
 
-**RestAPI/Socket.io**
+**RestAPI/Socket.IO**
 
 Stay close to the database with power of FeathersJS services.
 
-**It is just Express**
+**It is just Express.JS**
 
 Everything you can do with an express application.
 
