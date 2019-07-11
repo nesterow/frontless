@@ -12,14 +12,17 @@
 
 
 ## About
+
 Frontless is a node.js stack for building universal (ismorphic) javascript applications. At the core, Frontless is just a small Express server that provides a developer with powerful tools for building SSR web applications.
 
 Frontless is built around the best javascript technologies: Feathers.JS , Riot.JS, Turbolinks, and Express.
 
 #### Motivation
+
 In practice, the classic MMVM approach significantly complicates work with data. That causes a front-end developer to write the code, which would be better performed by the server rather than a browser application. The server has to be responsible for things like routing, data requests, user state (sessions), and in some cases - component's view-model. It would make a front-end developer better concentrate on UI rather than repeating the functionality which is done by back-end in more reliable way.
 
-### The Stack
+#### The Stack
+
 Before you start, it is highly recommended to have essential understanding of following technologies:
 <br>
 [FeathersJS](https://github.com/feathersjs/feathers) | 
@@ -42,6 +45,7 @@ Before you start, it is highly recommended to have essential understanding of fo
 </details>
 
 ## Getting Started
+
 1. Clone [this repo](https://github.com/nesterow/frontless) or use NPX
 
 ```
@@ -120,8 +124,6 @@ If you understand how it works under the hood, or feel like you can make this pr
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/nesterow/frontless/blob/master/LICENSE) file for details
-
-
 
 ## Roadmap v1.0
 

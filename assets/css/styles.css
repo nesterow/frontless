@@ -5249,3 +5249,19 @@ a.text-error:visited
 {max-width: 100%; background-repeat: no-repeat; 
     background-position-y: 0; background-size: 100%; order: 1;
 }
+
+.btn-hero
+{margin-top: 46px; 
+
+    border: 1px double; border-radius: 46px;
+}
+
+.home-links
+{
+    margin-top: 66px; padding: 12px; border-top: 1px dotted bisque;
+}
+
+.home-links a
+{
+    margin: 6px; color: burlywood;
+}

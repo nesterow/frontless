@@ -2,3 +2,19 @@
 @import 'node_modules/spectre.css/src/spectre.scss';
 @import 'node_modules/spectre.css/src/spectre-icons.scss';
 @import 'node_modules/spectre.css/src/spectre-exp.scss';
+
+.btn-hero {
+    border: 1px double;
+    border-radius: 46px;
+    margin-top: 46px;
+}
+
+.home-links {
+    margin-top: 66px;
+    border-top: 1px dotted bisque;
+    padding: 12px;
+    a {
+        margin: 6px;
+        color: burlywood;
+    }
+}
