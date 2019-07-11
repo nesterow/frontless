@@ -11,18 +11,13 @@
 </a>
 
 
-## Riot Isomorphic Stack
-Frontless is a node.js stack for building universal (ismorphic) javascript applications. At the core, Frontless is just a tiny Express.JS server which provides powerful tools for building SSR web applications.
+## About
+Frontless is a node.js stack for building universal (ismorphic) javascript applications. At the core, Frontless is just a small Express server that provides a developer with powerful tools for building SSR web applications.
+
+Frontless is built around the best javascript technologies: Feathers.JS , Riot.JS, Turbolinks, and Express.
 
 #### Motivation
-In practice, classic MMVM pattern singnificanly complicates work with data making a front-end developer writing the code which would be better performed by server rather than a browser application. The server has to be responsible for things like routing, data requests, user state (sessions), and and some cases - component's view-model It would make a frontend developer better concentrate on UI rather than repeating the functionality which is done by back-end in a more reliable way
-
-- It is just an express.js aplication you can customize at will
-- It is built with ❤️ RiotJS.
-- It provides natural HTTP routing `[page.riot -> GET /page]`
-- It uses FeathersJS on client and server
-- It allows to update components' state directly from server response
-- It renders pages after all async operations complete ✊
+In practice, the classic MMVM approach significantly complicates work with data. That causes a front-end developer to write the code, which would be better performed by the server rather than a browser application. The server has to be responsible for things like routing, data requests, user state (sessions), and in some cases - component's view-model. It would make a front-end developer better concentrate on UI rather than repeating the functionality which is done by back-end in more reliable way.
 
 ### The Stack
 Before you start, it is highly recommended to have essential understanding of following technologies:
@@ -66,13 +61,26 @@ Before you start, it is highly recommended to have essential understanding of fo
 
 ## Features
 
-**Natural routing**
+**Simple routing scheme**
 
-All files ending with *.riot extension that placed in the pages directory become site pages. It works similar to php scripts or html pages. For example: [`index.riot -> GET /`, `page.riot -> GET /page`].
+Routing in-web applications should be as simple as it is in static sites. With that in mind, any Riot.JS component placed in the pages directory is accessible by browser: [`index.riot -> GET /`, `page.riot -> GET /page`].
 
-**Async SSR**
+Also, a page can accept positional arguments and it also has access to the Express request context:
+```javascript
+// GET https://example.com/foo@bar;baz
+export default {
+  async fetch(){
+    const {args} = this.req.params;
+    const [arg1, arg2] = args;
+    console.log(arg1 === 'bar') // true
+    // arg2 = baz
+  }
+}
+```
 
-The pages in Frontless are rendered after all fetch operations in children components are complete. Which means you can make asyncronous queries in children components and don't worry that the server return markup before data is fetched.
+**Synchronous rendering**
+
+A common developer routine is to handle asynchronous calls to APIs and databases before rendering UI. Frontless can render pages after all asynchronous calls are complete. Including children riot components nested inside the page markup.
 
 **Server sent state**
 
@@ -86,11 +94,11 @@ All Riot components rendered on the server side initialize in browser with last 
 
 If your application needs SPA experience you can cache the pages using webworker module.
 
-**RestAPI/Socket.io**
+**RestAPI/Socket.IO**
 
 Stay close to the database with power of FeathersJS services.
 
-**It is just Express**
+**It is just Express.JS**
 
 Everything you can do with an express application.
 
@@ -128,7 +136,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 * [x] Modify RiotJS to work with DI (inject `document`, `Node`, and global ctx)
 * [ ] Deployment scripts [50%]
 * [ ] PWA Bootstrap [90%]
-* [ ] Documentation [40%]
+* [ ] Documentation [50%]
 
 ## Roadmap v2.0
 * [ ] Static site builder [10%]
