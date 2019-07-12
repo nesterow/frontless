@@ -1,11 +1,12 @@
 module.exports = {
 
-  IS_PWA: true,
+  IS_PWA: false,
 
   WEBSOCKETS: true,
 
   COOKIE_NAME: 'frontless-jwt',
 
+  // cache in PWA mode
   CACHE_ASSETS: [
     '/assets/application.js',
     '/assets/media/logo.png'
