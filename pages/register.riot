@@ -1,0 +1,114 @@
+<register-page>
+  <div class="form-header">
+    <a href="/">
+      Home
+    </a>
+  </div>
+  <div class="center-block">
+    <form class="form-block form-horizontal {state.loading && 'loading'}" onsubmit={ submit }>
+      
+      <h2>
+        <img src="/assets/media/icon.svg" class="logo"/>
+        <span class="logo-text">Register</span>
+      </h2>
+      <hr>
+      <div class="form-group {state.errors.username && 'has-error'}">
+        <input onfocus={reset} class="form-input" onkeyup={checkName} name="username" type="text" placeholder="Login" autocomplete="off">
+        <p class="form-input-hint" each={error in state.errors.username}>{error}</p>
+      </div>
+      <div class="form-group {state.errors.password && 'has-error'}">
+        <input onfocus={reset} class="form-input" name="password" type="password" placeholder="Password" autocomplete="off">
+        <p class="form-input-hint" each={error in state.errors.password}>{error}</p>
+      </div>
+      <div class="form-group {state.errors.agree && 'has-error'} scaledown">
+          <label class="form-switch">
+            <input type="checkbox" name="agree">
+            <i class="form-icon"></i> 
+            I agree with <a> Terms & Conditions </a>.
+          </label>
+          <p class="form-input-hint" each={error in state.errors.agree}>{error}</p>
+      </div>
+      <div class="form-group">
+          <button type="submit" class="btn btn-block">Sign Up</button>
+          <div class="links">
+            <a class="form-link">
+              Terms & Conditions
+            </a> |
+            <a class="form-link" href="/login">
+              Sing In
+            </a>
+          </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+
+    import {serializeForm} from '@frontless/core'
+    import validate from 'validators/register.validate'
+    import {debounce} from 'lodash'
+
+    export default () => ({
+      id: 'signup-form',
+      state: {
+        errors:{},
+        success: false,
+      },
+      onRendered(){
+        if (this.globals.authenticated) {
+          this.redirect('/profile')
+        }
+      },
+      
+      onMounted() {
+        this.checkName = debounce(this.checkName.bind(this), 600)
+      },
+
+      checkName(ev) {
+        const {value} = ev.target
+        this.service('users').get(value).then(res => {
+          this.update({
+            errors: res.exists ? {
+              username: ["User with this name already registered"]
+            } : {}
+          })
+        })
+      },
+
+      submit(ev) {
+        ev.preventDefault()
+        const data = serializeForm(ev.target)
+        
+        const errors = validate(data)
+        if (errors) {
+          return this.update({
+            errors,
+          })
+        }
+        ev.preventDefault()
+        const Users = this.service('users')
+        const payload = serializeForm(ev.target)
+        Users.create(payload).
+        
+        then((res)=>{
+          const {code} = res;
+          ev.target.reset();
+          this.redirect('/login')
+        }).
+
+        catch((err) => {
+          console.log(err)
+        })
+
+      },
+
+      reset(){
+        this.update({
+          errors:{}
+        })
+      }
+    })
+
+  </script>
+  
+</register-page>

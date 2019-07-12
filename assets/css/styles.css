@@ -5265,3 +5265,96 @@ a.text-error:visited
 {
     margin: 6px; color: burlywood;
 }
+
+.home-header
+{padding: 24px; 
+
+    text-align: right;
+}
+
+.home-header a
+{
+    margin: 6px; color: burlywood;
+}
+
+.error-block
+{
+    display: flex; width: 100%; height: 99vh; justify-content: center; align-items: center;
+}
+
+.error-block .icon
+{
+    margin-bottom: 6px;
+}
+
+.form-header
+{position: absolute; 
+
+    padding: 24px;
+}
+
+.form-header a
+{
+    margin: 6px; color: burlywood;
+}
+
+.form-block
+{display: flex; flex-direction: column; 
+
+    width: 260px;
+}
+
+.form-block .logo
+{
+    height: 50px;
+}
+
+.form-block .logo-text
+{
+    position: absolute; margin: 6px; color: #426bff;
+}
+
+.form-block input[type='text'],
+.form-block input[type='password'],
+.form-block .btn
+{
+    border-radius: 26px;
+}
+
+.form-block .btn
+{
+    height: 30px; margin-top: 12px; padding: 2px !important;
+}
+
+.form-block h2
+{
+    margin-bottom: 26px;
+}
+
+.form-block .links
+{display: block; width: 100%; padding: 6px; 
+
+    text-align: center;
+}
+
+.form-block .links a
+{
+    margin: 6px; color: burlywood;
+}
+
+.form-block .scaledown
+{width: 120%; 
+
+    -webkit-transform: scale(.8) translateX(-30px);            transform: scale(.8) translateX(-30px);
+}
+
+.center-block
+{display: flex; 
+
+    width: 100%; height: 100vh; justify-content: center; align-items: center;
+}
+
+.center-block .form-input-hint
+{
+    margin: 0;
+}

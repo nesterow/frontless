@@ -1,39 +1,7 @@
 import local from '@feathersjs/authentication-local'
 import auth from '@feathersjs/authentication'
-import validate from 'validate.js'
+import validate from 'validators/register.validate'
 const {MONGO_DATABASE} = process.env
-
-const formModel = {
-  
-  username: {
-    presence: {
-      message: '^Login is required',
-    },
-    length: {
-      maximum: 12,
-      minimum: 4,
-      message: '^Username must be from 6 to 12 symbols',
-    },
-  },
-
-
-  password: {
-    presence: {
-      message: '^Password is required',
-    },
-    length: {
-      minimum: 6,
-      message: '^Minimum 6 symbols',
-    },
-  },
-
-  agree: {
-    presence: {
-      message: '^Before signing up you have to agree with our terms an conditions',
-    },
-  },
-
-}
 
 
 export default (app, mongo) => {
@@ -56,7 +24,7 @@ export default (app, mongo) => {
 
     async create(form) {
 
-      const errors = validate(form, formModel)
+      const errors = validate(form)
       if (errors) {
         return app.setState('signup-form', {
           errors,

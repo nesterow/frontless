@@ -18,3 +18,80 @@
         color: burlywood;
     }
 }
+
+.home-header {
+    text-align: right;
+    padding: 24px;
+    a {
+        margin: 6px;
+        color: burlywood;
+    }
+}
+
+.error-block {
+    display: flex;
+    width: 100%;
+    height: 99vh;
+    justify-content: center;
+    align-items: center;
+    .icon {
+        margin-bottom: 6px;
+    }
+}
+
+.form-header {
+    padding: 24px;
+    position: absolute;
+    a {
+        margin: 6px;
+        color: burlywood;
+    }
+}
+.form-block {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+
+    .logo { height: 50px; }
+    .logo-text { 
+        position: absolute;
+        margin: 6px;
+        color: #426bff;
+    }
+    input[type='text'], input[type='password'], .btn {
+        border-radius: 26px;
+    }
+    .btn{
+        height: 30px;
+        padding: 2px !important;
+        margin-top: 12px;
+    }
+    h2 {
+        margin-bottom: 26px;
+    }
+    .links {
+        text-align: center;
+        display: block;
+        width: 100%;
+        padding: 6px;
+        a {
+            margin: 6px;
+            color: burlywood;
+        }
+    }
+    .scaledown {
+        transform: scale(.8) translateX(-30px);
+        width: 120%;
+    }
+}
+.center-block {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .form-input-hint {
+        margin: 0px;
+    }
+}
