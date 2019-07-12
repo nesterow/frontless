@@ -1,6 +1,6 @@
 {
   "name": "frontless",
-  "version": "1.0.0-rc.4",
+  "version": "1.0.0-rc.5",
   "main": "index.js",
   "repository": "git@github.com:nesterow/frontless.git",
   "author": "Anton Nesterov <arch.nesterov@gmail.com>",
