@@ -1,7 +1,7 @@
 process.env.NODE_PATH = `${__dirname}:${__dirname}/components:${__dirname}/node_modules`
 
 
-const { spawn } = require('child_process');
+const { spawn, exec } = require('child_process');
 const gulp       = require('gulp')
 const browserify = require('browserify')
 const babelify    = require('babelify')
@@ -17,6 +17,7 @@ const cleancss = require('gulp-clean-css')
 const csscomb = require('gulp-csscomb')
 const rename = require('gulp-rename')
 const autoprefixer = require('gulp-autoprefixer')
+
 
 function runCommand(command, args, options = undefined) {
   const spawned = spawn(command, args, options);
@@ -36,14 +37,16 @@ function runCommand(command, args, options = undefined) {
   });
 }
 
-gulp.task('start', function (done) {
+
+
+gulp.task('nodemon', function (done) {
   gulp.task('default')()
   gulp.task('worker')()
   gulp.task('boot')()
   gulp.task('scss')()
   return nodemon({
     script: 'index.js'
-  , tasks: ['worker', 'boot', 'scss']
+  , tasks: ['default', 'worker', 'boot', 'scss']
   , args: ['./config/environ.env']
   , ignore: ['node_modules/', 'assets/']
   , ext: 'js ejs riot json jss scss env'
@@ -51,6 +54,8 @@ gulp.task('start', function (done) {
   , done: done
   })
 })
+
+
 
 gulp.task('build', function(){
 
@@ -67,6 +72,8 @@ gulp.task('build', function(){
     .pipe(gulp.dest('assets/'))
 })
 
+
+
 gulp.task('worker', function(){
   return browserify({ entries: ['components/webworker/index.js'] })
     .transform(babelify.configure({
@@ -76,6 +83,8 @@ gulp.task('worker', function(){
     .pipe(source('worker.js'))
     .pipe(gulp.dest('assets/'))
 })
+
+
 
 gulp.task('boot', function(){
   return browserify({ entries: ['components/webworker/boot.js'] })
@@ -87,7 +96,14 @@ gulp.task('boot', function(){
     .pipe(gulp.dest('assets/'))
 })
 
-gulp.task('default', function(){
+
+
+gulp.task('default', async function(done){
+  
+  gulp.task('scss')()
+  gulp.task('worker')()
+  gulp.task('boot')()
+
   const b = browserify({ 
       entries: ['pages/index.js'],
       debug: true,
@@ -106,15 +122,34 @@ gulp.task('default', function(){
     .transform(riotify) // pass options if you need
   
   
-  const bundle = () => {
-    b.bundle()
+  const bundle = async () => {
+    await gulp.task('scss')()
+    await gulp.task('worker')()
+    await gulp.task('boot')()
+    return b.bundle()
     .pipe(source('application.js'))
     .pipe(gulp.dest('assets/'))
   }
   bundle()
   b.on('update', bundle)
+
+  return nodemon({
+    script: 'index.js'
+  , tasks: ['worker', 'boot', 'scss']
+  , args: ['./config/environ.env']
+  , ignore: ['node_modules/', 'assets/']
+  , ext: 'js ejs json jss scss env'
+  , env: { 'NODE_ENV': 'development' }
+  , done: done
+  }).
+  on('restart', () => {
+    setTimeout( () => exec('touch pages/index.riot'), 500 )
+  })
+
   
 })
+
+
 
 gulp.task('install', ()=>{
   const [a,b,c, repo] = process.argv;
@@ -134,6 +169,8 @@ gulp.task('install', ()=>{
     })
   }
 })
+
+
 
 gulp.task('scss', function() {
   return gulp.src('./styles.scss')

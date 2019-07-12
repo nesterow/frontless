@@ -1,0 +1,54 @@
+<examples-index>
+
+  <div class="centered-block container">
+    <div class="header">
+      <a href="/"> <img src="/assets/media/logo.svg" /> </a>
+    </div>
+    <div class="columns">
+      <a each={ (item, i) in examples } href={ item.href } class="column col-3">
+        <div class="card card-{i}">
+          <div class="card-header">
+            <div class="card-title h5">{ item.title }</div>
+            <div class="card-subtitle text-gray">{ item.subtitle }</div>
+          </div>
+          <div class="card-body">{ item.text }</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    export default () => ({
+      title: "Frontless - Examples",
+      examples: [
+        {
+          href: '/examples/random',
+          title: "Random Number",
+          subtitle: "Instead of Hello World",
+          text: "Simplest example that shows how to work with components, routing and asycronous queries."
+        }
+        ,
+        {
+          href: '/examples/chat',
+          title: "A Chat App",
+          subtitle: "Sockets & Realtime",
+          text: "A demo chat application in a 100 lines of code. Feathers.JS, Socket.io, Riot.JS"
+        }
+        ,
+        {
+          href: '/examples/todo',
+          title: "Todo App",
+          subtitle: "A ToDo app example",
+          text: "Advanced example that demonstrates how to work with MongoDB and FeathersJS services"
+        },
+        {
+          href: '/examples/forms',
+          title: "Forms",
+          subtitle: "Handle user input",
+          text: "General aproach to form serialization and user input validation on server and client side."
+        }
+      ],
+      onMounted() {}
+    })
+  </script>
+</examples-index>
