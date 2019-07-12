@@ -1,0 +1,75 @@
+<form-example>
+  <example>
+     <form class="form-example form-horizontal {state.loading && 'loading'}" onsubmit={ submit }>
+      <h2>Form Validation</h2>
+      <div class="form-group {state.errors.username && 'has-error'}">
+        <input class="form-input" name="username" type="text" placeholder="Name" autocomplete="off">
+        <p class="form-input-hint" each={error in state.errors.username}>{error}</p>
+      </div>
+      <div class="form-group {state.errors.email && 'has-error'}">
+        <input class="form-input" name="email" type="email" placeholder="Email" autocomplete="off">
+        <p class="form-input-hint" each={ error in state.errors.email }>{error}</p>
+      </div>
+      <div class="form-group {state.errors.password1 && 'has-error'}">
+        <input class="form-input" name="password1" type="password" placeholder="Password" autocomplete="off">
+        <p class="form-input-hint" each={error in state.errors.password1}>{error}</p>
+      </div>
+      <div class="form-group {state.errors.password2 && 'has-error'}">
+        <input class="form-input" name="password2" type="password" placeholder="Repeat password" autocomplete="off">
+        <p class="form-input-hint" each={error in state.errors.password2}>{error}</p>
+      </div>
+      <div class="form-group {state.errors.agree && 'has-error'}">
+          <label class="form-switch">
+            <input type="checkbox" name="agree">
+            <i class="form-icon"></i> 
+            I agree with terms and conditions.
+          </label>
+          <p class="form-input-hint" each={error in state.errors.agree}>{error}</p>
+      </div>
+      <div class="form-group">
+          <button type="submit" class="btn btn-primary">Send Form</button>
+      </div>
+      <div class="form-group has-success" if={state.success} >
+        <p class="form-input-hint">Success!</p>
+      </div>
+    </form>
+  </example>
+
+  <script>
+    
+    import Example from 'examples/example.riot'
+    import client from 'client'
+    import {serializeForm} from '@frontless/core'
+
+    export default () => ({
+      id: 'form-validation',
+
+      components: {
+        Example,
+      },
+
+      state: {
+        errors:{},
+        success: false,
+      },
+
+      async submit(ev) {
+        ev.preventDefault()
+        const payload = serializeForm(ev.target)
+        this.update({loading: true, success: false});
+        await client.service('form-validation').create(payload)
+        this.update({loading: false})
+      }
+
+    })
+  </script>
+  <style>
+    .form-input-hint{
+      width: 100%;
+      margin-bottom: 0px;
+    }
+    .form-example {
+      padding: 36px 36px 36px 36px;
+    }
+  </style>
+</form-example>

@@ -1,0 +1,37 @@
+<example>
+  <div class="centered-block container">
+    <div class="header">
+      <a href="/"> <img src="/assets/media/icon.svg" /> </a>
+      <div class="nav">
+        <a href="/examples" class="btn btn-error">
+          All Examples
+        </a>
+      </div>
+
+      <div class="source-code">
+          <a class="btn btn-lg btn-success" href={ props.link } target="_blank">
+            Source Code
+          </a>
+      </div>
+    </div>
+    <div class="example">
+      <slot></slot>
+    <div>
+    
+  </div>
+  
+  <script>
+    export default () => ({
+      source() {
+        alert(1)
+      }
+    })
+  </script>
+
+  <style>
+    .source-code {
+      width: 100%; 
+      text-align: right;
+    }
+  </style>
+</example>

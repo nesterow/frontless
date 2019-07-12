@@ -5358,3 +5358,52 @@ a.text-error:visited
 {
     margin: 0;
 }
+
+.centered-block
+{
+    width: 100%; max-width: 960px; margin: auto; padding: 24px;
+}
+
+.centered-block .header
+{display: flex; 
+
+    margin-bottom: 56px; align-items: center;
+}
+
+.centered-block .header .nav
+{
+    margin-left: 16px;
+}
+
+.centered-block .header .btn
+{height: 46px !important; margin: 2px; padding: 9px 9px !important; 
+
+    border-radius: 46px;
+}
+
+.centered-block .example
+{border-radius: 16px; 
+    box-shadow: 1px 1px 18px #ccc;
+}
+
+a.column
+{text-decoration: none; 
+
+    color: #333;
+}
+
+a.column:hover
+{text-decoration: none !important; 
+
+    color: #000550; -webkit-text-decoration-style: none !important;         text-decoration-style: none !important;
+}
+
+a.column .card
+{min-height: 200px; transition: all .31s; border-width: 0; 
+    border-radius: 26px; box-shadow: 1px 1px 16px #ddd;
+}
+
+a.column .card:hover
+{
+    border-radius: 16px;
+}
