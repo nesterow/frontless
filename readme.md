@@ -106,8 +106,8 @@ Stay close to the database with power of FeathersJS services.
 
 Everything you can do with an express application.
 
-## [Documentation](https://nesterow.github.io/frontless/)
-[Frontless Docs](https://nesterow.github.io/frontless/) | [Feathers Docs](https://docs.feathersjs.com/) | [Riot Docs](https://riot.js.org/)
+## Documentation
+[Frontless Docs](https://frontless.js.org) | [Feathers Docs](https://docs.feathersjs.com/) | [Riot Docs](https://riot.js.org/)
 
 ## ❤️ Contrubute
 
