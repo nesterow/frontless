@@ -4,7 +4,7 @@
       <div class="panel-title h6" if={ state.user }>Chat</div>
       <div class="enter" if={ !state.user }>
         <div class="input-group">
-          <input class="form-input" type="text" placeholder="Your nickname.." id="username">
+          <input class="form-input" type="text" onkeyup={join} placeholder="Your nickname.." id="username">
           <button class="btn btn-primary input-group-btn" onclick={join}>Join Chat &rarr;</button>
         </div>
       </div>
@@ -25,7 +25,7 @@
     </div>
     <div class="panel-footer" if={ state.user }>
       <div class="input-group">
-        <input class="form-input" type="text" placeholder="Hello" id="message">
+        <input class="form-input" type="text" placeholder="Hello" onkeyup={send} id="message">
         <button class="btn btn-primary input-group-btn" onclick={send}>Send</button>
       </div>
     </div>
@@ -67,6 +67,10 @@
       },
 
       async join(ev){
+        
+        if (ev.type === 'keyup' && ev.key !== 'Enter')
+          return;
+
         const username = this.$('#username').value.trim()
         if (username) {
           const data = await client.io.service('chat/example').get(username)
@@ -75,9 +79,13 @@
           })
           this.scroll()
         }
+
       },
 
       async send(ev){
+        if (ev.type === 'keyup' && ev.key !== 'Enter')
+          return;
+
         const message = this.$('#message').value.trim()
         if (message) {
           await client.io.service('chat/example').create({

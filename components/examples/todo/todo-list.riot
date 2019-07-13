@@ -1,49 +1,58 @@
 <todo-list>
-  
-  <section class="{classes.todoapp}">
+  <section class={ classes.todoapp } if={ !state.query.identity }>
+    <div class={ classes.todoname } >
+      <h3>Todo App Example</h3>
+      <h6>Enter any unique todo list name. The name should be hard to guess if you want to keep it private :)</h6>
+      <input onkeyup={ identify } class={ classes.edit } placeholder="Todo list name..." autofocus/>
+    </div>
+    
+  </section>
+  <section class={ classes.todoapp } if={ state.query.identity }>
     <i class="icon icon-message {classes.promptIcon}"></i>
-    <input onkeyup="{create}" class="{classes.newTodo}" placeholder="What needs to be done?" autofocus/>
+    <input onkeyup={ create } class={ classes.newTodo } placeholder="What needs to be done?" autofocus/>
     <section class="{classes.main} {state.loading && 'loading loading-lg'}">
-      <div class="{classes.filters}">
-        <button onclick="{() => setStatus()}"
-          class="{jss({ filterButton: true, filterActive: !state.query.status })}"> 
-            All ({state.totals.all}) 
+      <div class={ classes.filters }>
+        <button onclick={ () => setStatus() }
+          class={jss( { filterButton: true, filterActive: !state.query.status } )}> 
+            All ({ state.totals.all }) 
         </button>
-        <button onclick="{() => setStatus('active')}" 
-          class="{jss({ filterButton: true, filterActive: state.query.status === 'active' })}"> 
-          Active ({state.totals.active})
+        <button onclick={ () => setStatus('active')} 
+          class={jss( { filterButton: true, filterActive: state.query.status === 'active' } )}> 
+          Active ({ state.totals.active })
         </button>
-        <button onclick="{() => setStatus('done')}" 
-          class="{jss({ filterButton: true, filterActive: state.query.status === 'done' })}"> 
-          Done ({state.totals.done}) 
+        <button onclick={() => setStatus('done')} 
+          class={jss( { filterButton: true, filterActive: state.query.status === 'done' } )}> 
+          Done ({ state.totals.done }) 
         </button>
       </div>
-      <ul class="{classes.todoList}">
-        <li each="{item in state.items}">
+      <ul class={ classes.todoList }>
+        <li each={ item in state.items }>
           <div class="view">
-            <input class="{classes.toggle}" type="checkbox" checked={item.status === 'done'} onchange={(ev) => markDone(ev, item)}/>
-            <label onclick="{(ev)=> edit(item)}" if={!item.editing}>{item.text}</label>
-            <input 
-              onblur="{()=> save(item)}" 
-              onkeyup="{(ev)=> enter(ev, item)}"
-              value="{item.text}"
-              if="{item.editing}" 
-              class="{classes.edit + ' item'}"
-              autofocus />
-            <button class="destroy" onclick="{()=> destroy(item)}"></button>
+            <span if={ !item.editing }>
+              <input type="checkbox" class={ classes.toggle } checked={ item.status === 'done' } onchange={ (ev) => markDone(ev, item) }/>
+              <label onclick={ (ev)=> edit(item) } >{ item.text }</label>
+            </span>
+            <span if={ item.editing } >
+              <input 
+                onkeyup={ (ev)=> enter(ev, item) }
+                value={ item.text }
+                class={ classes.edit + ' item' }
+                autofocus />
+            </span>
+            <button class="destroy" onclick={ ()=> destroy(item) } ></button>
           </div>
         </li>
       </ul>
-      <ul class="{classes.pagination}" if="{state.pagination.total > state.pagination.limit}">
-        <li class="{!state.pagination.page && 'disabled'}" onclick={prevPage}>
+      <ul class={ classes.pagination } if={ state.pagination.total > state.pagination.limit }>
+        <li class={ !state.pagination.page && 'disabled' } onclick={ prevPage }>
           << Prev
         </li>
-        <li class="{lastPage && 'disabled'}" onclick={nextPage}>
+        <li class={ lastPage && 'disabled' } onclick={ nextPage }>
           Next >>
         </li>
       </ul>
-       <div class={classes.pageCounter}>
-          Page {state.pagination.page + 1} of {totalPages}
+       <div class={ classes.pageCounter }>
+          Page { state.pagination.page + 1 } of { totalPages }
        </div>
     </section>
    
@@ -58,7 +67,7 @@
     const Todos = client.service('todos')
     const TodosCount = client.service('todo/count')
 
-    const TodoList = {
+    export default () =>  withJSS({
       styles,
       state: {
         items: [],
@@ -77,16 +86,26 @@
       },
 
       async fetch(){
-        const totals = await TodosCount.find({});
+        
+        const [id] = this.req ? this.req.params.args || [] : []
+        if (id) this.state.query.identity = id;
+        const {identity} = this.state.query;
+        // console.log(identity)
         let query = {
           $sort: {
             time: -1
           },
+          identity,
         };
         query.status = this.state.query.status;
         query.$limit = this.state.pagination.limit;
         query.$skip = this.state.pagination.skip;
 
+        const totals = await TodosCount.find({
+          query: {
+            identity,
+          }
+        });
         const todos = await Todos.find({
           query, 
         });
@@ -112,10 +131,12 @@
         if (ev.key !== 'Enter' || !value.trim())
           return;
         this.start();
+        const {identity} = this.state.query;
         await Todos.create({
           text: value,
           status: 'active',
-          time: new Date().getTime()
+          time: new Date().getTime(),
+          identity,
         })
         this.update({
           pagination: {
@@ -139,6 +160,7 @@
       async save(item) {
         this.start()
         delete item.editing;
+        this.update()
         await Todos.update(item._id, item);
         await this.fetch();
         this.end()
@@ -147,6 +169,7 @@
       async markDone(ev, item){
         this.start();
         delete item.editing;
+        this.update()
         item.status = ev.target.checked ? 'done' : 'active';
         await Todos.update(item._id, item);
         await this.fetch()
@@ -155,9 +178,11 @@
 
       async setStatus(status) {
         this.start();
+        const {identity} = this.state.query;
         this.update({
           query: {
-            status: status,
+            status,
+            identity,
           }
         });
         await this.fetch()
@@ -206,19 +231,28 @@
 
       edit(item){
         this.state.items.map(e => {
-          if(e.editing) this.save(e)
+          delete e.editing
         })
         item.editing = true
         this.update()
-        setTimeout(()=> this.$('li input.item').focus(), 100)
+        setTimeout(()=> this.$('li input.item').focus(), 100)        
       },
+      
       enter(ev, item){
         if(ev.key === 'Enter')
           return this.save(item);
         let t = ev.target;
         item.text = t.value
       },
-    }
-    export default () => withJSS(TodoList, styles)
+
+      identify(ev){
+        if (ev.key !== 'Enter') 
+          return;
+        this.redirect('/examples/todo', [ev.target.value])
+      }
+      
+    }, 
+
+    styles)
   </script>
 </todo-list>
