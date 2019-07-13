@@ -6,8 +6,8 @@
 [![Join the chat at https://gitter.im/frontlessjs/community](https://badges.gitter.im/frontlessjs/community.svg)](https://gitter.im/frontlessjs/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 <p style="color: green;"> Feathers + Riot + Turbolinks + Express</p>
-<a href="https://h5l5o.sse.codesandbox.io/" target="_blank">
-  ⚙ View demo on CodeSandbox.io
+<a href="https://t6mj3.sse.codesandbox.io/" target="_blank">
+  <img src="https://codesandbox.io/favicon.ico" height="20"/> View demo on CodeSandbox.io
 </a>
 
 
