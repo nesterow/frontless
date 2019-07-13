@@ -38,25 +38,6 @@ function runCommand(command, args, options = undefined) {
 }
 
 
-
-gulp.task('nodemon', function (done) {
-  gulp.task('default')()
-  gulp.task('worker')()
-  gulp.task('boot')()
-  gulp.task('scss')()
-  return nodemon({
-    script: 'index.js'
-  , tasks: ['default', 'worker', 'boot', 'scss']
-  , args: ['./config/environ.env']
-  , ignore: ['node_modules/', 'assets/']
-  , ext: 'js ejs riot json jss scss env'
-  , env: { 'NODE_ENV': 'development' }
-  , done: done
-  })
-})
-
-
-
 gulp.task('build', function(){
 
   return browserify({ entries: ['pages/index.js'] })
@@ -126,6 +107,7 @@ gulp.task('default', async function(done){
     await gulp.task('scss')()
     await gulp.task('worker')()
     await gulp.task('boot')()
+    server.emit('restart', 'bundle')
     return b.bundle()
     .pipe(source('application.js'))
     .pipe(gulp.dest('assets/'))
@@ -133,18 +115,22 @@ gulp.task('default', async function(done){
   bundle()
   b.on('update', bundle)
 
-  return nodemon({
-    script: 'index.js'
-  , tasks: ['worker', 'boot', 'scss']
-  , args: ['./config/environ.env']
-  , ignore: ['node_modules/', 'assets/']
-  , ext: 'js ejs json jss scss env'
-  , env: { 'NODE_ENV': 'development' }
-  , done: done
+  const server = nodemon({
+      script: 'index.js'
+    , tasks: ['worker', 'boot', 'scss']
+    , args: ['./config/environ.env']
+    , ignore: ['node_modules/', 'assets/']
+    , ext: 'js ejs json jss scss env'
+    , env: { 'NODE_ENV': 'development' }
+    , done: done
   }).
-  on('restart', () => {
+
+  on('restart', (files) => {
+    if (files === 'bundle') return;
     setTimeout( () => exec('touch pages/index.riot'), 500 )
   })
+
+  return server
 
   
 })

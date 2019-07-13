@@ -74,6 +74,10 @@ export default {
     },
   },
 
+  todoname : {
+    padding: 26
+  },
+
   edit: {
     position: 'relative',
     margin: 0,
@@ -115,8 +119,8 @@ export default {
     background: '#fff',
     // margin: '130px 0 40px 0',
     position: 'relative',
-    boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2),0 25px 50px 0 rgba(0, 0, 0, 0.1)',
-
+    // boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2),0 25px 50px 0 rgba(0, 0, 0, 0.1)',
+    borderRadius: 16,
     '& h1': {
       position: 'absolute',
       top: '-155px',
@@ -149,6 +153,7 @@ export default {
     margin: 0,
     padding: 0,
     listStyle: 'none',
+    paddingBottom: 40,
 
     '& li': {
       position: 'relative',
