@@ -140,6 +140,13 @@ app.emit('setup:ssr', app)
 app.use('/*@:args',  Frontless(dir, ['styles']))
 app.use('/*',  Frontless(dir, ['styles']))
 
+app.use((err, req, res, next) => {
+  const {type, code} = err;
+  if (type === 'FeathersError') {
+    res.status(code).json(err.toJSON())
+  }
+})
+
 app.setState = (id, data) => {
   return {
     opts: {
