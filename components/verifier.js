@@ -1,10 +1,17 @@
 import Debug from 'debug'
 import bcrypt from 'bcryptjs'
 import { get, omit } from 'lodash'
+import {FeathersError} from '@feathersjs/errors'
 
 const debug = Debug('@feathersjs/authentication-local:verify');
 
 const {MONGO_DATABASE} = process.env
+
+class Unauthorized extends FeathersError {
+  constructor(message, data) {
+    super(message, 'unathorized', 401, 'Unathorized', data)
+  }
+}
 
 class LocalVerifier {
   constructor (app, options = {}) {
@@ -67,7 +74,7 @@ class LocalVerifier {
   async verify (req, username, password, done) {
     debug('Checking credentials', username, password)
 
-    const error = new Error('Invalid credentials')
+    const error = new Unauthorized('Invalid credentials', { message: 'Invalid credentials' })
 
     if (!this.users)
       return done(error, {}, { message: 'MongoDB connection error' })
@@ -76,12 +83,17 @@ class LocalVerifier {
     if (!user)
       return done(error, {}, { message: 'Invalid login' })
     
-    return await this._comparePassword(user, password).then(()=> {
-      return done(null, true, {userId : user._id, username: user.username, sub: 'users'})
-    }).
-    catch((err) => {
+    try {
+      return await this._comparePassword(user, password).then(()=> {
+        return done(null, true, {userId : user._id, username: user.username, sub: 'users'})
+      }).
+      catch((err) => {
+        return done(error, {} , { message: 'Invalid credentials' })
+      })
+    } catch (e) {
       return done(error, {} , { message: 'Invalid credentials' })
-    })
+    }
+    
 
   }
 }
