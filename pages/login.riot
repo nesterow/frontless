@@ -42,7 +42,7 @@
         errors:{},
         success: false,
       },
-      onRendered(){
+      beforeRequest(){
         if (this.globals.authenticated) {
           this.redirect('/profile')
         }
