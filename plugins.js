@@ -45,6 +45,16 @@ const Global = (instance) => {
     }.bind(instance)
   })
 
+  if (isBrowser) {
+    const mounted = instance.onMounted;
+    instance.onMounted = function(props, state) {
+      mounted.bind(this)(props, state);
+      if (instance.onBrowser) {
+        instance.onBrowser.bind(instance)()
+      }
+    }.bind(instance)
+  }
+
 }
 
 const ClientPlugin = (instance) => {
@@ -75,8 +85,7 @@ const AuthPlugin = (instance) => {
       }
       this.setGlobal({
         authenticated: authenticated,
-        userId: user.userId,
-        username: user.username
+        ...user,
       })
     }
     return Promise.resolve(beforeRequest.bind(instance)(props))
