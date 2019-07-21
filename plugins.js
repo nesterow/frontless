@@ -60,8 +60,8 @@ const ClientPlugin = (instance) => {
 
 const AuthPlugin = (instance) => {
 
-  const fetch = instance.fetch || (() => Promise.resolve());
-  instance.fetch = function(props) {
+  const beforeRequest = instance.beforeRequest || (() => Promise.resolve());
+  instance.beforeRequest = function(props) {
     if (!isBrowser) {
       const {authenticated, user} = props.req.session;
       const {loggedIn, group} = (instance.access || {});
@@ -79,7 +79,7 @@ const AuthPlugin = (instance) => {
         username: user.username
       })
     }
-    return Promise.resolve(fetch.bind(instance)(props))
+    return Promise.resolve(beforeRequest.bind(instance)(props))
   }.bind(instance)
 
 
