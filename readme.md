@@ -109,7 +109,7 @@ Everything you can do with an express application.
 ## Documentation
 [Frontless Docs](https://frontless.js.org) | [Feathers Docs](https://docs.feathersjs.com/) | [Riot Docs](https://riot.js.org/)
 
-## ❤️ Contrubute
+## ❤️ Contribute
 
 If you found a problem and know the solution:
 - Fork repository
