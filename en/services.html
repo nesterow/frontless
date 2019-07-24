@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Feathers.JS Services - Frontless</title>
+
+<meta name="description" content="Documentation built with SkyDocs."/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="generator" content="SkyDocs v0.7.4 Beta"/>
+
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Feathers.JS Services - Frontless"/>
+<meta property="og:site_name" content="Frontless"/>
+<meta property="og:url" content="https://skydocs.skyost.eu/en/services.html"/>
+<meta property="og:description" content="Documentation built with SkyDocs."/>
+<meta property="og:image" content="https://skydocs.skyost.eu/assets/img/icon.png"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Feathers.JS Services - Frontless"/>
+<meta name="twitter:site" content="Frontless"/>
+<meta name="twitter:creator" content="@Skyost_"/>
+<meta name="twitter:url" content="https://skydocs.skyost.eu/en/services.html"/>
+<meta name="twitter:description" content="Documentation built with SkyDocs."/>
+<meta name="twitter:image" content="https://skydocs.skyost.eu/assets/img/icon.png"/>
+
+<meta name="theme-color" content="#2980b9"/>
+<link rel="icon" type="image/png" href="../assets/img/icon.png"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato"/>
+<link rel="stylesheet" type="text/css" href="../assets/css/page.css"/>
+</head>
+<body>
+<div id="content" class="row">
+<div id="navbar" class="col-md-4 col-lg-2">
+<header class="col-md-4 col-lg-2">
+<h1>
+<a href="/">
+<img src="/assets/img/logo.svg">
+</a></h1>
+<form action="../search.html" method="get">
+<input name="keywords" type="text" class="form-control" placeholder="Search...">
+</form>
+</header>
+<div id="mobile-bar" class="d-md-none clearfix">
+<i class="fa fa-bars" aria-hidden="true"></i>
+</div>
+<div id="navigation" class="d-none d-md-block">
+<nav class="col-md-4 col-lg-2" style="max-height: calc(100vh - 200px);">
+<ul>
+<li>
+<a href="/en/index.html"><i class="fa fa-home" aria-hidden="true"></i> About</a>
+</li>
+<li>
+<a href="/en/start.html"><i class="fa fa-rocket" aria-hidden="true"></i> Getting Started</a>
+</li>
+<li>
+<a href="/en/applayout.html"><i class="fa fa-folder" aria-hidden="true"></i> App Structure</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html"><i class="fa fa-file-text" aria-hidden="true"></i> Pages</a>
+<ul>
+<li>
+<a href="/en/pages/creating_pages.html">- Creating Pages</a>
+</li>
+<li>
+<a href="/en/pages/components.html">- Riot.JS Components</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html#page-lifecycle">- Page Lifecycle</a>
+</li>
+<li>
+<a href="/en/pages/dependencies.html">- Managing Dependencies</a>
+</li>
+<li>
+<a href="/en/pages/sync_rendering.html">- Syncronous Rendering</a>
+</li>
+<li>
+<a href="/en/pages/routing_scheme.html">- Routing Scheme</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/forms/handling_forms.html"><i class="fa fa-check-square" aria-hidden="true"></i> Forms</a>
+<ul>
+<li>
+<a href="/en/forms/handling_forms.html">- Handling Forms</a>
+</li>
+<li>
+<a href="/en/forms/handling_forms.html#validating-forms">- Validating Forms</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/api_client.html"><i class="fa fa-refresh" aria-hidden="true"></i> Making Requests</a>
+<ul>
+<li>
+<a href="/en/api_client.html">- API Client</a>
+</li>
+<li>
+<a href="/en/server_sent_state.html">- Server-sent State</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/services.html"><i class="fa fa-server" aria-hidden="true"></i> Backend</a>
+<ul>
+<li>
+<a href="/en/services.html">- Feathers.JS Services</a>
+</li>
+<li>
+<a href="/en/services.html#socketio">- Socket.IO/Realtime API</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html">- Working with MongoDB</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html">- Configuration</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html">- Deployment</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html"><i class="fa fa-id-card" aria-hidden="true"></i> Authentication</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html"><i class="fa fa-handshake-o" aria-hidden="true"></i> License</a>
+</li>
+</ul>
+</nav>
+<footer class="col-md-4 col-lg-2">
+Powered by <a href="https://skydocs.skyost.eu">SkyDocs</a> v0.7.4 Beta.
+</footer>
+</div>
+</div>
+<div id="article" class="col-lg-7 col-md-8 col-12 ml-auto mr-auto">
+<article>
+<section id="article-header" class="clearfix">
+<ul class="links">
+<li><small><a href="https://github.com/Skyost/SkyDocs/fork" class="text-muted">Fork it on Github</a></small></li>
+<li><small><a href="https://github.com/Skyost/SkyDocs" class="text-muted">Star it on Github</a></small></li>
+</ul>
+<small class="date text-muted">Jul 23, 2019 4:54:21 PM</small>
+</section>
+<section>
+<h1 id="feathersjs-services">Feathers.JS Services</h1>
+<p>A service is a set of CRUD methods. In Frontless services can be accessed whether with REST client or Socket.IO
+Full documentation on Feathers.JS services can be found in the <a href="https://github.com/feathersjs/docs/blob/master/api/services.md">dedicated readme</a></p>
+<h3 id="service-structure">Service Structure</h3>
+<pre><code class="language-javascript">const {MONGO_DATABASE} = process.env
+
+module.exports = (app, mongo) =&gt; {
+
+  const Model =  mongo.db(MONGO_DATABASE).collection('mydata')
+
+  app.use('myservice', {
+
+    async find() {
+      return []
+    },
+
+    async get() {
+      return {}
+    },
+
+    async create() {
+      return {}
+    },
+
+    async update() {
+      return []
+    },
+
+    async remove() {
+      return []
+    },
+
+  })
+
+
+  app.service('myservice').hooks({
+    before: {
+     create: [
+     ],
+     remove: [
+     ]
+    }
+   });
+
+}
+</code></pre>
+<h3 id="socketio">Socket.IO</h3>
+<p>One of the great features of Feathers.JS is that it can work with Socket.IO and this feature is shipped with Frontless server and client modules.
+For the full docs please refer to <a href="https://docs.feathersjs.com/api/socketio.html">Feathers.JS official docs</a></p>
+<h4 id="calling-api-though-websocket">Calling API though WebSocket</h4>
+<p>The <code>client</code> module provides a socket wrapper which works the same way as usual rest API client with difference that it can subscribe Feathers.JS channels.
+This is a browser-only feature. It is not recommended to use web sockets when rendering components on server, because it establishes a constant live connection.</p>
+<pre><code class="language-javascript">import client from 'client'
+
+if (isBrowser) {
+  client.ws.service('chat').create({ message: 'Hello!' })
+  client.ws.on('chat created', (data) =&gt; {
+    this.state.messages.push(data)
+    this.update()
+  })
+}
+</code></pre>
+</section>
+<section id="pagination" class="clearfix">
+<a href="index.html" class="text-muted previous"><i class="fa fa-caret-left" aria-hidden="true"></i> <span>Previous</span></a>
+<a href="/en/services.html" class="text-muted next"><span>Next</span> <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+</section>
+</article>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+<script src="../assets/js/page.js"></script>
+</body>
+</html>

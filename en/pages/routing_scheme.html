@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Routing Scheme - Frontless</title>
+
+<meta name="description" content="Documentation built with SkyDocs."/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="generator" content="SkyDocs v0.7.4 Beta"/>
+
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Routing Scheme - Frontless"/>
+<meta property="og:site_name" content="Frontless"/>
+<meta property="og:url" content="https://skydocs.skyost.eu/en/pages/routing_scheme.html"/>
+<meta property="og:description" content="Documentation built with SkyDocs."/>
+<meta property="og:image" content="https://skydocs.skyost.eu/assets/img/icon.png"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Routing Scheme - Frontless"/>
+<meta name="twitter:site" content="Frontless"/>
+<meta name="twitter:creator" content="@Skyost_"/>
+<meta name="twitter:url" content="https://skydocs.skyost.eu/en/pages/routing_scheme.html"/>
+<meta name="twitter:description" content="Documentation built with SkyDocs."/>
+<meta name="twitter:image" content="https://skydocs.skyost.eu/assets/img/icon.png"/>
+
+<meta name="theme-color" content="#2980b9"/>
+<link rel="icon" type="image/png" href="../../assets/img/icon.png"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato"/>
+<link rel="stylesheet" type="text/css" href="../../assets/css/page.css"/>
+</head>
+<body>
+<div id="content" class="row">
+<div id="navbar" class="col-md-4 col-lg-2">
+<header class="col-md-4 col-lg-2">
+<h1>
+<a href="/">
+<img src="/assets/img/logo.svg">
+</a></h1>
+<form action="../../search.html" method="get">
+<input name="keywords" type="text" class="form-control" placeholder="Search...">
+</form>
+</header>
+<div id="mobile-bar" class="d-md-none clearfix">
+<i class="fa fa-bars" aria-hidden="true"></i>
+</div>
+<div id="navigation" class="d-none d-md-block">
+<nav class="col-md-4 col-lg-2" style="max-height: calc(100vh - 200px);">
+<ul>
+<li>
+<a href="/en/index.html"><i class="fa fa-home" aria-hidden="true"></i> About</a>
+</li>
+<li>
+<a href="/en/start.html"><i class="fa fa-rocket" aria-hidden="true"></i> Getting Started</a>
+</li>
+<li>
+<a href="/en/applayout.html"><i class="fa fa-folder" aria-hidden="true"></i> App Structure</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html"><i class="fa fa-file-text" aria-hidden="true"></i> Pages</a>
+<ul>
+<li>
+<a href="/en/pages/creating_pages.html">- Creating Pages</a>
+</li>
+<li>
+<a href="/en/pages/components.html">- Riot.JS Components</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html#page-lifecycle">- Page Lifecycle</a>
+</li>
+<li>
+<a href="/en/pages/dependencies.html">- Managing Dependencies</a>
+</li>
+<li>
+<a href="/en/pages/sync_rendering.html">- Syncronous Rendering</a>
+</li>
+<li>
+<a href="/en/pages/routing_scheme.html">- Routing Scheme</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/forms/handling_forms.html"><i class="fa fa-check-square" aria-hidden="true"></i> Forms</a>
+<ul>
+<li>
+<a href="/en/forms/handling_forms.html">- Handling Forms</a>
+</li>
+<li>
+<a href="/en/forms/handling_forms.html#validating-forms">- Validating Forms</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/api_client.html"><i class="fa fa-refresh" aria-hidden="true"></i> Making Requests</a>
+<ul>
+<li>
+<a href="/en/api_client.html">- API Client</a>
+</li>
+<li>
+<a href="/en/server_sent_state.html">- Server-sent State</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/services.html"><i class="fa fa-server" aria-hidden="true"></i> Backend</a>
+<ul>
+<li>
+<a href="/en/services.html">- Feathers.JS Services</a>
+</li>
+<li>
+<a href="/en/services.html#socketio">- Socket.IO/Realtime API</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html">- Working with MongoDB</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html">- Configuration</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html">- Deployment</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html"><i class="fa fa-id-card" aria-hidden="true"></i> Authentication</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html"><i class="fa fa-handshake-o" aria-hidden="true"></i> License</a>
+</li>
+</ul>
+</nav>
+<footer class="col-md-4 col-lg-2">
+Powered by <a href="https://skydocs.skyost.eu">SkyDocs</a> v0.7.4 Beta.
+</footer>
+</div>
+</div>
+<div id="article" class="col-lg-7 col-md-8 col-12 ml-auto mr-auto">
+<article>
+<section id="article-header" class="clearfix">
+<ul class="links">
+<li><small><a href="https://github.com/Skyost/SkyDocs/fork" class="text-muted">Fork it on Github</a></small></li>
+<li><small><a href="https://github.com/Skyost/SkyDocs" class="text-muted">Star it on Github</a></small></li>
+</ul>
+<small class="date text-muted">Jul 23, 2019 3:12:24 PM</small>
+</section>
+<section>
+<h1 id="routing-scheme">Routing Scheme</h1>
+<p>Any Riot.JS component placed in the page’s directory is accessible by its name in the browser, much like a .php script or a static page.
+For example: <code>[pages/index.riot -&gt; GET /]</code>, <code>[pages/page.riot -&gt; GET /page]</code>.
+The same rule applies to the sub-directories placed inside the <code>pages</code> folder. For example: For example: <code>[pages/foo/index.riot -&gt; GET /foo</code>], <code>[/pages/foo/bar.riot -&gt; GET /foo/bar]</code>.</p>
+<h2 id="url-query-on-the-server-side">URL Query on the server side</h2>
+<p>Every Riot component on the server side has access to the current <code>express.js</code> request context.
+Getting url paramenters is one of the many things you can do with it:</p>
+<pre><code class="language-javascript">export default () =&gt; ({
+  async fetch(){
+    const {query} = this.req;
+    console.log(query)
+  }
+})
+</code></pre>
+<h2 id="positional-arguments">Positional Arguments</h2>
+<p>Positional argumnets are very convenient when you need to pass a positional parameter to the URL, like an <code>id</code>.
+Using a standard URL separator ('/') is not possible in Frontless, so additional parameters are separated by <code>@</code> sign.
+A semicolon-separated string after @ will be parsed as positional arguments.</p>
+<p>For example consider following request:</p>
+<pre><code class="language-bash">GET /page@foo;bar
+</code></pre>
+<p>This request will fetch page.riot and pass positional arguments into 'request.params.args':</p>
+<pre><code class="language-javascript">export default () =&gt; ({
+  async fetch(){
+    const {params} = this.req;
+    const [first, second] = params.args;
+    // first === 'foo'
+    // second === 'bar'
+  })
+}
+</code></pre>
+<h2 id="push-state">Push State</h2>
+<p>It is possible to cache page state into URL using HTML5 history API without reloading current location.
+For this purpose, Frontless provides a simple <code>pushQuery</code> method:</p>
+<pre><code class="language-javascript">// If userId = 10, age = 35
+// this would result to: http://example.com/page@10?age=35
+export default ()=&gt; ({
+  cacheState(){
+    const {userId, age} = this.state
+    this.pushQuery([userId], { age, })
+  }
+})
+</code></pre>
+<h2 id="redirect">Redirect</h2>
+<p>Redirect calls are universal and work the same way on client and server:</p>
+<pre><code class="language-javascript">// If user is not logged in
+// this would result to: http://example.com/login?backTo=/dashboard
+export default () =&gt; ({
+  onMounted(){
+    this.redirect('/login', [], { backTo: '/dashboard'})
+  }
+})
+</code></pre>
+</section>
+<section id="pagination" class="clearfix">
+<a href="/en/pages/dependencies.html" class="text-muted previous"><i class="fa fa-caret-left" aria-hidden="true"></i> <span>Previous</span></a>
+<a href="pages/layouts.html" class="text-muted next"><span>Next</span> <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+</section>
+</article>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+<script src="../../assets/js/page.js"></script>
+</body>
+</html>

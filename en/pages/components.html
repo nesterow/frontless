@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Riot.JS - Frontless</title>
+
+<meta name="description" content="Documentation built with SkyDocs."/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="generator" content="SkyDocs v0.7.4 Beta"/>
+
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Riot.JS - Frontless"/>
+<meta property="og:site_name" content="Frontless"/>
+<meta property="og:url" content="https://skydocs.skyost.eu/en/pages/components.html"/>
+<meta property="og:description" content="Documentation built with SkyDocs."/>
+<meta property="og:image" content="https://skydocs.skyost.eu/assets/img/icon.png"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Riot.JS - Frontless"/>
+<meta name="twitter:site" content="Frontless"/>
+<meta name="twitter:creator" content="@Skyost_"/>
+<meta name="twitter:url" content="https://skydocs.skyost.eu/en/pages/components.html"/>
+<meta name="twitter:description" content="Documentation built with SkyDocs."/>
+<meta name="twitter:image" content="https://skydocs.skyost.eu/assets/img/icon.png"/>
+
+<meta name="theme-color" content="#2980b9"/>
+<link rel="icon" type="image/png" href="../../assets/img/icon.png"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato"/>
+<link rel="stylesheet" type="text/css" href="../../assets/css/page.css"/>
+</head>
+<body>
+<div id="content" class="row">
+<div id="navbar" class="col-md-4 col-lg-2">
+<header class="col-md-4 col-lg-2">
+<h1>
+<a href="/">
+<img src="/assets/img/logo.svg">
+</a></h1>
+<form action="../../search.html" method="get">
+<input name="keywords" type="text" class="form-control" placeholder="Search...">
+</form>
+</header>
+<div id="mobile-bar" class="d-md-none clearfix">
+<i class="fa fa-bars" aria-hidden="true"></i>
+</div>
+<div id="navigation" class="d-none d-md-block">
+<nav class="col-md-4 col-lg-2" style="max-height: calc(100vh - 200px);">
+<ul>
+<li>
+<a href="/en/index.html"><i class="fa fa-home" aria-hidden="true"></i> About</a>
+</li>
+<li>
+<a href="/en/start.html"><i class="fa fa-rocket" aria-hidden="true"></i> Getting Started</a>
+</li>
+<li>
+<a href="/en/applayout.html"><i class="fa fa-folder" aria-hidden="true"></i> App Structure</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html"><i class="fa fa-file-text" aria-hidden="true"></i> Pages</a>
+<ul>
+<li>
+<a href="/en/pages/creating_pages.html">- Creating Pages</a>
+</li>
+<li>
+<a href="/en/pages/components.html">- Riot.JS Components</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html#page-lifecycle">- Page Lifecycle</a>
+</li>
+<li>
+<a href="/en/pages/dependencies.html">- Managing Dependencies</a>
+</li>
+<li>
+<a href="/en/pages/sync_rendering.html">- Syncronous Rendering</a>
+</li>
+<li>
+<a href="/en/pages/routing_scheme.html">- Routing Scheme</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/forms/handling_forms.html"><i class="fa fa-check-square" aria-hidden="true"></i> Forms</a>
+<ul>
+<li>
+<a href="/en/forms/handling_forms.html">- Handling Forms</a>
+</li>
+<li>
+<a href="/en/forms/handling_forms.html#validating-forms">- Validating Forms</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/api_client.html"><i class="fa fa-refresh" aria-hidden="true"></i> Making Requests</a>
+<ul>
+<li>
+<a href="/en/api_client.html">- API Client</a>
+</li>
+<li>
+<a href="/en/server_sent_state.html">- Server-sent State</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/services.html"><i class="fa fa-server" aria-hidden="true"></i> Backend</a>
+<ul>
+<li>
+<a href="/en/services.html">- Feathers.JS Services</a>
+</li>
+<li>
+<a href="/en/services.html#socketio">- Socket.IO/Realtime API</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html">- Working with MongoDB</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html">- Configuration</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html">- Deployment</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html"><i class="fa fa-id-card" aria-hidden="true"></i> Authentication</a>
+</li>
+<li>
+<a href="/en/pages/creating_pages.html"><i class="fa fa-handshake-o" aria-hidden="true"></i> License</a>
+</li>
+</ul>
+</nav>
+<footer class="col-md-4 col-lg-2">
+Powered by <a href="https://skydocs.skyost.eu">SkyDocs</a> v0.7.4 Beta.
+</footer>
+</div>
+</div>
+<div id="article" class="col-lg-7 col-md-8 col-12 ml-auto mr-auto">
+<article>
+<section id="article-header" class="clearfix">
+<ul class="links">
+<li><small><a href="https://github.com/Skyost/SkyDocs/fork" class="text-muted">Fork it on Github</a></small></li>
+<li><small><a href="https://github.com/Skyost/SkyDocs" class="text-muted">Star it on Github</a></small></li>
+</ul>
+<small class="date text-muted">Jul 23, 2019 5:21:06 AM</small>
+</section>
+<section>
+<h1 id="riotjs-components">Riot.JS Components</h1>
+<p>Riot.JS components in Frontless are rendered on server and browser in the same way. However, working with javascript on server side is different in many ways.
+It is easy to get shot in the leg or open a security vulnerability. In this section we outline some things that need more attention when writing components for server.</p>
+<h2 id="shared-access-to-the-variables">Shared access to the variables</h2>
+<p>The main difference between server and browser javascript is that a browser application is intended to use by a single user when
+a process of server application is used by many clients. Therefore, the memory alocated inside a node.js process can be shared between clients.
+It's simple to avoid related issues by following this simple rules:</p>
+<h3 id="rule-1-never-use-global-variables-in-application-logic">Rule #1: Never use global variables in application logic</h3>
+<p>Once a global variable is changed - all clients will be affected by it. Consider following over-simplificated example:</p>
+<pre><code class="language-javascript">
+var language = 'en'
+
+app.get('/set-language', (req, res)=&gt; {
+  language = 'de'
+  res.end()
+})
+
+app.get('/', (req, res) =&gt; {
+  res.render('view', {language,})
+})
+
+</code></pre>
+<p>The result of this logic would be that all users would see pages in laguage set by the last user. Even though it would be acceptable for a browser application you should never do it in <code>node.js</code>.</p>
+<h3 id="rule-2-avoid-module-caching-in-riotjs-components">Rule #2: Avoid module caching in Riot.JS components</h3>
+<p><a href="https://nodejs.org/api/modules.html#modules_caching">Module caching</a> in javascript is a way to avoid multiple execution every time you import a module.
+While it brings a great performance benefit it is not what we would wanted to use when we work with UI. Consider following example:</p>
+<p><strong>BAD:</strong></p>
+<pre><code class="language-javascript">//an alert component
+export default {
+  state: {
+    open: false
+  },
+  open(){
+    this.update({open: true})
+  }
+}
+</code></pre>
+<p>We export an object it gets cached by node.js then after a client calls <code>open()</code> all users would see an open alert because the state was changed globaly.
+In fact, this issue is also true for pure browser application - when an application has more than one <code>alert</code> component the first call would change initial state for all of them.</p>
+<p>In order to avoid this behaviour, export a function that returns a new component instance:</p>
+<p><strong>GOOD:</strong></p>
+<pre><code class="language-javascript">export default () =&gt; ({
+  state: {
+    open: false
+  },
+  open(){
+    this.update({open: true})
+  }
+})
+</code></pre>
+<p>Which is equal to:</p>
+<pre><code class="language-javascript">class Component {}
+export default () =&gt; new Component()
+</code></pre>
+<h2 id="global-objects">Global Objects</h2>
+<h3 id="1-html-document">1. HTML Document</h3>
+<p>On the server side there is no a <code>window</code> object and we cannot mutate <code>node.js</code> globals when rendering UI.
+However, at the runtime the <code>document</code> object works the same way as in browser. Every time the server renders markup it creates
+a new <code>document</code> instance which is only acessible in current rendering task. Therefore, it can be used inside Riot.JS components.</p>
+<h3 id="2-redux-store">2. Redux Store</h3>
+<p>Fronless makes use of <a href="https://github.com/nesterow/frontless-redux">frontless-redux</a> plugin to provide a global store and action dispatcher.</p>
+<h2 id="security">Security</h2>
+<p>Frontless is an <em>isomorphic</em> stack, which means, the Riot.JS components are rendered on both sides - server and client.
+With that in mind, the application UI must not include sensitive variables used on backend because the user interface share the code with browser environment.</p>
+</section>
+<section id="pagination" class="clearfix">
+<a href="/en/mongodb.html" class="text-muted previous"><i class="fa fa-caret-left" aria-hidden="true"></i> <span>Previous</span></a>
+<a href="pages/markup.html" class="text-muted next"><span>Next</span> <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+</section>
+</article>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+<script src="../../assets/js/page.js"></script>
+</body>
+</html>
