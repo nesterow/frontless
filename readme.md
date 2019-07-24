@@ -84,9 +84,9 @@ export default {
 
 **Synchronous rendering**
 
-A common developer routine is to handle asynchronous calls to APIs and databases before rendering UI. Frontless can render pages after all asynchronous calls are complete. Including children riot components nested inside the page markup.
+Frontless can render pages after all asynchronous calls are complete. Including children riot components nested inside the page markup.
 
-**Server sent state**
+**Server-sent state**
 
 Some API requests can return a ready view-model for a specific component. After it happens, the target component will update its state from received response. This is convenient whenever you want to update the view after a request is done. Given that, the server should return a ready view-model which eliminates extra steps you would do to handle response.
 
@@ -94,9 +94,6 @@ Some API requests can return a ready view-model for a specific component. After 
 
 All Riot components rendered on the server side initialize in browser with last state they were on the server side. 
 
-**Browser caching**
-
-If your application needs SPA experience you can cache the pages using webworker module.
 
 **RestAPI/Socket.IO**
 
