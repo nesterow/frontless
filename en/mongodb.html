@@ -11,17 +11,17 @@
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Working with MongoDB - Frontless"/>
 <meta property="og:site_name" content="Frontless"/>
-<meta property="og:url" content="https://frontless.js.org/en/mongodb.html"/>
+<meta property="og:url" content="https://skydocs.skyost.eu/en/mongodb.html"/>
 <meta property="og:description" content="Documentation built with SkyDocs."/>
-<meta property="og:image" content="https://frontless.js.org/assets/img/icon.png"/>
+<meta property="og:image" content="https://skydocs.skyost.eu/assets/img/icon.png"/>
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Working with MongoDB - Frontless"/>
 <meta name="twitter:site" content="Frontless"/>
 <meta name="twitter:creator" content="@Skyost_"/>
-<meta name="twitter:url" content="https://frontless.js.org/en/mongodb.html"/>
+<meta name="twitter:url" content="https://skydocs.skyost.eu/en/mongodb.html"/>
 <meta name="twitter:description" content="Documentation built with SkyDocs."/>
-<meta name="twitter:image" content="https://frontless.js.org/assets/img/icon.png"/>
+<meta name="twitter:image" content="https://skydocs.skyost.eu/assets/img/icon.png"/>
 
 <meta name="theme-color" content="#2980b9"/>
 <link rel="icon" type="image/png" href="../assets/img/icon.png"/>
@@ -112,21 +112,18 @@
 <a href="/en/services.html#socketio">- Socket.IO/Realtime API</a>
 </li>
 <li>
-<a href="/en/pages/creating_pages.html">- Working with MongoDB</a>
+<a href="/en/mongodb.html">- Working with MongoDB</a>
 </li>
 <li>
-<a href="/en/pages/creating_pages.html">- Configuration</a>
-</li>
-<li>
-<a href="/en/pages/creating_pages.html">- Deployment</a>
+<a href="/en/config.html">- Configuration</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="/en/pages/creating_pages.html"><i class="fa fa-id-card" aria-hidden="true"></i> Authentication</a>
+<a href="/en/authentication.html"><i class="fa fa-id-card" aria-hidden="true"></i> Authentication</a>
 </li>
 <li>
-<a href="/en/pages/creating_pages.html"><i class="fa fa-handshake-o" aria-hidden="true"></i> License</a>
+<a href="/en/license.html"><i class="fa fa-handshake-o" aria-hidden="true"></i> License</a>
 </li>
 </ul>
 </nav>
@@ -139,16 +136,48 @@ Powered by <a href="https://skydocs.skyost.eu">SkyDocs</a> v0.7.4 Beta.
 <article>
 <section id="article-header" class="clearfix">
 <ul class="links">
-<li><small><a href="https://github.com/nesterow/frontless" class="text-muted"><i class="fa fa-github"></i> Github</a></small></li>
+<li><small><a href="https://github.com/nesterow/frontless"> <i class="fa fa-github"></i> Github</a></small></li>
 </ul>
-<small class="date text-muted">Jul 23, 2019 5:20:34 PM</small>
+<small class="date text-muted">Jul 29, 2019, 4:34:41 PM</small>
 </section>
 <section>
 <h1 id="working-with-mongodb">Working with MongoDB</h1>
+<p>By default Frontless is configured to use MongoDB, however advanced users can use any database of choice. In order to run default Frontless distribution you need a running MongoDB instance whether on localhost or remote. For this tutorial I recomend to use free plan on <a href="https://cloud.mongodb.com">cloud.mongodb.com</a>.</p>
+<h3 id="db-configuration">DB Configuration</h3>
+<p>Open <code>config -&gt; environ.env</code> and add <code>MONGO_DATABASE</code> and <code>MONGODB_URI</code> variables for accessing your mongo instance:</p>
+<pre><code class="language-bash">MONGO_DATABASE=test
+MONGODB_URI=mongodb+srv://user:password@cluster0-fffff.mongodb.net/microtw?retryWrites=true
+</code></pre>
+<h4 id="accessing-mongodb">Accessing MongoDB</h4>
+<p>There are two ways to acess the storage in Frontless:</p>
+<ol>
+<li>Using Mongo Driver:</li>
+</ol>
+<pre><code class="language-javascript">const {MONGO_DATABASE} = process.env
+export default (app, mongo) =&gt; {
+  const Todos = mongo.db(MONGO_DATABASE).collection('todos')
+  app.use('signup', {
+    async get(id) {
+      const todo = await Todos.findOne({id,})
+      return todo
+    },
+  })
+}
+</code></pre>
+<ol start="2">
+<li>Using <a href="https://github.com/feathersjs-ecosystem/feathers-mongodb">Feathers MongoDB</a></li>
+</ol>
+<pre><code class="language-javascript">const {MONGO_DATABASE} = process.env
+export default (app, mongo) =&gt; {
+  const Todos = mongo.db(MONGO_DATABASE).collection('todos')
+  app.use('/messages', service({ Todos, events, paginate }));
+}
+</code></pre>
+<p>Cunsult <a href="https://docs.feathersjs.com/api/databases/common.html">Feathers Common DB Adapter API</a></p>
 </section>
 <section id="pagination" class="clearfix">
-<a href="/en/index.html" class="text-muted previous"><i class="fa fa-caret-left" aria-hidden="true"></i> <span>Previous</span></a>
-<a href="mongodb.html" class="text-muted next"><span>Next</span> <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+<a href="/en/license.html" class="text-muted previous"><i class="fa fa-caret-left" aria-hidden="true"></i> <span>Previous</span></a>
+<a href="/en/config.html" class="text-muted next"><span>Next</span> <i class="fa fa-caret-right" aria-hidden="true"></i></a>
 </section>
 </article>
 </div>

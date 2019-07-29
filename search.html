@@ -11,17 +11,17 @@
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Search results - Frontless"/>
 <meta property="og:site_name" content="Frontless"/>
-<meta property="og:url" content="https://frontless.js.org/en/search.html"/>
+<meta property="og:url" content="https://skydocs.skyost.eu/en/search.html"/>
 <meta property="og:description" content="Documentation built with SkyDocs."/>
-<meta property="og:image" content="https://frontless.js.org/assets/img/icon.png"/>
+<meta property="og:image" content="https://skydocs.skyost.eu/assets/img/icon.png"/>
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Search results - Frontless"/>
 <meta name="twitter:site" content="Frontless"/>
 <meta name="twitter:creator" content="@Skyost_"/>
-<meta name="twitter:url" content="https://frontless.js.org/en/search.html"/>
+<meta name="twitter:url" content="https://skydocs.skyost.eu/en/search.html"/>
 <meta name="twitter:description" content="Documentation built with SkyDocs."/>
-<meta name="twitter:image" content="https://frontless.js.org/assets/img/icon.png"/>
+<meta name="twitter:image" content="https://skydocs.skyost.eu/assets/img/icon.png"/>
 
 <meta name="theme-color" content="#2980b9"/>
 <link rel="icon" type="image/png" href="../assets/img/icon.png"/>
@@ -112,21 +112,18 @@
 <a href="/en/services.html#socketio">- Socket.IO/Realtime API</a>
 </li>
 <li>
-<a href="/en/pages/creating_pages.html">- Working with MongoDB</a>
+<a href="/en/mongodb.html">- Working with MongoDB</a>
 </li>
 <li>
-<a href="/en/pages/creating_pages.html">- Configuration</a>
-</li>
-<li>
-<a href="/en/pages/creating_pages.html">- Deployment</a>
+<a href="/en/config.html">- Configuration</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="/en/pages/creating_pages.html"><i class="fa fa-id-card" aria-hidden="true"></i> Authentication</a>
+<a href="/en/authentication.html"><i class="fa fa-id-card" aria-hidden="true"></i> Authentication</a>
 </li>
 <li>
-<a href="/en/pages/creating_pages.html"><i class="fa fa-handshake-o" aria-hidden="true"></i> License</a>
+<a href="/en/license.html"><i class="fa fa-handshake-o" aria-hidden="true"></i> License</a>
 </li>
 </ul>
 </nav>
@@ -139,9 +136,9 @@ Powered by <a href="https://skydocs.skyost.eu">SkyDocs</a> v0.7.4 Beta.
 <article>
 <section id="article-header" class="clearfix">
 <ul class="links">
-<li><small><a href="https://github.com/nesterow/frontless" class="text-muted"><i class="fa fa-github"></i> Github</a></small></li>
+<li><small><a href="https://github.com/nesterow/frontless"> <i class="fa fa-github"></i> Github</a></small></li>
 </ul>
-<small class="date text-muted">Jul 24, 2019 6:06:29 AM</small>
+<small class="date text-muted">Jul 29, 2019, 4:38:58 PM</small>
 </section>
 <section>
 <h1>Search results</h1>
@@ -151,7 +148,7 @@ Powered by <a href="https://skydocs.skyost.eu">SkyDocs</a> v0.7.4 Beta.
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.4/lunr.min.js"></script>
 <script type="text/javascript">
 
-	const PAGES = {'-en-pages-routing_scheme.html': {title: 'Routing Scheme', content: 'Routing SchemeAny Riot.JS component placed in the page’s directory is accessible by its name in the browser, much like a .php script or a...', url: 'en/pages/routing_scheme.html'}, '-en-api_client.html': {title: 'Feathers.JS Client', content: 'API ClientFrontless makes use of Feathers.JS Client because it works the same way in any environment.There are two general ways to call A...', url: 'en/api_client.html'}, '-en-services.html': {title: 'Feathers.JS Services', content: 'Feathers.JS ServicesA service is a set of CRUD methods. In Frontless services can be accessed whether with REST client or Socket.IOFull d...', url: 'en/services.html'}, '-en-server_sent_state.html': {title: 'Server-sent state', content: 'Server-sent StateWhen we make API requests which are supposed to show changes in UI. The best way would be to format a response the same ...', url: 'en/server_sent_state.html'}, '-en-mongodb.html': {title: 'Working with MongoDB', content: 'Working with MongoDB', url: 'en/mongodb.html'}, '-en-index.html': {title: 'Home', content: 'AboutFrontless is a minimalistic node.js stack  for building universal (ismorphic) javascript applications. It is built to boost develope...', url: 'en/index.html'}, '-fr-index.html': {title: 'Accueil', content: 'AccueilBonjour à vous, et bienvenue sur Frontless !Comment modifier cette page ?Allez dans le dossier content et ouvrez le dossier corres...', url: 'fr/index.html'}, '-en-applayout.html': {title: 'Directory Structure', content: 'Application Structure1. AssetsMedia assets, external CSS and Javascript modules should be kept here.2. ComponentsRiot.JS components and a...', url: 'en/applayout.html'}, '-en-start.html': {title: 'Quick Start', content: 'Quick StartBefore getting started, make sure you have installed required software.If you don\'t need MongoDB for your application you can ...', url: 'en/start.html'}, '-en-pages-creating_pages.html': {title: 'Creating Pages', content: 'Creating PagesPages in Frontless are pure Riot.JS components. The pages have the same structure and logics as Riot.JS components - hooks,...', url: 'en/pages/creating_pages.html'}, '-en-pages-sync_rendering.html': {title: 'Syncronous Rendering', content: 'Syncronous RenderingFrontless can render pages after all asynchronous calls are complete. Including children riot components nested insid...', url: 'en/pages/sync_rendering.html'}, '-en-pages-components.html': {title: 'Riot.JS', content: 'Riot.JS ComponentsRiot.JS components in Frontless are rendered on server and browser in the same way. However, working with javascript on...', url: 'en/pages/components.html'}, '-en-forms-handling_forms.html': {title: 'Handling Forms', content: 'Handling User InputFrontless provides utils for handling HTML forms.Serializing FormsThe simplest way to get the values from a form is to...', url: 'en/forms/handling_forms.html'}, '-en-pages-dependencies.html': {title: 'Managing Dependencies', content: 'Managing DependenciesFrontless plays well with any javascript libraries or frameworks. It is possible to add dependencies to the bundle o...', url: 'en/pages/dependencies.html'}, '-fr-page.html': {title: 'Nouvelle page', content: 'PageCeci est une nouvelle page. Vous pouvez la modifier si vous voulez !Paragraphe 1Maecenas ipsum velit, consectetuer eu, lobortis ut, d...', url: 'fr/page.html'}};
+	const PAGES = {'-en-start.html': {title: 'Quick Start', content: 'Quick StartBefore getting started, make sure you have installed required software.If you don\'t need MongoDB for your application you can ...', url: 'en/start.html'}, '-en-pages-components.html': {title: 'Riot.JS', content: 'Riot.JS ComponentsRiot.JS components in Frontless are rendered on server and browser in the same way. However, working with javascript on...', url: 'en/pages/components.html'}, '-en-mongodb.html': {title: 'Working with MongoDB', content: 'Working with MongoDBBy default Frontless is configured to use MongoDB, however advanced users can use any database of choice. In order to...', url: 'en/mongodb.html'}, '-en-server_sent_state.html': {title: 'Server-sent state', content: 'Server-sent StateWhen we make API requests which are supposed to show changes in UI. The best way would be to format a response the same ...', url: 'en/server_sent_state.html'}, '-en-pages-dependencies.html': {title: 'Managing Dependencies', content: 'Managing DependenciesFrontless plays well with any javascript libraries or frameworks. It is possible to add dependencies to the bundle o...', url: 'en/pages/dependencies.html'}, '-en-applayout.html': {title: 'Directory Structure', content: 'Application Structure1. AssetsMedia assets, external CSS and Javascript modules should be kept here.2. ComponentsRiot.JS components and a...', url: 'en/applayout.html'}, '-en-authentication.html': {title: 'Working with MongoDB', content: 'User AuthenticationBy default, Frontless supports user sessions and basic login. It comes with basic user model out of the box.User model...', url: 'en/authentication.html'}, '-en-pages-sync_rendering.html': {title: 'Syncronous Rendering', content: 'Syncronous RenderingFrontless can render pages after all asynchronous calls are complete. Including children riot components nested insid...', url: 'en/pages/sync_rendering.html'}, '-en-services.html': {title: 'Feathers.JS Services', content: 'Feathers.JS ServicesA service is a set of CRUD methods. In Frontless services can be accessed whether with REST client or Socket.IOFull d...', url: 'en/services.html'}, '-en-config.html': {title: 'Config', content: 'ConfigurationServer varibales are loaded from config/environ.env. This config file is used only by server and shouldn\'t be shared with UI...', url: 'en/config.html'}, '-en-index.html': {title: 'Home', content: 'AboutFrontless is a minimalistic node.js stack  for building universal (ismorphic) javascript applications. It is built to boost develope...', url: 'en/index.html'}, '-en-pages-routing_scheme.html': {title: 'Routing Scheme', content: 'Routing SchemeAny Riot.JS component placed in the page’s directory is accessible by its name in the browser, much like a .php script or a...', url: 'en/pages/routing_scheme.html'}, '-fr-page.html': {title: 'Nouvelle page', content: 'PageCeci est une nouvelle page. Vous pouvez la modifier si vous voulez !Paragraphe 1Maecenas ipsum velit, consectetuer eu, lobortis ut, d...', url: 'fr/page.html'}, '-fr-index.html': {title: 'Accueil', content: 'AccueilBonjour à vous, et bienvenue sur Frontless !Comment modifier cette page ?Allez dans le dossier content et ouvrez le dossier corres...', url: 'fr/index.html'}, '-en-forms-handling_forms.html': {title: 'Handling Forms', content: 'Handling User InputFrontless provides utils for handling HTML forms.Serializing FormsThe simplest way to get the values from a form is to...', url: 'en/forms/handling_forms.html'}, '-en-api_client.html': {title: 'Feathers.JS Client', content: 'API ClientFrontless makes use of Feathers.JS Client because it works the same way in any environment.There are two general ways to call A...', url: 'en/api_client.html'}, '-en-pages-creating_pages.html': {title: 'Creating Pages', content: 'Creating PagesPages in Frontless are pure Riot.JS components. The pages have the same structure and logics as Riot.JS components - hooks,...', url: 'en/pages/creating_pages.html'}, '-en-license.html': {title: 'License', content: 'MIT LicenseMIT LicenseCopyright (c) 2019 Anton NesterovPermission is hereby granted, free of charge, to any person obtaining a copyof thi...', url: 'en/license.html'}};
 
 </script>
 <script type="text/javascript">
