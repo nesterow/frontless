@@ -22,5 +22,8 @@
     <script type="data/json" id="globals"><%- req.session.globals %></script>
     <script type="data/json" id="state"><%- state %></script>
     <script type="data/json" id="attributes"><%- shared %></script>
+    <% if (process.env.NODE_ENV === 'development') { %> 
+      <script src="/assets/devtools.js"></script>
+    <%}%>
   </body>
 </html>

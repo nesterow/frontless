@@ -1,13 +1,11 @@
 process.env.NODE_PATH = `${__dirname}:${__dirname}/components:${__dirname}/node_modules`
 
-
 const { spawn, exec } = require('child_process');
 const gulp       = require('gulp')
 const browserify = require('browserify')
 const babelify    = require('babelify')
 const globify    = require('require-globify')
 const riotify    = require('riotify')
-const hmr        = require('browserify-hmr')
 const watchify   = require('watchify')
 const source     = require('vinyl-source-stream')
 const nodemon    = require('gulp-nodemon')
@@ -78,12 +76,22 @@ gulp.task('boot', function(){
 })
 
 
+gulp.task('devtools', function(){
+  return browserify({ entries: ['components/devtools.js'] })
+    .transform(babelify.configure({
+      presets: ["@babel/preset-env"]
+    }))
+    .bundle()
+    .pipe(source('devtools.js'))
+    .pipe(gulp.dest('assets/'))
+})
+
 
 gulp.task('default', async function(done){
-  
-  gulp.task('scss')()
-  gulp.task('worker')()
-  gulp.task('boot')()
+
+  await gulp.task('devtools')()
+  const devtool = require('@frontless/devtool')
+  await devtool.ready;
 
   const b = browserify({ 
       entries: ['pages/index.js'],
@@ -95,7 +103,6 @@ gulp.task('default', async function(done){
       delay: 100,
       ignoreWatch: ['**/node_modules/**', '**/assets/**'],
     })
-    .plugin(hmr)
     .transform(babelify.configure({
       presets: ["@babel/preset-env"]
     }))
@@ -108,12 +115,16 @@ gulp.task('default', async function(done){
     await gulp.task('worker')()
     await gulp.task('boot')()
     server.emit('restart', 'bundle')
+    devtool.buildStatus('frontend')
     return b.bundle()
     .pipe(source('application.js'))
     .pipe(gulp.dest('assets/'))
   }
   bundle()
   b.on('update', bundle)
+  b.on('bundle', () => {
+    devtool.buildFinshed()
+  })
 
   const server = nodemon({
       script: 'index.js'
@@ -126,8 +137,15 @@ gulp.task('default', async function(done){
   }).
 
   on('restart', (files) => {
-    if (files === 'bundle') return;
+    if (files === 'bundle') {
+      devtool.buildStarted()
+      return;
+    }
     setTimeout( () => exec('touch pages/index.riot'), 500 )
+  }).
+
+  on('start', (files) => {
+    devtool.buildStatus('started')
   })
 
   return server

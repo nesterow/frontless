@@ -4,7 +4,6 @@ import { get, omit } from 'lodash'
 import {FeathersError} from '@feathersjs/errors'
 
 const debug = Debug('@feathersjs/authentication-local:verify');
-
 const {MONGO_DATABASE} = process.env
 
 class Unauthorized extends FeathersError {
