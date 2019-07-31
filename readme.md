@@ -122,9 +122,12 @@ If you understand how it works under the hood, or feel like you can make this pr
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/nesterow/frontless/blob/master/LICENSE) file for details
 
-## Roadmap v1.0
+## Changelog v1.0.x
 
-* [x] Async SSR
+### v1.0.0
+
+* [x] Replace browserify-hmr module with more reliable feature [#62](https://github.com/nesterow/frontless/issues/62)
+* [x] SSR
 * [x] Natural Routing  
 * [x] Database Interface
 * [x] Users and Sessions
@@ -133,9 +136,6 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 * [x] Plugin support
 * [x] Configuration
 * [x] Modify RiotJS to work with DI (inject `document`, `Node`, and global ctx)
-* [ ] Deployment scripts [50%]
-* [ ] PWA Bootstrap [90%]
-* [ ] Documentation [50%]
 
 ## Roadmap v2.0
 * [ ] Static site builder [10%]

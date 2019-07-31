@@ -52,7 +52,6 @@
     "@frontless/devtool": "^1.0.0",
     "babelify": "^10.0.0",
     "browserify": "^16.2.3",
-    "browserify-hmr": "git+https://github.com/nesterow/browserify-hmr#master",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "eslint": "^6.0.1",
