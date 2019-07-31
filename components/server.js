@@ -16,20 +16,36 @@
 import serverConfig from 'config/server'
 import browserConfig from 'config/browser'
 
-const {CACHE_PAGES, COOKIE_NAME, IS_PWA} = browserConfig;
+const {corsResolver} = serverConfig
+
+const {
+  CACHE_PAGES,
+  COOKIE_NAME, 
+  IS_PWA
+} = browserConfig;
 global.CACHE_PAGES = CACHE_PAGES
 global.IS_PWA = IS_PWA
+
+const {
+  HTTP_SESSION_SECRET, 
+  HTTP_SESSION_SECURE,
+  REST_AUTH_SECRET,
+  REST_AUTH_SERVICE,
+  ORIGIN,
+  MONGODB_URI
+} = process.env;
 
 const xss = require("xss")
 const xssOptions = {}
 global.XSS = new xss.FilterXSS(xssOptions)
 
 
+import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import session from 'express-session'
+
 import express from '@feathersjs/express'
 import feathers from '@feathersjs/feathers'
-import session from 'express-session'
-import cors from 'cors'
 import socketio from '@feathersjs/socketio'
 import authentication from '@feathersjs/authentication'
 import local from '@feathersjs/authentication-local'
@@ -41,18 +57,17 @@ import {Frontless} from '@frontless/core'
 import {MongoClient} from 'mongodb'
 import services from 'services'
 
+
 const sessionMiddleware = session({
-  secret: process.env.HTTP_SESSION_SECRET || 'secret',
+  secret: HTTP_SESSION_SECRET || 'secret',
   resave: false,
   saveUninitialized: true,
-  cookie: {secure: process.env.HTTP_SESSION_SECURE === 'yes'},
+  cookie: {secure: HTTP_SESSION_SECURE === 'yes'},
 });
-
 
 const corsMiddleware = cors({
-  origin: serverConfig.corsResolver,
+  origin: corsResolver,
 });
-
 
 const api = feathers()
 const app = express(api)
@@ -72,7 +87,7 @@ app.use('/boot.js', express.static('assets/boot.js'))
 app.use((req, res, next) => {
   const token = req.cookies [COOKIE_NAME]
   app.passport.verifyJWT(token, {
-    secret: process.env.REST_AUTH_SECRET || 'secret',
+    secret: REST_AUTH_SECRET || 'secret',
   }).
 
   then((user) => {
@@ -93,7 +108,7 @@ app.use((req, res, next) => {
 
 app.configure(socketio({}, function(io) {
 
-  io.origins(serverConfig.corsResolver)
+  io.origins(corsResolver)
   
   io.use(function(socket, next) {
     sessionMiddleware(socket.request, socket.request.res, next)
@@ -108,8 +123,8 @@ app.configure(socketio({}, function(io) {
 
 app.configure(authentication({
   session: true,
-  secret: process.env.REST_AUTH_SECRET || 'secret',
-  service: process.env.REST_AUTH_SERVICE || 'users',
+  secret: REST_AUTH_SECRET || 'secret',
+  service: REST_AUTH_SERVICE || 'users',
   cookie: {
     enabled: true,
     name: COOKIE_NAME,
@@ -118,7 +133,7 @@ app.configure(authentication({
   },
   jwt: {
     header: { typ: 'access' },
-    audience: process.env.ORIGIN,
+    audience: ORIGIN,
     subject: 'authentication',
     issuer: 'frontless',
     algorithm: 'HS256',
@@ -171,9 +186,9 @@ const start = (mongo) => {
   services(app, mongo)
   app.mongo = mongo;
   
-  let server = app.listen(PORT, (err) => {
-    console.log(`👍  app is listening on ${PORT} \r\n`)
-    Resolve({app, mongo, server})
+  app.listen(PORT, (err) => {
+    console.log(`👍  app is listening on http://localhost:${PORT} \r\n`)
+    Resolve({app, mongo})
   }).
   
   on('error', (error) => {
@@ -183,10 +198,10 @@ const start = (mongo) => {
 
 }
 
-if (process.env.MONGODB_URI) 
+if (MONGODB_URI) 
 {
 
-  MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+  MongoClient.connect(MONGODB_URI, { useNewUrlParser: true })
     .then((mongo) => {
       console.error(`✔️ MongoDB connection is active`)
       start(mongo)
