@@ -123,10 +123,12 @@ If you understand how it works under the hood, or feel like you can make this pr
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/nesterow/frontless/blob/master/LICENSE) file for details
 
 ## Changelog v1.0.x
-
-### v1.0.0
-
+### v1.0.4
+* [x] Update riot.js to v4.3.7
+* [x] Update riot-jss to v1.0.8
+### v1.0.2
 * [x] Replace browserify-hmr module with more reliable feature [#62](https://github.com/nesterow/frontless/issues/62)
+### v1.0.0
 * [x] SSR
 * [x] Natural Routing  
 * [x] Database Interface
