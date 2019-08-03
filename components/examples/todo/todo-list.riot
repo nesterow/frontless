@@ -28,17 +28,14 @@
       <ul class={ classes.todoList }>
         <li each={ item in state.items }>
           <div class="view">
-            <span if={ !item.editing }>
-              <input type="checkbox" class={ classes.toggle } checked={ item.status === 'done' } onchange={ (ev) => markDone(ev, item) }/>
-              <label onclick={ (ev)=> edit(item) } >{ item.text }</label>
-            </span>
-            <span if={ item.editing } >
-              <input 
-                onkeyup={ (ev)=> enter(ev, item) }
-                value={ item.text }
-                class={ classes.edit + ' item' }
-                autofocus />
-            </span>
+            <input if={ !item.editing } type="checkbox" class={ classes.toggle } checked={ item.status === 'done' } onchange={ (ev) => markDone(ev, item) }/>
+            <label if={ !item.editing } onclick={ (ev)=> edit(item) } >{ item.text }</label>
+            <input
+              if={ item.editing } 
+              onkeyup={ (ev)=> enter(ev, item) }
+              value={ item.text }
+              class={ classes.edit + ' item' }
+              autofocus />
             <button class="destroy" onclick={ ()=> destroy(item) } ></button>
           </div>
         </li>
