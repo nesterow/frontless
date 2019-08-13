@@ -132,7 +132,7 @@ gulp.task('default', async function(done){
     , args: ['./config/environ.env']
     , ignore: ['node_modules/', 'assets/']
     , ext: 'js ejs json jss scss env'
-    , env: { 'NODE_ENV': 'development' }
+    , env: { 'NODE_ENV': process.env.NODE_ENV || 'development' }
     , done: done
   }).
 
