@@ -8106,7 +8106,8 @@ function toByteArray (b64) {
     ? validLen - 4
     : validLen
 
-  for (var i = 0; i < len; i += 4) {
+  var i
+  for (i = 0; i < len; i += 4) {
     tmp =
       (revLookup[b64.charCodeAt(i)] << 18) |
       (revLookup[b64.charCodeAt(i + 1)] << 12) |
@@ -8309,6 +8310,7 @@ module.exports = (function() {
 
 var base64 = require('base64-js')
 var ieee754 = require('ieee754')
+var customInspectSymbol = typeof Symbol === 'function' ? Symbol.for('nodejs.util.inspect.custom') : null
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -8345,7 +8347,9 @@ function typedArraySupport () {
   // Can typed array instances can be augmented?
   try {
     var arr = new Uint8Array(1)
-    arr.__proto__ = { __proto__: Uint8Array.prototype, foo: function () { return 42 } }
+    var proto = { foo: function () { return 42 } }
+    Object.setPrototypeOf(proto, Uint8Array.prototype)
+    Object.setPrototypeOf(arr, proto)
     return arr.foo() === 42
   } catch (e) {
     return false
@@ -8374,7 +8378,7 @@ function createBuffer (length) {
   }
   // Return an augmented `Uint8Array` instance
   var buf = new Uint8Array(length)
-  buf.__proto__ = Buffer.prototype
+  Object.setPrototypeOf(buf, Buffer.prototype)
   return buf
 }
 
@@ -8424,7 +8428,7 @@ function from (value, encodingOrOffset, length) {
   }
 
   if (value == null) {
-    throw TypeError(
+    throw new TypeError(
       'The first argument must be one of type string, Buffer, ArrayBuffer, Array, ' +
       'or Array-like Object. Received type ' + (typeof value)
     )
@@ -8476,8 +8480,8 @@ Buffer.from = function (value, encodingOrOffset, length) {
 
 // Note: Change prototype *after* Buffer.from is defined to workaround Chrome bug:
 // https://github.com/feross/buffer/pull/148
-Buffer.prototype.__proto__ = Uint8Array.prototype
-Buffer.__proto__ = Uint8Array
+Object.setPrototypeOf(Buffer.prototype, Uint8Array.prototype)
+Object.setPrototypeOf(Buffer, Uint8Array)
 
 function assertSize (size) {
   if (typeof size !== 'number') {
@@ -8581,7 +8585,8 @@ function fromArrayBuffer (array, byteOffset, length) {
   }
 
   // Return an augmented `Uint8Array` instance
-  buf.__proto__ = Buffer.prototype
+  Object.setPrototypeOf(buf, Buffer.prototype)
+
   return buf
 }
 
@@ -8903,6 +8908,9 @@ Buffer.prototype.inspect = function inspect () {
   if (this.length > max) str += ' ... '
   return '<Buffer ' + str + '>'
 }
+if (customInspectSymbol) {
+  Buffer.prototype[customInspectSymbol] = Buffer.prototype.inspect
+}
 
 Buffer.prototype.compare = function compare (target, start, end, thisStart, thisEnd) {
   if (isInstance(target, Uint8Array)) {
@@ -9028,7 +9036,7 @@ function bidirectionalIndexOf (buffer, val, byteOffset, encoding, dir) {
         return Uint8Array.prototype.lastIndexOf.call(buffer, val, byteOffset)
       }
     }
-    return arrayIndexOf(buffer, [ val ], byteOffset, encoding, dir)
+    return arrayIndexOf(buffer, [val], byteOffset, encoding, dir)
   }
 
   throw new TypeError('val must be string, number or Buffer')
@@ -9394,7 +9402,8 @@ Buffer.prototype.slice = function slice (start, end) {
 
   var newBuf = this.subarray(start, end)
   // Return an augmented `Uint8Array` instance
-  newBuf.__proto__ = Buffer.prototype
+  Object.setPrototypeOf(newBuf, Buffer.prototype)
+
   return newBuf
 }
 
@@ -10277,16 +10286,24 @@ module.exports = function(a, b){
 },{}],55:[function(require,module,exports){
 "use strict";
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-const format_cookie_1 = require("./format-cookie");
+var format_cookie_1 = require("./format-cookie");
 
-const parse_cookies_1 = require("./parse-cookies");
+var parse_cookies_1 = require("./parse-cookies");
 
-class CookieStorage {
-  constructor(defaultOptions) {
+var CookieStorage = function () {
+  function CookieStorage(defaultOptions) {
+    _classCallCheck(this, CookieStorage);
+
     this._defaultOptions = Object.assign({
       domain: null,
       expires: null,
@@ -10296,75 +10313,87 @@ class CookieStorage {
     if (typeof Proxy !== 'undefined') return new Proxy(this, cookieStorageHandler);
   }
 
-  get length() {
-    const parsed = parse_cookies_1.parseCookies(this._getCookie());
-    const keys = Object.keys(parsed);
-    return keys.length;
-  }
+  _createClass(CookieStorage, [{
+    key: "clear",
+    value: function clear() {
+      var _this = this;
 
-  clear() {
-    const parsed = parse_cookies_1.parseCookies(this._getCookie());
-    const keys = Object.keys(parsed);
-    keys.forEach(key => this.removeItem(key));
-  }
+      var parsed = parse_cookies_1.parseCookies(this._getCookie());
+      var keys = Object.keys(parsed);
+      keys.forEach(function (key) {
+        return _this.removeItem(key);
+      });
+    }
+  }, {
+    key: "getItem",
+    value: function getItem(key) {
+      var parsed = parse_cookies_1.parseCookies(this._getCookie());
+      return parsed.hasOwnProperty(key) ? parsed[key] : null;
+    }
+  }, {
+    key: "key",
+    value: function key(index) {
+      var parsed = parse_cookies_1.parseCookies(this._getCookie());
+      var sortedKeys = Object.keys(parsed).sort();
+      return index < sortedKeys.length ? sortedKeys[index] : null;
+    }
+  }, {
+    key: "removeItem",
+    value: function removeItem(key, cookieOptions) {
+      var data = '';
+      var options = Object.assign({}, this._defaultOptions, cookieOptions, {
+        expires: new Date(0)
+      });
+      var formatted = format_cookie_1.formatCookie(key, data, options);
 
-  getItem(key) {
-    const parsed = parse_cookies_1.parseCookies(this._getCookie());
-    return parsed.hasOwnProperty(key) ? parsed[key] : null;
-  }
+      this._setCookie(formatted);
+    }
+  }, {
+    key: "setItem",
+    value: function setItem(key, data, options) {
+      var opts = Object.assign({}, this._defaultOptions, options);
+      var formatted = format_cookie_1.formatCookie(key, data, opts);
 
-  key(index) {
-    const parsed = parse_cookies_1.parseCookies(this._getCookie());
-    const sortedKeys = Object.keys(parsed).sort();
-    return index < sortedKeys.length ? sortedKeys[index] : null;
-  }
+      this._setCookie(formatted);
+    }
+  }, {
+    key: "_getCookie",
+    value: function _getCookie() {
+      return typeof document === 'undefined' ? '' : typeof document.cookie === 'undefined' ? '' : document.cookie;
+    }
+  }, {
+    key: "_setCookie",
+    value: function _setCookie(value) {
+      document.cookie = value;
+    }
+  }, {
+    key: "length",
+    get: function get() {
+      var parsed = parse_cookies_1.parseCookies(this._getCookie());
+      var keys = Object.keys(parsed);
+      return keys.length;
+    }
+  }]);
 
-  removeItem(key, cookieOptions) {
-    const data = '';
-    const options = Object.assign({}, this._defaultOptions, cookieOptions, {
-      expires: new Date(0)
-    });
-    const formatted = format_cookie_1.formatCookie(key, data, options);
-
-    this._setCookie(formatted);
-  }
-
-  setItem(key, data, options) {
-    const opts = Object.assign({}, this._defaultOptions, options);
-    const formatted = format_cookie_1.formatCookie(key, data, opts);
-
-    this._setCookie(formatted);
-  }
-
-  _getCookie() {
-    return typeof document === 'undefined' ? '' : typeof document.cookie === 'undefined' ? '' : document.cookie;
-  }
-
-  _setCookie(value) {
-    document.cookie = value;
-  }
-
-}
+  return CookieStorage;
+}();
 
 exports.CookieStorage = CookieStorage;
-const cookieStorageHandler = {
-  defineProperty(target, p, attributes) {
+var cookieStorageHandler = {
+  defineProperty: function defineProperty(target, p, attributes) {
     target.setItem(p.toString(), String(attributes.value));
     return true;
   },
-
-  deleteProperty(target, p) {
+  deleteProperty: function deleteProperty(target, p) {
     target.removeItem(p.toString());
     return true;
   },
-
-  get(target, p, _receiver) {
+  get: function get(target, p, _receiver) {
     if (typeof p === 'string' && p in target) return target[p];
-    const result = target.getItem(p.toString());
+    var result = target.getItem(p.toString());
     return result !== null ? result : undefined;
   },
-
-  getOwnPropertyDescriptor(target, p) {
+  getOwnPropertyDescriptor: function getOwnPropertyDescriptor(target, p) {
     if (p in target) return undefined;
     return {
       configurable: true,
@@ -10373,32 +10402,27 @@ const cookieStorageHandler = {
       writable: true
     };
   },
-
-  has(target, p) {
+  has: function has(target, p) {
     if (typeof p === 'string' && p in target) return true;
     return target.getItem(p.toString()) !== null;
   },
+  ownKeys: function ownKeys(target) {
+    var keys = [];
 
-  ownKeys(target) {
-    const keys = [];
-
-    for (let i = 0; i < target.length; i++) {
-      const key = target.key(i);
+    for (var i = 0; i < target.length; i++) {
+      var key = target.key(i);
       if (key !== null) keys.push(key);
     }
 
     return keys;
   },
-
-  preventExtensions(_) {
+  preventExtensions: function preventExtensions(_) {
     throw new TypeError('can\'t prevent extensions on this proxy object');
   },
-
-  set(target, p, value, _) {
+  set: function set(target, p, value, _) {
     target.setItem(p.toString(), String(value));
     return true;
   }
-
 };
 },{"./format-cookie":56,"./parse-cookies":58}],56:[function(require,module,exports){
 "use strict";
@@ -10407,27 +10431,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-const formatOptions = o => {
-  const {
-    path,
-    domain,
-    expires,
-    secure
-  } = o;
-  const sameSiteValue = getSameSiteValue(o);
+var formatOptions = function formatOptions(o) {
+  var path = o.path,
+      domain = o.domain,
+      expires = o.expires,
+      secure = o.secure;
+  var sameSiteValue = getSameSiteValue(o);
   return [typeof path === 'undefined' || path === null ? '' : ';path=' + path, typeof domain === 'undefined' || domain === null ? '' : ';domain=' + domain, typeof expires === 'undefined' || expires === null ? '' : ';expires=' + expires.toUTCString(), typeof secure === 'undefined' || secure === false ? '' : ';secure', sameSiteValue === null ? '' : ';SameSite=' + sameSiteValue].join('');
 };
 
-const getSameSiteValue = o => {
-  const {
-    sameSite
-  } = o;
+var getSameSiteValue = function getSameSiteValue(o) {
+  var sameSite = o.sameSite;
   if (typeof sameSite === 'undefined') return null;
   if (['lax', 'strict'].indexOf(sameSite.toLowerCase()) >= 0) return sameSite;
   return null;
 };
 
-const formatCookie = (k, d, o) => {
+var formatCookie = function formatCookie(k, d, o) {
   return [encodeURIComponent(k), '=', encodeURIComponent(d), formatOptions(o)].join('');
 };
 
@@ -10453,18 +10473,30 @@ exports.parseCookies = parse_cookies_1.parseCookies;
 },{"./cookie-storage":55,"./format-cookie":56,"./parse-cookies":58}],58:[function(require,module,exports){
 "use strict";
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-const parseCookies = s => {
+var parseCookies = function parseCookies(s) {
   if (s.length === 0) return {};
-  const parsed = {};
-  const pattern = new RegExp('\\s*;\\s*');
-  s.split(pattern).forEach(i => {
-    const [encodedKey, encodedValue] = i.split('=');
-    const key = decodeURIComponent(encodedKey);
-    const value = decodeURIComponent(encodedValue);
+  var parsed = {};
+  var pattern = new RegExp('\\s*;\\s*');
+  s.split(pattern).forEach(function (i) {
+    var _i$split = i.split('='),
+        _i$split2 = _slicedToArray(_i$split, 2),
+        encodedKey = _i$split2[0],
+        encodedValue = _i$split2[1];
+
+    var key = decodeURIComponent(encodedKey);
+    var value = decodeURIComponent(encodedValue);
     parsed[key] = value;
   });
   return parsed;

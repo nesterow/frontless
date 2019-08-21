@@ -1,5 +1,6 @@
 process.env.NODE_PATH = `${__dirname}:${__dirname}/components:${__dirname}/node_modules`
 
+const fs = require('fs')
 const { spawn, exec } = require('child_process');
 const gulp       = require('gulp')
 const browserify = require('browserify')
@@ -38,7 +39,10 @@ function runCommand(command, args, options = undefined) {
 
 gulp.task('build', function(){
 
-  return browserify({ entries: ['pages/index.js'] })
+  let b =browserify({ entries: ['pages/index.js'], ignore: ['index.js', 'components/server.js', '.build/*.js'], })
+    .on('file', (f,id, parent) => {
+      console.log(id)
+    })
     .transform(babelify.configure({
       presets: ["@babel/preset-env"]
     }))
@@ -46,15 +50,16 @@ gulp.task('build', function(){
     .transform(riotify) // pass options if you need
     // .plugin('tinyify', { flat: false })
     .bundle()
-    .pipe(require('minify-stream')({ sourceMap: false }))
+    return b.pipe(require('minify-stream')({ sourceMap: false }))
     .pipe(source('application.js'))
     .pipe(gulp.dest('assets/'))
+
 })
 
 
 
 gulp.task('worker', function(){
-  return browserify({ entries: ['components/webworker/index.js'] })
+  return browserify({ entries: ['components/webworker/index.js'], ignore: ['index.js', 'components/server.js', '.build/*.js'], })
     .transform(babelify.configure({
       presets: ["@babel/preset-env"]
     }))
@@ -95,7 +100,7 @@ gulp.task('default', async function(done){
 
   const b = browserify({ 
       entries: ['pages/index.js'],
-      debug: true,
+      ignore: ['index.js', 'components/server.js', '.build/*.js'],
       cache: {},
       packageCache: {}
     })

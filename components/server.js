@@ -53,7 +53,7 @@ import Verifier from 'components/verifier'
 
 
 import 'plugins'
-import {Frontless} from '@frontless/core'
+import {Frontless} from '@frontless/core/server'
 import {MongoClient} from 'mongodb'
 import services from 'services'
 
