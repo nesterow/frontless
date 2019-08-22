@@ -19,7 +19,7 @@ Frontless is built around the best javascript technologies: Feathers.JS , Riot.J
 
 #### Motivation
 
-In practice, the classic MVVM approach significantly complicates work with data. That causes a front-end developer to write the code, which would be better performed by the server rather than a browser application. The server has to be responsible for things like routing, data requests, user state (sessions), and in some cases - component's view-model. It would make a front-end developer better concentrate on UI rather than repeating the functionality which is done by back-end in more reliable way.
+In practice, the serverless approach significantly complicates work with data and causes front-end developer to write the code, which would be better performed by the server rather than a browser application. The server has to be responsible for things like routing, db requests, user state (sessions), and in some cases - component's view-model. It would make a front-end developer better concentrate on UI rather than repeating the functionality which is done by back-end in more reliable way.
 
 
 #### The Stack
