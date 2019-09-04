@@ -7,13 +7,13 @@
 
 <p style="color: green;"> Feathers + Riot + Turbolinks + Express</p>
 <a href="https://t6mj3.sse.codesandbox.io/" target="_blank">
-  <img src="https://codesandbox.io/favicon.ico" height="20"/> View demo on CodeSandbox.io
+  <img src="https://codesandbox.io/favicon.ico" height="20"/> View demo on CodeSandbox.io (refresh if you see 503 error)
 </a>
 
 
 ## About
 
-Frontless is a node.js stack for building universal (ismorphic) javascript applications. At the core, Frontless is just a small Express server that provides a developer with powerful tools for building SSR web applications.
+Frontless is a node.js stack for building universal (isomorphic) javascript applications. At the core, Frontless is just a small Express server that provides a developer with powerful tools for building SSR web applications.
 
 Frontless is built around the best javascript technologies: Feathers.JS , Riot.JS, Turbolinks, and Express.
 
