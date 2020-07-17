@@ -38,7 +38,7 @@
     "feathers-mongodb": "^5.0.0",
     "gulp": "^4.0.2",
     "jsdom": "15.1.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mongodb": "^3.3.0",
     "query-string": "^6.8.2",
     "require-globify": "^1.4.1",
