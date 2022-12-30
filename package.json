@@ -67,7 +67,7 @@
     "loadtest": "^3.0.7",
     "minify-stream": "^1.2.0",
     "minimatch": "^3.0.4",
-    "mocha": "^6.2.0",
+    "mocha": "^10.2.0",
     "node-uuid": "^1.4.8",
     "riotify": "^4.0.0",
     "sinon": "^7.4.1",
